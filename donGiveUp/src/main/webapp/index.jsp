@@ -12,6 +12,10 @@
 
 </script>
 <body>
-	
+	<div class="wrapper">
+      <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
+      <div class="content"></div>
+      <jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+   </div>
 </body>
 </html>
