@@ -10,7 +10,11 @@
 <script>
 
 </script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <style>
+	*{
+		font-family: 'Noto Sans KR', sans-serif;
+	}
 	.content{
 		height: 800px;
 		width: 1200px;

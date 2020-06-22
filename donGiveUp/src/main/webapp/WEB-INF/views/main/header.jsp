@@ -84,7 +84,7 @@
 					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">후기</a>
 				</div>
 				<div class="header_log_section">
-					<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">로그인</a>
+					<a href="/member/loginFrm.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">로그인</a>
 					<span>·</span>
 					<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">회원가입</a>
 				</div>
