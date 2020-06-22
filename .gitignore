@@ -6,7 +6,6 @@
 *.cfs
 *.dat
 .metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps
-*.xml
 *.ser
 *.log
 .metadata/.plugins/org.eclipse.wst.jsdt.core/externalLibsTimeStamps
