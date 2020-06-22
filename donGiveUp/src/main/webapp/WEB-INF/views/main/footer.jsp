@@ -5,8 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.footer{
+		height: 300px;
+		width: 100%;
+		background-color: #eff0f4;
+	}
+</style>
 </head>
 <body>
-
+	<div class="footer">
+		
+	</div>
 </body>
 </html>
