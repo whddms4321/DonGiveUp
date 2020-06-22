@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .metadata/.log
 .metadata/.lock
@@ -12,3 +13,6 @@
 *.txt
 *.index
 *.snap
+=======
+/.metadata/
+>>>>>>> baejaehyeon
