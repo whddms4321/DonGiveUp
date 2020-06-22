@@ -3,7 +3,7 @@ package kr.co.don.regularIn.model.vo;
 import lombok.Data;
 
 @Data
-public class RegularIn {
+public class RegularInVo {
 	private int regularInNo;
 	private String regularInId;
 	private int regularInMoney;
