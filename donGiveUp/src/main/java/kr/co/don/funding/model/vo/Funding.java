@@ -7,9 +7,8 @@ public class Funding {
 	private int fundingNo;
 	private String fundingTitle;
 	private String fundingContent;
-	private String rewardContent;
 	private String fundingGroup;
-	private String fundingGroupIn;
+	private String fundingGroupIntroduce;
 	private int fundingClass;
 	private int fundingType;
 	private String fundingStartDate;

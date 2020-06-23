@@ -4,8 +4,9 @@ import lombok.Data;
 
 @Data
 public class FundingIn {
+	
 	private int fundingInNo;
-	private String fundingInMember;
+	private String fundingInMemberId;
 	private int fundingInCount;
 	private int rewardListNo;
 	private int fundingInMoney;

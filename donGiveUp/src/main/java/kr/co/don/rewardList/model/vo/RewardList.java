@@ -8,6 +8,7 @@ public class RewardList {
 	private int fundingNo;
 	private int rewardListNo;
 	private String rewardName;
+	private String rewardContent;
 	private int rewardPrice;
 	private int rewardAmount;
 	private String rewardSendDate;
