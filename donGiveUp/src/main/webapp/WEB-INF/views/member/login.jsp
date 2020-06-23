@@ -16,9 +16,10 @@
 		margin: 0 auto;
 		background-image: url("/imgs/charities3.jpg");
 		background-repeat: no-repeat;
-		background-size: 100%;
+		background-size: cover;
 		background-position: 50%;
 		opacity: 0.8;
+		
 	}
 	
 	.loginArea{
@@ -36,6 +37,8 @@
 		padding-top : 100px;
 		text-align: center;
 	}
+	
+	
 </style>
 </head>
 <body>
@@ -47,11 +50,33 @@
 		</div>
 		<br><br>
 		<div class="loginArea">
-			<form action="/member/login.don">
-				아이디 : <input type="text" name="memberId"><br>
-				비밀번호 : <input type="password" name="memberPw"><br>
-				<button type="submit">로그인</button>
+			<form action="/member/login.don" method="post">
+				<table style="text-align: center; margin: 0 auto; padding-top: 70px;">
+					<tr>
+						<th style="width: 60px; padding-left: 30px;">아이디</th>
+						<td><input type="text" name="memberId" placeholder="아이디를 입력하세요" style="width: 300px;"></td>
+					</tr>
+					<tr>
+						<th style="width: 60px; padding-left: 30px;">비밀번호</th>
+						<td><input type="password" name="memberPw" placeholder="영문+숫자+특수문자 구성" style="width: 300px;"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button type="submit" style="width: 440px; height: 40px;">로그인</button></td>
+					</tr>
+					
+				</table>
 			</form>
+			<table style="text-align: center; margin: 0 auto; padding-top: 100px;">
+				<tr>
+					<td style="width: 300px;">아이디 / 비밀번호가 생각나지 않으세요?</td>
+					<td><a href="#">아이디찾기</a></td>
+					<td><a href="#">비밀번호찾기</a></td>
+				</tr>
+				<tr>
+					<td>후원자가 되어주세요.</td>
+					<td><a href="#">회원가입</a></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 	</div>
