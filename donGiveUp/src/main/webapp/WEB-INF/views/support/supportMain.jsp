@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,9 +11,12 @@
 <!-- 부트스트림4 지원 메타 포트 종료-->
 <title>Insert title here</title>
 <!--    부트스트랩(다운)과 jQuery 불러오기-->
-<script type="text/javascript" src="/resources/jongeun/bootstrap4/js/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="/resources/jongeun/bootstrap4/js/bootstrap.min.js"></script>
-<link type="text/css" rel="stylesheet" href="/resources/jongeun/bootstrap4/css/bootstrap.min.css" />
+<script type="text/javascript"
+	src="/resources/jongeun/bootstrap4/js/jquery-3.3.1.js"></script>
+<script type="text/javascript"
+	src="/resources/jongeun/bootstrap4/js/bootstrap.min.js"></script>
+<link type="text/css" rel="stylesheet"
+	href="/resources/jongeun/bootstrap4/css/bootstrap.min.css" />
 <!--    부트스트랩(다운)과 jQuery 불러오기 종료-->
 
 <!--  폰트어썸 링크(부트4.3만 가능)-->
@@ -25,51 +28,54 @@
 
 </head>
 <style>
-	.content{
-		height: 800px;
-		width: 1200px;
-		margin: 0 auto;
-	}
-	div>img{
+.content {
+	
+	width: 1200px;
+	margin: 0 auto;
+}
+
+div>img {
+	width: 100%;
+}
+.calrousel-inner{
 	width:100%;
-	}
+}
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<div class="content">
 		<div id="demo" class="carousel slide" data-ride="carousel">
-	
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
 
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/resources/upload/ckImg.png" alt="Los Angeles">
-    </div>
-    <div class="carousel-item">
-      <img src="/resources/upload/test1.png" alt="Chicago">
-    </div>
-    <div class="carousel-item">
-      <img src="/resources/upload/test2.png" alt="New York">
-    </div>
-  </div>
+			<!-- Indicators -->
+			<ul class="carousel-indicators">
+				<li data-target="#demo" data-slide-to="0" class="active"></li>
+				<li data-target="#demo" data-slide-to="1"></li>
+				<li data-target="#demo" data-slide-to="2"></li>
+			</ul>
 
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
+			<!-- The slideshow -->
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="/resources/upload/ckImg.png" alt="Los Angeles">
+				</div>
+				<div class="carousel-item">
+					<img src="/resources/upload/test1.png" alt="Chicago">
+				</div>
+				<div class="carousel-item">
+					<img src="/resources/upload/test2.png" alt="New York">
+				</div>
+			</div>
 
-</div>
-    </div>
-<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
-	
+			<!-- Left and right controls -->
+			<a class="carousel-control-prev" href="#demo" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+			</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</a>
+
+		</div>
+	</div>
+	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+
 </body>
 </html>
