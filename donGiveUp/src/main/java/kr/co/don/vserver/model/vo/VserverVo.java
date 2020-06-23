@@ -11,5 +11,5 @@ public class VserverVo {
 	private String vserverVms;
 	private String vserverWriter;
 	private int vserverRef;
-	
+	private int vserverPrice;
 }
