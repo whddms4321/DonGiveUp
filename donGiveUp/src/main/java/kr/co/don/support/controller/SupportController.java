@@ -11,4 +11,5 @@ public class SupportController {
 		System.out.println("테스트");
 		return "support/supportMain";
 	}
+	
 }

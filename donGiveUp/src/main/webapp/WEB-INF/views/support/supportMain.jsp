@@ -24,9 +24,21 @@
 <!--    폰트어썸 종료-->
 
 </head>
+<style>
+	.content{
+		height: 800px;
+		width: 1200px;
+		margin: 0 auto;
+	}
+	div>img{
+	width:100%;
+	}
+</style>
 <body>
-	<div id="demo" class="carousel slide" data-ride="carousel">
-
+	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
+	<div class="content">
+		<div id="demo" class="carousel slide" data-ride="carousel">
+	
   <!-- Indicators -->
   <ul class="carousel-indicators">
     <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -37,13 +49,13 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="la.jpg" alt="Los Angeles">
+      <img src="/resources/upload/ckImg.png" alt="Los Angeles">
     </div>
     <div class="carousel-item">
-      <img src="chicago.jpg" alt="Chicago">
+      <img src="/resources/upload/test1.png" alt="Chicago">
     </div>
     <div class="carousel-item">
-      <img src="ny.jpg" alt="New York">
+      <img src="/resources/upload/test2.png" alt="New York">
     </div>
   </div>
 
@@ -56,5 +68,8 @@
   </a>
 
 </div>
+    </div>
+<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+	
 </body>
 </html>
