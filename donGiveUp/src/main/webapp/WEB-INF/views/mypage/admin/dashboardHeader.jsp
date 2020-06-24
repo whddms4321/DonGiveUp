@@ -16,7 +16,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 
-				<a class="navbar-brand" href="/dashboard.do"><span>Don</span>
+				<a class="navbar-brand" href="/dashboard.don"><span>Don</span>
 					Give Up!</a>
 
 				<!-- 홈, 로그아웃 -->
@@ -33,9 +33,9 @@
 	<!-- 사이드바 메뉴 -->
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<ul class="nav menu">
-			<li><a href="/boardRequestList.do">글 등록 신청목록</a></li>
+			<li><a href="/boardRequestList.don?reqPage=1&type=all&title=&requestList=complete&sorting=date">글 등록 신청목록</a></li>
 			<li><a href="charts.html">마감 후원물품</a></li>
-			<li><a href="elements.html">후원단체 등록 신청목록</a></li>
+			<li><a href="/companyRequestList.don?reqPage=1">후원단체 등록 신청목록</a></li>
 			<li><a href="panels.html">회원관리</a></li>
 			<li><a href="panels.html">후원단체 관리</a></li>
 			<li><a href="panels.html">정기결제 해지 요청</a></li>

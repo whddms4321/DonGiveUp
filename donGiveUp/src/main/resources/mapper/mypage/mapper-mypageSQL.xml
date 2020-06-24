@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mypage">
+	<select id="selectboardRequestListTotalCount" parameterType="map" resultType="_int">
+		<if test='type.equals("all")'><!--전체 탭-->
+			<if test='req.equals("wait")'> <!-- 사용자가 신청대기목록을 선택한 경우 -->
+				select SUM(cnt) from
+				(
+				select count(*) as cnt from donation where
+					donation_title like '%'||#{title}||'%' and donation_state=0
+				union all
+					select count(*) as cnt from funding where
+					funding_title like '%'||#{title}||'%' and funding_type=0
+				union all
+					select count(*) as cnt from support where
+					support_name like '%'||#{title}||'%' and support_state=0
+				union all
+					select count(*) as cnt from vwork where
+					vwork_title like '%'||#{title}||'%' and vwork_state=0
+				)
+			</if>
+			<if test='req.equals("complete")'> <!-- 사용자가 처리완료목록 선택한 경우 -->
+				select SUM(cnt) from
+				(
+				select count(*) as cnt from donation where
+					donation_title like '%'||#{title}||'%' and donation_state!=0
+				union all
+					select count(*) as cnt from funding where
+					funding_title like '%'||#{title}||'%' and funding_type!=0
+				union all
+					select count(*) as cnt from support where
+					support_name like '%'||#{title}||'%' and support_state!=0
+				union all
+					select count(*) as cnt from vwork where
+					vwork_title like '%'||#{title}||'%' and vwork_state!=0
+				)
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectboardRequestList" parameterType="map" resultType="requestBoard">
+		<if test='type.equals("all")'><!--전체 탭-->
+			<if test='req.equals("wait")'> <!-- 사용자가 신청대기목록을 선택한 경우 -->
+				select * from (
+				    select rownum as boardNo , r.* , member_phone as memberPhone, member_email as memberEmail from(
+				        select 'donation' as groupName, donation_title as boardTitle, donation_writer as boardWriter, donation_start_date as startDate, donation_state as  boardState from donation
+				        union all
+				        select 'funding', funding_title, funding_manager, funding_start_date, funding_type from funding 
+				        union all
+				        select 'support', support_name, support_id, enroll_start_date, support_state from support
+				    )r left join member on (r.boardWriter=member_id) where boardState=0 and boardTitle like '%'||#{title}||'%'
+				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
+					     order by startDate
+				    </if>
+				    <if test='sort.equals("title")'>
+					     order by boardTitle
+				    </if>
+				) where boardNo between #{start} and #{end}
+			</if>
+			<if test='req.equals("complete")'> <!-- 사용자가 처리완료목록 선택한 경우 -->
+				select * from (
+				    select rownum as boardNo , r.* , member_phone as memberPhone, member_email as memberEmail from(
+				        select 'donation' as groupName, donation_title as boardTitle, donation_writer as boardWriter, donation_start_date as startDate, donation_state as  boardState from donation
+				        union all
+				        select 'funding', funding_title, funding_manager, funding_start_date, funding_type from funding 
+				        union all
+				        select 'support', support_name, support_id, enroll_start_date, support_state from support
+				    )r left join member on (r.boardWriter=member_id) where boardState!=0 and boardTitle like '%'||#{title}||'%'
+				    <if test='sort.equals("date")'>
+					     order by startDate
+				    </if>
+				    <if test='sort.equals("title")'>
+					     order by boardTitle
+				    </if>
+				) where boardNo between #{start} and #{end}
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectRequestCompanyTotalCount" resultType="_int">
+	</select>
+</mapper>
