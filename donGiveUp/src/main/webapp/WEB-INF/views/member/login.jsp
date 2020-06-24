@@ -24,7 +24,7 @@
 	
 	.loginArea{
 		width: 600px;
-		height: 600px;
+		height: 500px;
 		background-color: white;
 		border-radius: 15px;
 	}
@@ -38,6 +38,19 @@
 		text-align: center;
 	}
 	
+	.loginBtn{
+		width: 440px; 
+		height: 50px;
+		background-color: #0fbcff;
+		border: none;
+		border-radius: 10px;
+		color : white;
+		font-size: 16px;
+	}
+	
+	.loginBtn:hover {
+		opacity: 0.8;
+	}
 	
 </style>
 </head>
@@ -53,28 +66,28 @@
 			<form action="/member/login.don" method="post">
 				<table style="text-align: center; margin: 0 auto; padding-top: 70px;">
 					<tr>
-						<th style="width: 60px; padding-left: 30px;">아이디</th>
-						<td><input type="text" name="memberId" placeholder="아이디를 입력하세요" style="width: 300px;"></td>
+						<th style="width: 60px; padding-left: 30px; height: 50px;">아이디</th>
+						<td><input type="text" name="memberId" placeholder="아이디를 입력하세요" style="width: 300px; height: 30px;"></td>
 					</tr>
 					<tr>
-						<th style="width: 60px; padding-left: 30px;">비밀번호</th>
-						<td><input type="password" name="memberPw" placeholder="영문+숫자+특수문자 구성" style="width: 300px;"></td>
+						<th style="width: 60px; padding-left: 30px; height: 50px;">비밀번호</th>
+						<td><input type="password" name="memberPw" placeholder="영문+숫자+특수문자 구성" style="width: 300px; height: 30px;"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><button type="submit" style="width: 440px; height: 40px;">로그인</button></td>
+						<td colspan="2" style="height: 100px;"><button type="submit" class="loginBtn">로그인</button></td>
 					</tr>
 					
 				</table>
 			</form>
-			<table style="text-align: center; margin: 0 auto; padding-top: 100px;">
+			<table style="margin: 0 auto; padding-top: 50px;">
 				<tr>
-					<td style="width: 300px;">아이디 / 비밀번호가 생각나지 않으세요?</td>
-					<td><a href="#">아이디찾기</a></td>
-					<td><a href="#">비밀번호찾기</a></td>
+					<td style="width: 300px; height: 30px;">아이디 / 비밀번호가 생각나지 않으세요?</td>
+					<td><a href="#" style="color: black;">아이디찾기</a></td>
+					<td><a href="#" style="color: black;">비밀번호찾기</a></td>
 				</tr>
 				<tr>
-					<td>후원자가 되어주세요.</td>
-					<td><a href="#">회원가입</a></td>
+					<td style="width: 300px;">후원자가 되어주세요.</td>
+					<td><a href="#" style="color: black;">회원가입</a></td>
 				</tr>
 			</table>
 		</div>
