@@ -28,11 +28,20 @@ public class MemberController {
 		Member member = service.selectOneMember(m);
 		if(member != null) {
 			session.setAttribute("member", member);
-			System.out.println("success");
 			return "redirect:/";
 		}else {
-			System.out.println("fail");
 			return "redirect:/";
 		}
+	}
+	
+	@RequestMapping(value = "/logout.don")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/joinFrm.don")
+	public String joinFrm() {
+		return "member/joinStep1";
 	}
 }
