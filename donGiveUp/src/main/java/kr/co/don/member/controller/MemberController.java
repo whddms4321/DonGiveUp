@@ -44,4 +44,9 @@ public class MemberController {
 	public String joinFrm() {
 		return "member/joinStep1";
 	}
+	
+	@RequestMapping(value = "/joinStep2.don")
+	public String joinStep2() {
+		return "member/joinStep2";
+	}
 }
