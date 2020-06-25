@@ -19,8 +19,8 @@ public class AdminMypageService {
 	//글 신청 목록(전체, 기부, 펀딩, 함께해요, 물품후원)
 	public RequestBoardPageData selectboardRequestList(int reqPage, String type, String title, String requestList, String sorting) {
 		
-		int numPerPage = 5; //한번에 표시할 게시물 수
-	
+		int numPerPage = 10; //한번에 표시할 게시물 수
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", type);
 		map.put("title", title);
@@ -44,17 +44,20 @@ public class AdminMypageService {
 		
 		map.put("start", String.valueOf(start));
 		map.put("end", String.valueOf(end));
-		
+		System.out.println("타입"+type);
+		System.out.println("제목"+title);
+		System.out.println("구분"+requestList);
+		System.out.println("정렬"+sorting);
 		ArrayList<RequestBoardVO> list = (ArrayList<RequestBoardVO>)dao.selectboardRequestList(map);
 		
 		System.out.println("리스트 사이즈 : " + list.size());
 		
 		for (int i=0; i<list.size(); i++) {
-			System.out.println("리스트 " + i + " : " + list.get(i).getGroupName() + "  " + list.get(i).getBoardTitle());
+			System.out.println("리스트 " + i + " : " + list.get(i).getGroupName() + "  " + list.get(i).getBoardTitle() + "  " + list.get(i).getStartDate());
 		}
 		
 		String pageNavi = "";
-		int pageNaviSize = 3;
+		int pageNaviSize = 5;
 		
 		// pageNo 연산 -> 페이지 시작번호
 		// int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;

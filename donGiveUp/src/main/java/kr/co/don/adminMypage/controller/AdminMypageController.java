@@ -1,15 +1,17 @@
 package kr.co.don.adminMypage.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.google.gson.annotations.JsonAdapter;
-
 import kr.co.don.adminMypage.model.service.AdminMypageService;
 import kr.co.don.adminMypage.model.vo.RequestBoardPageData;
 
@@ -27,32 +29,49 @@ public class AdminMypageController {
 		return "/mypage/admin/dashboard";
 	}
 	
-	//글 등록 신청목록 이동, 타입에 상관없이 모든 신청목록을 불러온다
+	//글 등록 신청목록 이동, 첫 로드 시 '전체' 탭의 데이터를 구해옴, '전체'탭에서 '검색'버튼 클릭 시
 	@RequestMapping(value="/boardRequestList.don")
 	public String boardRequestList(int reqPage, String type, String title, String requestList, String sorting, Model m) {
-		if(sorting.equals("정렬")) {
-			sorting = "date";
-		}
+
+		System.out.println("정렬 : " + sorting);
+		
 		RequestBoardPageData pageData = service.selectboardRequestList(reqPage, type, title, requestList, sorting);
 		
 		m.addAttribute("reqBoardList", pageData.getList());
 		m.addAttribute("pageNavi", pageData.getPageNavi());
+		m.addAttribute("type", type);
+		m.addAttribute("title", title);
+		m.addAttribute("requestList", requestList);
+		m.addAttribute("sorting", sorting);
 		
 		return "/mypage/admin/boardRequestList";
 	}
 	
-	// 글 등록 신청목록 이동, 타입에 상관없이 모든 신청목록을 불러온다
+	// 글 등록 신청목록의 '전체'탭에서 페이지 번호를 클릭할 경우 Ajax를 통한 결과값 도출
 	@ResponseBody
 	@RequestMapping(value = "/boardRequestListAjax.don", produces = "application/json;charset=utf-8;")
 	public String boardRequestListAjax(int reqPage, String type, String title, String requestList, String sorting) {
-		if (sorting.equals("정렬")) {
-			sorting = "date";
+		System.out.println("정렬 : " + sorting);
+		if(requestList == null) {
+			requestList = "null";
 		}
 		
 		RequestBoardPageData pageData = service.selectboardRequestList(reqPage, type, title, requestList, sorting);
 		return new Gson().toJson(pageData);
 	}
 	
+	
+	// 글 등록 신청목록의 '전체'탭을 제외한 나머지 '기부','펀딩','함께해요','물품후원'
+	@ResponseBody
+	@RequestMapping(value="/boardRequestListEtc.don", method = RequestMethod.POST)
+	public String boardRequestListEtc(@RequestBody HashMap<String,Object> obj) {
+		System.out.println("java con 요청 페이지 : " + obj.get("etcReqPage"));
+		System.out.println("java con 요청 타입 : " + obj.get("etcType"));
+		System.out.println("java con 요청 제목 : " + obj.get("etcTitle"));
+		System.out.println("java con 요청 구분 : " + obj.get("etcRequestList"));
+		System.out.println("java con 요청 정렬 : " + obj.get("etcSorting"));
+		return null;
+	}
 	//후원단체 등록 신청목록
 	//@RequestMapping(value="/companyRequestList.don")
 	//public String companyRequestList(int reqPage) {
