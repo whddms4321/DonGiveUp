@@ -41,7 +41,7 @@
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.don</url-pattern>
 	</servlet-mapping>
 
 </web-app>
