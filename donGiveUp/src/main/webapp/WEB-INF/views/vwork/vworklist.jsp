@@ -25,7 +25,9 @@
             </ul>
         </div>
         <div class="vworklistWrap">
-            <div class="vwlisthead"></div>
+            <div class="vwlisthead">
+                <button class="vworkWriteBtn">함께해요등록</button>
+            </div>
             <table class="vworkCardlist">
                 <tr>
                     <td>
