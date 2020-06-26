@@ -20,6 +20,9 @@
   		company_number as companyNumber,
   		company_content as companyContent
   	from member
-  		where member_id=#{memberId} and member_pw=#{memberPw}
+  		where member_id=#{memberId}
+  		<if test="memberPw != null">
+		and member_pw = #{memberPw}
+		</if>
   </select>
 </mapper>

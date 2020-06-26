@@ -122,12 +122,20 @@
 		
 	}
 	
+	.personTable>tbody>tr>td>span{
+		display: none;
+		color : red;
+		font-weight: bold;
+	}
 	
 </style>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
 //이메일 입력방식 선택
 $(function () {
+	var count = 0;
+	var checkCount = 0;
 	$('#selectEmail').change(function(){
 		$("#selectEmail option:selected").each(function () {
 			if($(this).val()== '1'){ //직접입력일 경우 
@@ -138,7 +146,152 @@ $(function () {
 				$("#str_email02").attr("disabled",true); //비활성화 
 			} 
 		}); 
-	}); 
+	});
+	
+	$("#memberId").focusout(function() {
+		var regExp = /^[a-zA-Z0-9]{6,16}$/;
+		var id = $("#memberId").val();
+		if(id!=""){
+			if(!regExp.test(id)){
+				$("#errorId").css("display","inline-block");
+				checkCount = 0;
+			}else{
+				$("#errorId").css("display","none");
+				checkCount = 1;
+			}
+		}else{
+			$("#errorId").css("display","none");
+		}
+		
+	});
+	
+	$("#memberIdCheck").click(function () {
+		if(checkCount==1){
+			var memberId = $("#memberId").val();
+			$.ajax({
+	            url:"/member/checkId.don",
+	            type:"get",
+	            data:{memberId:memberId},
+	            success:function(data){
+	                if(data==1){
+	                	$("#errorCheckId").css("display","inline-block");
+	                	$("#successCheckId").css("display","none");
+	                  	$("#memberId").focus();
+	                	
+	                	
+	                }else{
+	                	$("#successCheckId").css("display","inline-block");
+	                	$("#errorCheckId").css("display","none");
+	                	count += 1;
+	                }
+	            }
+	        });
+		}else{
+			$("#errorCheckId").css("display","none");
+			$("#successCheckId").css("display","none");
+		}
+		
+	});
+	
+	$("#memberPw").focusout(function() {
+		var regExp =/^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+		var pw = $("#memberPw").val();
+		if(pw!=""){
+			if(!regExp.test(pw)){
+				$("#errorPw").css("display","inline-block");
+			}else{
+				$("#errorPw").css("display","none");
+				count += 1;
+			}
+			
+			var pwVal = $("#memberPw").val();
+			var pwReVal = $("#memberPwRe").val();
+			if(pwReVal!=""){
+				if(pwVal != pwReVal){
+					$("#errorPwRe").css("display","inline-block");
+				}else{
+					$("#errorPwRe").css("display","none");
+				}
+			}
+		}else{
+			$("#errorPw").css("display","none");
+		}
+		
+		
+	});
+	
+	$("#memberPwRe").focusout(function () {
+		var pw = $("#memberPw").val();
+		var pwRe = $("#memberPwRe").val();
+		if(pwRe!="" && pw!=""){
+			if(pw != pwRe){
+				$("#errorPwRe").css("display","inline-block");
+			}else{
+				$("#errorPwRe").css("display","none");
+				count += 1;
+			}
+		}else{
+			$("#errorPwRe").css("display","none");
+		}
+		
+	});
+	
+	$("#memberName").focusout(function() {
+		var regExp = /^[가-힣]{2,4}$/;
+		var name = $("#memberName").val();
+		if(name!=""){
+			if(!regExp.test(name)){
+				$("#errorName").css("display","inline-block");
+			}else{
+				$("#errorName").css("display","none");
+				count += 1;
+			}
+		}else{
+			$("#errorName").css("display","none");
+		}
+	});
+	
+	$("#memberPhone").focusout(function() {
+		var regExp = /^[0-9]{10,11}$/;
+		var phone = $("#memberPhone").val();
+		if(phone!=""){
+			if(!regExp.test(phone)){
+				$("#errorPhone").css("display","inline-block");
+			}else{
+				$("#errorPhone").css("display","none");
+				count += 1;
+			}
+		}else{
+			$("#errorPhone").css("display","none");
+		}
+	});
+	
+	$("#addrSearchBtn").click(function () {
+		new daum.Postcode({
+            oncomplete:function(data){
+                $("#memberAddr1").val(data.roadAddress);
+            }
+        }).open();
+	});
+    
+	$("form").submit(function () {
+		var str01 = $("#str_email01").val();
+		var str02 = $("#str_email02").val();
+		$("#memberEmail").val(str01+"@"+str02);
+		var addr1 = $("#memberAddr1").val();
+		var addr2 = $("#memberAddr2").val();
+		$("#memberAddr").val(addr1+" "+addr2);
+		console.log($("#memberEmail").val());
+		console.log($("#memberAddr").val());
+		confirm("제출하시겠습니까?");
+		if(confirm == true){
+			return true;
+		}else{
+			return false;
+		}
+		
+	});
+    
 });
 
 </script>
@@ -158,47 +311,48 @@ $(function () {
 		</div>
 		<br><br>
 		<div class="joinArea">
+		<br><br>
+        <button type="button" id="joinPersonBtn">개인</button>
+        <button type="button" id="joinCompanyBtn">기관</button>
 			<form action="/member/insertMember.don" method="post" id="joinForm">
-            	<br><br>
-            	<button type="button" id="joinPersonBtn">개인</button>
-            	<button type="button" id="joinCompanyBtn">기관</button>
+            	
             	<div class="joinTableWrap">
             		<table class="personTable">
             			<tr>
             				<td style="width: 100px;">*아이디</td>
-            				<td style="width: 250px;"><input type="text" placeholder="영어 + 숫자 조합 (6~16 문자)" name="memberId"></td>
-            				<td style="width: 100px;"><button type="button" style="width: 100px;">중복확인</button></td>
-            				<td><span>잘못된 입력입니다.</span></td>
+            				<td style="width: 250px;"><input type="text" placeholder="영어 + 숫자 조합 (6~16 문자)" name="memberId" id="memberId" required></td>
+            				<td style="width: 100px;"><button type="button" style="width: 100px;" id="memberIdCheck">중복확인</button></td>
+            				<td style="width: 150px;"><span id="errorId">잘못된 입력입니다.</span><span id="errorCheckId">아이디가 중복됩니다.</span><span id="successCheckId" style="color:blue;">사용가능합니다.</span></td>
             				
             			</tr>
             			<tr>
             				<td style="width: 100px;">*비밀번호</td>
-            				<td><input type="password" placeholder="영어 + 숫자 + 특수문자 조합 (8~20 문자)" name="memberPw"></td>
+            				<td><input type="password" placeholder="영어 + 숫자 + 특수문자 조합 (8~20 문자)" name="memberPw" id="memberPw" required></td>
             				<td style="width: 100px;"></td>
-            				<td colspan="2"><span>잘못된 입력입니다.</span></td>
+            				<td colspan="2"><span id="errorPw">잘못된 입력입니다.</span></td>
             			</tr>
             			<tr>
             				<td style="width: 100px;">*비밀번호 확인</td>
-            				<td><input type="password" placeholder="내용을 입력하세요." id="memberPwRe"></td>
+            				<td><input type="password" placeholder="내용을 입력하세요." id="memberPwRe" required></td>
             				<td style="width: 100px;"></td>
-            				<td colspan="2"><span>비밀번호가 다릅니다.</span></td>
+            				<td colspan="2"><span id="errorPwRe">비밀번호가 다릅니다.</span></td>
             			</tr>
             			<tr>
             				<td>*이름</td>
-            				<td><input type="text" placeholder="한글만 입력해주세요.(2~6 글자)" name="memberName"></td>
+            				<td><input type="text" placeholder="한글만 입력해주세요.(2~6 글자)" name="memberName" id="memberName" required></td>
             				<td style="width: 100px;"></td>
-            				<td><span>잘못된 입력입니다.</span></td>
+            				<td><span id="errorName">잘못된 입력입니다.</span></td>
             			</tr>
             			<tr>
             				<td>*휴대폰번호</td>
-            				<td><input type="text" placeholder="- 빼고 번호만 입력(10~11자리의 숫자)" name="memberPhone"></td>
+            				<td><input type="text" placeholder="- 빼고 번호만 입력(10~11자리의 숫자)" name="memberPhone" id="memberPhone" required></td>
             				<td style="width: 100px;"></td>
-            				<td><span>잘못된 입력입니다.</span></td>
+            				<td><span id="errorPhone">잘못된 입력입니다.</span></td>
             			</tr>
             			<tr>
             				<td>*이메일</td>
             				<td colspan="3">
-            				<input type="text" name="str_email01" id="str_email01" style="width:150px"> @ <input type="text" name="str_email02" id="str_email02" style="width:150px;" disabled value="naver.com"> 
+            				<input type="text" name="str_email01" id="str_email01" style="width:150px" required> @ <input type="text" name="str_email02" id="str_email02" style="width:150px;" disabled value="naver.com"> 
             				<select style="width:100px;margin-right:10px" name="selectEmail" id="selectEmail">
             					<option value="1">직접입력</option> 
         	    				<option value="naver.com" selected>naver.com</option> 
@@ -215,20 +369,20 @@ $(function () {
             					<option value="hanmir.com">hanmir.com</option> 
             					<option value="paran.com">paran.com</option> 
             				</select>
-            				<input type="hidden" name="memberEmail">
+            				<input type="hidden" name="memberEmail" id="memberEmail">
             			</tr>
             			<tr>
             				<td>*주소</td>
-            				<td><input type="text"></td>
-            				<td><button style="width: 100px;">주소검색</button></td>
+            				<td><input type="text" id="memberAddr1" readonly></td>
+            				<td><button type="button" style="width: 100px;" id="addrSearchBtn">주소검색</button></td>
             			</tr>
             			<tr>
             				<td>*상세주소</td>
-            				<td><input type="text" name="memberAddr">
+            				<td><input type="text" name="memberAddr2" id="memberAddr2" required><input type="hidden" name="memberAddr" id="memberAddr"></td>
             			</tr>
             			<tr>
             				<td>추천인 입력</td>
-            				<td><input type="text" placeholder="추천인 아이디를 입력하세요." name="memberReferee"></td>
+            				<td><input type="text" placeholder="추천인 아이디를 입력하세요.(선택사항)" name="memberReferee"></td>
             			</tr>
             		</table>
             		<div style="text-align: center;">
@@ -245,4 +399,5 @@ $(function () {
 	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 </body>
+
 </html>

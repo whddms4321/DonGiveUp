@@ -1,5 +1,9 @@
 package kr.co.don.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +52,26 @@ public class MemberController {
 	@RequestMapping(value = "/joinStep2.don")
 	public String joinStep2() {
 		return "member/joinStep2";
+	}
+	
+	@RequestMapping(value = "/checkId.don")
+	public void checkId(Member m, HttpServletResponse response) {
+		Member member = service.selectOneMember(m);
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			if(member!=null) {
+		         //아이디 사용가능 할때
+		         out.print(1);
+		      }else {
+		         //불가능 할때
+		         out.print(0);
+		      }
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	      
 	}
 }
