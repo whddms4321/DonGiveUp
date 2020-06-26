@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class RequestBoardVO {
 	private int boardNo;
+	private int boardKey;
 	private String groupName;
 	private String boardTitle;
 	private String boardWriter;

@@ -59,13 +59,13 @@
 			<if test='req.equals("") || req.equals("null")'> <!-- 사용자가 신청대기목록을 선택한 경우 -->
 				select * from (select rownum as boardNo,rr.* from (
 				    select  r.* , member_phone as memberPhone, member_email as memberEmail from(
-				        select '기부' as groupName, donation_title as boardTitle, donation_writer as boardWriter, donation_start_date as startDate, donation_state as  boardState from donation
+				        select donation_no as boardKey,'기부' as groupName, donation_title as boardTitle, donation_writer as boardWriter, donation_start_date as startDate, donation_state as  boardState from donation
 				        union all
-				        select '펀딩', funding_title, funding_manager, funding_start_date, funding_type from funding 
+				        select funding_no, '펀딩', funding_title, funding_manager, funding_start_date, funding_type from funding 
 				        union all
-				        select '물품후원', support_name, support_id, enroll_start_date, support_state from support
+				        select support_no, '물품후원', support_name, support_id, enroll_start_date, support_state from support
 				        union all
-				        select '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
+				        select vwork_no, '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
 				    )r left join member on (r.boardWriter=member_id) where boardTitle like '%'||#{title}||'%' 
 				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
 					     order by startDate
@@ -78,13 +78,13 @@
 			<if test='req.equals("wait")'> <!-- 사용자가 신청대기목록을 선택한 경우 -->
 				select * from (select rownum as boardNo,rr.* from (
 				    select  r.* , member_phone as memberPhone, member_email as memberEmail from(
-				        select '기부' as groupName, donation_title as boardTitle, donation_writer as boardWriter, donation_start_date as startDate, donation_state as  boardState from donation
+				        select donation_no as boardKey,'기부' as groupName, donation_title as boardTitle, donation_writer as boardWriter, donation_start_date as startDate, donation_state as  boardState from donation
 				        union all
-				        select '펀딩', funding_title, funding_manager, funding_start_date, funding_type from funding 
+				        select funding_no, '펀딩', funding_title, funding_manager, funding_start_date, funding_type from funding 
 				        union all
-				        select '물품후원', support_name, support_id, enroll_start_date, support_state from support
+				        select support_no, '물품후원', support_name, support_id, enroll_start_date, support_state from support
 				        union all
-				        select '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
+				        select vwork_no, '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
 				    )r left join member on (r.boardWriter=member_id) where boardState=0 and boardTitle like '%'||#{title}||'%' 
 				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
 					     order by startDate
@@ -97,13 +97,13 @@
 			<if test='req.equals("complete")'> <!-- 사용자가 처리완료목록 선택한 경우 -->
 				select * from (select rownum as boardNo,rr.* from (
 				    select  r.* , member_phone as memberPhone, member_email as memberEmail from(
-				        select '기부' as groupName, donation_title as boardTitle, donation_writer as boardWriter, donation_start_date as startDate, donation_state as  boardState from donation
+				        select donation_no as boardKey,'기부' as groupName, donation_title as boardTitle, donation_writer as boardWriter, donation_start_date as startDate, donation_state as  boardState from donation
 				        union all
-				        select '펀딩', funding_title, funding_manager, funding_start_date, funding_type from funding 
+				        select funding_no, '펀딩', funding_title, funding_manager, funding_start_date, funding_type from funding 
 				        union all
-				        select '물품후원', support_name, support_id, enroll_start_date, support_state from support
+				        select support_no, '물품후원', support_name, support_id, enroll_start_date, support_state from support
 				        union all
-				        select '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
+				        select vwork_no, '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
 				    )r left join member on (r.boardWriter=member_id) where boardState!=0 and boardTitle like '%'||#{title}||'%' 
 				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
 					     order by startDate
@@ -116,6 +116,172 @@
 		</if>
 	</select>
 	
+	<select id="selectboardRequestListTotalCountEtc" parameterType="map" resultType="_int">
+		<if test='type.equals("donation")'>
+			select count(*) as cnt from donation
+			<if test='req.equals("wait")'>
+				where donation_state = 0
+			</if>
+			<if test='req.equals("complete")'>
+				where donation_state != 0
+			</if>
+		</if>
+		<if test='type.equals("funding")'>
+			select count(*) as cnt from funding
+			<if test='req.equals("wait")'>
+				where funding_type = 0
+			</if>
+			<if test='req.equals("complete")'>
+				where funding_type != 0
+			</if>
+		</if>
+		<if test='type.equals("vwork")'>
+			select count(*) as cnt from vwork
+			<if test='req.equals("wait")'>
+				where vwork_state = 0
+			</if>
+			<if test='req.equals("complete")'>
+				where vwork_state != 0
+			</if>
+		</if>
+		<if test='type.equals("support")'>
+			select count(*) as cnt from support
+			<if test='req.equals("wait")'>
+				where support_state = 0
+			</if>
+			<if test='req.equals("complete")'>
+				where support_state != 0
+			</if>
+		</if>
+	</select>
+	
+	<select id="selectboardRequestListEtc" parameterType="map" resultType="requestBoard">
+		<if test='type.equals("donation")'>
+			select * from 
+			    (select ROWNUM as boardNo, rr.* from
+			        (select  r.* from
+			            (select donation_no as boardKey,'기부' as groupName, donation_title as boardTitle, donation_writer as boardWriter, donation_start_date as startDate,
+			             donation_state as boardState, member_phone as memberPhone, member_email as memberEmail from donation left join member on(member_id=donation_writer)
+			             )r where boardTitle like '%'||#{title}||'%'
+			             <if test='req.equals("wait")'>
+					     	and boardState=0
+					     </if>
+					     <if test='req.equals("complete")'>
+					    	and boardState!=0
+					     </if>
+					     <if test='sort.equals("date")'>
+					     	order by startDate
+					     </if>
+					     <if test='sort.equals("title")'>
+					     	order by boardTitle
+					     </if>
+			         )rr
+			    )
+			where boardNo between #{start} and #{end}
+		</if>
+		<if test='type.equals("funding")'>
+			select * from 
+			    (select ROWNUM as boardNo, rr.* from
+			        (select  r.* from
+			            (select funding_no as boardKey,'펀딩' as groupName, funding_title as boardTitle, funding_manager as boardWriter, funding_start_date as startDate,
+			             funding_type as boardState, member_phone as memberPhone, member_email as memberEmail from funding left join member on(member_id=funding_manager)
+			             )r where boardTitle like '%'||#{title}||'%'
+			             <if test='req.equals("wait")'>
+					     	and boardState=0
+					     </if>
+					     <if test='req.equals("complete")'>
+					    	and boardState!=0
+					     </if>
+					     <if test='sort.equals("date")'>
+					     	order by startDate
+					     </if>
+					     <if test='sort.equals("title")'>
+					     	order by boardTitle
+					     </if>
+			         )rr
+			    )
+			where boardNo between #{start} and #{end}
+		</if>
+		<if test='type.equals("vwork")'>
+			select * from 
+			    (select ROWNUM as boardNo, rr.* from
+			        (select  r.* from
+			            (select vwork_no as boardKey,'함께해요' as groupName, vwork_title as boardTitle, vwork_writer as boardWriter, vwork_req_date as startDate,
+			             vwork_state as boardState, member_phone as memberPhone, member_email as memberEmail from vwork left join member on(member_id=vwork_writer)
+			             )r where boardTitle like '%'||#{title}||'%'
+			             <if test='req.equals("wait")'>
+					     	and boardState=0
+					     </if>
+					     <if test='req.equals("complete")'>
+					    	and boardState!=0
+					     </if>
+					     <if test='sort.equals("date")'>
+					     	order by startDate
+					     </if>
+					     <if test='sort.equals("title")'>
+					     	order by boardTitle
+					     </if>
+			         )rr
+			    )
+			where boardNo between #{start} and #{end}
+		</if>
+		<if test='type.equals("support")'>
+			select * from 
+			    (select ROWNUM as boardNo, rr.* from
+			        (select  r.* from
+			            (select support_no as boardKey,'물품후원' as groupName, support_name as boardTitle, support_id as boardWriter, enroll_start_date as startDate,
+			             support_state as boardState, member_phone as memberPhone, member_email as memberEmail from support left join member on(member_id=support_id)
+			             )r where boardTitle like '%'||#{title}||'%'
+			             <if test='req.equals("wait")'>
+					     	and boardState=0
+					     </if>
+					     <if test='req.equals("complete")'>
+					    	and boardState!=0
+					     </if>
+					     <if test='sort.equals("date")'>
+					     	order by startDate
+					     </if>
+					     <if test='sort.equals("title")'>
+					     	order by boardTitle
+					     </if>
+			         )rr
+			    )
+			where boardNo between #{start} and #{end}
+		</if>
+	</select>
+	
+	<!-- 글 신청 승인~ -->
+	<update id="agreeRequestBoard" parameterType="map">
+		update 
+		<if test='type.equals("donation")'>
+			donation set donation_state=1 where donation_no=#{key}
+		</if>
+		<if test='type.equals("funding")'>
+			funding set funding_type=1 where funding_no=#{key}
+		</if>
+		<if test='type.equals("vwork")'>
+			vwork set vwork_state=1 where vwork_no=#{key}
+		</if>
+		<if test='type.equals("support")'>
+			support set support_state=1 where support_no=#{key}
+		</if>
+	</update>
+	<!-- 글 신청 거부! -->
+	<update id="negativeRequestBoard" parameterType="map">
+		update 
+		<if test='type.equals("donation")'>
+			donation set donation_state=2, donation_negative=#{content} where donation_no=#{key}
+		</if>
+		<if test='type.equals("funding")'>
+			funding set funding_type=2, funding_negative=#{content} where funding_no=#{key}
+		</if>
+		<if test='type.equals("vwork")'>
+			vwork set vwork_state=2, vwork_negative=#{content} where vwork_no=#{key}
+		</if>
+		<if test='type.equals("support")'>
+			support set support_state=2, support_negative=#{content} where support_no=#{key}
+		</if>
+	</update>
 	<select id="selectRequestCompanyTotalCount" resultType="_int">
 	</select>
 </mapper>
