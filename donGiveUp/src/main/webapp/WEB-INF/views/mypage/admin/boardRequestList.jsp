@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>글 등록 신청목록</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
 		
@@ -21,14 +22,15 @@
 	}
 	.sort{
 		 text-align:right;
-		 margin-right:70px;
+	}
+	#sorting{
+		padding:10px;
 	}
 	.th1, .th2, .th3, .th4, .th5, .th6, .th7, .th8{
 		font-size : 20px;
 		text-align:center;
 		height :  50px;
-		background-color : gray;
-		border : 1px solid black;
+		background-color : deepskyblue;
 	}
 	.th1{
 		width : 100px;
@@ -43,19 +45,20 @@
 		width : 150px;
 	}
 	.th5{
-		width : 197px;
+		width : 187px;
 	}
 	.th6{
-		width : 197px;
+		width : 187px;
 	}
 	.th7{
-		width : 150px;
+		width : 130px;
 	}
 	.th8{
-		width : 100px;
+		width : 150px;
 	}
 	td{
 		height : 50px;
+		line-height : 50px;
 		text-align : center;
 	}
 	#pageNavi a, span{
@@ -79,15 +82,15 @@
 						<li><a href="#tab4" onclick="saveValue('vwork', 1);" data-toggle="tab">함께해요</a></li>
 						<li><a href="#tab5" onclick="saveValue('support', 1);" data-toggle="tab">물품후원</a></li>
 					</ul>
-					<div class="tab-content" style="margin-left:50px;">
+					<div class="tab-content" style="margin-left:50px; padding-right:70px;">
 						<div class="tab-pane fade in active" id="tab1">
 							<input type="hidden" id="prevRequest" value="${requestList}">
 							<input type="hidden" id="prevSort" value="${sorting}">
 							<form action="/boardRequestList.don" method="get">
 								<input type="hidden" name="reqPage" value="1">
 								<input type="hidden" name="type" value="all">
-								<div class="search_wrap"><!-- 제목 입력 -->
-									<input type="text" name="title" class="form-control" placeholder="제목 입력..." style="display:inline;" value="${title}">
+								<div class="search_wrap form-inline"><!-- 제목 입력 -->
+									<input type="text" name="title" class="form-control" placeholder="제목 입력..." style="width:500px; float:left;" value="${title}">
 									<input type="submit" value="검색" class="btn btn-md btn-primary search_btn">
 								</div>
 								<div>
@@ -96,8 +99,8 @@
 										<label><input type="radio" name="requestList" id="firstRadio" value="wait">&nbsp; 신청대기목록</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label><input type="radio" name="requestList" id="secondRadio" value="complete">&nbsp; 처리완료목록</label>
 									</div>
-									<div class="sort">
-										<select id="sorting" name="sorting"  style="width:100px;">
+									<div class="sort" >
+										<select id="sorting"  name="sorting"  style="width:100px;">
 											<option value="">정렬</option>
 											<option value="date">날짜순</option>
 											<option value="title">제목순</option>
@@ -106,7 +109,7 @@
 								</div>
 							</form>
 							<div id="table" style="margin-top:50px;">
-								<table border=1>
+								<table class="table">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th2">타입</th>
@@ -155,7 +158,18 @@
 											</c:if>
 											<c:if test="${b.boardState==2}">
 												<td>
-													<a href="#">거부</a>
+													<c:if test="${b.groupName == '기부'}">
+														<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="donation" data-state="show">거부</a>
+													</c:if>
+													<c:if test="${b.groupName == '펀딩'}">
+														<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="funding" data-state="show">거부</a>
+													</c:if>
+													<c:if test="${b.groupName == '함께해요'}">
+														<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="vwork" data-state="show">거부</a>
+													</c:if>
+													<c:if test="${b.groupName == '물품후원'}">
+														<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="support" data-state="show">거부</a>
+													</c:if>
 												</td>
 											</c:if>
 										</tr>
@@ -170,8 +184,8 @@
 							<div id="donationForm">
 								<!-- <input type="hidden" name="etcReqPage" value="1">  -->
 								<input type="hidden" name="etcType" value="donation">
-								<div class="search_wrap"><!-- 제목 입력 -->
-									<input type="text" name="etcTitle" class="form-control" placeholder="제목 입력..." style="display:inline;">
+								<div class="search_wrap form-inline"><!-- 제목 입력 -->
+									<input type="text" name="etcTitle" class="form-control" placeholder="제목 입력..." style="width:500px;">
 									<input type="button" value="검색" class="btn btn-md btn-primary search_btn" onclick="saveValue('donation', 1);">
 								</div>
 								<div>
@@ -182,7 +196,7 @@
 										<label><input type="radio" name="etcRequestList" id="etcSecondRadio" value="complete">&nbsp; 처리완료목록</label>
 									</div>
 									<div class="sort">
-										<select id="etcSorting" name="etcSorting"  style="width:100px;">
+										<select id="etcSorting" name="etcSorting"  style="padding:10px; width:100px;">
 											<option value="">정렬</option>
 											<option value="date">날짜순</option>
 											<option value="title">제목순</option>
@@ -191,7 +205,7 @@
 								</div>
 							</div>
 							<div id="donationTable" style="margin-top : 50px;">
-								<table border="1">
+								<table class="table">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th3">글제목</th>
@@ -211,8 +225,8 @@
 							<div id="fundingForm">
 								<!-- <input type="hidden" name="etcReqPage" value="1">  -->
 								<input type="hidden" name="etcType" value="funding">
-								<div class="search_wrap"><!-- 제목 입력 -->
-									<input type="text" name="etcTitle" class="form-control" placeholder="제목 입력..." style="display:inline;">
+								<div class="search_wrap form-inline"><!-- 제목 입력 -->
+									<input type="text" name="etcTitle" class="form-control" placeholder="제목 입력..." style="width:500px;">
 									<input type="button" value="검색" class="btn btn-md btn-primary search_btn" onclick="saveValue('funding', 1);">
 								</div>
 								<div>
@@ -223,7 +237,7 @@
 										<label><input type="radio" name="etcRequestList" id="etcSecondRadio" value="complete">&nbsp; 처리완료목록</label>
 									</div>
 									<div class="sort">
-										<select id="etcSorting" name="etcSorting"  style="width:100px;">
+										<select id="etcSorting" name="etcSorting"  style="padding:10px; width:100px;">
 											<option value="">정렬</option>
 											<option value="date">날짜순</option>
 											<option value="title">제목순</option>
@@ -232,7 +246,7 @@
 								</div>
 							</div>
 							<div id="fundingTable" style="margin-top : 50px;">
-								<table border="1">
+								<table class="table">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th3">글제목</th>
@@ -252,8 +266,8 @@
 							<div id="vworkForm">
 								<!-- <input type="hidden" name="etcReqPage" value="1">  -->
 								<input type="hidden" name="etcType" value="vwork">
-								<div class="search_wrap"><!-- 제목 입력 -->
-									<input type="text" name="etcTitle" class="form-control" placeholder="제목 입력..." style="display:inline;">
+								<div class="search_wrap form-inline"><!-- 제목 입력 -->
+									<input type="text" name="etcTitle" class="form-control" placeholder="제목 입력..." style="width:500px;">
 									<input type="button" value="검색" class="btn btn-md btn-primary search_btn" onclick="saveValue('vwork', 1);">
 								</div>
 								<div>
@@ -264,7 +278,7 @@
 										<label><input type="radio" name="etcRequestList" id="etcSecondRadio" value="complete">&nbsp; 처리완료목록</label>
 									</div>
 									<div class="sort">
-										<select id="etcSorting" name="etcSorting"  style="width:100px;">
+										<select id="etcSorting" name="etcSorting"  style="padding:10px; width:100px;">
 											<option value="">정렬</option>
 											<option value="date">날짜순</option>
 											<option value="title">제목순</option>
@@ -273,7 +287,7 @@
 								</div>
 							</div>
 							<div id="vworkTable" style="margin-top : 50px;">
-								<table border="1">
+								<table class="table">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th3">글제목</th>
@@ -292,8 +306,8 @@
 							<div id="supportForm">
 								<!-- <input type="hidden" name="etcReqPage" value="1">  -->
 								<input type="hidden" name="etcType" value="support">
-								<div class="search_wrap"><!-- 제목 입력 -->
-									<input type="text" name="etcTitle" class="form-control" placeholder="제목 입력..." style="display:inline;">
+								<div class="search_wrap form-inline"><!-- 제목 입력 -->
+									<input type="text" name="etcTitle" class="form-control" placeholder="제목 입력..." style="width:500px;">
 									<input type="button" value="검색" class="btn btn-md btn-primary search_btn" onclick="saveValue('support', 1);">
 								</div>
 								<div>
@@ -304,7 +318,7 @@
 										<label><input type="radio" name="etcRequestList" id="etcSecondRadio" value="complete">&nbsp; 처리완료목록</label>
 									</div>
 									<div class="sort">
-										<select id="etcSorting" name="etcSorting" style="width:100px;">
+										<select id="etcSorting" name="etcSorting" style="padding:10px; width:100px;">
 											<option value="">정렬</option>
 											<option value="date">날짜순</option>
 											<option value="title">제목순</option>
@@ -313,7 +327,7 @@
 								</div>
 							</div>
 							<div id="supportTable" style="margin-top : 50px;">
-								<table border="1">
+								<table class="table">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th3">글제목</th>
@@ -351,7 +365,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary" onclick="negativeRequestBoard();">전송</button>
+						<button type="button" id="closeBtn" class="btn btn-primary" onclick="negativeRequestBoard();">전송</button>
 					</div>
 				</div>
 			</div>
@@ -370,10 +384,36 @@
             boardKey = $(event.relatedTarget).data('key');
             type = $(event.relatedTarget).data('type');
             state = $(event.relatedTarget).data('state');
+            
+            if(state == "show"){
+            	negativeShow(boardKey, type);	
+            }else if(state == undefined){
+            	$("#negativeContent").prop("readonly",false);
+            }
             console.log(boardKey);
             console.log(type);
             console.log(state);
         });
+		//작성한 거부사유를 확인하고 싶을 때
+		function negativeShow(boardKey, type){
+			$.ajax({
+				url : "/selectNegativeContent.don",
+				data : {boardKey : boardKey, type : type},
+				success : function(data){
+					$("#closeBtn").remove();
+					$("#dataModalLabel").html("");
+					$("#dataModalLabel").html("[거부 사유 확인]");
+					$("#negativeContent").val("");
+					$("#negativeContent").val(data);
+					$("#negativeContent").prop("readonly",true);
+				},
+				error : function(){
+					alert("거부 사유 불러오는거 실패함~");
+				}
+			});
+		}
+		
+		//거부사유를 작성하고 확인 버튼을 눌렀을 때
 		function negativeRequestBoard(){
 			var content = $("#negativeContent").val();
 			
@@ -467,7 +507,16 @@
 							}else if(boardList[i].boardState == 1){
 								html += "<td><span>승인완료</span></td></tr>";
 							}else if(boardList[i].boardState == 2){
-								html += "<td><a href='#'>거부</a></td></tr>";
+								html += "<td>";
+								if(boardList[i].groupName == "기부"){
+									html += '<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="'+boardList[i].boardKey+'" data-type="donation" data-state="show">거부</a></td></tr>';
+								}else if(boardList[i].groupName == "펀딩"){
+									html += '<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="'+boardList[i].boardKey+'" data-type="funding" data-state="show">거부</a></td></tr>';
+								}else if(boardList[i].groupName == "함께해요"){
+									html += '<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="'+boardList[i].boardKey+'" data-type="vwork" data-state="show">거부</a></td></tr>';
+								}else if(boardList[i].groupName == "물품후원"){
+									html += '<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="'+boardList[i].boardKey+'" data-type="support" data-state="show">거부</a></td></tr>';
+								}	
 							}
 							
 						}
@@ -548,7 +597,16 @@
 						}else if(list[i].boardState == 1){
 							html += "<td><span>승인완료</span></td></tr>";
 						}else if(list[i].boardState == 2){
-							html += "<td><a href='#'>거부</a></td></tr>";
+							html += "<td>";
+							if(list[i].groupName == "기부"){
+								html += '<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="'+list[i].boardKey+'" data-type="donation" data-state="show">거부</a></td></tr>';
+							}else if(list[i].groupName == "펀딩"){
+								html += '<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="'+list[i].boardKey+'" data-type="funding" data-state="show">거부</a></td></tr>';
+							}else if(list[i].groupName == "함께해요"){
+								html += '<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="'+list[i].boardKey+'" data-type="vwork" data-state="show">거부</a></td></tr>';
+							}else if(list[i].groupName == "물품후원"){
+								html += '<a href="#dataModal" data-toggle="modal" data-target="#dataModal" data-key="'+list[i].boardKey+'" data-type="support" data-state="show">거부</a></td></tr>';
+							}
 						}
 					}
 					//이전 테이블 값, 페이지 네비 삭제

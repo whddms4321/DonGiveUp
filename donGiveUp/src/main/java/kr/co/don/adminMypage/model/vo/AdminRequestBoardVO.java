@@ -3,7 +3,7 @@ package kr.co.don.adminMypage.model.vo;
 import lombok.Data;
 
 @Data
-public class RequestBoardVO {
+public class AdminRequestBoardVO {
 	private int boardNo;
 	private int boardKey;
 	private String groupName;

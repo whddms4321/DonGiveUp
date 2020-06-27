@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="mypage">
+<mapper namespace="adminMypage">
 	<select id="selectboardRequestListTotalCount" parameterType="map" resultType="_int">
 		<if test='type.equals("all")'><!--전체 탭-->
 			<if test='req.equals("") || req.equals("null")'> <!-- 사용자가 신청대기목록을 선택한 경우 -->
@@ -254,16 +254,16 @@
 	<update id="agreeRequestBoard" parameterType="map">
 		update 
 		<if test='type.equals("donation")'>
-			donation set donation_state=1 where donation_no=#{key}
+			donation set donation_state=1, donation_start_date=sysdate, donation_end_date=sysdate+7 where donation_no=#{key}
 		</if>
 		<if test='type.equals("funding")'>
-			funding set funding_type=1 where funding_no=#{key}
+			funding set funding_type=1, funding_start_date=sysdate, funding_end_date=sysdate+7 where funding_no=#{key}
 		</if>
 		<if test='type.equals("vwork")'>
-			vwork set vwork_state=1 where vwork_no=#{key}
+			vwork set vwork_state=1, vwork_req_date=sysdate, vwork_dl_date=sysdate+7 where vwork_no=#{key}
 		</if>
 		<if test='type.equals("support")'>
-			support set support_state=1 where support_no=#{key}
+			support set support_state=1, enroll_start_date=sysdate, enroll_end_date=sysdate+7 where support_no=#{key}
 		</if>
 	</update>
 	<!-- 글 신청 거부! -->
@@ -282,6 +282,57 @@
 			support set support_state=2, support_negative=#{content} where support_no=#{key}
 		</if>
 	</update>
-	<select id="selectRequestCompanyTotalCount" resultType="_int">
+	
+	<select id="selectNegativeContent" parameterType="map" resultType="string">
+		select
+		<if test='type.equals("donation")'>
+			donation_negative from donation where donation_no=#{key}
+		</if>
+		<if test='type.equals("funding")'>
+			funding_negative from funding where funding_no=#{key}
+		</if>
+		<if test='type.equals("vwork")'>
+			vwork_negative from vwork where vwork_no=#{key}
+		</if>
+		<if test='type.equals("support")'>
+			support_negative from support where support_no=#{key}
+		</if>
+	</select>
+	
+	<select id="deadLineSupportListTotalCount" resultType="_int">
+		<![CDATA[
+			select count(*) from support where support_state=1 and enroll_end_date<=sysdate
+		]]>
+	</select>
+	<select id="deadLineSupportList" parameterType="map" resultType="deadSupport">
+		<![CDATA[
+			select * from
+			    (select ROWNUM as rnum, r.* from
+			        (select support_no as supportNo, support_id as supportId, member_phone as memberPhone, member_email as memberEmail, support_name as supportName,
+			        enroll_start_date as enrollStartDate, enroll_end_date as enrollEndDate
+			        from support left join member on(member_id=support_id)
+			        where support_state=1 and enroll_end_date<=sysdate
+			        )r
+			    )
+			where rnum between #{start} and #{end}
+		]]>
+	</select>
+	<delete id="deleteSupport" parameterType="_int">
+		delete from support where support_no=#{_parameter}
+	</delete>
+	
+	<select id="selectSupportRequestCompanyTotalCount" parameterType="_int" resultType="_int">
+		select count(*) from supportapply where support_no=#{supportNo} and support_apply_state=0
+	</select>
+	
+	<select id="selectSupportRequestCompany" parameterType="map" resultType="supportapply">
+		select * from
+		    (select ROWNUM as rnum, r.* from
+		        (select support_apply_no as supportApplyNo,
+					   support_apply_reason as supportApplyReason,
+					   support_apply_state as supportApplyState,
+					   support_no as supportNo,
+					   support_apply_id as supportApplyId
+				from supportapply where support_no=#{supportNo})r) where rnum between #{start} and #{end}
 	</select>
 </mapper>
