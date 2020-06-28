@@ -335,4 +335,15 @@
 					   support_apply_id as supportApplyId
 				from supportapply where support_no=#{supportNo})r) where rnum between #{start} and #{end}
 	</select>
+	
+	<select id="supportAssignToCompany" statementType="CALLABLE" parameterType="map">
+		{call pro_supportapply(
+			#{supportNo},
+			#{applyId}
+		)
+		}
+	</select>
+	<update id="supportReUpload" parameterType="_int">
+		update support set enroll_start_date=sysdate, enroll_end_date=sysdate+7 where support_no=#{supportNo}
+	</update>
 </mapper>

@@ -326,7 +326,7 @@ public class AdminMypageService {
 		
 		// 이전버튼 생선
 		if (pageNo != 1) {
-			pageNavi += "<a href='/selectSupportRequestCompany.don?reqPage=" + (pageNo - 1) + "&supportNo=" + supportNo +"'>이전</a>";
+			pageNavi += "<a href='javascript:void(0);' onclick='companyList(" + supportNo + "," + (pageNo - 1) + ")'>이전</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -334,7 +334,7 @@ public class AdminMypageService {
 			if (reqPage == pageNo) {
 				pageNavi += "<span>" + pageNo + "</span>";
 			} else {
-				pageNavi += "<a href='/selectSupportRequestCompany.don?reqPage=" +  pageNo + "&supportNo=" + supportNo +"'>" + pageNo + "</a>";
+				pageNavi += "<a href='javascript:void(0);' onclick='companyList(" + supportNo + "," + pageNo + ")'>" + pageNo + "</a>";
 			}
 			pageNo++;
 			if (pageNo > totalPage) {
@@ -344,11 +344,24 @@ public class AdminMypageService {
 
 		// 다음버튼
 		if (pageNo <= totalPage) {
-			pageNavi += "<a href='/selectSupportRequestCompany.don?reqPage=" + pageNo + "&supportNo=" + supportNo + "'>다음</a>";
+			pageNavi += "<a href='javascript:void(0);' onclick='companyList(" + supportNo + "," + pageNo + ")'>다음</a>";
 		}
 		
 		AdminPageDataGenericVO<AdminSupportApplyVO> pageData = new AdminPageDataGenericVO<AdminSupportApplyVO>(list, pageNavi);
 		
 		return pageData;
+	}
+	
+	//마감 후원물품 - 재등록
+	public int supportReUpload(int supportNo) {
+		return dao.supportReUpload(supportNo);
+	}
+
+	public HashMap<String,String> supportAssignToCompany(int supportNo, String applyId) {
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("supportNo", String.valueOf(supportNo));
+		map.put("applyId",applyId);
+		HashMap<String,String> result = dao.supportAssignToCompany(map);
+		return result;
 	}
 }

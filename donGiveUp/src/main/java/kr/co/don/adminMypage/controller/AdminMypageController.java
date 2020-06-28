@@ -138,6 +138,20 @@ public class AdminMypageController {
 		return new Gson().toJson(pageData);
 	}
 	
+	//마감 후원물품 - 재등록
+	@ResponseBody
+	@RequestMapping(value="/supportReUpload.don")
+	public int supportReUpload(int supportNo) {
+		return service.supportReUpload(supportNo);
+	}
+	
+	//마감 후원물품 - 물품을 기관에 배정하기
+	@ResponseBody
+	@RequestMapping(value="/supportAssignToCompany.don")
+	public void supportAssignToCompany(int supportNo, String applyId) {
+		HashMap<String,String> map = service.supportAssignToCompany(supportNo, applyId); 
+		
+	}
 	//후원단체 등록 신청목록
 	//@RequestMapping(value="/companyRequestList.don")
 	//public String companyRequestList(int reqPage) {

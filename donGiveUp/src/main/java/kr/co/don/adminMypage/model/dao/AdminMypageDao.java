@@ -70,6 +70,15 @@ public class AdminMypageDao {
 		return session.selectList("adminMypage.selectSupportRequestCompany", map);
 	}
 
+	public int supportReUpload(int supportNo) {
+		return session.update("adminMypage.supportReUpload", supportNo); 
+	}
+
+	//프로시저 호출
+	public HashMap<String,String> supportAssignToCompany(HashMap<String,String> map) {
+		return session.selectOne("adminMypage.supportAssignToCompany", map);
+	}
+
 
 
 }
