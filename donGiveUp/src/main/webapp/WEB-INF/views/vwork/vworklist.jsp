@@ -26,13 +26,13 @@
         </div>
         <div class="vworklistWrap">
             <div class="vwlisthead">
-                <button class="vworkWriteBtn">함께해요등록</button>
+                <button class="vworkWriteBtn" type="button" onclick="vworkWrite();">함께해요등록</button>
             </div>
             <table class="vworkCardlist">
                 <tr>
                     <td>
                         <div class="vworkBox">
-                            <a href="#">
+                            <a href="/vworkbooking.don">
                                 <div class="vworkimg">
                                     <img src="/resources/dahyun/imgs/둥둥2.jpg">
                                     <span class="vworkTicketCount"><strong>5</strong>매남음</span>
@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="foundationName">초록우산어린이재단</div>
                                     <div class="vworkEnroll">
-                                        <button>참가신청</button>
+                                        <button type="button" onclick="vworkbookingBtn();">참가신청</button>
                                     </div>
                                 </div>
                             </a>
@@ -135,6 +135,14 @@
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+    <script>
+    	function vworkWrite(){
+    		location.href="/vworkwrite.don";
+    	}
+    	function vworkbookingBtn(){
+    		location.href="/vworkbooking.don";
+    	}
+    </script>
 </body>
 
 </html>

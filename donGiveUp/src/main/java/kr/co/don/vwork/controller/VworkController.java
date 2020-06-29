@@ -19,4 +19,13 @@ public class VworkController {
 		return "vwork/vworklist";
 	}
 	
+	@RequestMapping(value="/vworkwrite.don")
+	public String vworkwrite() {
+		return "vwork/vworkwrite";
+	}
+	
+	@RequestMapping(value="/vworkbooking.don")
+	public String vworkbooking() {
+		return "vwork/vworkbooking";
+	}
 }
