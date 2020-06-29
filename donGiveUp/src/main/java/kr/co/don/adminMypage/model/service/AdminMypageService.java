@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import kr.co.don.adminMypage.model.dao.AdminMypageDao;
 import kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO;
+import kr.co.don.adminMypage.model.vo.AdminMemberVO;
 import kr.co.don.adminMypage.model.vo.AdminPageDataGenericVO;
 import kr.co.don.adminMypage.model.vo.AdminRequestBoardVO;
 import kr.co.don.adminMypage.model.vo.AdminSupportApplyVO;
@@ -363,5 +364,84 @@ public class AdminMypageService {
 		map.put("applyId",applyId);
 		HashMap<String,String> result = dao.supportAssignToCompany(map);
 		return result;
+	}
+
+	//후원단체 등록 신청목록
+	public AdminPageDataGenericVO<AdminMemberVO> companyEnrollReq(int reqPage) {
+		
+		int numPerPage = 10; //한번에 표시할 게시물 수
+		
+		//검색 조건을 위한 map
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		
+		int totalCount =   dao.companyEnrollReqTotalCount();
+		
+		System.out.println("등록 신청기관 글 총 갯수 : " + totalCount);
+		
+		int start = (reqPage-1)*numPerPage+1;
+		int end = reqPage*numPerPage;
+		
+		int totalPage = 0; //총 페이지 수
+		
+		if(totalCount%numPerPage==0) {
+			totalPage =  totalCount/numPerPage;
+		}else {
+			totalPage =  totalCount/numPerPage+1;
+		}
+		
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		
+		ArrayList<AdminMemberVO> list = (ArrayList<AdminMemberVO>)dao.companyEnrollReq(map);
+		
+		System.out.println("등록 신청기관 리스트 사이즈 : " + list.size());
+		
+		
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		
+		// pageNo 연산 -> 페이지 시작번호
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		//int pageNo = 1;
+		if (reqPage != 1) {
+			pageNo = reqPage - 1;
+		}
+		
+		// 이전버튼 생선
+		if (pageNo != 1) {
+			pageNavi += "<a href='/companyEnrollReq.don?reqPage=" + (pageNo - 1) + "'>이전</a>";
+		}
+
+		// DB 게시물 50개 입력 후 COMMIT
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a href='/companyEnrollReq.don?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage) {
+				break;
+			}
+		}
+
+		// 다음버튼
+		if (pageNo <= totalPage) {
+			pageNavi += "<a href='/companyEnrollReq.don?reqPage=" + pageNo + "'>다음</a>";
+		}
+		
+		AdminPageDataGenericVO<AdminMemberVO> pageData = new AdminPageDataGenericVO<AdminMemberVO>(list, pageNavi);
+		
+		return pageData;
+		
+	}
+	
+	//후원단체 신청 목록 - 승인 및 거부
+	public int enrollCompany(String memberId, int type) {
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("memberId", memberId);
+		map.put("type", String.valueOf(type));
+		return dao.enrollCompany(map);
 	}
 }

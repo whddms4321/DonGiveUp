@@ -8,5 +8,6 @@
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminSupportApplyVO" alias="supportapply"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO" alias="deadSupport"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRequestBoardVO" alias="requestBoard"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminMemberVO" alias="member"/>
 	</typeAliases>
 </configuration>

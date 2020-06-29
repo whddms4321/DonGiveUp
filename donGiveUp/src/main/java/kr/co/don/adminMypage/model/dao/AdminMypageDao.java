@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO;
+import kr.co.don.adminMypage.model.vo.AdminMemberVO;
 import kr.co.don.adminMypage.model.vo.AdminRequestBoardVO;
 import kr.co.don.adminMypage.model.vo.AdminSupportApplyVO;
 
@@ -77,6 +78,18 @@ public class AdminMypageDao {
 	//프로시저 호출
 	public HashMap<String,String> supportAssignToCompany(HashMap<String,String> map) {
 		return session.selectOne("adminMypage.supportAssignToCompany", map);
+	}
+
+	public int companyEnrollReqTotalCount() {
+		return session.selectOne("adminMypage.companyEnrollReqTotalCount");
+	}
+
+	public List<AdminMemberVO> companyEnrollReq(HashMap<String, String> map) {
+		return session.selectList("adminMypage.companyEnrollReq",map);
+	}
+
+	public int enrollCompany(HashMap<String,String> map) {
+		return session.update("adminMypage.enrollCompany", map);
 	}
 
 

@@ -346,4 +346,39 @@
 	<update id="supportReUpload" parameterType="_int">
 		update support set enroll_start_date=sysdate, enroll_end_date=sysdate+7 where support_no=#{supportNo}
 	</update>
+	
+	<select id="companyEnrollReqTotalCount" resultType="_int">
+		select count(*) from member where member_type=0
+	</select>
+	
+	<select id="companyEnrollReq" parameterType="map" resultType="member">
+	select * from
+	(select ROWNUM as rnum, r.* from
+		(select 
+			member_id as memberId,
+			member_name as memberName,
+			member_phone as memberPhone,
+			member_addr as memberAddr,
+			member_email as memberEmail,
+			member_referee as memberReferee,
+			member_type as memberType,
+			member_enroll_date as memberEnrollDate,
+			member_money as memberMoney,
+			company_filename as companyFilename,
+			company_filepath as companyFilepath,
+			chart_filename as chartFilename,
+			chart_filepath as chartFilepath,
+			company_number as companyNumber,
+			company_content as companyContent
+		from member where member_type=0)r) where rnum between #{start} and #{end}
+	</select>
+	
+	<update id="enrollCompany" parameterType="map">
+		<if test='type.equals("0")'>
+			update member set member_type=2 where member_id=#{memberId}
+		</if>
+		<if test='type.equals("1")'>
+			update member set member_type=3 where member_id=#{memberId}
+		</if>
+	</update>
 </mapper>

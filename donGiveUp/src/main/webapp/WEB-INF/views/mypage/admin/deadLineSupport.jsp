@@ -42,7 +42,7 @@
 							<c:forEach items="${list}" var="s" varStatus="c">
 							<tr >
 								<!-- 요청한 페이지 번호를 다시 받아와 게시글 순서번호와 연산 -->
-								<td class="number">${(reqPage-1)*10 + c.count}<input type="hidden" id="${s.supportNo}"></td>
+								<td>${(reqPage-1)*10 + c.count}<input type="hidden" id="${s.supportNo}"></td>
 								<td><a style="cursor:pointer;" data-toggle="modal" data-target="#dataModal" data-reqpage=1 data-supportno="${s.supportNo}">${s.supportName}</a></td>
 								<td>${s.supportId}</td>
 								<td>${s.memberPhone}</td>
