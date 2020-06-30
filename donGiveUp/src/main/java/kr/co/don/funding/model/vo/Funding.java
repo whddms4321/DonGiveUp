@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Funding {
+	
 	private int fundingNo;
 	private String fundingTitle;
 	private String fundingContent;

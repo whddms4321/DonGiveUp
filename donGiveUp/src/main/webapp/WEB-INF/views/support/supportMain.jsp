@@ -9,7 +9,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- 부트스트림4 지원 메타 포트 종료-->
-<title>Insert title here</title>
+<title>물품 후원 메인</title>
 <!--    부트스트랩(다운)과 jQuery 불러오기-->
 <script type="text/javascript"
 	src="/resources/jongeun/bootstrap4/js/jquery-3.3.1.js"></script>
@@ -18,6 +18,9 @@
 <link type="text/css" rel="stylesheet"
 	href="/resources/jongeun/bootstrap4/css/bootstrap.min.css" />
 <!--    부트스트랩(다운)과 jQuery 불러오기 종료-->
+
+<!-- 구글 content 폰트 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 <!--  폰트어썸 링크(부트4.3만 가능)-->
 <link rel="stylesheet"
@@ -29,7 +32,7 @@
 </head>
 <style>
 .content {
-	
+	font-family: 'Noto Sans KR', sans-serif;
 	width: 1200px;
 	margin: 0 auto;
 }
@@ -40,6 +43,47 @@ div>img {
 .calrousel-inner{
 	width:100%;
 }
+.intro{
+    text-align: center;
+    height:150px;
+    border: none;
+}
+.intro>p:first-child{
+	font-size: 40px;
+	font-weight: 700;
+	
+}
+.intro>p:last-child{
+	color:limegreen;
+    font-size: 20px;
+}
+.carousel-item>img{
+	height:400px;
+	
+}
+.support_try{
+    margin:0 auto;
+    width:400px;
+    border: 1px solid black;
+    height:80px; 
+}
+    .support_try div{
+        color:black;
+        font-size:22px; 
+        font-weight: 600;
+        float: left;
+        border:none;
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        line-height: 80px;
+        text-align: center;
+        background-color: lightgray;
+        
+    }
+    .support_try>a:first-child>div{
+        border-right:1px solid black;
+    }
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
@@ -54,7 +98,7 @@ div>img {
 			</ul>
 
 			<!-- The slideshow -->
-			<div class="carousel-inner">
+			<div class="carousel-inner complict">
 				<div class="carousel-item active">
 					<img src="/resources/upload/ckImg.png" alt="Los Angeles">
 				</div>
@@ -74,7 +118,24 @@ div>img {
 			</a>
 
 		</div>
+		<br><br>
+		<div class="intro">
+			<p>여러분의 후원이 필요합니다.</p>
+			<p class="intro_buttom">기부금 영수증 발행으로 세전 해택</p>
+			
+		</div>
+        <div class="support_try">
+            <a href="/supportApplyAd.don">
+                <div class="apply">물품 후원하기</div>
+            </a>
+            <a href="/supportList.don?count=16">
+                <div class="apply">물품후원 리스트</div>
+            </a>
+        </div>
+		
+		
 	</div>
+    <br><br><br><br><br><br>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 
 </body>

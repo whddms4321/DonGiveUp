@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="support">
+ 	<select id="supportList" parameterType="map" resultType="support">
+ 	
+ 	   select  
+ 		support_no as supportNo, support_id as supportId,
+ 		support_name as supportName, support_category as supportCategory,
+ 		support_amount as supportAmount, support_method as supportMethod,
+ 		support_filename as supportFilename, support_filepath as supportFilepath,
+ 		enroll_start_date as enrollStateDate, enroll_end_date as enrollEndDate,
+ 		support_price as supportPrice, support_state as supportState,
+        support_apply_id as supportApplyId,
+        
+        case
+            WHEN SUBSTR(SUPPORT_APPLY_ID,0) = #{supportApplyId} then '0'
+            else '1'
+            end as supportApplys
+            
+        FROM (select rownum as rnum, m.* from (select * from support ORDER BY SUPPORT_NO DESC)m) 
+        JOIN SUPPORTAPPLY USING(SUPPORT_NO)
+        where rnum between 1 and #{counts}	
+	
+ 	</select>
+ 	
+</mapper>

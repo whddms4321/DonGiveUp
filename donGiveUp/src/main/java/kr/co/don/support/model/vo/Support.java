@@ -4,10 +4,12 @@ import lombok.Data;
 
 @Data
 public class Support {
+	
 	private int supportNo;
 	private String supportId;
+	private String supportName;
 	private int supportCategory;
-	private int supportAmount;
+	private String supportAmount;
 	private int supportMethod;
 	private String supportFilename;
 	private String supportFilepath;
@@ -15,5 +17,8 @@ public class Support {
 	private String enrollEndDate;
 	private int supportPrice;
 	private int supportState;
+	private String supportNegative;
+	private String supportApplys;
+				   
 	
 }
