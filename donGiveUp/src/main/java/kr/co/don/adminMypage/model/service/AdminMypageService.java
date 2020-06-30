@@ -438,10 +438,162 @@ public class AdminMypageService {
 	}
 	
 	//후원단체 신청 목록 - 승인 및 거부
-	public int enrollCompany(String memberId, int type) {
+	public int enrollCompany(String memberId, int type, String companyName) {
 		HashMap<String,String> map = new HashMap<String,String>();
 		map.put("memberId", memberId);
+		map.put("companyName", companyName);
 		map.put("type", String.valueOf(type));
 		return dao.enrollCompany(map);
 	}
+
+	public String selectApplyId(String applyId) {
+		return dao.selectApplyId(applyId);
+	}
+
+	//회원 or 후원기관 - 리스트
+	public AdminPageDataGenericVO<AdminMemberVO> memberManagementList(int reqPage, String type) {
+		int numPerPage = 10; //한번에 표시할 게시물 수
+		
+		//검색 조건을 위한 map
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		
+		int totalCount =   dao.memberManagementListTotalCount(type);
+		
+		System.out.println("회원 || 기관 총 갯수 : " + totalCount);
+		
+		int start = (reqPage-1)*numPerPage+1;
+		int end = reqPage*numPerPage;
+		
+		int totalPage = 0; //총 페이지 수
+		
+		if(totalCount%numPerPage==0) {
+			totalPage =  totalCount/numPerPage;
+		}else {
+			totalPage =  totalCount/numPerPage+1;
+		}
+		
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("type", type);
+		
+		ArrayList<AdminMemberVO> list = (ArrayList<AdminMemberVO>)dao.memberManagementList(map);
+		
+		System.out.println("회원 || 기관 리스트 사이즈 : " + list.size());
+		
+		
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		
+		// pageNo 연산 -> 페이지 시작번호
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		//int pageNo = 1;
+		if (reqPage != 1) {
+			pageNo = reqPage - 1;
+		}
+		
+		// 이전버튼 생선
+		if (pageNo != 1) {
+			pageNavi += "<a href='/memberManagementList.don?reqPage=" + (pageNo - 1) + "&type="+type+"'>이전</a>";
+		}
+
+		// DB 게시물 50개 입력 후 COMMIT
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a href='/memberManagementList.don?reqPage=" + pageNo + "&type="+type+"'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage) {
+				break;
+			}
+		}
+
+		// 다음버튼
+		if (pageNo <= totalPage) {
+			pageNavi += "<a href='/memberManagementList.don?reqPage=" + pageNo + "&type="+type+"'>다음</a>";
+		}
+		
+		AdminPageDataGenericVO<AdminMemberVO> pageData = new AdminPageDataGenericVO<AdminMemberVO>(list, pageNavi);
+		
+		return pageData;
+	}
+
+	public int memberStopAndRestore(String type, String kind, String memberId) {
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("type", type);
+		map.put("kind", kind);
+		map.put("memberId", memberId);
+		return dao.memberStopAndRestore(map);
+	}
+
+	public void regularCancelReq(int reqPage, String type) {
+		int numPerPage = 10; //한번에 표시할 게시물 수
+		
+		//검색 조건을 위한 map
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", type);
+		int totalCount =   dao.regularCancelReqTotalCount(map);
+		
+		System.out.println("정기결제해지요청 총 갯수 : " + totalCount);
+		
+		int start = (reqPage-1)*numPerPage+1;
+		int end = reqPage*numPerPage;
+		
+		int totalPage = 0; //총 페이지 수
+		
+		if(totalCount%numPerPage==0) {
+			totalPage =  totalCount/numPerPage;
+		}else {
+			totalPage =  totalCount/numPerPage+1;
+		}
+		
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("type", type);
+		
+		ArrayList<AdminMemberVO> list = (ArrayList<AdminMemberVO>)dao.memberManagementList(map);
+		
+		System.out.println("회원 || 기관 리스트 사이즈 : " + list.size());
+		
+		
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		
+		// pageNo 연산 -> 페이지 시작번호
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		//int pageNo = 1;
+		if (reqPage != 1) {
+			pageNo = reqPage - 1;
+		}
+		
+		// 이전버튼 생선
+		if (pageNo != 1) {
+			pageNavi += "<a href='/memberManagementList.don?reqPage=" + (pageNo - 1) + "&type="+type+"'>이전</a>";
+		}
+
+		// DB 게시물 50개 입력 후 COMMIT
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a href='/memberManagementList.don?reqPage=" + pageNo + "&type="+type+"'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage) {
+				break;
+			}
+		}
+
+		// 다음버튼
+		if (pageNo <= totalPage) {
+			pageNavi += "<a href='/memberManagementList.don?reqPage=" + pageNo + "&type="+type+"'>다음</a>";
+		}
+		
+		AdminPageDataGenericVO<AdminMemberVO> pageData = new AdminPageDataGenericVO<AdminMemberVO>(list, pageNavi);
+		
+		//return pageData;
+	}
+
 }

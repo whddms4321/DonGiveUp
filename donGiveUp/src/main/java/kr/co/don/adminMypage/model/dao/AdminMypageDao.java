@@ -92,6 +92,26 @@ public class AdminMypageDao {
 		return session.update("adminMypage.enrollCompany", map);
 	}
 
+	public String selectApplyId(String applyId) {
+		return session.selectOne("adminMypage.selectApplyId", applyId);
+	}
+
+	public int memberManagementListTotalCount(String type) {
+		return session.selectOne("adminMypage.memberManagementListTotalCount", type);
+	}
+
+	public List<AdminMemberVO> memberManagementList(HashMap<String, String> map) {
+		return session.selectList("adminMypage.memberManagementList", map);
+	}
+
+	public int memberStopAndRestore(HashMap<String,String> map) {
+		return session.update("adminMypage.memberStopAndRestore", map);
+	}
+
+	public int regularCancelReqTotalCount(HashMap<String, String> map) {
+		return session.selectOne("adminMypage.regularCancelReqTotalCount",map);
+	}
+
 
 
 }

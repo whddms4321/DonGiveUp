@@ -148,6 +148,17 @@
 		function assignCompany(supportNo, applyId){
 			if(confirm("물품을 해당 기관에 배정하시겠습니까?")){
 				$.ajax({
+					url : "/selectApplyId.don",
+					data : {applyId : applyId},
+					async : false,
+					success : function(data){
+						applyId = data;
+					},
+					error : function(){
+						
+					}
+				});
+				$.ajax({
 					url : "/supportAssignToCompany.don",
 					data : {supportNo : supportNo, applyId : applyId},
 					success : function(){
@@ -157,7 +168,7 @@
 					error : function(){
 						console.log("물품배정 실패");
 					}
-				});				
+				});	
 			}
 		}
 		

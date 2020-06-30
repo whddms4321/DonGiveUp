@@ -36,9 +36,9 @@
 			<li><a href="/boardRequestList.don?reqPage=1&type=all&title=&requestList=&sorting=date">글 등록 신청목록</a></li>
 			<li><a href="/deadLineSupportList.don?reqPage=1">마감 후원물품</a></li>
 			<li><a href="/companyEnrollReq.don?reqPage=1">후원단체 등록 신청목록</a></li>
-			<li><a href="/memberManagementList.don?reqPage=1">회원관리</a></li>
-			<li><a href="panels.html">후원단체 관리</a></li>
-			<li><a href="panels.html">정기결제 해지 요청</a></li>
+			<li><a href="/memberManagementList.don?reqPage=1&type=nomal">회원관리</a></li>
+			<li><a href="/memberManagementList.don?reqPage=1&type=company">후원단체 관리</a></li>
+			<li><a href="/regularCancelReq.don?reqPage=1&type=all">정기결제 해지 요청</a></li>
 		</ul>
 	</div>
 	<script src="/resources/adminMypage/js/jquery-1.11.1.min.js"></script>

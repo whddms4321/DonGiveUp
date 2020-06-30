@@ -164,6 +164,13 @@ public class AdminMypageController {
 		return service.supportReUpload(supportNo);
 	}
 	
+	//
+	@ResponseBody
+	@RequestMapping(value="/selectApplyId.don")
+	public String selectApplyId(String applyId) {
+		return service.selectApplyId(applyId);
+	}
+	
 	//마감 후원물품 - 물품을 기관에 배정하기
 	@ResponseBody
 	@RequestMapping(value="/supportAssignToCompany.don")
@@ -185,8 +192,8 @@ public class AdminMypageController {
 	//후원단체 등록 신청 - 승인 및 거부
 	@ResponseBody
 	@RequestMapping(value="/enrollCompany.don")
-	public int enrollCompany(String memberId, int type) {
-		return service.enrollCompany(memberId, type);
+	public int enrollCompany(String memberId, int type, String companyName) {
+		return service.enrollCompany(memberId, type, companyName);
 	}
 	
 	//후원단체 조회 - 공공 API
@@ -321,8 +328,36 @@ public class AdminMypageController {
 		return map;
 	}
 	
+	//회원 or 후원단체 리스트
 	@RequestMapping(value="/memberManagementList.don")
-	public String memberManagementList(int reqPage) {
-		return "/mypage/admin/memberManagement";
+	public String memberManagementList(int reqPage, String type,  Model m) {
+		AdminPageDataGenericVO<AdminMemberVO> pageData = service.memberManagementList(reqPage, type);
+		m.addAttribute("list", pageData.getList());
+		m.addAttribute("pageNavi", pageData.getPageNavi());
+		m.addAttribute("reqPage", reqPage);
+		if(type.equals("nomal")) {
+			return "mypage/admin/memberManagement";			
+		}else if(type.equals("company")){
+			return "mypage/admin/companyManagement";
+		}else {
+			return null;
+		}
+	}
+	
+	//회원 or 후원단체 정지 및 복구
+	@ResponseBody
+	@RequestMapping(value="/memberStopAndRestore.don")
+	public void memberStopAndRestore(String type, String kind, String memberId, Model m) {
+		int result = service.memberStopAndRestore(type, kind, memberId);
+		m.addAttribute("result", result);
+		m.addAttribute("kind", kind);
+	}
+	
+	//정기결제 해지요청 리스트
+	@RequestMapping(value="/regularCancelReq.don")
+	public String regularCancelReq(int reqPage, String type) {
+		service.regularCancelReq(reqPage,type);
+		return null;
 	}
 }
+

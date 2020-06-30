@@ -332,10 +332,13 @@
 					   support_apply_reason as supportApplyReason,
 					   support_apply_state as supportApplyState,
 					   support_no as supportNo,
-					   support_apply_id as supportApplyId
-				from supportapply where support_no=#{supportNo})r) where rnum between #{start} and #{end}
+					   company_name as supportApplyId
+				from supportapply left join member on(support_apply_id=member_id) where support_no=#{supportNo})r) where rnum between #{start} and #{end}
 	</select>
 	
+	<select id="selectApplyId" parameterType="string" resultType="string">
+		select member_id from member where company_name=#{_parameter}
+	</select>
 	<select id="supportAssignToCompany" statementType="CALLABLE" parameterType="map">
 		{call pro_supportapply(
 			#{supportNo},
@@ -375,10 +378,83 @@
 	
 	<update id="enrollCompany" parameterType="map">
 		<if test='type.equals("0")'>
-			update member set member_type=2 where member_id=#{memberId}
+			update member set member_type=2, company_name=#{companyName} where member_id=#{memberId}
 		</if>
 		<if test='type.equals("1")'>
 			update member set member_type=3 where member_id=#{memberId}
 		</if>
 	</update>
+	
+	<select id="memberManagementListTotalCount" parameterType="string" resultType="_int">
+		<if test='_parameter.equals("nomal")'>
+			select count(*) from member where member_type=1 or member_type=4
+		</if>
+		<if test='_parameter.equals("company")'>
+			select count(*) from member where member_type=2 or member_type=5
+		</if> 
+	</select>
+	
+	<select id="memberManagementList" parameterType="map" resultType="member">
+		select * from
+			(select ROWNUM as rnum, r.* from
+				(select 
+					member_id as memberId,
+					member_name as memberName,
+					member_phone as memberPhone,
+					member_addr as memberAddr,
+					member_email as memberEmail,
+					member_referee as memberReferee,
+					member_type as memberType,
+					member_enroll_date as memberEnrollDate,
+					member_money as memberMoney,
+					company_filename as companyFilename,
+					company_filepath as companyFilepath,
+					chart_filename as chartFilename,
+					chart_filepath as chartFilepath,
+					company_number as companyNumber,
+					company_content as companyContent,
+					company_name as companyName
+				from member 
+				<if test='type.equals("nomal")'>
+					where member_type=1 or member_type=4	
+				</if>
+				<if test='type.equals("company")'>
+					where member_type=2 or member_type=5
+				</if>
+				)r) where rnum between #{start} and #{end}
+	</select>
+	
+	<update id="memberStopAndRestore" parameterType="map">
+		update member set
+		<if test='type.equals("nomal")'>
+			<if test='kind.equals("stop")'>
+				member_type=4
+			</if>
+			<if test='kind.equals("restore")'>
+				member_type=1
+			</if>
+		</if>
+		<if test='type.equals("company")'>
+			<if test='kind.equals("stop")'>
+				member_type=5
+			</if>
+			<if test='kind.equals("restore")'>
+				member_type=2
+			</if>
+		</if>
+		where member_id=#{memberId}
+	</update>
+	
+	<select id="regularCancelReqTotalCount" parameterType="map" resultType="_int">
+		<if test='type.equals("all")'>
+			select SUM(cnt) from
+			    (select count(*) as cnt from regular_in where regular_in_cancel=1
+			    union all
+			    select count(*) as cnt from bank_in where bank_in_type=1 and bank_in_cancel=1)
+		</if>
+		<if test='type.equals("regular")'>
+		</if>
+		<if test='type.equals("bank")'>
+		</if>
+	</select>
 </mapper>
