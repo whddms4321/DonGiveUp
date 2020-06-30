@@ -19,7 +19,7 @@
             
         FROM (select rownum as rnum, m.* from (select * from support ORDER BY SUPPORT_NO DESC)m) 
         JOIN SUPPORTAPPLY USING(SUPPORT_NO)
-        where rnum between 1 and #{counts}	
+        where rnum between #{rnumMin} and #{rnumMax }	
 	
  	</select>
  	

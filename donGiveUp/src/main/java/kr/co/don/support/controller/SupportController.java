@@ -1,6 +1,5 @@
 package kr.co.don.support.controller;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.don.support.model.service.SupportService;
 import kr.co.don.support.model.vo.Support;
+import kr.co.don.support.model.vo.SupportMoreList;
 
 
 @Controller
@@ -47,18 +47,21 @@ public class SupportController {
 //		String supportApplyId = session.getAttribute("member");
 		
 		String supportApplyId = "admin";
-		String counts = String.valueOf(count);
-		Support test = new Support();
-		
+		int rnumMin = ((count-1)*16)+1;
+		int rnumMax = count*16; 
 		HashMap<String,String> map = new HashMap<String,String>();
 		
 		map.put("supportApplyId", supportApplyId);
-		map.put("counts", counts);
+		map.put("rnumMin", String.valueOf(rnumMin));
+		map.put("rnumMax", String.valueOf(rnumMax));
 		
 		ArrayList<Support> list = supportService.supportList(map);
 		
+		String button ="<button id=\"moreList\" value="+(count+1)+">더 보기</button>";
+		
 		model.addAttribute("list",list);
 		model.addAttribute("supportApplyId", supportApplyId);
+		model.addAttribute("button", button);
 		
 		return "support/supportList";
 		
@@ -66,21 +69,26 @@ public class SupportController {
 	
 	@ResponseBody
 	@RequestMapping(value= "/moreList.don",produces = "text/html; charset=utf-8")
-	public String moreList(int count,Support support,Model model) {
-		
+	public String moreList(int count,Support support, HttpSession session) {
+	// String supportApplyId = session.getAttribute("member");
 		String supportApplyId = "admin";
-		String counts = String.valueOf(count);
-		System.out.println(counts);
+		
+		int rnumMin = ((count-1)*16)+1;
+		int rnumMax = count*16; 
 		HashMap<String,String> map = new HashMap<String,String>();
 		
+		System.out.println(rnumMin);
+		System.out.println(rnumMax);
+		
 		map.put("supportApplyId", supportApplyId);
-		map.put("counts", counts);
+		map.put("rnumMin", String.valueOf(rnumMin));
+		map.put("rnumMax", String.valueOf(rnumMax));
 		
 		ArrayList<Support> list = supportService.supportList(map);
+		
 		System.out.println(list.size());
-		model.addAttribute("list",list);
-		model.addAttribute("supportApplyId", supportApplyId);
-		 
+		
+		
 		return "list";
 		
 	}

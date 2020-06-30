@@ -75,6 +75,7 @@ body{
 
 .category_div {
 	position: relative;
+	padding-left:50px;
 }
 
 .category_ul {
@@ -84,7 +85,7 @@ body{
 	position: absolute;
 }
 .supportList_ul{
-	width:88%;
+	width:85%;
 	
 	overflow:hidden;
 	list-style: none;
@@ -92,31 +93,42 @@ body{
 	margin:0 auto;
 }
 .supportList_li{
-	width:200px;
+	
 	display:inline-block;
 	border:none;
-	margin: 17px;
-	position:relative;
+	margin: 25px;
+	
 }
 .supportList{
 	display:inline-block;
-	width:200px;
-	height:230px;
-	
+	width:220px;
+	height:240px;
+	border: 0.1px solid red;
+	position:relative;
 }
-.supportList>img{
+.supportList_img{
 	width:100%;
 	height:100%;
+}
+.supportList_img:hover{
+	width:120%;
+	height:120%;
+	transition-duration:1s;
+}
+.supportList_img:not(:hover){
+	width:100%;
+	height:100%;
+	transition-duration:1s;
 }
 .supportList_band{
     
 	display:inline-block;
 	width:60px;
-	/* left:140px; */
+	left:140px; 
 	text-align:center;
 	color:green;
-	
-	
+	position:absolute;
+		
 }
 #moreList{
 	width:550px;
@@ -133,9 +145,17 @@ body{
 }
 .myband{
 	background-color:yellow;
-	position:absolute;
+	
 	
 }
+.supportList_name{
+	color:gray;
+}
+/* .supportList_img{
+	position:absolute;
+	width:300px;
+	hight:20
+} */
 </style>
 <script>	
 	$(function() {
@@ -149,14 +169,27 @@ body{
 	});
 	$(function(){
 		$("#moreList").click(function(){
-					var count = 16;
+					var count= $(this).val();
+					console.log(count)
 					
 					$.ajax({
 						url: "/moreList.don",
-						data:{count:count},
+						data:{
+							count:count
+						},
 						type: "post",
 						success: function(data){
-							console.log("실행완료");
+							$(this).remove();
+							var html='';
+							for(var i=0;i < data.length;i++){
+								
+								html += "<li class=\"supportList_li\"><div class=\"supportList\">";
+								html += "<img class=\"supportList_img\" src=\"../../../resources/upload/test/dora_1.png\">";
+								html += "<h2 class=\"supportList_name\">"+data[i]["supportNo"]+"</h2>";
+								
+							}
+							
+							
 						},
 						error : function(){
 							console.log("실행 실패");
@@ -177,16 +210,17 @@ body{
 			<div class="support_try">
 				<a href="/supportApplyAd.don">
 					<div class="apply">물품 후원하기</div>
-				</a> <a href="/supportApplyList.don?count=10">
+				</a> <a href="/supportList.don?count=1">
 					<div class="apply">물품후원 리스트</div>
 				</a>
 			</div>
 			<br><br><br><br>
 			<h1>물품 후원 리스트</h1>
+			<br><br><br>
 			<div class="category_div">
 				<span class="category_content">전체 ▽</span>
 				<ul class="category_ul">
-					<li>전체</li>
+					<li >전체</li>
 					<li>의류</li>
 					<li>생리대</li>
 					<li>화장품</li>
@@ -197,17 +231,21 @@ body{
 					<li>학용품</li>
 				</ul>
 			</div>
-			<br><br>
+			<br>
 			<ul class="supportList_ul">
 				
 				<c:forEach var="n" items="${list }">
 					<li class="supportList_li">
 						<div class="supportList">
-							<img src="../../../resources/upload/test/dora_1.png">
-							<p>${n.supportName }</p>
+							<img class="supportList_img" src="../../../resources/upload/test/dora_1.png">
+							
+							<%-- <img src="${n.supportFilename }"> --%>
+							<h2 class="supportList_name">${n.supportName }</h2>
+							<div>마감 기한 : ${n.enrollEndDate }</div>
+							<div>물품 수량 : ${n.supportAmount }</div>
 							<c:if test="${n.supportApplys == 0 }">
 								<span class="supportList_band myband">요청중</span>
-								<button class="supportListApply"></button>
+								<button class="supportListApply" value="${n.supportNo }"></button>
 							</c:if>							 
 					 		<c:if test="${n.supportApplys == 1 }">
 								<span class="supportList_band">마감임박</span>
@@ -218,10 +256,12 @@ body{
 					</li>
 
 				</c:forEach>
+				<span>${button }</span>
 			</ul>
-			<button id="moreList">더 보기</button>
+			
 		</div>
 	</div>
+	<br><br><br><br>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
 	
 </body>
