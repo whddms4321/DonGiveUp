@@ -4,4 +4,9 @@
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
+	<typeAliases>
+		<typeAlias type="kr.co.don.donation.model.vo.DonationVo" alias="donation"/>
+		
+	</typeAliases>	
+	
 </configuration>

@@ -10,12 +10,12 @@ public class DonationVo {
 	private String donationType;
 	private String donationFilename;
 	private String donationFilepath;
+	private String donationFilepathAdd;
 	private int donationGoalMoney;
-	private int donationStartMoney;
+	private int donationNowMoney;
 	private String donationEndDate;
-	private String donationStartDate;
+	private String donationStartDate;  
 	private String donationWriter;
 	private int donationState;
 	private String donationNegative;
-	
 }

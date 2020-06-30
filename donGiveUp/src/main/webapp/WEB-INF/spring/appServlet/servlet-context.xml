@@ -20,9 +20,16 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	<resources location="/resources/ckeditor/" mapping="/ckeditor/**"></resources>
+
+	
+	
 	
 	<context:component-scan base-package="kr.co.don" />
 	
+
 	
 	
 </beans:beans>
