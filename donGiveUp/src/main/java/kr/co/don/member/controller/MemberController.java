@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -53,25 +54,29 @@ public class MemberController {
 	public String joinStep2() {
 		return "member/joinStep2";
 	}
-	
+	@CrossOrigin(origins = "*")
+	@ResponseBody
 	@RequestMapping(value = "/checkId.don")
-	public void checkId(Member m, HttpServletResponse response) {
+	public String checkId(Member m) {
 		Member member = service.selectOneMember(m);
-		PrintWriter out;
-		try {
-			out = response.getWriter();
-			if(member!=null) {
-		         //아이디 사용가능 할때
-		         out.print(1);
-		      }else {
-		         //불가능 할때
-		         out.print(0);
-		      }
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(member == null) {
+			return "0";
+		}else {
+			return "1";
 		}
 		
 	      
+	}
+	
+	@RequestMapping(value = "insertMember.don")
+	public String insertMember(Member m) {
+		System.out.println(m);
+		int result = service.insertMember(m);
+		if(result!=0) {
+			return "member/joinStep3";
+		}else {
+			return "redirect:/";
+		}
+		
 	}
 }

@@ -42,7 +42,7 @@
 	.joinNextBtn{
 		width: 220px; 
 		height: 50px;
-		background-color: #cbe86b;
+		background-color: #0fbcff;
 		border: none;
 		border-radius: 10px;
 		color : black;
@@ -75,7 +75,7 @@
 	}
 	
 	.joinStepBox:nth-child(1){
-		background-color: #cbe86b;
+		background-color: #0fbcff;
 	}
 	
 </style>

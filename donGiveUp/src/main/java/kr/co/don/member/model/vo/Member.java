@@ -18,8 +18,8 @@ public class Member {
 	private String companyFilepath;
 	private String chartFilename;
 	private String chartFilepath;
-	private int companyNumber;
+	private String companyNumber;
 	private String companyContent;
-	
+	private String companyName;
 	
 }

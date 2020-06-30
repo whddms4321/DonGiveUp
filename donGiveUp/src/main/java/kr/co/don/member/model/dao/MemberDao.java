@@ -16,4 +16,17 @@ public class MemberDao {
 		return sqlSession.selectOne("member.selectOneMember",m);
 	}
 
+	public int insertMember(Member m) {
+		return sqlSession.insert("member.insertMember",m);
+	}
+
+	public int insertMemberReferee(Member m) {
+		return sqlSession.insert("member.insertMemberReferee",m);
+	}
+
+
+	public Member selectMemberReferee(Member m) {
+		return sqlSession.selectOne("member.selectMemberReferee",m);
+	}
+
 }

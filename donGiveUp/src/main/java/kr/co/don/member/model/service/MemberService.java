@@ -19,4 +19,18 @@ public class MemberService {
 		return dao.selectOneMember(m);
 	}
 
+
+	public int insertMember(Member m) {
+		Member member = dao.selectMemberReferee(m);
+		System.out.println(member);
+		System.out.println(m);
+		if(member!=null) {
+			System.out.println("추천인 있음");
+			return dao.insertMemberReferee(m);
+		}else {
+			System.out.println("추천인 없음");
+			return dao.insertMember(m);
+		}
+	}
+
 }
