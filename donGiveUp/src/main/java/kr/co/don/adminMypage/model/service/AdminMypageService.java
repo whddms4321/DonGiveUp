@@ -10,6 +10,7 @@ import kr.co.don.adminMypage.model.dao.AdminMypageDao;
 import kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO;
 import kr.co.don.adminMypage.model.vo.AdminMemberVO;
 import kr.co.don.adminMypage.model.vo.AdminPageDataGenericVO;
+import kr.co.don.adminMypage.model.vo.AdminRegularInVO;
 import kr.co.don.adminMypage.model.vo.AdminRequestBoardVO;
 import kr.co.don.adminMypage.model.vo.AdminSupportApplyVO;
 
@@ -528,7 +529,7 @@ public class AdminMypageService {
 		return dao.memberStopAndRestore(map);
 	}
 
-	public void regularCancelReq(int reqPage, String type) {
+	public AdminPageDataGenericVO<AdminRegularInVO> regularCancelReq(int reqPage, String type) {
 		int numPerPage = 10; //한번에 표시할 게시물 수
 		
 		//검색 조건을 위한 map
@@ -551,11 +552,10 @@ public class AdminMypageService {
 		
 		map.put("start", String.valueOf(start));
 		map.put("end", String.valueOf(end));
-		map.put("type", type);
 		
-		ArrayList<AdminMemberVO> list = (ArrayList<AdminMemberVO>)dao.memberManagementList(map);
+		ArrayList<AdminRegularInVO> list = (ArrayList<AdminRegularInVO>)dao.regularCancelReq(map);
 		
-		System.out.println("회원 || 기관 리스트 사이즈 : " + list.size());
+		System.out.println("정기결제해지요청 리스트 사이즈 : " + list.size());
 		
 		
 		String pageNavi = "";
@@ -570,7 +570,7 @@ public class AdminMypageService {
 		
 		// 이전버튼 생선
 		if (pageNo != 1) {
-			pageNavi += "<a href='/memberManagementList.don?reqPage=" + (pageNo - 1) + "&type="+type+"'>이전</a>";
+			pageNavi += "<a href='/regularCancelReq.don?reqPage=" + (pageNo - 1) + "&type="+type+"'>이전</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -578,7 +578,7 @@ public class AdminMypageService {
 			if (reqPage == pageNo) {
 				pageNavi += "<span>" + pageNo + "</span>";
 			} else {
-				pageNavi += "<a href='/memberManagementList.don?reqPage=" + pageNo + "&type="+type+"'>" + pageNo + "</a>";
+				pageNavi += "<a href='/regularCancelReq.don?reqPage=" + pageNo + "&type="+type+"'>" + pageNo + "</a>";
 			}
 			pageNo++;
 			if (pageNo > totalPage) {
@@ -588,12 +588,12 @@ public class AdminMypageService {
 
 		// 다음버튼
 		if (pageNo <= totalPage) {
-			pageNavi += "<a href='/memberManagementList.don?reqPage=" + pageNo + "&type="+type+"'>다음</a>";
+			pageNavi += "<a href='/regularCancelReq.don?reqPage=" + pageNo + "&type="+type+"'>다음</a>";
 		}
 		
-		AdminPageDataGenericVO<AdminMemberVO> pageData = new AdminPageDataGenericVO<AdminMemberVO>(list, pageNavi);
+		AdminPageDataGenericVO<AdminRegularInVO> pageData = new AdminPageDataGenericVO<AdminRegularInVO>(list, pageNavi);
 		
-		//return pageData;
+		return pageData;
 	}
 
 }

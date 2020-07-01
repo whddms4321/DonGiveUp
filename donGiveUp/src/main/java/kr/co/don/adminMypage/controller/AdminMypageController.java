@@ -34,6 +34,7 @@ import kr.co.don.adminMypage.model.service.AdminMypageService;
 import kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO;
 import kr.co.don.adminMypage.model.vo.AdminMemberVO;
 import kr.co.don.adminMypage.model.vo.AdminPageDataGenericVO;
+import kr.co.don.adminMypage.model.vo.AdminRegularInVO;
 import kr.co.don.adminMypage.model.vo.AdminRequestBoardVO;
 import kr.co.don.adminMypage.model.vo.AdminSupportApplyVO;
 
@@ -355,9 +356,12 @@ public class AdminMypageController {
 	
 	//정기결제 해지요청 리스트
 	@RequestMapping(value="/regularCancelReq.don")
-	public String regularCancelReq(int reqPage, String type) {
-		service.regularCancelReq(reqPage,type);
-		return null;
+	public String regularCancelReq(int reqPage, String type, Model m) {
+		AdminPageDataGenericVO<AdminRegularInVO> pageData = service.regularCancelReq(reqPage,type);
+		m.addAttribute("list", pageData.getList());
+		m.addAttribute("pageNavi", pageData.getPageNavi());
+		m.addAttribute("reqPage", reqPage);
+		return "mypage/admin/regularCancelReq";
 	}
 }
 

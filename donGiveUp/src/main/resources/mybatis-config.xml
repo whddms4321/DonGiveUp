@@ -5,9 +5,11 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminSupportApplyVO" alias="supportapply"/>
-		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO" alias="deadSupport"/>
-		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRequestBoardVO" alias="requestBoard"/>
-		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminMemberVO" alias="member"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminSupportApplyVO" alias="adminSupportapply"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO" alias="adminDeadSupport"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRequestBoardVO" alias="adminRequestBoard"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminMemberVO" alias="adminMember"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRegularInVO" alias="adminRegularIn"/>
+		
 	</typeAliases>
 </configuration>

@@ -54,7 +54,7 @@
 		</if>
 	</select>
 	
-	<select id="selectboardRequestList" parameterType="map" resultType="requestBoard">
+	<select id="selectboardRequestList" parameterType="map" resultType="adminRequestBoard">
 		<if test='type.equals("all")'><!--전체 탭-->
 			<if test='req.equals("") || req.equals("null")'> <!-- 사용자가 신청대기목록을 선택한 경우 -->
 				select * from (select rownum as boardNo,rr.* from (
@@ -155,7 +155,7 @@
 		</if>
 	</select>
 	
-	<select id="selectboardRequestListEtc" parameterType="map" resultType="requestBoard">
+	<select id="selectboardRequestListEtc" parameterType="map" resultType="adminRequestBoard">
 		<if test='type.equals("donation")'>
 			select * from 
 			    (select ROWNUM as boardNo, rr.* from
@@ -304,7 +304,7 @@
 			select count(*) from support where support_state=1 and enroll_end_date<=sysdate
 		]]>
 	</select>
-	<select id="deadLineSupportList" parameterType="map" resultType="deadSupport">
+	<select id="deadLineSupportList" parameterType="map" resultType="adminDeadSupport">
 		<![CDATA[
 			select * from
 			    (select ROWNUM as rnum, r.* from
@@ -325,7 +325,7 @@
 		select count(*) from supportapply where support_no=#{supportNo} and support_apply_state=0
 	</select>
 	
-	<select id="selectSupportRequestCompany" parameterType="map" resultType="supportapply">
+	<select id="selectSupportRequestCompany" parameterType="map" resultType="adminSupportapply">
 		select * from
 		    (select ROWNUM as rnum, r.* from
 		        (select support_apply_no as supportApplyNo,
@@ -354,7 +354,7 @@
 		select count(*) from member where member_type=0
 	</select>
 	
-	<select id="companyEnrollReq" parameterType="map" resultType="member">
+	<select id="companyEnrollReq" parameterType="map" resultType="adminMember">
 	select * from
 	(select ROWNUM as rnum, r.* from
 		(select 
@@ -394,7 +394,7 @@
 		</if> 
 	</select>
 	
-	<select id="memberManagementList" parameterType="map" resultType="member">
+	<select id="memberManagementList" parameterType="map" resultType="adminMember">
 		select * from
 			(select ROWNUM as rnum, r.* from
 				(select 
@@ -453,8 +453,39 @@
 			    select count(*) as cnt from bank_in where bank_in_type=1 and bank_in_cancel=1)
 		</if>
 		<if test='type.equals("regular")'>
+			select count(*) as cnt from regular_in where regular_in_cancel=1
 		</if>
 		<if test='type.equals("bank")'>
+			select count(*) as cnt from bank_in where bank_in_type=1 and bank_in_cancel=1
+		</if>
+	</select>
+	
+	<select id="regularCancelReq" parameterType="map" resultType="adminRegularIn">
+		<if test='type.equals("all")'>
+			select * from
+			    (select ROWNUM as rnum, r.* from
+			        (select regular_in_no as regularInNo, '정기기부' as groupName, regular_in_id as regularId, regular_in_money as regularMoney, regular_in_pay_num as payNum,
+			                regular_no as regularNo from regular_in left join regular using(regular_id) where regular_in_cancel=1
+			             union all
+			         select bank_in_no, '저금통', bank_in_id, bank_in_money, bank_in_pay_num, bank_no from bank_in  left join bank using(bank_no) where bank_in_type=1 and bank_in_cancel=1)
+			     r)
+			where rnum between #{start} and #{end}
+		</if>
+		<if test='type.equals("regular")'>
+			select * from
+				(select ROWNUM as rnum, r.* from
+				    (select regular_in_no as regularInNo, '정기기부' as groupName, regular_in_id as regularId, regular_in_money as regularMoney, regular_in_pay_num as payNum,
+				            regular_no as regularNo from regular_in left join regular using(regular_id) where regular_in_cancel=1)
+				r)
+			where rnum between #{start} and #{end}
+		</if>
+		<if test='type.equals("bank")'>
+			select * from          
+			    (select ROWNUM as rnum, r.* from
+			        (select bank_in_no, '저금통', bank_in_id, bank_in_money, bank_in_pay_num, 
+			        bank_no from bank_in left join bank using(bank_no) where bank_in_type=1 and bank_in_cancel=1)
+			    r)
+			where rnum between #{start} and #{end}
 		</if>
 	</select>
 </mapper>

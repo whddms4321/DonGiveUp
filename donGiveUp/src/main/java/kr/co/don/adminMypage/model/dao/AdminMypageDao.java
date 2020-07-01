@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO;
 import kr.co.don.adminMypage.model.vo.AdminMemberVO;
+import kr.co.don.adminMypage.model.vo.AdminRegularInVO;
 import kr.co.don.adminMypage.model.vo.AdminRequestBoardVO;
 import kr.co.don.adminMypage.model.vo.AdminSupportApplyVO;
 
@@ -110,6 +111,10 @@ public class AdminMypageDao {
 
 	public int regularCancelReqTotalCount(HashMap<String, String> map) {
 		return session.selectOne("adminMypage.regularCancelReqTotalCount",map);
+	}
+
+	public List<AdminRegularInVO> regularCancelReq(HashMap<String, String> map) {
+		return session.selectList("adminMypage.regularCancelReq", map);
 	}
 
 
