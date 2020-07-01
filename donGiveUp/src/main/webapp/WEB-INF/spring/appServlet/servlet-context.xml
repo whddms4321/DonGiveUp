@@ -27,7 +27,7 @@
 	
 	
 	
-	<context:component-scan base-package="kr.co.don" />
+	<context:component-scan base-package="kr.co.don"/>
 	
 
 	

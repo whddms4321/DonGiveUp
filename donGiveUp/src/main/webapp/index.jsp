@@ -10,11 +10,25 @@
 
 
 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
+<style>
+	
+	.content{
+		height: 800px;
+		width: 1200px;
+		margin: 0 auto;
+	}
+</style>
+
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
-	 
-	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
+	<a href="/dashboard.do">관리자 마이페이지</a>
+	<div class="content">
+		
+    </div>
+<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+
 </body>
 
 
