@@ -37,11 +37,13 @@
 <aop:aspectj-autoproxy/>
 <!-- 트랜잭션 설정 -->
 <tx:annotation-driven/>
+
 <task:annotation-driven/>
+
 
 	<context:component-scan base-package="kr.co.don.funding"/>
 	<context:component-scan base-package="kr.co.don.fundingIn"/>
 	<context:component-scan base-package="kr.co.don.support"/>
-	
-	
+	<context:component-scan base-package="kr.co.don.member"/>
+
 </beans>

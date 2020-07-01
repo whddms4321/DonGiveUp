@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,9 +85,16 @@
 					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">후기</a>
 				</div>
 				<div class="header_log_section">
-					<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">로그인</a>
+				<c:if test="${empty sessionScope.member }">
+					<a href="/member/loginFrm.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">로그인</a>
 					<span>·</span>
-					<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">회원가입</a>
+					<a href="/member/joinFrm.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">회원가입</a>
+				</c:if>
+				<c:if test="${not empty sessionScope.member }">
+					<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
+					<span>·</span>
+					<a href="/member/logout.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">로그아웃</a>
+				</c:if>
 				</div>
 			</div>
 		</div>
