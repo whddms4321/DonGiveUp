@@ -28,4 +28,9 @@ public class VworkController {
 	public String vworkbooking() {
 		return "vwork/vworkbooking";
 	}
+	@RequestMapping(value="/vworkpayment.don")
+	public String vworkpayment() {
+		return "vwork/vworkpayment";
+	}
+	
 }

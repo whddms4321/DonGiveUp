@@ -13,6 +13,7 @@
     <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css">
+  
 </head>
 
 <body>
@@ -87,7 +88,7 @@
                         <tr>
                             <td class="ipName">활동소개</td>
                             <td colspan="2" class="ipIntro">
-                                <input id="vwork_intro" type="text">
+                                <textarea id="vworkIntro" value="모집대상, 봉사시간, 간략한 봉사활동 소개를 3-5줄로 설명해주세요"></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -98,7 +99,7 @@
                         <tr>
                             <td class="ipName"><i class="iconfile fas fa-paperclip"></i></td>
                             <td colspan="2" class="ipFiles">
-                                <input id="vworkimg_files" type="text">
+                                <input id="vworkimg_files" type="text" readonly>
                             </td>
 
                         </tr>
@@ -117,16 +118,20 @@
             language: "kr",
             todayHighlight: true,
             multidate: true
-         
-            
+
+
+
+
         });
+        
 
     </script>
     <script type="text/javascript">
- CKEDITOR.replace('p_content'
-                , {height: 500                                                  
-                 });
-</script>
+        CKEDITOR.replace('p_content', {
+            height: 500
+        });
+
+    </script>
 
 
 </body>

@@ -81,7 +81,7 @@
 					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">재능기부</a> 
 					<a href="/vworklist.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">함께해요</a> 
 					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">저금통</a>
-					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">후기</a>
+					<a href="/reviewmain.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">후기</a>
 				</div>
 				<div class="header_log_section">
 					<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">로그인</a>
