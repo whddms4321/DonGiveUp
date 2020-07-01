@@ -186,6 +186,7 @@ body{
 								html += "<li class=\"supportList_li\"><div class=\"supportList\">";
 								html += "<img class=\"supportList_img\" src=\"../../../resources/upload/test/dora_1.png\">";
 								html += "<h2 class=\"supportList_name\">"+data[i]["supportNo"]+"</h2>";
+								$(".support_ul").add(html);
 								
 							}
 							
@@ -239,7 +240,7 @@ body{
 						<div class="supportList">
 							<img class="supportList_img" src="../../../resources/upload/test/dora_1.png">
 							
-							<%-- <img src="${n.supportFilename }"> --%>
+							<!--<img src="${n.supportFilename }"> -->
 							<h2 class="supportList_name">${n.supportName }</h2>
 							<div>마감 기한 : ${n.enrollEndDate }</div>
 							<div>물품 수량 : ${n.supportAmount }</div>
