@@ -1,0 +1,17 @@
+<<<<<<< HEAD
+
+.metadata/.log
+.metadata/.lock
+.metadata/.plugins/org.eclipse.rse.core/.log
+*.cfs
+*.dat
+.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps
+*.ser
+*.log
+.metadata/.plugins/org.eclipse.wst.jsdt.core/externalLibsTimeStamps
+*.txt
+*.index
+*.snap
+=======
+/.metadata/
+>>>>>>> baejaehyeon

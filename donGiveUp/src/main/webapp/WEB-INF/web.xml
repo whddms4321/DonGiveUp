@@ -14,7 +14,7 @@
 	
 	<filter-mapping>
 		<filter-name>characterEncoding</filter-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>*.don</url-pattern>
 	</filter-mapping>
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
@@ -46,28 +46,30 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.don</url-pattern>
 	</servlet-mapping>
+	
 	<!-- CKFINDER START -->
-	<servlet>
-  	<servlet-name>ConnectorServlet</servlet-name>
-  	<servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
-  	<init-param>
+
+<servlet>
+  <servlet-name>ConnectorServlet</servlet-name>
+  <servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+  <init-param>
       <param-name>XMLConfig</param-name>
       <param-value>/WEB-INF/config.xml</param-value>
-  	</init-param>
-  	<init-param>
+  </init-param>
+  <init-param>
       <param-name>debug</param-name>
       <param-value>false</param-value>
-  	</init-param>
-  	<load-on-startup>1</load-on-startup>
-	</servlet>
+  </init-param>
+  <load-on-startup>1</load-on-startup>
+</servlet>
   
-	<servlet-mapping>
-  	<servlet-name>ConnectorServlet</servlet-name>
-  	<url-pattern>/resources/ckfinder/core/connector/java/connector.java</url-pattern>
-	</servlet-mapping>  
+<servlet-mapping>
+  <servlet-name>ConnectorServlet</servlet-name>
+
+  <url-pattern>/resources/ckfinder/core/connector/java/connector.java</url-pattern>
+</servlet-mapping>  
 <!-- CKFINDER END -->
-
-
+>>
 
 
 </web-app>

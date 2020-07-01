@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="donation">
+	
+	<select id="totalCount" parameterType="map" resultType="_int">
+		select count(*) from donation where donation_type = #{type}
+	</select>
+	
+	<select id="donationList" parameterType="map" resultType="donation">
+		SELECT *
+		FROM 
+		    (SELECT ROWNUM AS RNUM, N.*
+		    FROM 
+		        (SELECT 
+		        	DONATION_NO AS donationNo,
+    				DONATION_TITLE AS donationTitle,
+    				DONATION_CONTENT AS donationContent,
+    				DONATION_TYPE AS donationType,
+  					DONATION_FILENAME AS donationFilename,
+   					DONATION_FILEPATH AS donationFilepath,
+  					DONATION_FILEPATH_ADD AS donationFilepathAdd,
+   					DONATION_GOAL_MONEY AS donationGoalMoney,
+  					DONATION_NOW_MONEY AS donationNowMoney,
+  					DONATION_END_DATE AS donationEndDate,
+					DONATION_START_DATE AS donationStartDate,
+   					DONATION_WRITER AS donationWriter,
+   					DONATION_STATE AS donationState,
+  					DONATION_NEGATIVE AS donationNegative    
+		        FROM DONATION
+		        
+				where donation_type = #{type}
+			
+		        ORDER BY DONATION_NO DESC) 
+		    N
+		) WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="donationDetail" parameterType="_int" resultType="donation">
+		SELECT 
+			DONATION_NO AS donationNo,
+    				DONATION_TITLE AS donationTitle,
+    				DONATION_CONTENT AS donationContent,
+    				DONATION_TYPE AS donationType,
+  					DONATION_FILENAME AS donationFilename,
+   					DONATION_FILEPATH AS donationFilepath,
+  					DONATION_FILEPATH_ADD AS donationFilepathAdd,
+   					DONATION_GOAL_MONEY AS donationGoalMoney,
+  					DONATION_NOW_MONEY AS donationNowMoney,
+  					DONATION_END_DATE AS donationEndDate,
+					DONATION_START_DATE AS donationStartDate,
+   					DONATION_WRITER AS donationWriter,
+   					DONATION_STATE AS donationState,
+  					DONATION_NEGATIVE AS donationNegative    
+		        FROM DONATION
+		where donation_no = #{_parameter}
+	</select>
+	<insert id="donationInsert" parameterType="donation">
+		insert into donation values(donation_seq.nextval, #{donationTitle}, #{donationContent}, #{donationType}, #{donationFilename}, #{donationFilepath},null ,#{donationGoalMoney}, null,#{donationEndDate}, sysdate, #{donationWriter}, 0)
+	</insert>
+</mapper>
