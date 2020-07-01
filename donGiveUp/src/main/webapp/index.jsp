@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Don Give Up</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
-<script>
+<title>메인 페이지</title>
 
-</script>
+
+
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <style>
 	
@@ -28,5 +28,8 @@
 		
     </div>
 <jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+
 </body>
+
+
 </html>

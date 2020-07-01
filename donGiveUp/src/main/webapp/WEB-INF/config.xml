@@ -17,7 +17,8 @@
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
-	<baseDir>F:\Spring\notebook-workspace\DonGiveUp\donGiveUp\src\main\webapp\resources\upload</baseDir>
+
+	<baseDir>C:\Users\kamas\final-pjt\DonGiveUp\donGiveUp\src\main\webapp\resources\upload</baseDir>
 
 	<baseURL>/resources/upload/</baseURL>
 	<licenseKey></licenseKey>
@@ -34,7 +35,7 @@
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/URI_Encoding
 	-->
 	<uriEncoding>UTF-8</uriEncoding>
-	
+
 	<!--
 	ResourceType : defines the "resource types" handled in CKFinder. A resource
 	type is nothing more than a way to group files under different paths, each one
