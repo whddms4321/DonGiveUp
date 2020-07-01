@@ -22,6 +22,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
+	<a href="/dashboard.do">관리자 마이페이지</a>
 	<div class="content">
     </div>
 <jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
