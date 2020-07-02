@@ -596,4 +596,11 @@ public class AdminMypageService {
 		return pageData;
 	}
 
+	public int updateRegular(int regularNo, String type) {
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("regularNo", String.valueOf(regularNo));
+		map.put("type", type);
+		return dao.updateRegular(map);
+	}
+
 }

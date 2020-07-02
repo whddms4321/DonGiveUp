@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -361,7 +362,22 @@ public class AdminMypageController {
 		m.addAttribute("list", pageData.getList());
 		m.addAttribute("pageNavi", pageData.getPageNavi());
 		m.addAttribute("reqPage", reqPage);
+		m.addAttribute("type", type);
 		return "mypage/admin/regularCancelReq";
+	}
+	
+	//정기결제 해지요청 리스트 Ajax
+	@ResponseBody
+	@RequestMapping(value="/regularCancelReqAjax.don", produces="application/json; charset=utf-8;")
+	public String regularCancelReqAjax(String type) {
+		AdminPageDataGenericVO<AdminRegularInVO> pageData = service.regularCancelReq(1,type);
+		return new Gson().toJson(pageData);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/updateRegular.don")
+	public int updateRegular(int regularNo, String type) {
+		return service.updateRegular(regularNo, type);
 	}
 }
 

@@ -117,6 +117,10 @@ public class AdminMypageDao {
 		return session.selectList("adminMypage.regularCancelReq", map);
 	}
 
+	public int updateRegular(HashMap<String, String> map) {
+		return session.update("adminMypage.updateRegular", map);
+	}
+
 
 
 }
