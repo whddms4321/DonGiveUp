@@ -26,13 +26,25 @@ border: 0.1px solid blue;
 }
 .content-main-left-tap{
 width: 100%;
-height: 100px;
+height: 80px;
 border: 0.1px solid blue;
+
+}
+.content-main-left-tap1{
+color:gray;
+margin-left: 20px; 
+line-height: 70px;
+font-size: 20px;
 }
 .content-main-left-title{
-	width: 100%;
-height: 100px;
+	width: 92%;
+margin-left: 40px; 
 border: 0.1px solid red;
+}
+.content-main-left-title-a{
+
+font-size: 40px;
+font-weight: bold;
 }
 .content-main-left-content{
 	width: 100%;
@@ -84,10 +96,10 @@ border: 0.1px solid red;
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="content-main-left-tap">
-					<a class="">기부 > 환경</a>
+					<a class="content-main-left-tap1">기부 > 환경</a>
 				</div>
 				<div class="content-main-left-title">
-					<a class="content-main-left-title-a">제목</a>
+					<a class="content-main-left-title-a">이것은 통닭인가 치킨인가? 이것은 통닭인가 치킨인가? 이것은 통닭인가 치킨인가? 이것은 통닭인가 치킨인가?</a>
 				</div>
 				<div class="content-main-left-content">
 					<a class="content-main-left-content-a">내용</a>

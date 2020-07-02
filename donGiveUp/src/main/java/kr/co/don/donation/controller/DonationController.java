@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javafx.scene.control.Alert;
 import kr.co.don.donation.model.service.DonationService;
 import kr.co.don.donation.model.vo.DonationData;
-import kr.co.don.donation.model.vo.DonationVo;
+import kr.co.don.donation.model.vo.Donation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +42,7 @@ public class DonationController {
 	public String donation(int reqPage, String type,Model model) {
 		
 		DonationData data = service.DonationList(reqPage, type);
+		
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
 		model.addAttribute("totalCount", data.getTotalCount());
@@ -55,7 +56,8 @@ public class DonationController {
 	@RequestMapping(value = "/donationDetail.don")
 	public String donationDetail(int donationNo,Model model) {
 		
-		DonationVo detail = service.DonationDetail(donationNo);
+		Donation detail = service.DonationDetail(donationNo);
+		System.out.println(detail);
 		model.addAttribute("detail", detail);
 		
 		
@@ -71,7 +73,7 @@ public class DonationController {
 	}
 	
 	@RequestMapping(value = "/donationInsert.don")
-	public String donationInsert(DonationVo donation) {
+	public String donationInsert(Donation donation) {
 		
 		int result = service.donationInsert(donation);
 		

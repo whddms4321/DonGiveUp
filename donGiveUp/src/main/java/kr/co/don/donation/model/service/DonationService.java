@@ -6,7 +6,7 @@ import java.util.List;
 
 import kr.co.don.donation.model.dao.DonationDao;
 import kr.co.don.donation.model.vo.DonationData;
-import kr.co.don.donation.model.vo.DonationVo;
+import kr.co.don.donation.model.vo.Donation;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service("donationService")
-
 
 
 public class DonationService {
@@ -31,7 +30,7 @@ public class DonationService {
 		
 		int totalCount = donationDao.totalCount(map);
 		
-		int numPerPage = 5;
+		int numPerPage = 11;
 		int totalPage;
 		if (totalCount % numPerPage == 0) {
 			totalPage = totalCount / numPerPage;
@@ -44,10 +43,10 @@ public class DonationService {
 		
 		map.put("start", String.valueOf(start));
 		map.put("end", String.valueOf(end));
-		List<DonationVo> list = donationDao.donationList(map);
 		
+		List<Donation> list = donationDao.donationList(map);
 		
-		int pageNaviSize = 11;
+		int pageNaviSize = 5;
 		int pageNo; 
 		if (reqPage % pageNaviSize == 0) {
 			pageNo = ((reqPage / pageNaviSize) - 1) * pageNaviSize + 1;
@@ -78,16 +77,18 @@ public class DonationService {
 		if (pageNo <= totalPage) {
 			pageNavi.append("<a href='donationList.do?reqPage=" + pageNo + "&type=" + type + "'>></a>");
 		}
+		
+		
 				
-		return new DonationData((ArrayList<DonationVo>)list, pageNavi.toString(),totalCount);
+		return new DonationData((ArrayList<Donation>)list, pageNavi.toString(),totalCount);
 	}
 
 
-	public DonationVo DonationDetail(int donationNo) {
+	public Donation DonationDetail(int donationNo) {
 		return donationDao.DonationDetail(donationNo);
 	}
 
-	public int donationInsert(DonationVo donation) {
+	public int donationInsert(Donation donation) {
 		return donationDao.donationInsert(donation);
 	}
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -180,6 +181,23 @@ height: 100%;
 .content-main-list1-text-a{
 margin-left: 10px;
 }
+.content-main-list1-text-a2{
+margin-left: 10px;
+font-size: 15px;
+color: gray;
+}
+.content-main-list1-text-a4{
+margin-left: 87%;
+}
+.content-main-list1-text-a3{
+color: green;
+}
+progress{
+width: 80%;
+height: 15px;
+margin-left: 2%;
+
+}
 			 		
 			 	
 </style>
@@ -243,7 +261,7 @@ margin-left: 10px;
 			<div class="content-main-list">
 			 	<div class="content-main-list1 content-main-list2">
 			 	<div class="content-main-list2-1">
-			 		<a class="content-main-list2-a"><b>Today</a><br>
+			 		<a class="content-main-list2-a">Today</a><br>
 					<a class="content-main-list2-a2">2020-06-28</a><br><hr>
 					</div>
 					<div class="content-main-list2-2">
@@ -254,62 +272,20 @@ margin-left: 10px;
 			 	</div>
 			 	
 			 	
-			 	
+			 	<c:forEach items="${list }" var="n">
 				<div class="content-main-list1">
 			 		<div class="content-main-list1-img" >
-			 		<a href="/donationDetail.don?donationNo=1">
-			 			<img class="content-main-list1-img1" src="#"></a>
+			 		<a href="/donationDetail.don?donationNo=${n.donationNo }">
+			 			<img class="content-main-list1-img1" src="${n.donationFilepath }"></a>
 			 		</div>
 			 		<div class="content-main-list1-text">
-			 			<a class="content-main-list1-text-a">Title : 두둥탁</a><br>
-			 			<a class="content-main-list1-text-a">단체 : 하늘 보리</a><br>
-			 			<a class="content-main-list1-text-a">목표금액  : 100,000,000원</a><br>
-			 			<a class="content-main-list1-text-a">모금금액 : 100,000원</a>
+			 			<a class="content-main-list1-text-a"><b>${n.donationTitle }</b></a><br>
+			 			<a class="content-main-list1-text-a2">${n.donationWriter }</a><br>
+			 			<a class="content-main-list1-text-a3"><progress value="80" max="100"></progress> 80%</a><br>
+			 			<a class="content-main-list1-text-a4">${n.donationNowMoney }원</a>
 			 		</div>
 			 	</div>
-			 	
-			 	
-			 	
-			 	
-			 	
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-			 
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-			 
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-			 
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-			 	<div class="content-main-list1">
-			 	
-			 	</div>
-				
-
-
-
-
+			 	</c:forEach>
 			</div>
 			<div class="pageNavi">
 				<div>${pageNavi}</div>
