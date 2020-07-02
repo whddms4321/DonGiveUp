@@ -11,7 +11,7 @@
 		font-family: 'Noto Sans KR', sans-serif;
 	}
 	.content{
-		height: 1000px;
+		height: 1400px;
 		width: 100%;
 		margin: 0 auto;
 		background-image: url("/imgs/charities3.jpg");
@@ -22,74 +22,114 @@
 		
 	}
 	
-	.loginArea{
-		width: 600px;
-		height: 500px;
+	.joinArea{
+		width: 700px;
+		height: 600px;
 		background-color: white;
 		border-radius: 15px;
+		box-sizing: border-box;
 	}
 	
-	.loginDiv>div{
+	.joinDiv>div{
 		margin: 0 auto;
 	}
 	
-	.loginText{
+	.joinText{
 		padding-top : 100px;
 		text-align: center;
 	}
 	
-	.loginBtn{
-		width: 440px; 
+	.joinNextBtn{
+		width: 220px; 
 		height: 50px;
 		background-color: #0fbcff;
 		border: none;
 		border-radius: 10px;
-		color : white;
+		color : black;
 		font-size: 16px;
 	}
 	
-	.loginBtn:hover {
+	.joinNextBtn:hover {
 		opacity: 0.8;
 	}
 	
+	.joinStep{
+		width : 615px;
+		margin: 0 auto;
+	}
+	
+	.joinStepBox{
+		width: 200px;
+		height: 100px;
+		line-height: 100px;
+		display: inline-block;
+		text-align: center;
+		background-color: white;
+		padding: 0;
+		margin-top: 20px;
+		margin-bottom: -50px;
+		border-radius: 15px;
+		font-size: 18px;
+		font-weight: bold;
+		
+	}
+	
+	.joinStepBox:nth-child(3){
+		background-color: #0fbcff;
+	}
+	
+	.joinAreaWrapper>*{
+		text-align: center;
+		margin: 0 auto;
+	}
+	
+	.joinStep3Btn{
+		text-decoration: none;
+		color: white;
+		background-color: #0fbcff;
+		width: 200px;
+		height: 50px;
+		line-height: 50px;
+		display: inline-block;
+		border-radius: 10px;
+		font-weight: bold;
+		margin-right: 30px;
+	}
+	
+	.joinStep3Btn:hover{
+		opacity: 0.8;
+		
+	}
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"/>
 	<div class="content">
-	<div class="loginDiv">
-		<div class="loginText">
-			<span style="font-size: 50px; color: white; font-weight: bold; font-family: 'Staatliches', cursive;">LogIn</span>
+	<div class="joinDiv">
+		<div class="joinText">
+			<span style="font-size: 50px; color: white; font-weight: bold;">회원가입</span>
+		</div>
+		<div class="joinStep">
+			<p class="joinStepBox">Step 1 . 이용약관</p>
+			<p class="joinStepBox">Step 2 . 정보입력</p>
+			<p class="joinStepBox">Step 3 . 회원가입 완료</p>
 		</div>
 		<br><br>
-		<div class="loginArea">
-			<form action="/member/login.don" method="post">
-				<table style="text-align: center; margin: 0 auto; padding-top: 70px;">
-					<tr>
-						<th style="width: 60px; padding-left: 30px; height: 50px;">아이디</th>
-						<td><input type="text" name="memberId" placeholder="아이디를 입력하세요" style="width: 300px; height: 30px;"></td>
-					</tr>
-					<tr>
-						<th style="width: 60px; padding-left: 30px; height: 50px;">비밀번호</th>
-						<td><input type="password" name="memberPw" placeholder="영문+숫자+특수문자 구성" style="width: 300px; height: 30px;"></td>
-					</tr>
-					<tr>
-						<td colspan="2" style="height: 100px;"><button type="submit" class="loginBtn">로그인</button></td>
-					</tr>
-					
-				</table>
-			</form>
-			<table style="margin: 0 auto; padding-top: 50px;">
-				<tr>
-					<td style="width: 300px; height: 30px;">아이디 / 비밀번호가 생각나지 않으세요?</td>
-					<td><a href="#" style="color: black;">아이디찾기</a></td>
-					<td><a href="#" style="color: black;">비밀번호찾기</a></td>
-				</tr>
-				<tr>
-					<td style="width: 300px;">후원자가 되어주세요.</td>
-					<td><a href="#" style="color: black;">회원가입</a></td>
-				</tr>
-			</table>
+		<div class="joinArea">
+		<div class="joinAreaWrapper">
+			<div class="joinImgArea">
+				<img src="/resources/song/image/logo.jpg" style="width: 320px; height: 150px; margin-top: 60px;">
+			</div>
+			<h1>회원가입을 축하합니다!</h1>
+			<h3>Don Give Up 서비스 이용이 가능한 회원이 되셨습니다.</h3>
+			<h3>꾸준한 관심과 후원으로 행복을 선물하세요.</h3>
+			<div style="margin-top: 50px;">
+				<a href="/member/loginFrm.don" class="joinStep3Btn">로그인</a>
+				<a href="/" class="joinStep3Btn">메인으로</a>
+			</div>
+		</div>
 		</div>
 	</div>
 	</div>
