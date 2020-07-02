@@ -446,46 +446,52 @@
 	</update>
 	
 	<select id="regularCancelReqTotalCount" parameterType="map" resultType="_int">
-		<if test='type.equals("all")'>
 			select SUM(cnt) from
-			    (select count(*) as cnt from regular_in where regular_in_cancel=1
-			    union all
-			    select count(*) as cnt from bank_in where bank_in_type=1 and bank_in_cancel=1)
+		<if test='type.equals("all")'>
+		    (select count(*) as cnt from regular_in where regular_in_cancel!=0
+		    union all
+		    select count(*) as cnt from bank_in where bank_in_type=1 and bank_in_cancel!=0)
 		</if>
-		<if test='type.equals("regular")'>
-			select count(*) as cnt from regular_in where regular_in_cancel=1
+		<if test='type.equals("req")'>
+			(select count(*) as cnt from regular_in where regular_in_cancel=1
+		    union all
+		    select count(*) as cnt from bank_in where bank_in_type=1 and bank_in_cancel=1)
 		</if>
-		<if test='type.equals("bank")'>
-			select count(*) as cnt from bank_in where bank_in_type=1 and bank_in_cancel=1
+		<if test='type.equals("complete")'>
+			(select count(*) as cnt from regular_in where regular_in_cancel=2
+		    union all
+		    select count(*) as cnt from bank_in where bank_in_type=1 and bank_in_cancel=2)
 		</if>
 	</select>
 	
 	<select id="regularCancelReq" parameterType="map" resultType="adminRegularIn">
-		<if test='type.equals("all")'>
+		
 			select * from
-			    (select ROWNUM as rnum, r.* from
-			        (select regular_in_no as regularInNo, '정기기부' as groupName, regular_in_id as regularId, regular_in_money as regularMoney, regular_in_pay_num as payNum,
-			                regular_no as regularNo from regular_in left join regular using(regular_id) where regular_in_cancel=1
+			    (select ROWNUM as rNum, r.*, member_phone as memberPhone, member_email as memberEmail from
+			        (select regular_in_no as regularInNo, '정기기부' as groupName, regular_in_id as regularId, regular_in_money as regularInMoney, regular_in_pay_num as  regularInPayNum,
+			                regular_no as regularNo, regular_in_cancel as regularInCancel from regular_in left join regular using(regular_id)
 			             union all
-			         select bank_in_no, '저금통', bank_in_id, bank_in_money, bank_in_pay_num, bank_no from bank_in  left join bank using(bank_no) where bank_in_type=1 and bank_in_cancel=1)
-			     r)
-			where rnum between #{start} and #{end}
-		</if>
+			         select bank_in_no, '저금통', bank_in_id, bank_in_money, bank_in_pay_num, bank_no, bank_in_cancel from bank_in left join bank using(bank_no) where bank_in_type=1)
+			     r  left join member on(regularId=member_id) where
+			     <if test='type.equals("all")'> 
+			     	regularInCancel!=0)
+			     </if>
+			     <if test='type.equals("req")'> 
+			     	regularInCancel=1)
+			     </if>
+			     <if test='type.equals("complete")'> 
+			     	regularInCancel=2)
+			     </if>
+			where rNum between #{start} and #{end}
+		
+	</select>
+	<update id="updateRegular" parameterType="map">
+		update
 		<if test='type.equals("regular")'>
-			select * from
-				(select ROWNUM as rnum, r.* from
-				    (select regular_in_no as regularInNo, '정기기부' as groupName, regular_in_id as regularId, regular_in_money as regularMoney, regular_in_pay_num as payNum,
-				            regular_no as regularNo from regular_in left join regular using(regular_id) where regular_in_cancel=1)
-				r)
-			where rnum between #{start} and #{end}
+			regular_in set regular_in_cancel=2 where regular_in_no=#{regularNo}
 		</if>
 		<if test='type.equals("bank")'>
-			select * from          
-			    (select ROWNUM as rnum, r.* from
-			        (select bank_in_no, '저금통', bank_in_id, bank_in_money, bank_in_pay_num, 
-			        bank_no from bank_in left join bank using(bank_no) where bank_in_type=1 and bank_in_cancel=1)
-			    r)
-			where rnum between #{start} and #{end}
+			bank_in set bank_in_cancel=2 where bank_in_no=#{regularNo}
 		</if>
-	</select>
+	</update>
 </mapper>
