@@ -7,6 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
+
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -35,11 +36,13 @@ CKEDITOR.editorConfig = function( config ) {
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	
-	  config.filebrowserBrowseUrl = "../ckfinder/ckfinder.html";
-	    config.filebrowserFlashBrowseUrl = "../ckfinder/ckfinder.html?type=Flash";
-	    config.filebrowserUploadUrl = "../ckfinder/core/connector/java/connctor.java?command=QuickUpload&type=Files";
-	    config.filebrowserImageUploadUrl = "../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images";
-	    config.filebrowserFlashUploadUrl = "../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash";
+
+	config.filebrowserBrowseUrl = "/resources/ckfinder/ckfinder.html";
+    config.filebrowserFlashBrowseUrl = "/resources/ckfinder/ckfinder.html?type=Flash";
+    config.filebrowserUploadUrl = "/resources/ckfinder/core/connector/java/connctor.java?command=QuickUpload&type=Files";
+    config.filebrowserImageUploadUrl = "/resources/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images";
+    config.filebrowserFlashUploadUrl = "/resources/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash";
+
 
 
 };
