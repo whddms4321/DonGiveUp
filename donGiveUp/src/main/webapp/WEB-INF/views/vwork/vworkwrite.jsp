@@ -88,7 +88,7 @@
                         <tr>
                             <td class="ipName">활동소개</td>
                             <td colspan="2" class="ipIntro">
-                                <textarea id="vworkIntro" value="모집대상, 봉사시간, 간략한 봉사활동 소개를 3-5줄로 설명해주세요"></textarea>
+                                <textarea id="vworkIntro" placeholder="모집대상, 봉사시간, 간략한 봉사활동 소개를 3-5줄로 설명해주세요"></textarea>
                             </td>
                         </tr>
                         <tr>
