@@ -56,4 +56,8 @@
   	from member
   		where member_id=#{memberReferee}
   </select>
+  <insert id="insertCompany" parameterType="member">
+  	insert into member values
+  		(#{memberId},#{memberPw},#{memberName},null,null,null,null,0,sysdate,0,#{companyFilename},#{companyFilepath},#{chartFilename},#{chartFilepath},#{companyNumber},#{companyContent},null)
+  </insert>
 </mapper>

@@ -33,4 +33,9 @@ public class MemberService {
 		}
 	}
 
+
+	public int insertCompany(Member m) {
+		return dao.insertCompany(m);
+	}
+
 }

@@ -29,4 +29,8 @@ public class MemberDao {
 		return sqlSession.selectOne("member.selectMemberReferee",m);
 	}
 
+	public int insertCompany(Member m) {
+		return sqlSession.insert("member.insertCompany",m);
+	}
+
 }
