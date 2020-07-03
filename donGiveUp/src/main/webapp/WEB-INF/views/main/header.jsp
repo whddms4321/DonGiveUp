@@ -76,13 +76,15 @@
 					<a href="/"><span style="color: #0fbcff;">Don</span> <span style="color: #3d3b3a;">Give Up</span></a>
 				</div>
 				<div class="header_navi">
-					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">기부</a> 
+
+					<a href="/donation.don?reqPage=1&type=전체" class="header_navi_a" style="font-size: 18px; font-weight: bold;">기부</a> 
 					<a href="/test.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">펀딩</a> 
 					<a href="/supportFrm.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">물품후원</a>
+
 					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">재능기부</a> 
-					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">함께해요</a> 
+					<a href="/vworklist.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">함께해요</a> 
 					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">저금통</a>
-					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">후기</a>
+					<a href="/reviewmain.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">후기</a>
 				</div>
 				<div class="header_log_section">
 				<c:if test="${empty sessionScope.member }">

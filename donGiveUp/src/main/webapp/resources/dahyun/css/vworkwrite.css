@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+.content {
+    width: 1200px;
+    margin: 0 auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-bottom: 100px;
+}
+
+.vworkwTitle {
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 70%;
+    font-size: 37px;
+    color: #3D3B3A;
+    font-weight: bold;
+    line-height: 100px;
+}
+
+.vworkwpage {
+    width: 70%;
+    border: 2px solid #e3f0f6;
+    margin: 0 auto;
+    margin-top: -15px;
+}
+
+.inputTable {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+}
+
+form {
+    width: 100%;
+}
+
+.vwwTable {
+    border-collapse: separate;
+    border-spacing: 10px;
+    width: 100%;
+}
+
+.ipName {
+    text-align: center;
+    background-color: rgba(0, 0, 0, .2);
+    color: #fff;
+    font-weight: 600;
+    font-size: 12.5px;
+    width: 10%;
+    height: 40px;
+}
+
+.ipFrame {
+    width: 60%;
+    height: 40px;
+}
+
+.dpFrame {
+    width: 40%;
+    
+}
+
+
+.ipFrame > input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+}
+
+
+select {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 0.5px solid black;
+    border-radius: 3px;
+
+}
+
+.ipImg {
+    width: 90%;
+    height: 40px;
+}
+
+.ipJoindate {
+    width: 90%;
+    height: 40px;
+}
+
+.ipJoindate > input {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.ipIntro {
+    width: 90%;
+    height: 150px;
+}
+#vworkIntro{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    box-sizing: border-box;
+}
+
+
+.ipImg > input {
+    width: 85%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.ipImg > span {
+    width: 5%;
+    height: 100%;
+
+}
+
+.ipImg button {
+    width: 14.4%;
+    height: 100%;
+    background-color: rgba(94, 94, 94);
+    border: 1px solid #fff;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+
+}
+
+
+
+.ipFiles {
+    width: 90%;
+    height: 60px;
+}
+
+.iconfile {
+    color: #fff;
+    font-size: 30px;
+}
+
+.ipFiles > input {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.ipButton {
+
+    width: 100%;
+    height: 50px;
+}
+
+.ipButton > button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #0fbcff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+}
