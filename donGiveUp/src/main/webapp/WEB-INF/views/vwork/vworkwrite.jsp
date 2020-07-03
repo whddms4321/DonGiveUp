@@ -3,23 +3,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 <head>
     <meta charset="UTF-8">
     <link href="/resources/dahyun/css/vworkwrite.css" rel="stylesheet">
-    <title>Don Give Up</title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+    <title>함께해요 신청하기</title>
+
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css">
-  
+
+    <link href="/resources/dahyun/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <script src="/resources/dahyun/dist/js/datepicker.min.js"></script>
+
+    <!-- Include English language -->
+    <script src="/resources/dahyun/dist/js/i18n/datepicker.en.js"></script>
 </head>
 
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.kr.min.js"></script>
     <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
     <div class="content">
         <div class="vworkwTitle">함께해요 글 등록신청</div>
@@ -32,15 +35,19 @@
                             <td class="ipFrame">
                                 <input id="vwork_title" type="text">
                             </td>
-                            <td rowspan="6" class="dpFrame">
-                                <!--<div id="datePicker"></div>-->
-
+                            <td class="ipName">
+                                봉사날짜
                             </td>
                         </tr>
                         <tr>
                             <td class="ipName">작성자</td>
                             <td class="ipFrame">
                                 <input id="vwork_writer" type="text">
+                            </td>
+                            <td rowspan="5" class="dpFrame">
+                                <div id="dpwrap">
+                                    <input class="datepicker-here" id="datePicker" type="hidden" data-language='en' data-multiple-dates="5" data-multiple-dates-separator=", ">
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -69,12 +76,6 @@
                             <td class="ipName">신청비</td>
                             <td class="ipFrame">
                                 <input id="vwork_fee" type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="ipName">봉사날짜</td>
-                            <td colspan="2" class="ipJoindate">
-                                <input id="datePicker" type="text" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -112,20 +113,7 @@
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
-    <script>
-        $("#datePicker").datepicker({
-            format: "yyyy-mm-dd",
-            language: "kr",
-            todayHighlight: true,
-            multidate: true
 
-
-
-
-        });
-        
-
-    </script>
     <script type="text/javascript">
         CKEDITOR.replace('p_content', {
             height: 500
