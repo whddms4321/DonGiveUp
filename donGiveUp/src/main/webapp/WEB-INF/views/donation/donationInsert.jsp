@@ -99,7 +99,120 @@ function loadImg(f){
 			<div class="content-main-header">
 				<a class="content-main-header-a">기부 등록 작성</a>
 			</div><br>
-			<div class="content-main-title">
+			
+			 <form action="/reviewInsert" method="post" enctype="multipart/form-data" id="insertFrm">
+      <input type="hidden" name="sellEndWriter" value="${sessionScope.sellEndWriter }">
+      <input type="hidden" name="sellEndNo" value="${sessionScope.sellEndNo}">
+
+         <table class="table table-bordered">
+            <tr>
+               <th>제목</th>
+               
+               <td><input type="text" class="form-control" name="reviewTitle"></td>
+            </tr>
+            <tr>
+               <th>작성자</th>
+               <td>${sessionScope.member.memberId }
+               <input type="hidden" name="reviewWriter" value="${sessionScope.member.memberId }"></td>
+            </tr>
+            <tr>
+               <th>별점</th>
+               <td>
+        <img class="star" src="../imgs/star-off.png">
+        <img class="star" src="../imgs/star-off.png">
+        <img class="star" src="../imgs/star-off.png">
+        <img class="star" src="../imgs/star-off.png">
+        <img class="star" src="../imgs/star-off.png">
+        <span class="d1" name="reviewScore"></span>
+        
+        <input type="hidden" class="reviewScore" name="reviewScore">
+   					</td>
+				</tr>
+				<tr>
+					<th>첨부파일</th>
+					<td><input type="file" name="reviewFilepath" onchange="loadImg(this)"></td>
+				</tr>
+				<tr>
+					<th>이미지 보기</th>
+					<td>
+						<div id="img-viewer">
+							<img id="img-view" width="350">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><textarea id="reviewContent_textarea" name="reviewContent" rows="5" style="width:100%;"></textarea></td>
+				</tr>
+				<tr style="text-align:center;">
+					<th colspan="2">
+						<button type="submit" OnClick="FnClose()" class="btn btn-outline-primary">등록</button>	 
+										
+					</th>
+				</tr>
+			</table>
+		</form>
+		</div> 
+	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+	
+	
+	<script>
+
+
+function setMemberId(){
+   alert("등록 성공");
+   self.close();//현재창 닫기
+};
+
+function loadImg(f){
+   console.log(f.files);
+   if(f.files.length!=0 && f.files[0]!=0){
+      var reader = new FileReader();
+      reader.readAsDataURL(f.files[0]);
+      reader.onload = function(e){
+         $("#img-view").attr("src",e.target.result);
+      }
+   }else{
+      $("#img-view").attr("src","");
+   }
+};
+		
+</script>
+</body>
+
+
+</html>
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<%-- <div class="content-main-title">
 			<fieldset>
   				 <legend>제목 입력</legend>
   				 <input
@@ -157,9 +270,9 @@ function loadImg(f){
    					<button>미리보기</button><button>신청하기</button>
 			</div><br>
 		</div>
-	</div>
+	</div> 
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 </body>
 
 
-</html>
+</html> --%>

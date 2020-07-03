@@ -80,7 +80,7 @@
 .content-main {
 	border: 1px solid gray;
 	width: 1200px;
-	
+	height:1150px;
 	margin: 0 auto;
 }
 
@@ -275,7 +275,7 @@ margin-left: 2%;
 			 	<c:forEach items="${list }" var="n">
 				<div class="content-main-list1">
 			 		<div class="content-main-list1-img" >
-			 		<a href="/donationDetail.don?donationNo=${n.donationNo }">
+			 		<a href="/donationDetail.don?donationNo=${n.donationNo }&donationWriter=${n.donationWriter }">
 			 			<img class="content-main-list1-img1" src="${n.donationFilepath }"></a>
 			 		</div>
 			 		<div class="content-main-list1-text">

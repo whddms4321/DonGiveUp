@@ -6,6 +6,7 @@ import java.util.List;
 
 import kr.co.don.donation.model.dao.DonationDao;
 import kr.co.don.donation.model.vo.DonationData;
+import kr.co.don.member.model.vo.Member;
 import kr.co.don.donation.model.vo.Donation;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +22,8 @@ public class DonationService {
 	@Autowired
 	@Qualifier("donationDao")
 	private DonationDao donationDao;
+	
+	
 
 	
 	public DonationData DonationList(int reqPage, String type) {
@@ -89,7 +92,13 @@ public class DonationService {
 	}
 
 	public int donationInsert(Donation donation) {
-		return donationDao.donationInsert(donation);
+		return donationDao.DonationInsert(donation);
+	}
+
+
+	public Member MemberDetail(String donationWriter) {
+		
+		return  donationDao.DonationMember(donationWriter);
 	}
 
 }

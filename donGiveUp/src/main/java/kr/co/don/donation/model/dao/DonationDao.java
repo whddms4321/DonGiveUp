@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.don.donation.model.vo.Donation;
+import kr.co.don.member.model.vo.Member;
 
 
 @Repository("donationDao")
@@ -30,7 +31,11 @@ public class DonationDao {
 		return sqlSession.selectOne("donation.donationDetail", donationNo);
 	}
 
-	public int donationInsert(Donation donation) {
+	public int DonationInsert(Donation donation) {
 		return sqlSession.insert("donation.donationInsert", donation);
+	}
+
+	public Member DonationMember(String donationWriter) {
+		return sqlSession.selectOne("donation.donationMember",donationWriter);
 	}
 }

@@ -57,4 +57,16 @@
 	<insert id="donationInsert" parameterType="donation">
 		insert into donation values(donation_seq.nextval, #{donationTitle}, #{donationContent}, #{donationType}, #{donationFilename}, #{donationFilepath},null ,#{donationGoalMoney}, null,#{donationEndDate}, sysdate, #{donationWriter}, 0)
 	</insert>
+	<select id="donationMember" parameterType="string" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			COMPANY_FILENAME AS companyFilename,
+			COMPANY_FILEPATH AS companyFilename,
+			CHART_FILENAME AS chartFilename,
+			CHART_FILENAME AS chartFilepath,
+			COMPANY_NAME AS companyName
+		        FROM MEMBER
+		where member_id = #{_parameter}
+	</select>
+	
 </mapper>

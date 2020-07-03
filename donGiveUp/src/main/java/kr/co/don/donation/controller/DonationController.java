@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javafx.scene.control.Alert;
 import kr.co.don.donation.model.service.DonationService;
 import kr.co.don.donation.model.vo.DonationData;
+import kr.co.don.member.model.vo.Member;
 import kr.co.don.donation.model.vo.Donation;
 
 import org.slf4j.Logger;
@@ -54,10 +55,13 @@ public class DonationController {
 	}
 	
 	@RequestMapping(value = "/donationDetail.don")
-	public String donationDetail(int donationNo,Model model) {
+	public String donationDetail(int donationNo,String donationWriter,Model model) {
 		
 		Donation detail = service.DonationDetail(donationNo);
-		System.out.println(detail);
+		System.out.println("detail : "+detail);
+		Member m = service.MemberDetail(donationWriter);
+		System.out.println("m : "+m);
+		model.addAttribute("company", m);
 		model.addAttribute("detail", detail);
 		
 		
