@@ -17,6 +17,9 @@
 				union all
 					select count(*) as cnt from vwork where
 					vwork_title like '%'||#{title}||'%'
+				union all
+					select count(*) as cnt from regular where
+					regular_title like '%'||#{title}||'%'
 				)
 			</if>
 			<if test='req.equals("wait")'> <!-- 사용자가 신청대기목록을 선택한 경우 -->
@@ -33,6 +36,9 @@
 				union all
 					select count(*) as cnt from vwork where
 					vwork_title like '%'||#{title}||'%' and vwork_state=0
+				union all
+					select count(*) as cnt from regular where
+					regular_title like '%'||#{title}||'%' and regular_state=0
 				)
 			</if>
 			<if test='req.equals("complete")'> <!-- 사용자가 처리완료목록 선택한 경우 -->
@@ -49,6 +55,9 @@
 				union all
 					select count(*) as cnt from vwork where
 					vwork_title like '%'||#{title}||'%' and vwork_state!=0
+				union all
+					select count(*) as cnt from regular where
+					regular_title like '%'||#{title}||'%' and regular_state!=0
 				)
 			</if>
 		</if>
@@ -66,6 +75,8 @@
 				        select support_no, '물품후원', support_name, support_id, enroll_start_date, support_state from support
 				        union all
 				        select vwork_no, '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
+				        union all
+				        select regular_no, '정기후원', regular_title, regular_id, regular_start_date, regular_state from regular
 				    )r left join member on (r.boardWriter=member_id) where boardTitle like '%'||#{title}||'%' 
 				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
 					     order by startDate
@@ -85,6 +96,8 @@
 				        select support_no, '물품후원', support_name, support_id, enroll_start_date, support_state from support
 				        union all
 				        select vwork_no, '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
+				        union all
+				        select regular_no, '정기후원', regular_title, regular_id, regular_start_date, regular_state from regular
 				    )r left join member on (r.boardWriter=member_id) where boardState=0 and boardTitle like '%'||#{title}||'%' 
 				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
 					     order by startDate
@@ -104,6 +117,8 @@
 				        select support_no, '물품후원', support_name, support_id, enroll_start_date, support_state from support
 				        union all
 				        select vwork_no, '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
+				        union all
+				        select regular_no, '정기후원', regular_title, regular_id, regular_start_date, regular_state from regular
 				    )r left join member on (r.boardWriter=member_id) where boardState!=0 and boardTitle like '%'||#{title}||'%' 
 				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
 					     order by startDate
@@ -118,39 +133,48 @@
 	
 	<select id="selectboardRequestListTotalCountEtc" parameterType="map" resultType="_int">
 		<if test='type.equals("donation")'>
-			select count(*) as cnt from donation
+			select count(*) as cnt from donation where donation_title like '%'||#{title}||'%'
 			<if test='req.equals("wait")'>
-				where donation_state = 0
+				and donation_state = 0
 			</if>
 			<if test='req.equals("complete")'>
-				where donation_state != 0
+				and donation_state != 0
 			</if>
 		</if>
 		<if test='type.equals("funding")'>
-			select count(*) as cnt from funding
+			select count(*) as cnt from funding where funding_title like '%'||#{title}||'%'
 			<if test='req.equals("wait")'>
-				where funding_type = 0
+				and funding_type = 0
 			</if>
 			<if test='req.equals("complete")'>
-				where funding_type != 0
+				and funding_type != 0
 			</if>
 		</if>
 		<if test='type.equals("vwork")'>
-			select count(*) as cnt from vwork
+			select count(*) as cnt from vwork where vwork_title like '%'||#{title}||'%'
 			<if test='req.equals("wait")'>
-				where vwork_state = 0
+				and vwork_state = 0
 			</if>
 			<if test='req.equals("complete")'>
-				where vwork_state != 0
+				and vwork_state != 0
 			</if>
 		</if>
 		<if test='type.equals("support")'>
-			select count(*) as cnt from support
+			select count(*) as cnt from support where support_name like '%'||#{title}||'%'
 			<if test='req.equals("wait")'>
-				where support_state = 0
+				and support_state = 0
 			</if>
 			<if test='req.equals("complete")'>
-				where support_state != 0
+				and support_state != 0
+			</if>
+		</if>
+		<if test='type.equals("regular")'>
+			select count(*) as cnt from regular where regular_title like '%'||#{title}||'%'
+			<if test='req.equals("wait")'>
+				and regular_state = 0
+			</if>
+			<if test='req.equals("complete")'>
+				and regular_state != 0
 			</if>
 		</if>
 	</select>
@@ -248,6 +272,29 @@
 			    )
 			where boardNo between #{start} and #{end}
 		</if>
+		<if test='type.equals("regular")'>
+			select * from 
+			    (select ROWNUM as boardNo, rr.* from
+			        (select  r.* from
+			            (select regular_no as boardKey,'정기후원' as groupName, regular_title as boardTitle, regular_id as boardWriter, regular_start_date as startDate,
+			             regular_state as boardState, member_phone as memberPhone, member_email as memberEmail from regular left join member on(member_id=regular_id)
+			             )r where boardTitle like '%'||#{title}||'%'
+			             <if test='req.equals("wait")'>
+					     	and boardState=0
+					     </if>
+					     <if test='req.equals("complete")'>
+					    	and boardState!=0
+					     </if>
+					     <if test='sort.equals("date")'>
+					     	order by startDate
+					     </if>
+					     <if test='sort.equals("title")'>
+					     	order by boardTitle
+					     </if>
+			         )rr
+			    )
+			where boardNo between #{start} and #{end}
+		</if>
 	</select>
 	
 	<!-- 글 신청 승인~ -->
@@ -265,6 +312,9 @@
 		<if test='type.equals("support")'>
 			support set support_state=1, enroll_start_date=sysdate, enroll_end_date=sysdate+7 where support_no=#{key}
 		</if>
+		<if test='type.equals("regular")'>
+			regular set regular_state=1, regular_start_date=sysdate where regular_no=#{key}
+		</if>
 	</update>
 	<!-- 글 신청 거부! -->
 	<update id="negativeRequestBoard" parameterType="map">
@@ -281,6 +331,9 @@
 		<if test='type.equals("support")'>
 			support set support_state=2, support_negative=#{content} where support_no=#{key}
 		</if>
+		<if test='type.equals("regular")'>
+			regular set regular_state=2, regular_negative=#{content} where regular_no=#{key}
+		</if>
 	</update>
 	
 	<select id="selectNegativeContent" parameterType="map" resultType="string">
@@ -296,6 +349,9 @@
 		</if>
 		<if test='type.equals("support")'>
 			support_negative from support where support_no=#{key}
+		</if>
+		<if test='type.equals("regular")'>
+			regular_negative from regular where regular_no=#{key}
 		</if>
 	</select>
 	
@@ -378,7 +434,7 @@
 	
 	<update id="enrollCompany" parameterType="map">
 		<if test='type.equals("0")'>
-			update member set member_type=2, company_name=#{companyName} where member_id=#{memberId}
+			update member set member_type=2, company_name=#{companyName}, member_enroll_date=sysdate where member_id=#{memberId}
 		</if>
 		<if test='type.equals("1")'>
 			update member set member_type=3 where member_id=#{memberId}
@@ -494,4 +550,91 @@
 			bank_in set bank_in_cancel=2 where bank_in_no=#{regularNo}
 		</if>
 	</update>
+	
+	<select id="dashboardAllBoardCount" resultType="_int">
+		 select SUM(cnt) from
+			(select count(*) as cnt from donation
+			union all
+			select count(*) from funding
+			union all
+			select count(*) from vwork
+			union all
+			select count(*) from support)
+	</select>
+	<select id="dashboardAllCompanyCompleteCount" resultType="_int">
+		select count(*) from member where member_type=2 or member_type=5
+	</select>
+	<select id="dashboardAllCompanyReqCount" resultType="_int">
+		select count(*) from member where member_type=0
+	</select>
+	
+	<select id="dashboardAllMemberCount" resultType="_int">
+		select count(*) from member where member_type=1 or member_type=4
+	</select>
+	
+	<select id="allDonationCount" resultType="_int">
+		select count(*) from donation
+	</select>
+	<select id="allFundingCount" resultType="_int">
+		select count(*) from funding
+	</select>
+	<select id="allSupportCount" resultType="_int">
+		select count(*) from support
+	</select>
+	<select id="allVworkCount" resultType="_int">
+		select count(*) from vwork
+	</select>
+	<select id="allRegularCount" resultType="_int">
+		select count(*) from regular
+	</select>
+	
+	<select id="donationComplete" resultType="_int">
+		select count(*) from donation where donation_state=1
+	</select>
+	<select id="donationReq" resultType="_int">
+		select count(*) from donation where donation_state=0
+	</select>
+	<select id="donationNegative" resultType="_int">
+		select count(*) from donation where donation_state=2
+	</select>
+	
+	<select id="fundingComplete" resultType="_int">
+		select count(*) from funding where funding_type=2
+	</select>
+	<select id="fundingReq" resultType="_int">
+		select count(*) from funding where funding_type=0
+	</select>
+	<select id="fundingNegative" resultType="_int">
+		select count(*) from funding where funding_type=1
+	</select>
+	
+	<select id="supportComplete" resultType="_int">
+		select count(*) from support where support_state=1 or support_state=3
+	</select>
+	<select id="supportReq" resultType="_int">
+		select count(*) from support where support_state=0
+	</select>
+	<select id="supportNegative" resultType="_int">
+		select count(*) from support where support_state=2
+	</select>
+	
+	<select id="vworkComplete" resultType="_int">
+		select count(*) from vwork where vwork_state=1
+	</select>
+	<select id="vworkReq" resultType="_int">
+		select count(*) from vwork where vwork_state=0
+	</select>
+	<select id="vworkNegative" resultType="_int">
+		select count(*) from vwork where vwork_state=2
+	</select>
+	
+	<select id="regularComplete" resultType="_int">
+		select count(*) from regular where regular_state=1
+	</select>
+	<select id="regularReq" resultType="_int">
+		select count(*) from regular where regular_state=0
+	</select>
+	<select id="regularNegative" resultType="_int">
+		select count(*) from regular where regular_state=2
+	</select>
 </mapper>

@@ -603,4 +603,99 @@ public class AdminMypageService {
 		return dao.updateRegular(map);
 	}
 
+	public HashMap<String, Integer> dashboard() {
+		int boardList =  dao.allBoardCount();
+		int companyCompleteList = dao.allCompanyCompleteCount();
+		int companyReqList = dao.allCompanyReqCount();
+		int memberList = dao.allMemberCount();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board", boardList);
+		map.put("comMember", companyCompleteList);
+		map.put("reqMember", companyReqList);
+		map.put("member", memberList);
+		return map;
+	}
+
+	public HashMap<String, Integer> chartData() {
+		int donation = dao.allDonationCount();
+		int funding = dao.allFundingCount();
+		int support = dao.allSupportCount();
+		int vwork = dao.allVworkCount();
+		int regular = dao.allRegularCount();
+		
+		int donationComplete = dao.donationComplete();
+		int donationReq = dao.donationReq();
+		int donationNegative = dao.donationNegative();
+		
+		int fundingComplete = dao.fundingComplete();
+		int fundingReq = dao.fundingReq();
+		int fundingNegative = dao.fundingNegative();
+		
+		int supportComplete = dao.supportComplete();
+		int supportReq = dao.supportReq();
+		int supportNegative = dao.supportNegative();
+		
+		int vworkComplete = dao.vworkComplete();
+		int vworkReq = dao.vworkReq();
+		int vworkNegative = dao.vworkNegative();
+		
+		int regularComplete = dao.regularComplete();
+		int regularReq = dao.regularReq();
+		int regularNegative = dao.regularNegative();
+
+		
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("donation", donation);
+		map.put("funding", funding);
+		map.put("support", support);
+		map.put("vwork", vwork);
+		map.put("regular", regular);
+		
+		map.put("donationCom", donationComplete);
+		map.put("donationReq", donationReq);
+		map.put("donationNeg", donationNegative);
+		
+		map.put("fundingCom", fundingComplete);
+		map.put("fundingReq", fundingReq);
+		map.put("fundingNeg", fundingNegative);
+		
+		map.put("supportCom", supportComplete);
+		map.put("supportReq", supportReq);
+		map.put("supportNeg", supportNegative);
+		
+		map.put("vworkCom", vworkComplete);
+		map.put("vworkReq", vworkReq);
+		map.put("vworkNeg", vworkNegative);
+		
+		map.put("regularCom", regularComplete);
+		map.put("regularReq", regularReq);
+		map.put("regularNeg", regularNegative);
+		
+		return map;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
 }
