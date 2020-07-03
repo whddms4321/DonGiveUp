@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,7 +80,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "/insertMember.don")
 	public String insertMember(Member m) {
-		System.out.println(m);
 		int result = service.insertMember(m);
 		if(result!=0) {
 			return "member/joinStep3";
@@ -148,5 +150,59 @@ public class MemberController {
 	public long getCurrentTime() {
 		Calendar today = Calendar.getInstance();
 		return today.getTimeInMillis();
+	}
+	
+	@RequestMapping(value = "/findIdFrm.don")
+	public String findIdFrm() {
+		return "member/findIdFrm";
+	}
+	
+	@RequestMapping(value = "/findIdMember.don")
+	public String findIdMember(Member m,Model model) {
+		ArrayList<Member> member = service.findIdMember(m);
+		if(member!=null) {
+			model.addAttribute("member",member);
+			return "member/findIdSuccess";			
+		}else {
+			return "member/findIdFail";
+		}
+	}
+	
+	@RequestMapping(value = "/findIdCompany.don")
+	public String findIdCompany(Member m,Model model) {
+		ArrayList<Member> member = service.findIdCompany(m);
+		if(member!=null) {
+			model.addAttribute("member",member);
+			return "member/findIdSuccess";			
+		}else {
+			return "member/findIdFail";
+		}
+	}
+	
+	@RequestMapping(value = "/findPwFrm.don")
+	public String findPwFrm() {
+		return "member/findPwFrm";
+	}
+	
+	@RequestMapping(value = "/findPwMember.don")
+	public String findPwMember(Member m,Model model) {
+		Member member = service.findPwMember(m);
+		if(member!=null) {
+			model.addAttribute("member",member);
+			return "member/findPwSuccess";			
+		}else {
+			return "member/findPwFail";
+		}
+	}
+	
+	@RequestMapping(value = "/findPwCompany.don")
+	public String findPwCompany(Member m,Model model) {
+		Member member = service.findPwCompany(m);
+		if(member!=null) {
+			model.addAttribute("member",member);
+			return "member/findPwSuccess";			
+		}else {
+			return "member/findPwFail";
+		}
 	}
 }
