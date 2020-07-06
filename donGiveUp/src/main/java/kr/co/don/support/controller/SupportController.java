@@ -12,9 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import kr.co.don.support.model.service.SupportService;
 import kr.co.don.support.model.vo.Support;
-import kr.co.don.support.model.vo.SupportMoreList;
+import kr.co.don.support.model.vo.SupportData;
+import net.sf.json.JSON;
+
 
 
 @Controller
@@ -44,52 +48,52 @@ public class SupportController {
 	
 	@RequestMapping(value="/supportList.don")
 	public String supportList(int count,Support support,Model model,HttpSession session) {
-//		String supportApplyId = session.getAttribute("member");
+//		String supportApplyId = session.getAttribute("memberId");
 		
 		String supportApplyId = "admin";
 		int rnumMin = ((count-1)*16)+1;
 		int rnumMax = count*16; 
+		
 		HashMap<String,String> map = new HashMap<String,String>();
 		
 		map.put("supportApplyId", supportApplyId);
 		map.put("rnumMin", String.valueOf(rnumMin));
 		map.put("rnumMax", String.valueOf(rnumMax));
 		
-		ArrayList<Support> list = supportService.supportList(map);
+		SupportData data = supportService.supportList(map);
 		
 		String button ="<button id=\"moreList\" value="+(count+1)+">더 보기</button>";
 		
-		model.addAttribute("list",list);
+		model.addAttribute("supportList",data.getSupportList());
+		model.addAttribute("applyList",data.getApplyList());
 		model.addAttribute("supportApplyId", supportApplyId);
 		model.addAttribute("button", button);
+		
 		
 		return "support/supportList";
 		
 	}
 	
 	@ResponseBody
-	@RequestMapping(value= "/moreList.don",produces = "text/html; charset=utf-8")
+	//produces = "application/json;의 의미는 json타입으로 보낸다 선언
+	@RequestMapping(value= "/moreList.don",produces = "application/json; charset=utf-8")
 	public String moreList(int count,Support support, HttpSession session) {
-	// String supportApplyId = session.getAttribute("member");
+	 // String supportApplyId = session.getAttribute("memberId");
+		System.out.println(count);
 		String supportApplyId = "admin";
 		
 		int rnumMin = ((count-1)*16)+1;
-		int rnumMax = count*16; 
+		int rnumMax = count*16;
 		HashMap<String,String> map = new HashMap<String,String>();
-		
-		System.out.println(rnumMin);
-		System.out.println(rnumMax);
-		
 		map.put("supportApplyId", supportApplyId);
 		map.put("rnumMin", String.valueOf(rnumMin));
 		map.put("rnumMax", String.valueOf(rnumMax));
 		
-		ArrayList<Support> list = supportService.supportList(map);
+		SupportData data = supportService.supportList(map);
 		
-		System.out.println(list.size());
+		String button ="<button id=\"moreList\" value="+(count+1)+">더 보기</button>";
 		
-		
-		return "list";
+		return new Gson().toJson(data);
 		
 	}
 	

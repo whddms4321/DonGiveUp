@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import kr.co.don.support.model.dao.SupportDao;
 import kr.co.don.support.model.vo.Support;
+import kr.co.don.support.model.vo.SupportApply;
+import kr.co.don.support.model.vo.SupportData;
 
 
 @Service
@@ -18,9 +20,15 @@ public class SupportService {
 	@Qualifier("supportDao")
 	private SupportDao supportDao;
 
-	public ArrayList<Support> supportList(HashMap<String,String> map) {
-			
-		return (ArrayList<Support>)supportDao.supportList(map);
+	public SupportData supportList(HashMap<String,String> map) {
+		
+		SupportData data = new SupportData();
+		
+		data.setSupportList((ArrayList<Support>)supportDao.supportList(map));
+		data.setApplyList((ArrayList<SupportApply>)supportDao.applyList(map));
+		
+		
+		return data;
 	}
 	
 	 

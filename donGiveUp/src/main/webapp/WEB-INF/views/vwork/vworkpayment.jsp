@@ -7,7 +7,7 @@
 <head>
     <link href="/resources/dahyun/css/vworkpayment.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Don Give Up</title>
+    <title>함께해요 결제</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
     <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
