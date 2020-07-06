@@ -1,7 +1,11 @@
 package kr.co.don.adminMypage.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,6 +15,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -24,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -47,8 +55,13 @@ public class AdminMypageController {
 	
 	//관리자 마이페이지 메인(DashBoard) 이동 
 	@RequestMapping(value="/dashboard.don")
-	public String dashboard() {
-		
+	public String dashboard(Model m ) {
+		HashMap<String, Integer> map = service.dashboard();
+		m.addAttribute("board", map.get("board"));
+		m.addAttribute("reqMem", map.get("reqMember"));
+		m.addAttribute("comMem", map.get("comMember"));
+		m.addAttribute("mem", map.get("member"));
+		m.addAttribute("regular", map.get("regular"));
 		return "/mypage/admin/dashboard";
 	}
 	
@@ -361,7 +374,77 @@ public class AdminMypageController {
 		m.addAttribute("list", pageData.getList());
 		m.addAttribute("pageNavi", pageData.getPageNavi());
 		m.addAttribute("reqPage", reqPage);
+		m.addAttribute("type", type);
 		return "mypage/admin/regularCancelReq";
+	}
+	
+	//정기결제 해지요청 리스트 Ajax
+	@ResponseBody
+	@RequestMapping(value="/regularCancelReqAjax.don", produces="application/json; charset=utf-8;")
+	public String regularCancelReqAjax(String type) {
+		AdminPageDataGenericVO<AdminRegularInVO> pageData = service.regularCancelReq(1,type);
+		return new Gson().toJson(pageData);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/updateRegular.don")
+	public int updateRegular(int regularNo, String type) {
+		return service.updateRegular(regularNo, type);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/chartData.don" , produces = "application/json;")
+	public String chartData() {
+		HashMap<String, Integer> map = service.chartData();
+		return new Gson().toJson(map);
+	}
+	
+	@RequestMapping(value="/companyFileDownload.don", produces = "application/octet-stream;")
+	public void noticeFileDownload(HttpServletRequest request, HttpServletResponse response, String filename, String filepath) {
+		 String root = request.getSession().getServletContext().getRealPath("/resources/song/company/");
+	      // 파일이랑 서블릿 연결
+	      FileInputStream fis;
+	      try {
+	         fis = new FileInputStream(root+filepath);
+	         // 속도를 위한 보조스트림 생성
+	         BufferedInputStream bis = new BufferedInputStream(fis);
+	         // 파일을 내보내기 위한 스트림 생성
+	         ServletOutputStream sos = response.getOutputStream();
+	         // 속도를 위한 보조스트림 생성
+	         BufferedOutputStream bos = new BufferedOutputStream(sos);
+	         
+	         String resFilename = "";
+	         // 브라우저가 IE인지 확인
+	         boolean bool = request.getHeader("user-agent").indexOf("MSIE") != -1 
+	               || request.getHeader("user-agent").indexOf("Trident")!= -1;
+	         
+	         if(bool) {//IE 인 경우
+	            resFilename = URLEncoder.encode(filename,"utf-8");
+	            resFilename = resFilename.replaceAll("\\\\", "%20");
+	         }else {//나머지 브라우저인 경우
+	            resFilename = new String(filename.getBytes("UTF-8"),"ISO-8859-1");
+	         }
+	         // 파일 다운로드를 위한 HTTP Header설정
+	         response.setContentType("application/octet-stream");
+	         // 다운로드 받을 이름
+	         response.setHeader("Content-Disposition", "attachment;filename="+resFilename);
+	         // Input by BufferedInputStream content and then output by BufferedOutputStream
+	         // 읽을 값이 없으면 read가 -1 이 됨
+	         int read = -1;
+	         while((read=bis.read())!=-1) {
+	            bos.write(read);
+	         }
+	         bos.close();
+	         bis.close();
+	      } catch (FileNotFoundException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+
+
 	}
 }
 
