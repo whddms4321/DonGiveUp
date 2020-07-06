@@ -544,10 +544,10 @@
 	<update id="updateRegular" parameterType="map">
 		update
 		<if test='type.equals("regular")'>
-			regular_in set regular_in_cancel=2 where regular_in_no=#{regularNo}
+			regular_in set regular_in_cancel=2, regular_in_end_date=sysdate where regular_in_no=#{regularNo}
 		</if>
 		<if test='type.equals("bank")'>
-			bank_in set bank_in_cancel=2 where bank_in_no=#{regularNo}
+			bank_in set bank_in_cancel=2, bank_in_end_date=sysdate where bank_in_no=#{regularNo}
 		</if>
 	</update>
 	
