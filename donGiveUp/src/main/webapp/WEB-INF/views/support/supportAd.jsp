@@ -166,7 +166,7 @@
 </style>
     <script>
 	function func1(){
-		var win = window.open("/supportApplyWrite.don", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=450,height=600");
+		var win = window.open("/supportWrite.don", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=450,height=600");
 
 	}
 </script>

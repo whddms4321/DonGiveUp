@@ -125,7 +125,7 @@ div>img {
 			
 		</div>
         <div class="support_try">
-            <a href="/supportApplyAd.don">
+            <a href="/supportAd.don">
                 <div class="apply">물품 후원하기</div>
             </a>
             <a href="/supportList.don?count=1">
