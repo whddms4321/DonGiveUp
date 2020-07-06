@@ -80,9 +80,15 @@ body{
 
 .category_ul {
 	list-style: none;
-	display: none;
+	
 	padding: 0;
 	position: absolute;
+}
+.on{
+	display:block;
+}
+.off{
+	display:none;
 }
 .supportList_ul{
 	width:85%;
@@ -93,7 +99,7 @@ body{
 	margin:0 auto;
 }
 .supportList_li{
-	
+	height:350px;
 	display:inline-block;
 	border:none;
 	margin: 25px;
@@ -124,7 +130,8 @@ body{
     
 	display:inline-block;
 	width:60px;
-	left:140px; 
+	left:160px;
+	top:0px; 
 	text-align:center;
 	color:green;
 	position:absolute;
@@ -160,8 +167,14 @@ body{
 <script>	
 	$(function() {
 		$(".category_content").click(function() {
-
-			$(".category_ul").css("display", "block");
+			if($(".category_ul").hasClass("off")){
+                $(".category_ul").removeClass("off");
+                $(".category_ul").addClass("on");
+            }else {
+                 $(".category_ul").removeClass("on");
+                $(".category_ul").addClass("off");
+            }
+			
 
 		});
 	
@@ -174,23 +187,34 @@ body{
 					
 					$.ajax({
 						url: "/moreList.don",
-						data:{
+						data : {
 							count:count
 						},
-						type: "post",
 						success: function(data){
-							$(this).remove();
+							$("#moreList").remove();
+
+							//data를 javascript 객체화하기
+                            //var obj = JSON.parse(data);				
+							//data값을 list 별로 나누어 추출
+                            var sList = data.supportList;
+                            var aList = data.applyList;
 							var html='';
-							for(var i=0;i < data.length;i++){
+                    
+							for(var i=0;i < sList.length;i++){
+								html+="<li class=\"supportList_li\">";								
+								html+="<div class=\"supportList\">";
+								html+="<img class=\"supportList_img\" src=\"../../../resources/upload/test/dora_1.png\">";
+								html+="<h2 class=\"supportList_name\">"+sList[i]["supportName"]+"</h2>";
+								html+="<div>마감 기한 : "+sList[i]["enrollEndDate"]+"</div>";
+								html+="<div>물품 수량 : "+sList[i]["supportAmouont"]+"</div>";
 								
-								html += "<li class=\"supportList_li\"><div class=\"supportList\">";
-								html += "<img class=\"supportList_img\" src=\"../../../resources/upload/test/dora_1.png\">";
-								html += "<h2 class=\"supportList_name\">"+data[i]["supportNo"]+"</h2>";
-								$(".support_ul").add(html);
-								
+								for(var j=0;j < aList.length;j++){
+									
+								}
+							
+					
 							}
-							
-							
+	
 						},
 						error : function(){
 							console.log("실행 실패");
@@ -199,9 +223,10 @@ body{
 					
 				});
 		});
-
+	
 </script>
 <body>
+
 	<jsp:include page="/WEB-INF/views/main/header.jsp" />
 	<div class="content">
 		<div class="content_wrap">
@@ -220,8 +245,8 @@ body{
 			<br><br><br>
 			<div class="category_div">
 				<span class="category_content">전체 ▽</span>
-				<ul class="category_ul">
-					<li >전체</li>
+				<ul class="category_ul off">
+					<li>전체</li>
 					<li>의류</li>
 					<li>생리대</li>
 					<li>화장품</li>
@@ -233,33 +258,31 @@ body{
 				</ul>
 			</div>
 			<br>
-			<ul class="supportList_ul">
-				
-				<c:forEach var="n" items="${list }">
+			<ul class="supportList_ul">	
+				<c:forEach var="n" items="${supportList }" varStatus="status">
 					<li class="supportList_li">
 						<div class="supportList">
 							<img class="supportList_img" src="../../../resources/upload/test/dora_1.png">
-							
 							<!--<img src="${n.supportFilename }"> -->
+							
 							<h2 class="supportList_name">${n.supportName }</h2>
 							<div>마감 기한 : ${n.enrollEndDate }</div>
 							<div>물품 수량 : ${n.supportAmount }</div>
-							<c:if test="${n.supportApplys == 0 }">
-								<span class="supportList_band myband">요청중</span>
-								<button class="supportListApply" value="${n.supportNo }"></button>
-							</c:if>							 
-					 		<c:if test="${n.supportApplys == 1 }">
-								<span class="supportList_band">마감임박</span>
-								<button class="supportListApply" value="${n.supportNo }">요청하기</button>
-							</c:if>	 						
+							<c:forEach var="m" items="${applyList }">
+								<p>${m.supportNo }</p>
+								<p>${n.supportNo }</p>
+								<c:if test="${n.supportNo eq m.supportNo }">
+									<span class="supportList_band myband">요청중</span>	
+								</c:if>
+									<button class="supportListApply" value="${n.supportNo }">요청하기</button>
+							</c:forEach>
+				 			 						
 						</div>
-
 					</li>
-
+					
 				</c:forEach>
-				<span>${button }</span>
 			</ul>
-			
+				<span>${button }</span>
 		</div>
 	</div>
 	<br><br><br><br>
