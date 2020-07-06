@@ -48,7 +48,7 @@ public class MemberController {
 			return "main/msg";
 		}else {
 			model.addAttribute("msg","로그인 실패 (아이디 패스워드를 확인하세요)");
-			model.addAttribute("loc","/");
+			model.addAttribute("loc","/member/loginFrm.don");
 			return "main/msg";
 		}
 	}

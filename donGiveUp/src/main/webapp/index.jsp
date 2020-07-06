@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +24,8 @@
     width: 100%;
     height: 600px;
   }
+  
+  
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
@@ -64,9 +66,10 @@
 		</div>
 	</div>
 	<div class="content"></div>
-	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
-
+	<c:if test="${not empty sessionScope.member }">
+	<jsp:include page="/WEB-INF/views/main/chat.jsp"></jsp:include>
+		
+	</c:if>
+	<jsp:include page="/WEB-INF/views/main/footer.jsp"/>
 </body>
-
-
 </html>
