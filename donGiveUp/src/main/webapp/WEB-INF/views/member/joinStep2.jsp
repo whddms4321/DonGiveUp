@@ -12,7 +12,7 @@
 		font-family: 'Noto Sans KR', sans-serif;
 	}
 	.content{
-		height: 1400px;
+		height: 100%;
 		width: 100%;
 		margin: 0 auto;
 		background-image: url("/imgs/charities3.jpg");
@@ -20,7 +20,7 @@
 		background-size: cover;
 		background-position: 50%;
 		opacity: 0.8;
-		
+		padding-bottom: 150px;
 	}
 	
 	.joinArea{
@@ -105,19 +105,39 @@
 		height: 300px;
 		margin-right: 20px;
 		margin-bottom: 20px;
+		background-image: url("/resources/song/image/개인.jpg");
+		border : 1px solid #ebebeb;
+		border-radius: 8px;
 	}
 	
 	#joinPersonBtn:hover{
 		cursor: pointer;
+		border-color: dodgerBlue;
+		box-shadow: 0 0 8px 0 dodgerBlue;
 	}
 	
 	#joinCompanyBtn:hover{
 		cursor: pointer;
+		border-color: dodgerBlue;
+		box-shadow: 0 0 8px 0 dodgerBlue;
+	}
+	
+	#joinPersonBtn:focus{
+		border-color: dodgerBlue;
+		box-shadow: 0 0 8px 0 dodgerBlue;
+	}
+	
+	#joinCompanyBtn:focus{
+		border-color: dodgerBlue;
+		box-shadow: 0 0 8px 0 dodgerBlue;
 	}
 	
 	#joinCompanyBtn{
 		width: 300px;
 		height: 300px;
+		background-image: url("/resources/song/image/기관.jpg");
+		border : 1px solid #ebebeb;
+		border-radius: 8px;
 	}
 	
 	.joinPersonWrap{
@@ -204,6 +224,8 @@
 	.joinCompanyWrap{
 		display: none;
 	}
+	
+	
 </style>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
@@ -320,6 +342,10 @@ $(function () {
 			}
 			
 			
+		});
+		
+		$("#memberPw").focusin(function () {
+			$("#memberPwRe").val("");
 		});
 		
 		$("#memberPwRe").focusout(function () {
@@ -642,10 +668,15 @@ function noBack(){window.history.forward();}
 		<br><br>
 		<div class="joinArea">
 		<br><br>
-        <button type="button" id="joinPersonBtn">개인</button>
-        <button type="button" id="joinCompanyBtn">기관</button>
+        <button type="button" id="joinPersonBtn"></button>
+        <button type="button" id="joinCompanyBtn"></button>
+        <br>
+        <span style="margin-left: 220px; font-weight: bold;">개인</span>
+        <span style="margin-left: 300px; font-weight: bold;">기관</span>
+        
             <div class="joinPersonWrap">
             	<form action="/member/insertMember.don" method="post" id="joinForm1">
+            	<br>
             		<table class="personTable">
             			<tr>
             				<td style="width: 100px;">*아이디</td>

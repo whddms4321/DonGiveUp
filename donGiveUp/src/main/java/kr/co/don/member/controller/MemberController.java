@@ -39,13 +39,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login.don")
-	public String loginMember(HttpSession session,Member m) {
-		Member member = service.selectOneMember(m);
+	public String loginMember(HttpSession session,Member m,Model model) {
+		Member member = service.selectOneMemberEnc(m);
 		if(member != null) {
 			session.setAttribute("member", member);
-			return "redirect:/";
+			model.addAttribute("msg","로그인 성공");
+			model.addAttribute("loc","/");
+			return "main/msg";
 		}else {
-			return "redirect:/";
+			model.addAttribute("msg","로그인 실패 (아이디 패스워드를 확인하세요)");
+			model.addAttribute("loc","/");
+			return "main/msg";
 		}
 	}
 	
@@ -68,7 +72,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/checkId.don")
 	public String checkId(Member m) {
-		Member member = service.selectOneMember(m);
+		Member member = service.selectOneMemberEnc(m);
 		if(member == null) {
 			return "0";
 		}else {
@@ -80,7 +84,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/insertMember.don")
 	public String insertMember(Member m) {
-		int result = service.insertMember(m);
+		int result = service.insertMemberEnc(m);
 		if(result!=0) {
 			return "member/joinStep3";
 		}else {
@@ -138,7 +142,7 @@ public class MemberController {
 			}
 		}
 
-		int result = service.insertCompany(m);
+		int result = service.insertCompanyEnc(m);
 		if(result!=0) {
 			return "member/joinStep3";
 		}else {
@@ -159,7 +163,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/findIdMember.don")
 	public String findIdMember(Member m,Model model) {
-		ArrayList<Member> member = service.findIdMember(m);
+		ArrayList<Member> member = service.findIdMemberEnc(m);
 		if(member!=null) {
 			model.addAttribute("member",member);
 			return "member/findIdSuccess";			
@@ -170,7 +174,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/findIdCompany.don")
 	public String findIdCompany(Member m,Model model) {
-		ArrayList<Member> member = service.findIdCompany(m);
+		ArrayList<Member> member = service.findIdCompanyEnc(m);
 		if(member!=null) {
 			model.addAttribute("member",member);
 			return "member/findIdSuccess";			
@@ -186,7 +190,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/findPwMember.don")
 	public String findPwMember(Member m,Model model) {
-		Member member = service.findPwMember(m);
+		Member member = service.findPwMemberEnc(m);
 		if(member!=null) {
 			model.addAttribute("member",member);
 			return "member/findPwSuccess";			
@@ -197,12 +201,26 @@ public class MemberController {
 	
 	@RequestMapping(value = "/findPwCompany.don")
 	public String findPwCompany(Member m,Model model) {
-		Member member = service.findPwCompany(m);
+		Member member = service.findPwCompanyEnc(m);
 		if(member!=null) {
 			model.addAttribute("member",member);
 			return "member/findPwSuccess";			
 		}else {
 			return "member/findPwFail";
+		}
+	}
+	
+	@RequestMapping(value = "/updateMemberPw.don")
+	public String updateMemberPw(Member m,Model model) {
+		int result = service.updateMemberPwEnc(m);
+		if(result!=0) {
+			model.addAttribute("msg","비밀번호 변경 완료");
+			model.addAttribute("loc","/");
+			return "main/msg";
+		}else {
+			model.addAttribute("msg","비밀번호 변경 실패");
+			model.addAttribute("loc","/");
+			return "main/msg";
 		}
 	}
 }

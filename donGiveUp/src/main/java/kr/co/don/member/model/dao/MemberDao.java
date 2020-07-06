@@ -54,4 +54,8 @@ public class MemberDao {
 		return sqlSession.selectOne("member.findPwCompany",m);
 	}
 
+	public int updateMemberPw(Member m) {
+		return sqlSession.update("member.updateMemberPw",m);
+	}
+
 }

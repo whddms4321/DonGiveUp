@@ -64,10 +64,9 @@
 	}
 	
 	input{
-		width: 100%;
+		width: 242px;;
 		border: 2px solid #aaa;
 		border-radius: 4px;
-		
 		outline: none;
 		padding: 8px;
 		box-sizing: border-box;
@@ -145,18 +144,96 @@
 		height: 100%;
 	}
 	
-	.errorPw{
+	#errorPw{
 		color: red;
 		font-weight: bold;
+		display: none;
 	}
 	
-	.errorPwRe{
+	#errorPwRe{
 		color: red;
 		font-weight: bold;
+		display: none;
 	}
+	
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+	$(function () {
+		var count = [false,false];
+		$("#memberPw").focusout(function() {
+			var regExp =/^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+			var pw = $("#memberPw").val();
+			if(pw!=""){
+				if(!regExp.test(pw)){
+					$("#errorPw").css("display","inline-block");
+					count[0]= false;
+				}else{
+					$("#errorPw").css("display","none");
+					count[0]= true;
+				}
+				
+				var pwVal = $("#memberPw").val();
+				var pwReVal = $("#memberPwRe").val();
+				if(pwReVal!=""){
+					if(pwVal != pwReVal){
+						$("#errorPwRe").css("display","inline-block");
+					}else{
+						$("#errorPwRe").css("display","none");
+					}
+				}
+			}else{
+				$("#errorPw").css("display","none");
+			}
+			
+			
+		});
+		
+		$("#memberPw").focusin(function () {
+			$("#memberPwRe").val("");
+		});
+		
+		$("#memberPwRe").focusout(function () {
+			var pw = $("#memberPw").val();
+			var pwRe = $("#memberPwRe").val();
+			if(pwRe!="" && pw!=""){
+				if(pw != pwRe){
+					$("#errorPwRe").css("display","inline-block");
+					count[1]= false;
+				}else{
+					$("#errorPwRe").css("display","none");
+					count[1]= true;
+				}
+			}else{
+				$("#errorPwRe").css("display","none");
+				count[1]= false;
+			}
+			
+		});
+		
+		$("#updateMemberPw").submit(function () {
+			var bool = confirm("입력한 정보로 가입하시겠습니까?");
+			if(bool){
+				var num=0;
+	            for(var i=0; i<count.length; i++){
+	                if(count[i]==false){
+	                    num++;
+	                }
+	            }
 
+				if(num!=0){
+					alert("조건에 맞게 작성해주세요.");
+					return false;
+				}else if(num==0){
+					return true;
+				}
+
+			}else{
+				return false;
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"/>
@@ -172,20 +249,20 @@
 		<a href="/member/findPwFrm.don" class="findA">비밀번호 찾기</a>
 			<div class="showIdArea">
 			<h2>비밀번호를 변경해주세요.</h2>
-			<form action="/member/updateMemberPw.don" method="post">
+			<form action="/member/updateMemberPw.don" method="post" id="updateMemberPw">
 				<table class="updateMemberTable">
 					<tr>
-						<th>새 비밀번호 입력</th>
-						<td><input type="password" name="memberPw" required></td>
-						<td><span class="errorPw">잘못된 입력입니다.</span></td>
+						<th>새 비밀번호</th>
+						<td><input type="password" name="memberPw" required placeholder="영문+숫자+특수문자조합 (8~20 문자)" id="memberPw"><input type="hidden" name="memberId" value="${member.memberId }"></td>
+						<td style="width: 150px;"><span id="errorPw">잘못된 입력입니다.</span></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
-						<td><input type="password" name="memberPwRe" required></td>
-						<td><span class="errorPwRe">잘못된 입력입니다.</span></td>
+						<td><input type="password" name="memberPwRe" required placeholder="내용을 입력하세요." id="memberPwRe"></td>
+						<td style="width: 150px;"><span id="errorPwRe">비밀번호가 다릅니다.</span></td>
 					</tr>
 					<tr>
-						<td colspan="3"><button type="submit">수정하기</button></td>
+						<td colspan="3"><button type="submit" style="width: 200px; height: 40px; background-color: #0fbcff; cursor: pointer; border: none; color: white; border-radius: 5px;">비밀번호 변경</button></td>
 					</tr>
 					
 				</table>

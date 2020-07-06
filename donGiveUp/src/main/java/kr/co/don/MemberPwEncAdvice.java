@@ -17,7 +17,7 @@ public class MemberPwEncAdvice {
 	@Qualifier("SHA256Util")
 	private SHA256Util enc;
 	
-	@Pointcut("execution(* kr.co.don.member.model.service.MemberService.*Member(kr.co.don.member.model.vo.Member))")
+	@Pointcut("execution(* kr.co.don.member.model.service.MemberService.*Enc(kr.co.don.member.model.vo.Member))")
 	public void encPwPointcut() {
 		
 	}

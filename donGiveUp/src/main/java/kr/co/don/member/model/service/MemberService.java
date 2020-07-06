@@ -19,12 +19,12 @@ public class MemberService {
 	private MemberDao dao;
 	
 	
-	public Member selectOneMember(Member m) {
+	public Member selectOneMemberEnc(Member m) {
 		return dao.selectOneMember(m);
 	}
 
 	@Transactional
-	public int insertMember(Member m) {
+	public int insertMemberEnc(Member m) {
 		Member member = dao.selectMemberReferee(m);
 		System.out.println(member);
 		System.out.println(m);
@@ -38,28 +38,33 @@ public class MemberService {
 	}
 
 	@Transactional
-	public int insertCompany(Member m) {
+	public int insertCompanyEnc(Member m) {
 		return dao.insertCompany(m);
 	}
 
 
-	public ArrayList<Member> findIdMember(Member m) {
+	public ArrayList<Member> findIdMemberEnc(Member m) {
 		return dao.findIdMember(m);
 	}
 
 
-	public ArrayList<Member> findIdCompany(Member m) {
+	public ArrayList<Member> findIdCompanyEnc(Member m) {
 		return dao.findIdCompany(m);
 	}
 
 
-	public Member findPwMember(Member m) {
+	public Member findPwMemberEnc(Member m) {
 		return dao.findPwMember(m);
 	}
 
 
-	public Member findPwCompany(Member m) {
+	public Member findPwCompanyEnc(Member m) {
 		return dao.findPwCompany(m);
+	}
+	
+	@Transactional
+	public int updateMemberPwEnc(Member m) {
+		return dao.updateMemberPw(m);
 	}
 
 }

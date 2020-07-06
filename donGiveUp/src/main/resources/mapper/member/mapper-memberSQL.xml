@@ -150,4 +150,7 @@
   	from member
   		where member_id=#{memberId} and member_name=#{memberName} and member_phone=#{memberPhone} and company_number=#{companyNumber}
   </select>
+  <update id="updateMemberPw" parameterType="member">
+	  	update member set member_pw = #{memberPw} where member_id = #{memberId}
+  </update>
 </mapper>
