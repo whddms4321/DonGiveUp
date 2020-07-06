@@ -21,10 +21,16 @@
 
 				<!-- 홈, 로그아웃 -->
 				<ul class="nav navbar-top-links navbar-right">
-					<li class="dropdown"><a class="dropdown-toggle count-info"
-						data-toggle="dropdown" href="/"> Home </a></li>
-					<li class="dropdown"><a class="dropdown-toggle count-info"
-						data-toggle="dropdown" href="#"> Logout </a></li>
+					<li class="dropdown" style="width:60px;">
+						<a class="dropdown-toggle count-info" href="/">
+							Home
+						</a>
+					</li>
+					<li class="dropdown" style="width:68px; text-align:center;">
+						<a class="dropdown-toggle count-info" href="/member/logout.don">
+							Logout
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
