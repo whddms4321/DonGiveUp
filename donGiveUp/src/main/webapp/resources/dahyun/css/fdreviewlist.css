@@ -131,6 +131,8 @@ input::placeholder {
     color: #fff;
     font-weight: 600;
     font-size: 16px;
+    cursor: pointer;
+    outline: none;
 }
 
 .fdreviewWrap {

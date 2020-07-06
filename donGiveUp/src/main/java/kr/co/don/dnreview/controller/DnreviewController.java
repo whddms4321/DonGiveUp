@@ -27,4 +27,9 @@ public class DnreviewController {
 	public String dnrview() {
 		return "review/dnrviewpage";
 	}
+	
+	@RequestMapping(value="dnrwrite.don")
+	public String dnrwrite() {
+		return "review/dnrwrite";
+	}
 }

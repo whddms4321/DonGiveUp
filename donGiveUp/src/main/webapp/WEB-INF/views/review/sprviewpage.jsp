@@ -5,9 +5,9 @@
 <html>
 
 <head>
-    <link href="/resources/dahyun/css/dnrviewpage.css" rel="stylesheet">
+    <link href="/resources/dahyun/css/sprviewpage.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>기부후기 상세페이지</title>
+    <title>후원후기 상세페이지</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
@@ -24,16 +24,16 @@
     <div class="content">
         <div class="headarea">
             <div class="frontimg">
-                <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                <img src="/resources/dahyun/imgs/강쥐용품.jpg">
             </div>
             <div class="bgfilter"></div>
             <div class="textwrap">
-                <span id="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
-                <span id="dnrFoundation">댕댕이행복재단</span>
+                <span id="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                <span id="sprFoundation">댕댕이행복재단</span>
             </div>
         </div>
-        <div class="dnrviewWrap">
-            <div class="dnrContent">
+        <div class="sprviewWrap">
+            <div class="sprContent">
                 글내용가져오기
             </div>
             <div class="imgwrap">
@@ -72,53 +72,6 @@
                 </div>
             </div>
             <br>
-            <div class="tableWrap1">
-                <div class="Fmoney"><span>70,000</span>&nbsp;원</div>
-                <span>기부금 집행 내역</span>
-                <table>
-                    <tr>
-                        <td colspan="2" class="trHead"></td>
-                    </tr>
-                    <tr>
-                        <th class="t1Name">모금기간</th>
-                        <td class="t1Content">2020.06.10-2020.06.30</td>
-                    </tr>
-                    <tr>
-                        <th class="t1Name">모금금액</th>
-                        <td class="t1Content"><span id="fmoney">70,000</span><span>목표금액(70,000)</span></td>
-                    </tr>
-                    <tr>
-                        <th class="t1Name">사업대상</th>
-                        <td class="t1Content">귀염둥이 부티</td>
-                    </tr>
-                    <tr>
-                        <th class="t1Name">대상수</th>
-                        <td class="t1Content">1마리</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="tableWrap2">
-                <table>
-                    <tr>
-                        <td colspan="3" class="trHead"></td>
-                    </tr>
-                    <tr>
-                        <th class="billName">사업비</th>
-                        <td class="bDetail">고구마 간식 * 5</td>
-                        <td class="bmoney"><span>50,000</span></td>
-                    </tr>
-                    <tr>
-                        <th class="billName">사업비</th>
-                        <td class="bDetail">껌 * 2</td>
-                        <td class="bmoney"><span>10,000</span></td>
-                    </tr>
-                    <tr>
-                        <th class="billName">사업비</th>
-                        <td class="bDetail">까까</td>
-                        <td class="bmoney"><span>10,000</span></td>
-                    </tr>
-                </table>
-            </div>
             <div class="foundationBox">
                 <span id="foundationName">댕댕이행복재단</span>
                 <span id="foundationH"><a href="#"><i class="iconFoundation fas fa-home"></i>&nbsp;후원하러가기</a></span>
@@ -127,7 +80,7 @@
             <div class="cwriteBox">
                 <form id="cmtFrm" method="post">
                     <div class="cmtWrap">
-                        <textarea id="dnCmt" placeholder="따듯한 마음을 표현하세요."></textarea>
+                        <textarea id="sprCmt" placeholder="따듯한 마음을 표현하세요."></textarea>
                     </div>
                     <span class="textLimit">
                         <span id="nowTxt">0</span>

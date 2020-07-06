@@ -14,13 +14,16 @@
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=5tpvdsp8rb&submodules=geocoder"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css">
+    <!--데이트피커-->
+    <link href="/resources/dahyun/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <script src="/resources/dahyun/dist/js/datepicker.min.js"></script>
+
+    <!-- Include English language -->
+    <script src="/resources/dahyun/dist/js/i18n/datepicker.en.js"></script>
 </head>
 
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.kr.min.js"></script>
     <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
     <div class="content">
         <div class="vworkbTitle">봉사활동제목가나다라마사아자차카타파하<span>&nbsp;>&nbsp;예약 정보 입력</span></div>
@@ -30,6 +33,9 @@
                 <img src="/resources/dahyun/imgs/둥둥2.jpg">
             </div>
             <div class="vwDate">
+                <div class="dpWrap">
+                    <input class="datepicker-here" id="datePicker" type="hidden" data-language='en'>
+                </div>
             </div>
         </div>
         <div class="bookingWrap2">
@@ -164,7 +170,7 @@
                 $("#totalFee").html(fee * count);
             });
         });
-        
+
         $("#addressBtn").css("cursor", "pointer").click(function() {
             $(this).css("background-color", "#fff");
             $(this).css("color", "rgba(0,0,0,.5)");

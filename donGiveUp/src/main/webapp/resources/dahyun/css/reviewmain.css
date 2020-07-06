@@ -127,7 +127,7 @@ progress {
     height: 4px;
     box-sizing: border-box;
     margin-bottom: 4px;
-    
+
 }
 
 
@@ -135,15 +135,17 @@ progress {
     width: 48%;
     height: 24px;
     border: 1px solid red;
-    
+
 }
-.finalDnMoney{
+
+.finalDnMoney {
     float: right;
     margin-right: 5px;
     margin-bottom: -20px;
     font-weight: bold;
     font-size: 17px;
 }
+
 .foundationName {
     display: block;
     font-size: 14px;
@@ -161,6 +163,11 @@ progress {
     width: 100%;
     height: 350px;
 
+}
+
+.fdreviewList a {
+    text-decoration: none;
+    color: #3D3B3A;
 }
 
 .fdreviewBox {
@@ -216,6 +223,11 @@ progress {
     width: 100%;
     height: 350px;
 
+}
+
+.spreviewList a {
+    text-decoration: none;
+    color: #3D3B3A;
 }
 
 .spreviewBox {
@@ -288,6 +300,6 @@ progress {
     margin-right: 7px;
 }
 
-.carousel slide{
+.carousel slide {
     width: 100%;
 }

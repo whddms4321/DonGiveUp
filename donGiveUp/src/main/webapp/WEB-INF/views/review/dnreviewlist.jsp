@@ -53,9 +53,9 @@
                                     <span class="foundationName">댕댕이행복재단</span>
                                 </div>
                                 <span class="=prgWrap">
-                                    <progress value="70" max="100" class="prgBar"></progress>
+                                    <progress value="100" max="100" class="prgBar"></progress>
                                 </span>
-                                <span class="finalDnMoney">700,000,000</span>
+                                <span class="finalDnMoney">70,000</span>
                             </div>
                         </a>
                     </td>

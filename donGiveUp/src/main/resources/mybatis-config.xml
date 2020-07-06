@@ -6,7 +6,6 @@
 	</settings>
 	
 	 <typeAliases>
-      <typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminSupportApplyVO" alias="adminSupportapply"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO" alias="adminDeadSupport"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRequestBoardVO" alias="adminRequestBoard"/>
@@ -15,6 +14,8 @@
 		<typeAlias type="kr.co.don.donation.model.vo.DonationVo" alias="donation"/>
 		<typeAlias type="kr.co.don.support.model.vo.Support" alias="support"/>
 		<typeAlias type="kr.co.don.member.model.vo.Member" alias="member"/>
+		<typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
+
 
 	</typeAliases>
 

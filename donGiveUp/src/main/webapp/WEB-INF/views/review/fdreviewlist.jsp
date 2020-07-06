@@ -43,7 +43,7 @@
             <table class="fdreviewList">
                 <tr>
                     <td>
-                        <a href="#">
+                        <a href="/fdrview.don">
                             <div class="fdreviewBox">
                                 <div class="fdrimg">
                                     <img src="/resources/dahyun/imgs/아슈크림.jpg">

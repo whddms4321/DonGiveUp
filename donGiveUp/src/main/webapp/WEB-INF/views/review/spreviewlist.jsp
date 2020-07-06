@@ -43,7 +43,7 @@
             <table class="spreviewList">
                 <tr>
                     <td>
-                        <a href="#">
+                        <a href="/sprview.don">
                             <div class="spreviewBox">
                                 <div class="sprimg">
                                     <img src="/resources/dahyun/imgs/강쥐용품.jpg">
@@ -114,8 +114,8 @@
             });
         });
 
-        function fdrWrite() {
-            location.href = "/fdrwrite.don";
+        function sprWrite() {
+            location.href = "/sprwrite.don";
         };
 
     </script>

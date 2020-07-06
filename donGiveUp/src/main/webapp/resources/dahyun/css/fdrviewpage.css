@@ -48,25 +48,25 @@
     display: block;
 }
 
-#dnrTitle {
+#fdrTitle {
     font-size: 45px;
     font-weight: bolder;
     color: #fff;
 }
 
-#dnrFoundation {
+#fdrFoundation {
     font-size: 25px;
     font-weight: bold;
     color: lightgrey;
 }
 
-.dnrviewWrap {
+.fdrviewWrap {
     width: 1200px;
     margin: 0 auto;
     margin-bottom: 100px;
     
 }
-.dnrContent{
+.fdrContent{
     width: 70%;
     height: 500px;
     margin: 0 auto;
@@ -84,83 +84,6 @@
     width: 100%;
     height: 450px;
     
-}
-.tableWrap1{
-    width: 70%;
-    margin: 0 auto;
-}
-.Fmoney{
-    width: 100%;
-    height: 100px;
-    text-align: center;
-    line-height: 95px;
-    font-size: 50px;
-    font-weight: bold;
-    color: #0fbcff;
-}
-.tableWrap1>span{
-    font-weight: bold;
-}
-.tableWrap1>table{
-    width: 100%;
-    margin-top: 7px;
-}
-.tableWrap1 tr{
-    height: 60px;
-}
-.trHead{
-    background-color: #0fbcff;
-}
-.t1Name{
-    width: 30%;
-    font-weight: bold;
-    font-size: 17px;
-}
-.t1Content{
-    width: 70%;
-    font-size: 17px;
-    font-weight: 600;
-    
-}
-#fmoney{
-    font-weight: 600;
-    color: #0fbcff;
-    margin-right: 10px;
-}
-.tableWrap2{
-    width: 70%;
-    margin: 0 auto;
-    margin-top: 30px;
-}
-
-
-.tableWrap2>table{
-    width: 100%;
-}
-.tableWrap2 tr{
-    height: 60px;
-}
-.trHead{
-    background-color: #0fbcff;
-}
-.billName{
-    width: 30%;
-    font-weight: bold;
-    font-size: 17px;
-}
-.bDetail{
-    width: 40%;
-    font-size: 17px;
-    font-weight: 600;
-}
-.bmoney{
-    width: 30%;
-    text-align: right;
-    font-size: 17px;
-    font-weight: 600;
-}
-.bmoney>span{
-    margin-right: 10px;
 }
 
 .foundationBox{
@@ -214,7 +137,7 @@
     background-color: rgba(0,0,0,.1);
     margin-bottom: 10px;
 }
-#dnCmt{
+#fdrCmt{
     width: 95%;
     height: 120px;
     margin-top: 20px;

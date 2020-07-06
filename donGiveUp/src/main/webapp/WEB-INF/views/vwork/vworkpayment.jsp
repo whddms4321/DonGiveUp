@@ -18,7 +18,7 @@
     <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
     <div class="content">
         <div class="paymentTitle">봉사활동제목가나다라마사아자차카타파하<span>&nbsp;>&nbsp;예약/결제</span></div>
-        
+        <div class="paymentbill"></div>
     </div>
     <jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 </body>
