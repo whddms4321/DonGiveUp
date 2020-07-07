@@ -108,7 +108,6 @@
 		function companyList(supportNo, reqPage){
 			$("#content").html("");
             $("#pageNaviModal").html("");
-            
 			$.ajax({
 	        	  url : "/selectSupportRequestCompany.don",
 	        	  data : {supportNo : supportNo, reqPage : reqPage},
@@ -118,9 +117,9 @@
 	        		  var html = "";
 	        		  
 	        		  if(list.length > 0){
-		        		  html += "<div><span style='font-weight:bold; font-size:20px; margin-left:20px;'>선택</span><span style='font-weight:bold; font-size:20px; margin-left:90px;'>신청자</span><span style='font-weight:bold; font-size:20px; margin-left:50px;'>마지막 수령일</span></div>";  
+		        		  html += "<div><span style='font-weight:bold; font-size:20px; margin-left:20px;'>선택</span><span style='font-weight:bold; font-size:20px; margin-left:90px;'>신청자</span></div>";  
 		        		  for(var i=0; i<list.length; i++){
-		        			  html += "<div style='width:400px; margin-left:15px; padding-left:20px; border-bottom:1px dotted gray;'><label onclick='requestContentShow(this);'><input type='radio' name='company' style=' margin-right:100px;'> &nbsp;&nbsp;&nbsp;<span>" + list[i].supportApplyId + "</span>&nbsp;&nbsp;&nbsp;<span>마지막수령일</span></label>";
+		        			  html += "<div style='width:400px; margin-left:15px; padding-left:20px; border-bottom:1px dotted gray;'><label onclick='requestContentShow(this);'><input type='radio' name='company' style=' margin-right:100px;'> &nbsp;&nbsp;&nbsp;<span>" + list[i].supportApplyId + "</span>&nbsp;&nbsp;&nbsp;</label>";
 		        			  html += "<div class='requestContent' style='display:none; margin-top:15px; width:360px; height:200px;'>" + list[i].supportApplyReason + "</div>";
 		        			  html += "<div class='requestContent' style='display:none; text-align:center; margin-bottom:15px;'><button class='btn-sm btn-primary' onclick='assignCompany("+ supportNo + ",`" + list[i].supportApplyId +"`);'>선정</button></div></div>";
 		        			  

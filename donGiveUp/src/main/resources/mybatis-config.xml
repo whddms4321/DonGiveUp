@@ -12,8 +12,11 @@
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRequestBoardVO" alias="adminRequestBoard"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminMemberVO" alias="adminMember"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRegularInVO" alias="adminRegularIn"/>
+		<typeAlias type="kr.co.don.userMypage.model.vo.UserMoneyUseListVO" alias="userMoneyUseList"/>
+		<typeAlias type="kr.co.don.userMypage.model.vo.UserAttendListVO" alias="userAttendList"/>
 		<typeAlias type="kr.co.don.donation.model.vo.DonationVo" alias="donation"/>
 		<typeAlias type="kr.co.don.support.model.vo.Support" alias="support"/>
+		<typeAlias type="kr.co.don.support.model.vo.SupportApply" alias="supportApply"/>
 		<typeAlias type="kr.co.don.member.model.vo.Member" alias="member"/>
 
 	</typeAliases>

@@ -17,4 +17,14 @@ public class DnreviewController {
 	public String reviewmain() {
 		return "review/reviewmain";
 	}
+	
+	@RequestMapping(value="/dnreview.don")
+	public String dnreview() {
+		return "review/dnreviewlist";
+	}
+	
+	@RequestMapping(value="/dnrview.don")
+	public String dnrview() {
+		return "review/dnrviewpage";
+	}
 }

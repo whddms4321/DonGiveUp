@@ -78,6 +78,7 @@ public class AdminMypageDao {
 
 	//프로시저 호출
 	public HashMap<String,String> supportAssignToCompany(HashMap<String,String> map) {
+		System.out.println("ㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌ : "  + map.get("applyId"));
 		return session.selectOne("adminMypage.supportAssignToCompany", map);
 	}
 
@@ -121,6 +122,96 @@ public class AdminMypageDao {
 		return session.update("adminMypage.updateRegular", map);
 	}
 
+	public int allBoardCount() {
+		return session.selectOne("adminMypage.dashboardAllBoardCount");
+	}
 
+	public int allCompanyCompleteCount() {
+		return session.selectOne("adminMypage.dashboardAllCompanyCompleteCount");
+	}
+	
+	public int allCompanyReqCount() {
+		return session.selectOne("adminMypage.dashboardAllCompanyReqCount");
+	}
+	
+	public int allMemberCount() {
+		return session.selectOne("adminMypage.dashboardAllMemberCount");
+	}
+
+	public int allDonationCount() {
+		return session.selectOne("adminMypage.allDonationCount");
+	}
+	public int allFundingCount() {
+		return session.selectOne("adminMypage.allFundingCount");
+	}
+	public int allSupportCount() {
+		return session.selectOne("adminMypage.allSupportCount");
+	}
+	public int allVworkCount() {
+		return session.selectOne("adminMypage.allVworkCount");
+	}
+	public int allRegularCount() {
+		return session.selectOne("adminMypage.allRegularCount");
+	}
+
+	public int donationComplete() {
+		return session.selectOne("adminMypage.donationComplete");
+	}
+
+	public int donationReq() {
+		return session.selectOne("adminMypage.donationReq");
+	}
+
+	public int donationNegative() {
+		return session.selectOne("adminMypage.donationNegative");
+	}
+
+	public int fundingComplete() {
+		return session.selectOne("adminMypage.fundingComplete");
+	}
+
+	public int fundingReq() {
+		return session.selectOne("adminMypage.fundingReq");
+	}
+
+	public int fundingNegative() {
+		return session.selectOne("adminMypage.fundingNegative");
+	}
+	
+	public int supportComplete() {
+		return session.selectOne("adminMypage.supportComplete");
+	}
+
+	public int supportReq() {
+		return session.selectOne("adminMypage.supportReq");
+	}
+
+	public int supportNegative() {
+		return session.selectOne("adminMypage.supportNegative");
+	}
+	
+	public int vworkComplete() {
+		return session.selectOne("adminMypage.vworkComplete");
+	}
+
+	public int vworkReq() {
+		return session.selectOne("adminMypage.vworkReq");
+	}
+
+	public int vworkNegative() {
+		return session.selectOne("adminMypage.vworkNegative");
+	}
+	
+	public int regularComplete() {
+		return session.selectOne("adminMypage.regularComplete");
+	}
+
+	public int regularReq() {
+		return session.selectOne("adminMypage.regularReq");
+	}
+
+	public int regularNegative() {
+		return session.selectOne("adminMypage.regularNegative");
+	}
 
 }

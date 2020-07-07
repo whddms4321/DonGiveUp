@@ -45,7 +45,14 @@
 									<td>${c.memberId }</td>
 									<td>${c.memberPhone }</td>
 									<td>${c.memberEmail }</td>
-									<td>파일</td>
+									<td>
+										<c:if test="${not empty c.companyFilename }">
+											<a href="javascript:fileDownload('${c.companyFilename }','${c.companyFilepath }')">${c.companyFilename }</a>
+										</c:if>
+										<c:if test="${empty c.companyFilename }">
+											<span>X</span>
+										</c:if>
+									</td>
 									<td>${c.memberEnrollDate }</td>
 								</tr>
 							</c:forEach>
@@ -110,6 +117,15 @@
 		</div>
 	</div>
 	<script>
+		//-------------------제무재표 다운로드
+		function fileDownload(filename, filepath){
+			//인코딩 작업
+			var newFilename = encodeURIComponent(filename);
+			var newFilepath = encodeURIComponent(filepath);
+			location.href="/companyFileDownload.don?filename="+newFilename+"&filepath="+newFilepath;
+		}
+		
+		
 		var companyNumber = "";
 		var memberId = "";
 		$('#dataModal').on('show.bs.modal', function(event) {			
