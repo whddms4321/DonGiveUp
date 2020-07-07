@@ -18,7 +18,7 @@ public class Support {
 	private int supportPrice;
 	private int supportState;
 	private String supportNegative;
-	
+	private String supportApplyId;
 	
 				   
 	

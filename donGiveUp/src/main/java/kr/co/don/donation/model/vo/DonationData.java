@@ -6,23 +6,23 @@ import java.util.ArrayList;
 
 
 public class DonationData {
-	private ArrayList<DonationVo> list;
+	private ArrayList<Donation> list;
 	private String pageNavi;
 	private int totalCount;
 	public DonationData() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public DonationData(ArrayList<DonationVo> list, String pageNavi, int totalCount) {
+	public DonationData(ArrayList<Donation> list, String pageNavi, int totalCount) {
 		super();
 		this.list = list;
 		this.pageNavi = pageNavi;
 		this.totalCount = totalCount;
 	}
-	public ArrayList<DonationVo> getList() {
+	public ArrayList<Donation> getList() {
 		return list;
 	}
-	public void setList(ArrayList<DonationVo> list) {
+	public void setList(ArrayList<Donation> list) {
 		this.list = list;
 	}
 	public String getPageNavi() {

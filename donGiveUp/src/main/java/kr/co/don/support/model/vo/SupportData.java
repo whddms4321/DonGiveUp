@@ -8,7 +8,7 @@ import lombok.Data;
 public class SupportData {
 
 	private ArrayList<Support> supportList;
-	private ArrayList<SupportApply> applyList;
+	private String button;
 
 	
 }

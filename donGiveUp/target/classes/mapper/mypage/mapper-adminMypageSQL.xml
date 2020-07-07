@@ -17,9 +17,11 @@
 				union all
 					select count(*) as cnt from vwork where
 					vwork_title like '%'||#{title}||'%'
+
 				union all
 					select count(*) as cnt from regular where
 					regular_title like '%'||#{title}||'%'
+
 				)
 			</if>
 			<if test='req.equals("wait")'> <!-- 사용자가 신청대기목록을 선택한 경우 -->
@@ -36,9 +38,11 @@
 				union all
 					select count(*) as cnt from vwork where
 					vwork_title like '%'||#{title}||'%' and vwork_state=0
+
 				union all
 					select count(*) as cnt from regular where
 					regular_title like '%'||#{title}||'%' and regular_state=0
+
 				)
 			</if>
 			<if test='req.equals("complete")'> <!-- 사용자가 처리완료목록 선택한 경우 -->
@@ -55,9 +59,11 @@
 				union all
 					select count(*) as cnt from vwork where
 					vwork_title like '%'||#{title}||'%' and vwork_state!=0
+
 				union all
 					select count(*) as cnt from regular where
 					regular_title like '%'||#{title}||'%' and regular_state!=0
+
 				)
 			</if>
 		</if>
@@ -75,8 +81,10 @@
 				        select support_no, '물품후원', support_name, support_id, enroll_start_date, support_state from support
 				        union all
 				        select vwork_no, '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
+
 				        union all
 				        select regular_no, '정기후원', regular_title, regular_id, regular_start_date, regular_state from regular
+
 				    )r left join member on (r.boardWriter=member_id) where boardTitle like '%'||#{title}||'%' 
 				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
 					     order by startDate
@@ -96,8 +104,10 @@
 				        select support_no, '물품후원', support_name, support_id, enroll_start_date, support_state from support
 				        union all
 				        select vwork_no, '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
+
 				        union all
 				        select regular_no, '정기후원', regular_title, regular_id, regular_start_date, regular_state from regular
+
 				    )r left join member on (r.boardWriter=member_id) where boardState=0 and boardTitle like '%'||#{title}||'%' 
 				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
 					     order by startDate
@@ -117,8 +127,10 @@
 				        select support_no, '물품후원', support_name, support_id, enroll_start_date, support_state from support
 				        union all
 				        select vwork_no, '함께해요', vwork_title, vwork_writer, vwork_req_date, vwork_state from vwork
+
 				        union all
 				        select regular_no, '정기후원', regular_title, regular_id, regular_start_date, regular_state from regular
+
 				    )r left join member on (r.boardWriter=member_id) where boardState!=0 and boardTitle like '%'||#{title}||'%' 
 				    <if test='sort.equals("date")'> <!--정렬 선택에 따름. -->
 					     order by startDate
@@ -175,6 +187,7 @@
 			</if>
 			<if test='req.equals("complete")'>
 				and regular_state != 0
+
 			</if>
 		</if>
 	</select>
@@ -272,6 +285,7 @@
 			    )
 			where boardNo between #{start} and #{end}
 		</if>
+
 		<if test='type.equals("regular")'>
 			select * from 
 			    (select ROWNUM as boardNo, rr.* from
@@ -295,6 +309,7 @@
 			    )
 			where boardNo between #{start} and #{end}
 		</if>
+
 	</select>
 	
 	<!-- 글 신청 승인~ -->
@@ -312,9 +327,11 @@
 		<if test='type.equals("support")'>
 			support set support_state=1, enroll_start_date=sysdate, enroll_end_date=sysdate+7 where support_no=#{key}
 		</if>
+
 		<if test='type.equals("regular")'>
 			regular set regular_state=1, regular_start_date=sysdate where regular_no=#{key}
 		</if>
+
 	</update>
 	<!-- 글 신청 거부! -->
 	<update id="negativeRequestBoard" parameterType="map">
@@ -331,9 +348,11 @@
 		<if test='type.equals("support")'>
 			support set support_state=2, support_negative=#{content} where support_no=#{key}
 		</if>
+
 		<if test='type.equals("regular")'>
 			regular set regular_state=2, regular_negative=#{content} where regular_no=#{key}
 		</if>
+
 	</update>
 	
 	<select id="selectNegativeContent" parameterType="map" resultType="string">
@@ -350,9 +369,11 @@
 		<if test='type.equals("support")'>
 			support_negative from support where support_no=#{key}
 		</if>
+
 		<if test='type.equals("regular")'>
 			regular_negative from regular where regular_no=#{key}
 		</if>
+
 	</select>
 	
 	<select id="deadLineSupportListTotalCount" resultType="_int">
@@ -434,7 +455,9 @@
 	
 	<update id="enrollCompany" parameterType="map">
 		<if test='type.equals("0")'>
+
 			update member set member_type=2, company_name=#{companyName}, member_enroll_date=sysdate where member_id=#{memberId}
+
 		</if>
 		<if test='type.equals("1")'>
 			update member set member_type=3 where member_id=#{memberId}
@@ -544,6 +567,7 @@
 	<update id="updateRegular" parameterType="map">
 		update
 		<if test='type.equals("regular")'>
+
 			regular_in set regular_in_cancel=2, regular_in_end_date=sysdate where regular_in_no=#{regularNo}
 		</if>
 		<if test='type.equals("bank")'>
@@ -637,4 +661,5 @@
 	<select id="regularNegative" resultType="_int">
 		select count(*) from regular where regular_state=2
 	</select>
+
 </mapper>

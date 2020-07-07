@@ -20,16 +20,37 @@ public class SupportService {
 	@Qualifier("supportDao")
 	private SupportDao supportDao;
 
-	public SupportData supportList(HashMap<String,String> map) {
+	public ArrayList<Support> supportList(int count,String supportApplyId) {
 		
-		SupportData data = new SupportData();
+
+		int rnumMin = ((count-1)*16)+1;
+		int rnumMax = count*16; 
 		
-		data.setSupportList((ArrayList<Support>)supportDao.supportList(map));
-		data.setApplyList((ArrayList<SupportApply>)supportDao.applyList(map));
+		HashMap<String,String> map = new HashMap<String,String>();
 		
+		map.put("supportApplyId", supportApplyId);
+		map.put("rnumMin", String.valueOf(rnumMin));
+		map.put("rnumMax", String.valueOf(rnumMax));
 		
-		return data;
+		return (ArrayList<Support>)supportDao.supportList(map);
 	}
+
+	public Support selectOne(int supportNo) {
+		
+		return supportDao.selectOne(supportNo);
+	}
+
+	public int applyInsert(SupportApply supportApply) {
+		
+		return supportDao.applyInsert(supportApply);
+	}
+
+	public int supportInsert(Support support) {
+		
+		return supportDao.supportInsert(support);
+	}
+
+	
 	
 	 
 	

@@ -3,10 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <head>
     <meta charset="UTF-8">
     <link href="/resources/dahyun/css/vworkwrite.css" rel="stylesheet">
+
     <title>함께해요 신청하기</title>
 
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
@@ -18,10 +20,14 @@
 
     <!-- Include English language -->
     <script src="/resources/dahyun/dist/js/i18n/datepicker.en.js"></script>
+
 </head>
 
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.kr.min.js"></script>
+
     <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
     <div class="content">
         <div class="vworkwTitle">함께해요 글 등록신청</div>
@@ -34,6 +40,7 @@
                             <td class="ipFrame">
                                 <input id="vworkTitle" name="vworkTitle" type="text">
                             </td>
+
                              <td class="ipName">
                                	 봉사날짜
                             </td>
@@ -44,10 +51,12 @@
                                 <input id="vworkWriter" name="vworkWriter" type="text" value="${sessionScope.member.memberId }" readonly>
                             </td>
                          	<td rowspan="5" class="dpFrame">
+
                                 <div id="dpwrap">
                                     <input name="vworkJoinDate" class="datepicker-here" id="datePicker" type="hidden" data-language='en' data-multiple-dates="5" data-multiple-dates-separator=", ">
                                 </div>
                             </td>
+
                         </tr>
                          <tr>
                             <td class="ipName">봉사타입</td>
@@ -78,6 +87,8 @@
                             </td>
                         </tr>
                         <tr>
+
+
                             <td class="ipName">대표이미지</td>
                             <td colspan="2" class="ipImg">
                                 <input id="vwork_img" type="file" name="file" onchange="loadImg(this)">

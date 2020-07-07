@@ -78,7 +78,7 @@ public class AdminMypageDao {
 
 	//프로시저 호출
 	public HashMap<String,String> supportAssignToCompany(HashMap<String,String> map) {
-		System.out.println("ㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌ : "  + map.get("applyId"));
+
 		return session.selectOne("adminMypage.supportAssignToCompany", map);
 	}
 
@@ -121,6 +121,7 @@ public class AdminMypageDao {
 	public int updateRegular(HashMap<String, String> map) {
 		return session.update("adminMypage.updateRegular", map);
 	}
+
 
 	public int allBoardCount() {
 		return session.selectOne("adminMypage.dashboardAllBoardCount");
@@ -213,5 +214,6 @@ public class AdminMypageDao {
 	public int regularNegative() {
 		return session.selectOne("adminMypage.regularNegative");
 	}
+
 
 }
