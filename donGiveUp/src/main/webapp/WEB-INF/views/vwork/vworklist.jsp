@@ -335,6 +335,7 @@
                     </td>
                 </tr>
             </table>
+            <span>${button}</span>
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>

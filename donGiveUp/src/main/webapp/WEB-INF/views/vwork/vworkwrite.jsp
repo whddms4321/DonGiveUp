@@ -91,7 +91,7 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <span>※&nbsp;상세소개에 이미지 첨부시 넓이는 460으로 설정해주세요.</span>
+                                <span>※&nbsp;상세소개에 이미지 첨부시 넓이는 760으로 설정해주세요.</span>
                                 <textarea class="form-control" id="p_content" name="vworkDetail"></textarea>
                             </td>
                         </tr>  

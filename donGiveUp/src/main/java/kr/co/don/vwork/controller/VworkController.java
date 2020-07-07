@@ -4,7 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,7 +29,18 @@ public class VworkController {
 	private VworkServiceImpl service;
 	
 	@RequestMapping(value="/vworklist.don")
-	public String vworklist() {
+	public String vworklist(int count,VworkVo vw,Model model) {
+		
+		int rnumMin = ((count-1)*9)+1;
+		int rnumMax = count*9;
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("rnumMin", String.valueOf(rnumMin));
+		map.put("rnumMax", String.valueOf(rnumMax));
+		
+		
+		
 		return "vwork/vworklist";
 	}
 	
