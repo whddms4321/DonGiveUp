@@ -116,7 +116,7 @@
 	margin-left: 49%;
 }
 .content-main-list1{
-	width: 248px;
+	width: 247px;
 	height: 300px;
 	border:0.1px solid black;
 	float: left;
@@ -265,7 +265,7 @@ margin-left: 2%;
 					<a class="content-main-list2-a2">2020-06-28</a><br><hr>
 					</div>
 					<div class="content-main-list2-2">
-					<a class="content-main-list2-a3"><b>총 기부 금액</b><br>1,000,000,000,000원</a><br><br>
+					<a class="content-main-list2-a3"><b>총 기부 금액</b><br>원</a><br><br>
 					<a class="content-main-list2-a3"><b>총 기부 참여자</b><br>120명</a><br><br>
 					<a class="content-main-list2-a3"><b>오늘 기부 금액</b><br>1,000,000원</a><br>
 					</div>

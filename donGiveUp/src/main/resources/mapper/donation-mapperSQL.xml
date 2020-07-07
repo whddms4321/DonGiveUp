@@ -35,6 +35,48 @@
 		) WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 	
+		<select id="donationInType" parameterType="string" resultType="donationIn">
+		SELECT 
+		        DONATION_IN_NO AS donationInNo,
+		        DONATION_IN_MEMBERID AS donationInMemberid,
+		        DONATION_IN_MONEY AS donationInMoney,
+		        DONATION_IN_DATE AS donationInDate,
+		        DONATION_IN_TYPE AS donationInType,
+		        DONATION_NO AS donationNo
+		        FROM DONATION_IN
+				where donation_in_type like '%'||#{_parameter}||'%' 
+		  
+	</select>
+	
+	<select id="donationInType" parameterType="string" resultType="donationIn">
+		SELECT 
+		        DONATION_IN_NO AS donationInNo,
+		        DONATION_IN_MEMBERID AS donationInMemberid,
+		        DONATION_IN_MONEY AS donationInMoney,
+		        DONATION_IN_DATE AS donationInDate,
+		        DONATION_IN_TYPE AS donationInType,
+		        DONATION_NO AS donationNo
+		        FROM DONATION_IN
+				where donation_in_d like '%'||#{_parameter}||'%' 
+		  
+	</select>
+	<select id="donationInToday" parameterType="string" resultType="donationIn">
+		SELECT 
+		        DONATION_IN_NO AS donationInNo,
+		        DONATION_IN_MEMBERID AS donationInMemberid,
+		        DONATION_IN_MONEY AS donationInMoney,
+		        DONATION_IN_DATE AS donationInDate,
+		        DONATION_IN_TYPE AS donationInType,
+		        DONATION_NO AS donationNo
+		        FROM DONATION_IN
+				where donation_in_d like '%'||#{_parameter}||'%' 
+				and donation_in_date = sysdate
+		  
+	</select>
+	
+
+	
+	
 	<select id="donationDetail" parameterType="_int" resultType="donation">
 		SELECT 
 			DONATION_NO AS donationNo,
@@ -68,5 +110,8 @@
 		        FROM MEMBER
 		where member_id = #{_parameter}
 	</select>
+	
+	
+	
 	
 </mapper>

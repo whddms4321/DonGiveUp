@@ -185,7 +185,7 @@ select {
 		<div class="vworkwTitle">기부 글 등록신청</div>
 		<div class="vworkwpage">
 			<div class="inputTable">
-				<form method="post" enctype="multipart/form-data">
+				<form class="donationDetail2" method="post" enctype="multipart/form-data">
 					<table class="vwwTable">
 						<tr>
 							<td class="ipName">제목</td>
@@ -239,10 +239,8 @@ select {
 						</tr> 
 						<tr> 
 							<td colspan="3" class="ipButton">
-													<button
-													onclick="reviewInsert()"
-													type="button">리뷰작성</button>
-								<input type="submit" value="미리보기" onclick="javascript: form.action='/donationDetailFrm.don';"/>
+							
+								<button onclick="reviewInsert()" type="button">리뷰작성</button>
     							<input type="submit" value="신청하기" onclick="javascript: form.action='/donationInsert.don';"/>
 
 							</td>
@@ -266,17 +264,15 @@ select {
 		
 		function reviewInsert() {
 			console.log("시작");
-			var memberId = "3";
-			/* var sellEndWriter = "${sessionScope.sellEnd.sellEndWriter}"; */
-			var url = "/donationDetailFrm.don";
-			var title = "donationDetailFrm";
-			var status = "left=500px, top=100px, width=600px, height=550px, menubar=no, status=no, scrollbars=yes";
-			var popup = window.open("", title, status);
 			
-			$(".reviewInsertFrm").attr("action", url);
-			$(".reviewInsertFrm").attr("method", "post");
-			$(".reviewInsertFrm").attr("target", title);//새로 열린 popup창과 form태그를 연결
-			$(".reviewInsertFrm").submit();
+			var url = "/donationDetail2.don";
+			var title = "donationDetail2";
+			var status = "left=500px, top=100px, width=1200px, height=500px, menubar=no, status=no, scrollbars=yes";
+			var popup = window.open("", title, status);
+			$(".donationDetail2").attr("action", url);
+			$(".donationDetail2").attr("method", "post");
+			$(".donationDetail2").attr("target", title);//새로 열린 popup창과 form태그를 연결
+			$(".donationDetail2").submit();
 		}
 		
 	</script>

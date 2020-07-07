@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.don.donation.model.vo.Donation;
+import kr.co.don.donationIn.model.vo.DonationInVo;
 import kr.co.don.member.model.vo.Member;
 
 
@@ -36,6 +37,15 @@ public class DonationDao {
 
 	public Member DonationMember(String donationWriter) {
 		return sqlSession.selectOne("donation.donationMember",donationWriter);
+	}
+
+	public List<DonationInVo> DonationInType(String type) {
+		
+		return sqlSession.selectList("donationIn.donationInType",type);
+	}
+
+	public List<DonationInVo> DonationInToday(String type) {
+		return sqlSession.selectList("donationIn.donationInToday",type);
 	}
 
 	

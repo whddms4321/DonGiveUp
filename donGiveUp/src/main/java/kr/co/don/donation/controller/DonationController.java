@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javafx.scene.control.Alert;
 import kr.co.don.donation.model.service.DonationService;
 import kr.co.don.donation.model.vo.DonationData;
+import kr.co.don.donationIn.model.vo.DonationInVo;
 import kr.co.don.member.model.vo.Member;
 import kr.co.don.donation.model.vo.Donation;
 
@@ -43,7 +45,24 @@ public class DonationController {
 	public String donation(int reqPage, String type,Model model) {
 		
 		DonationData data = service.DonationList(reqPage, type);
+		ArrayList<DonationInVo> list = service.DonationInType(type);
+		ArrayList<DonationInVo> list2 = service.DonationInToday(type);
+		int typeTotalCount =0;
+		int typeMemberCount =list.size();
+		int typeTodayCount =0;
 		
+		for(int i=0; i<list.size(); i++) {
+			typeTotalCount += list.get(i).getDonationInMoney();	
+		}
+		for(int i=0; i<list2.size(); i++) {
+			typeTodayCount += list.get(i).getDonationInMoney();	
+		}
+		System.out.println(typeTodayCount);
+		System.out.println(typeMemberCount);
+		System.out.println(typeTotalCount);
+		model.addAttribute("typeTotalCount",typeTotalCount);
+		model.addAttribute("typeMemberCount",typeMemberCount);
+		model.addAttribute("typeTodayCount",typeTodayCount);
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
 		model.addAttribute("totalCount", data.getTotalCount());
@@ -67,7 +86,7 @@ public class DonationController {
 		return "donation/donationDetail";	
 	}
 	
-	@RequestMapping(value = "/donationDetailFrm.don")
+	@RequestMapping(value = "/donationDetail2.don")
 	public String donationDetailFrm(Donation donation, Model model) {
 
 		
