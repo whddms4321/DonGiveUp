@@ -14,11 +14,10 @@ import kr.co.don.member.model.vo.Member;
 @Repository("donationDao")
 public class DonationDao {
 	
-	@Autowired
+	@Autowired       
 	private SqlSessionTemplate sqlSession;
 	
 	public int totalCount(HashMap<String, String> map) {
-		
 		return sqlSession.selectOne("donation.totalCount", map);
 	}
 
@@ -38,4 +37,6 @@ public class DonationDao {
 	public Member DonationMember(String donationWriter) {
 		return sqlSession.selectOne("donation.donationMember",donationWriter);
 	}
+
+	
 }

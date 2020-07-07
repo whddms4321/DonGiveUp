@@ -58,36 +58,78 @@ public class DonationController {
 	public String donationDetail(int donationNo,String donationWriter,Model model) {
 		
 		Donation detail = service.DonationDetail(donationNo);
-		System.out.println("detail : "+detail);
+		
 		Member m = service.MemberDetail(donationWriter);
-		System.out.println("m : "+m);
+		
 		model.addAttribute("company", m);
 		model.addAttribute("detail", detail);
-		
-		
-		return "donation/donationDetail";
+	
+		return "donation/donationDetail";	
+	}
+	
+	@RequestMapping(value = "/donationDetailFrm.don")
+	public String donationDetailFrm(Donation donation, Model model) {
 
 		
-		
+		model.addAttribute("d", donation);
+	
+	
+		return "donation/donationDetail2";	
 	}
+	
+	
+	
 	
 	@RequestMapping(value = "/donationInsertFrm.don")
 	public String donationInsertFrm() {
 		return "donation/donationInsert";
 	}
 	
+
+	
 	@RequestMapping(value = "/donationInsert.don")
-	public String donationInsert(Donation donation) {
-		
+	public String donationInsert(HttpServletRequest request, MultipartFile file, Donation donation) {
+		if (!file.isEmpty()) {
+
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/images/");
+
+			// 업로드한 파일의 실제 파일명
+			String originalFilename = file.getOriginalFilename();
+			System.out.println(originalFilename);
+
+			String onlyFilename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+			// 확장자
+			String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+
+			String filepath = onlyFilename + "_" + System.currentTimeMillis() + extension;
+
+			String fullpath = savePath + filepath;
+
+			try {  
+
+				donation.setDonationFilename(originalFilename);
+				donation.setDonationFilepath(filepath);
+				byte[] bytes = file.getBytes();
+
+				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
+				bos.write(bytes);
+				bos.close();
+
+				System.out.println("파일업로드 완료");
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 		int result = service.donationInsert(donation);
 		
+
 		if (result > 0) {
 			return "donation/donation";
 		} else {
 			return "donation/donationInsert";
 		}
 	}
-	
-	
 	
 }

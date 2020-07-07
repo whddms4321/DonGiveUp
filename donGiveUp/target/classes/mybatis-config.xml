@@ -19,4 +19,12 @@
 
 	</typeAliases>
 
+
+    <typeHandlers>
+
+        <typeHandler handler="kr.co.don.common.LongHandler" javaType="String" jdbcType="LONGVARCHAR"/>
+
+    </typeHandlers>
+
+
 </configuration>

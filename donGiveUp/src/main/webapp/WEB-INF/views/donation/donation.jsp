@@ -16,14 +16,15 @@
 }
 
 .content-header {
-	width: 100%;
+	width: 1200px;
 	margin: 0 auto;
 	height: 130px;
 	background-color: #0fbcff;
+	
 }
 
 .content-header2 {
-	width: 100%;
+	width: 1200px;
 	margin: 0 auto;
 	height: 50px;
 	background-color: rgb(56, 166, 241);
@@ -43,7 +44,7 @@
 }
 
 .content-header-tap2 {
-	margin-left: 18%;
+	margin-left : 10%;
 	background-color: darkgray;
 }
 
@@ -69,12 +70,12 @@
 	font-weight: bold;
 	text-decoration: none;
 	line-height: 50px;
-	margin-right: 280px;
+	margin-left: 230px;
 	font-size: 20px;
 }
 
 .content-header2-tap1 {
-	margin-left: 350px;
+	
 }
 
 .content-main {
@@ -86,7 +87,6 @@
 
 .content-main-top {
 	width: 90%;
-	height: 9%;
 	margin: 0 auto;
 }
 
@@ -116,11 +116,11 @@
 	margin-left: 49%;
 }
 .content-main-list1{
-	width: 250px;
+	width: 248px;
 	height: 300px;
 	border:0.1px solid black;
 	float: left;
-	margin: 7px;
+	margin: 10px;
 }
 
 .content-main-list2{

@@ -30,9 +30,10 @@ public class DonationService {
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", type);
+		System.out.println(type);
 		
 		int totalCount = donationDao.totalCount(map);
-		
+		System.out.println(totalCount);
 		int numPerPage = 11;
 		int totalPage;
 		if (totalCount % numPerPage == 0) {
@@ -92,6 +93,14 @@ public class DonationService {
 	}
 
 	public int donationInsert(Donation donation) {
+		System.out.println(donation.getDonationTitle());
+		System.out.println(donation.getDonationWriter());
+		System.out.println(donation.getDonationType());
+		System.out.println(donation.getDonationGoalMoney());
+		System.out.println(donation.getDonationContent());
+		System.out.println(donation.getDonationEndDate());
+		System.out.println(donation.getDonationFilepath());
+		System.out.println(donation.getDonationFilename());
 		return donationDao.DonationInsert(donation);
 	}
 
@@ -100,5 +109,8 @@ public class DonationService {
 		
 		return  donationDao.DonationMember(donationWriter);
 	}
+
+
+
 
 }

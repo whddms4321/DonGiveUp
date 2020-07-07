@@ -51,6 +51,7 @@ font-size: 40px;
 font-weight: bold;
 }
 .content-main-left-content{
+margin:0 auto;
 	width: 100%;
 height: 1000px;
 
@@ -179,37 +180,42 @@ font-size: 23px;
 </style>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 
-	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<div class="content">
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="content-main-left-tap">
-					<a class="content-main-left-tap1">기부 > ${detail.donationType}</a>
+					<a class="content-main-left-tap1">기부 > ${d.donationType}</a>
 				</div>
 				<div class="content-main-left-title">
-					<a class="content-main-left-title-a">${detail.donationTitle}</a>
+					<a class="content-main-left-title-a">${d.donationTitle}</a>
 				</div><br>
 				<div class="content-main-left-content">
-					<a class="content-main-left-content-a">${detail.donationContent}</a>
+					<a class="content-main-left-content-a">${d.donationContent}</a>
 				</div><hr>
 				<div class="content-main-left-file">
-					<a class="content-main-left-file-a">첨부 파일 : ${company.chartFilepath }</a>
+					<a class="content-main-left-file-a">첨부 파일 : </a>
 				</div><hr>
 				<div class="content-main-left-comment">
 					<a class="content-main-left-comment-a">댓글</a><br>
 					<button>더보기</button>
 				</div>
 				
+				<form>
+				
+				<input type="submit" value="돌아가기" onclick="javascript: form.action='/donationInsertFrm.don';"/>
+				</form>
+				
 			</div>
 			<div class="content-main-right">
 				<div class="content-main-right-money">
 				<div class="content-main-right-money-d1"><a class="content-main-right-money-a1">80%</a></div>
 				<a class="content-main-right-money-a2"><progress value="80" max="100"></progress></a><br>
-				<a class="content-main-right-money-a3">${detail.donationStartDate} ~ ${detail.donationEndDate}까지</a><br>
+				<a class="content-main-right-money-a3">${d.donationStartDate} ~ ${d.donationEndDate}까지</a><br>
 				<div class="content-main-right-money-d2"><a class="content-main-right-money-a4">D-59</a></div><br>	
-				<a class="content-main-right-money-a5">${detail.donationNowMoney}원</a><br><br>
-				<a class="content-main-right-money-a6">목표${detail.donationGoalMoney}원</a><br>						
+				<a class="content-main-right-money-a5">${d.donationNowMoney}원</a><br><br>
+				<a class="content-main-right-money-a6">목표${d.donationGoalMoney}원</a><br>						
 				
 					
 				</div>
@@ -219,7 +225,7 @@ font-size: 23px;
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체 안내</a></div><br>
 				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="/resources/upload/images/1.JPG"></a><br>
-				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3">${company.companyName }</a></div><br>
+				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3"></a></div><br>
 				<div class="content-main-right-organization-d3"><a class="content-main-right-organization-a4" href="#">기부 단체 리뷰</a>	</div>
 				</div>
 				<div class="content-main-right-require">

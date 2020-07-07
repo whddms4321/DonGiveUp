@@ -14,7 +14,7 @@
 		        (SELECT 
 		        	DONATION_NO AS donationNo,
     				DONATION_TITLE AS donationTitle,
-    				
+    				DONATION_CONTENT AS donationContent,
     				DONATION_TYPE AS donationType,
   					DONATION_FILENAME AS donationFilename,
    					DONATION_FILEPATH AS donationFilepath,
@@ -39,7 +39,7 @@
 		SELECT 
 			DONATION_NO AS donationNo,
     				DONATION_TITLE AS donationTitle,
-    			
+    				DONATION_CONTENT AS donationContent,
     				DONATION_TYPE AS donationType,
   					DONATION_FILENAME AS donationFilename,
    					DONATION_FILEPATH AS donationFilepath,
@@ -55,7 +55,7 @@
 		where donation_no = #{_parameter}
 	</select>
 	<insert id="donationInsert" parameterType="donation">
-		insert into donation values(donation_seq.nextval, #{donationTitle}, #{donationContent}, #{donationType}, #{donationFilename}, #{donationFilepath},null ,#{donationGoalMoney}, null,#{donationEndDate}, sysdate, #{donationWriter}, 0)
+		insert into donation values(donation_seq.nextval, #{donationTitle}, #{donationContent}, #{donationType}, #{donationFilename}, #{donationFilepath},null ,#{donationGoalMoney},0,#{donationEndDate}, sysdate, #{donationWriter}, 0,null)
 	</insert>
 	<select id="donationMember" parameterType="string" resultType="member">
 		SELECT 
