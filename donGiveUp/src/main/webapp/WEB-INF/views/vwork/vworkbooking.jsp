@@ -8,7 +8,9 @@
     <meta charset="UTF-8">
 
     <link href="/resources/dahyun/css/vworkbooking.css" rel="stylesheet">
-    <title>Don Give Up</title>
+
+    <title>함께해요 예약하기</title>
+
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>

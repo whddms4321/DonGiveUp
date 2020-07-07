@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import lombok.Data;
 
 @Data
-public class SupportMoreList {
-	
-	private ArrayList<Support> list;
-	private String supportApplyId;
+public class SupportData {
+
+	private ArrayList<Support> supportList;
 	private String button;
+
+	
 }

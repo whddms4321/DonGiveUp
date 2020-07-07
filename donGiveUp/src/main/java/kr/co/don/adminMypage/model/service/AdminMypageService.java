@@ -313,6 +313,13 @@ public class AdminMypageService {
 		map.put("supportNo", String.valueOf(supportNo));
 		ArrayList<AdminSupportApplyVO> list = (ArrayList<AdminSupportApplyVO>)dao.selectSupportRequestCompany(map);
 		
+
+		for(int i=0; i<list.size(); i++) {
+			System.out.println("테스트 아이디 : "  +  list.get(i).getSupportApplyId());
+			System.out.println("테스트 어플라이 숫자 : "  +  list.get(i).getSupportApplyNo());
+			System.out.println("테스트 신청사유 : "  +  list.get(i).getSupportApplyReason());
+		}
+
 		System.out.println("마감신청기관 리스트 사이즈 : " + list.size());
 		
 		
@@ -363,6 +370,9 @@ public class AdminMypageService {
 		HashMap<String,String> map = new HashMap<String,String>();
 		map.put("supportNo", String.valueOf(supportNo));
 		map.put("applyId",applyId);
+
+		System.out.println("테스트~!@!@#!@$#!@#!@");
+
 		HashMap<String,String> result = dao.supportAssignToCompany(map);
 		return result;
 	}
@@ -602,5 +612,102 @@ public class AdminMypageService {
 		map.put("type", type);
 		return dao.updateRegular(map);
 	}
+
+
+	public HashMap<String, Integer> dashboard() {
+		int boardList =  dao.allBoardCount();
+		int companyCompleteList = dao.allCompanyCompleteCount();
+		int companyReqList = dao.allCompanyReqCount();
+		int memberList = dao.allMemberCount();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board", boardList);
+		map.put("comMember", companyCompleteList);
+		map.put("reqMember", companyReqList);
+		map.put("member", memberList);
+		return map;
+	}
+
+	public HashMap<String, Integer> chartData() {
+		int donation = dao.allDonationCount();
+		int funding = dao.allFundingCount();
+		int support = dao.allSupportCount();
+		int vwork = dao.allVworkCount();
+		int regular = dao.allRegularCount();
+		
+		int donationComplete = dao.donationComplete();
+		int donationReq = dao.donationReq();
+		int donationNegative = dao.donationNegative();
+		
+		int fundingComplete = dao.fundingComplete();
+		int fundingReq = dao.fundingReq();
+		int fundingNegative = dao.fundingNegative();
+		
+		int supportComplete = dao.supportComplete();
+		int supportReq = dao.supportReq();
+		int supportNegative = dao.supportNegative();
+		
+		int vworkComplete = dao.vworkComplete();
+		int vworkReq = dao.vworkReq();
+		int vworkNegative = dao.vworkNegative();
+		
+		int regularComplete = dao.regularComplete();
+		int regularReq = dao.regularReq();
+		int regularNegative = dao.regularNegative();
+
+		
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("donation", donation);
+		map.put("funding", funding);
+		map.put("support", support);
+		map.put("vwork", vwork);
+		map.put("regular", regular);
+		
+		map.put("donationCom", donationComplete);
+		map.put("donationReq", donationReq);
+		map.put("donationNeg", donationNegative);
+		
+		map.put("fundingCom", fundingComplete);
+		map.put("fundingReq", fundingReq);
+		map.put("fundingNeg", fundingNegative);
+		
+		map.put("supportCom", supportComplete);
+		map.put("supportReq", supportReq);
+		map.put("supportNeg", supportNegative);
+		
+		map.put("vworkCom", vworkComplete);
+		map.put("vworkReq", vworkReq);
+		map.put("vworkNeg", vworkNegative);
+		
+		map.put("regularCom", regularComplete);
+		map.put("regularReq", regularReq);
+		map.put("regularNeg", regularNegative);
+		
+		return map;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
 
 }

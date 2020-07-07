@@ -7,7 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <link href="/resources/dahyun/css/reviewmain.css" rel="stylesheet">
-    <title>Don Give Up</title>
+
+    <title>후기메인페이지</title>
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
@@ -21,17 +23,19 @@
         <div class="reviewTitle">후기</div>
         <div class="reviewNavi">
             <ul>
-                <li><a href="#">기부후기</a></li>
-                <li><a href="#">펀딩후기</a></li>
-                <li><a href="#">물품후원후기</a></li>
+
+                <li><a href="/dnreview.don">기부후기</a></li>
+                <li><a href="/fdreview.don">펀딩후기</a></li>
+                <li><a href="/spreview.don">물품후원후기</a></li>
             </ul>
         </div>
         <div class="dnreviewWrap">
-            <div class="tableHead"><a href="#">기부 후기<i class="iconmore fas fa-angle-right"></i></a></div>
+            <div class="tableHead"><a href="/dnreview.don">기부 후기<i class="iconmore fas fa-angle-right"></i></a></div>
             <table class="dnreviewList">
                 <tr>
                     <td>
-                        <a href="#">
+                        <a href="/dnrview.don">
+
                             <div class="dnreviewBox">
                                 <div class="dnrimg">
                                     <img src="/resources/dahyun/imgs/콩삼이.jpg">
@@ -96,7 +100,9 @@
             </table>
         </div>
         <div class="fdreviewWrap">
-            <div class="tableHead"><a href="#">펀딩 후기<i class="iconmore fas fa-angle-right"></i></a></div>
+
+            <div class="tableHead"><a href="/fdreview.don">펀딩 후기<i class="iconmore fas fa-angle-right"></i></a></div>
+
             <table class="fdreviewList">
                 <tr>
                     <td>
@@ -151,7 +157,9 @@
             </table>
         </div>
         <div class="spreviewWrap">
-            <div class="tableHead"><a href="#">물품후원 후기<i class="iconmore fas fa-angle-right"></i></a></div>
+
+            <div class="tableHead"><a href="/spreview.don">물품후원 후기<i class="iconmore fas fa-angle-right"></i></a></div>
+
             <table class="spreviewList">
                 <tr>
                     <td>

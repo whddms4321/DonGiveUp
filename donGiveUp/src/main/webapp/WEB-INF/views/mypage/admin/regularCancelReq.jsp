@@ -126,9 +126,11 @@
 						html += "<tr class='newTr'><td>" + (i+1) + "</td><td>" + list[i].groupName + "</td><td>" + list[i].regularInPayNum + "</td><td>" + list[i].regularId;
 						html += "</td><td>" + list[i].regularInMoney + "</td><td>" + list[i].memberPhone + "</td><td>" + list[i].memberEmail + "</td>";
 						if(list[i].regularInCancel == 1){
-							html += "<td>해지요청</td></tr>";
+
+							html += "<td><a href='javascript:void(0);' onclick='updateRegular(" + list[i].regularInNo + "," + list[i].groupName +");'>해지요청</a></td></tr>";
 						}else{
-							html += "<td><a href='javascript:void(0);' onclick='updateRegular(" + list[i].regularInNo + "," + list[i].groupName +");'>해지완료</a></td></tr>";
+							html += "<td>해지완료</td></tr>";
+
 						}
 					}
 					$(".table").append(html);

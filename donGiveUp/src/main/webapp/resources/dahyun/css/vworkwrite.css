@@ -53,12 +53,15 @@ form {
 }
 
 .ipFrame {
-    width: 50%;
+
+    width: 60%;
+
     height: 40px;
 }
 
 .dpFrame {
-    width: 50%;
+
+    width: 40%;
     
 
 }
