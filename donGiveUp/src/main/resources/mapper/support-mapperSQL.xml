@@ -35,7 +35,7 @@
  			1,#{supportId},#{supportName},#{supportCategory},
  			#{supportAmount},#{supportAmount},#{supportFilename},
  			#{supportFilepath},sysdate,null,
- 			#{supportPrice},0,null
+ 			#{supportPrice},1,null
  		)
  		  
  	</insert>

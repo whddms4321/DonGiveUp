@@ -64,17 +64,30 @@ public class SupportController {
 			System.out.println(supportApplyId);
 			
 		}catch(Exception e){
-			
+					
 			supportApplyId = "";
 			
 		}
 		ArrayList<Support> list = supportService.supportList(count,supportApplyId);
 		
-		String button ="<button id=\"moreList\" value="+(count+1)+">더 보기</button>";
-		
+		String button;
+		//System.out.println(list.size());
+		if( list.size() == 16) {
+			button ="<button id=\"moreList\" value="+(count+1)+">더 보기</button>";
+		}else {
+			button = "";
+			
+		}
+		//System.out.println(button);
+		/* list foreach문 
+		  for(Support i : list) { i.setEnrollEndDate("테스트"); }
+		  System.out.println(list.get(0));
+		 */
+	
 		model.addAttribute("List",list);
 		model.addAttribute("button", button);
 		
+
 		return "support/supportList";
 		
 	}
@@ -99,8 +112,14 @@ public class SupportController {
 		}
 		SupportData data = new SupportData();
 		
-		data.setSupportList(supportService.supportList(count,supportApplyId));	
-		data.setButton("<button id=\"moreList\" value="+(count+1)+">더 보기</button>");
+		data.setSupportList(supportService.supportList(count,supportApplyId));
+		//support가 끝번호까지 나온경우 더보기 버튼 생성 안하기
+		
+		if( data.getSupportList().size() == 16) {
+			data.setButton("<button id=\"moreList\" value="+(count+1)+">더 보기</button>");	
+		}else {
+			data.setButton("");
+		}
 		
 		return new Gson().toJson(data);
 		
@@ -119,6 +138,7 @@ public class SupportController {
 	@RequestMapping(value="/supportInsert.don")
 	public String supportInsert(HttpServletRequest request, MultipartFile file, Support support) {
 		System.out.println(support);
+		
 		if (!file.isEmpty()) {
 			//저장할 기본 경로
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/support/");
@@ -156,9 +176,9 @@ public class SupportController {
 		int result = supportService.supportInsert(support);
 
 		if (result > 0) {
-			return "/";
+			return "redirect:/";
 		} else {
-			return "/";
+			return "redirect:/";
 		}
 	}
 	
