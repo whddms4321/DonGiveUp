@@ -50,31 +50,33 @@ body {
 .content_wrap>h1 {
 	text-align: center;
 }
-
-.support_try {
-	margin: 0 auto;
-	width: 400px;
-	border: 1px solid black;
-	height: 80px;
+.support_try{
+    float:right;
+    width:150px;
+    height:70px; 
+    padding:10px;
+    margin-right:100px;
 }
-
-.support_try .apply {
-	color: black;
-	font-size: 16px;
-	font-weight: 600;
-	float: left;
-	border: none;
-	display: inline-block;
-	width: 50%;
-	height: 100%;
-	line-height: 80px;
-	text-align: center;
-	background-color: lightgray;
-}
-
-.support_try>a:first-child>div {
-	border-right: 1px solid black;
-}
+    .support_try div{
+        color:white;
+        font-size:15px; 
+        font-weight: 600;
+        float: left;
+        border:none;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        line-height: 50px;
+        text-align: center;
+        background-color: #0fbcff;
+        border-radius: 20px;
+        border:none;
+        
+        
+    }
+    .support_try div:hover{
+   		opacity: 0.6;
+    }
 
 .category_div {
 	position: relative;
@@ -283,14 +285,7 @@ s
 	<div class="content">
 		<div class="content_wrap">
 			<br> <br> <br>
-			<div class="support_try">
-				<a href="/supportAd.don">
-					<div class="apply">물품 후원하기</div>
-				</a> <a href="/supportList.don?count=1">
-					<div class="apply">물품후원 리스트</div>
-				</a>
-			</div>
-			<br> <br> <br> <br>
+			
 			<h1>물품 후원 리스트</h1>
 			<br> <br> <br>
 			<div class="category_div">
@@ -306,6 +301,11 @@ s
 					<li>유아제품</li>
 					<li>학용품</li>
 				</ul>
+				<div class="support_try">
+				<a href="/supportAd.don">
+					<div class="apply">물품 후원하기</div>
+				</a>
+			</div>
 			</div>
 			<br>
 			<ul class="supportList_ul">

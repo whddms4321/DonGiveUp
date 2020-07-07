@@ -63,26 +63,33 @@ div>img {
 }
 .support_try{
     margin:0 auto;
-    width:400px;
-    border: 1px solid black;
+    width:700px;
+    
     height:80px; 
+    padding:10px;
 }
     .support_try div{
-        color:black;
+        color:white;
         font-size:22px; 
         font-weight: 600;
         float: left;
         border:none;
         display: inline-block;
-        width: 50%;
-        height: 100%;
-        line-height: 80px;
+        width: 40%;
+        height: 90%;
+        line-height: 52px;
         text-align: center;
-        background-color: lightgray;
+        background-color: #0fbcff;
+        border-radius: 22px;
+        border:none;
+        margin-left: 37px;
         
     }
+    .support_try div:hover{
+   		opacity: 0.6;
+    }
     .support_try>a:first-child>div{
-        border-right:1px solid black;
+        
     }
 </style>
 <body>
@@ -132,7 +139,7 @@ div>img {
                 <div class="apply">물품후원 리스트</div>
             </a>
         </div>
-		
+		<!-- <img src="../../resources/upload/ckImg.png" class="img-thumbnail" alt="Cinque Terre"> -->
 		
 	</div>
     <br><br><br><br><br><br>
