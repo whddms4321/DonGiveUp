@@ -78,6 +78,7 @@ public class AdminMypageDao {
 
 	//프로시저 호출
 	public HashMap<String,String> supportAssignToCompany(HashMap<String,String> map) {
+		System.out.println("ㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌㅌ : "  + map.get("applyId"));
 		return session.selectOne("adminMypage.supportAssignToCompany", map);
 	}
 
