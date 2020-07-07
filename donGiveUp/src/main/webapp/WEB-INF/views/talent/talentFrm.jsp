@@ -71,14 +71,14 @@
 	
 		<div class="contentHeadPart">
 			<ul>
-				<li><a href="#">#전체</a></li>
-				<li><a href="#">#디자인</a></li>
-				<li><a href="#">#프로그래밍</a></li>
-				<li><a href="#">#노하우</a></li>
-				<li><a href="#">#생활</a></li>
-				<li><a href="#">#운동</a></li>
-				<li><a href="#">#번역</a></li>
-				<li><a href="#">#기타</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=전체">#전체</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=디자인">#디자인</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=프로그래밍">#프로그래밍</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=노하우">#노하우</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=생활">#생활</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=운동">#운동</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=번역">#번역</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=기타">#기타</a></li>
 				
 			</ul>
 			<br><br><br>

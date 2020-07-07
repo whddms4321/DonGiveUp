@@ -138,7 +138,7 @@ function loadImg(f){
    			<div class="content-main-bottom-img">
    				<fieldset>
   				 <legend>대표 이미지</legend>
-					<input type="file" name="reviewFilepath" onchange="loadImg(this)"></td>
+					<input type="file" name="reviewFilepath" onchange="loadImg(this)">
 					<br>
 					<legend>미리보기</legend>
 						<div id="img-viewer">
