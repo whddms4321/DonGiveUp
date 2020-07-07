@@ -10,7 +10,6 @@
 <link href="/resources/adminMypage/css/datepicker3.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="/resources/adminMypage/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 .content {
 	width: 100%;
@@ -120,12 +119,12 @@
 							</a>
 						</div>
 						<div class="inList">
-							<a href="/userAttendList.don?reqPage=1&type=donation&kind=prev&memberId=${sessionScope.member.memberId}">
+							<a href="/userAttendList.don">
 							- 참여 목록
 							</a>
 						</div>
 						<div class="bank">
-							<a href="/userBank.don?reqPage=1&memberId=${sessionScope.member.memberId }">
+							<a href="/userBank.don">
 							- 저금통
 							</a>
 						</div>

@@ -10,7 +10,6 @@
 <link href="/resources/adminMypage/css/datepicker3.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="/resources/adminMypage/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/charts.js"></script>
@@ -122,12 +121,12 @@ td{
 							</a>
 						</div>
 						<div class="inList">
-							<a href="/userAttendList.don?reqPage=1&type=donation&kind=prev&memberId=${sessionScope.member.memberId}">
+							<a href="/userAttendList.don">
 							- 참여 목록
 							</a>
 						</div>
 						<div class="bank">
-							<a href="/userBank.don?reqPage=1&memberId=${sessionScope.member.memberId }">
+							<a href="/userBank.don">
 							- 저금통
 							</a>
 						</div>
@@ -241,7 +240,7 @@ td{
 		</div>
 	<script>
 		
-		var memberId = "${sessionScope.member.memberId}" ;
+		var memberId = "${sessionScope.member.memberId}";
 		
 		
 		saveValue('donation', 0, 1, memberId);
@@ -344,20 +343,25 @@ td{
 							
 							for(var i=0; i<list.length; i++){
 								html += "<tr>";
-								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td><td>" + list[i].boardMoney + "</td>";
-								html += "<td>" + list[i].boardDate + "</td>";
-								html += "<td>" + "<button class='regular-cancel-btn' onclick='regularCancelReq(" + list[i].boardNo + "," + reqPage +");'>해지요청</button>"  + "</td>";
+								html += "<td style='width:150px;'>" + ((reqPage-1)*5+1+i) + "</td><td style='width:200px;'>" + list[i].boardTitle + "</td><td style='width:100px;'>" + list[i].boardMoney + "</td>";
+								html += "<td style='width:150px;'>" + list[i].boardDate + "</td>";
+								html += "<td style='width:100px;'>" + "<button class='regular-cancel-btn' onclick='regularCancelReq(" + list[i].boardNo + "," + reqPage +");'>해지요청</button>"  + "</td>";
 								html += "</tr>";
 							}
-						}else{
+						}else{ //종료된 목록
 							html += "<tr>";
-							html += "<th>번호</th><th>대상기관</th><th>금액</th><th>종료일자</th>";
+							html += "<th>번호</th><th>대상기관</th><th>금액</th><th>종료일자</th><th>상태</th>";
 							html += "</tr>";
 							
 							for(var i=0; i<list.length; i++){
 								html += "<tr>";
 								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td><td>" + list[i].boardMoney + "</td>";
 								html += "<td>" + list[i].regularEndDate + "</td>";
+								if(list[i].boardState==1){
+									html +="<td>요청대기</td>";
+								}else if(list[i].boardState==2){
+									html +="<td>해지완료</td>";
+								}
 								html += "</tr>";
 							}
 						}

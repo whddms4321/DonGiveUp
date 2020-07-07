@@ -126,6 +126,9 @@
 	background-color : #fff;
 	color : #0fbcff;
 }
+.pageNavi{
+	padding:10px;
+}
 </style>
 </head>
 <body>
@@ -148,12 +151,12 @@
 							</a>
 						</div>
 						<div class="inList">
-							<a href="/userAttendList.don?reqPage=1&type=donation&kind=prev&memberId=${sessionScope.member.memberId}">
+							<a href="/userAttendList.don">
 							- 참여 목록
 							</a>
 						</div>
 						<div class="bank">
-							<a href="/userBank.don?reqPage=1&memberId=${sessionScope.member.memberId }">
+							<a href="/userBank.don">
 							- 저금통
 							</a>
 						</div>

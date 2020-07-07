@@ -14,6 +14,9 @@
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRegularInVO" alias="adminRegularIn"/>
 		<typeAlias type="kr.co.don.userMypage.model.vo.UserMoneyUseListVO" alias="userMoneyUseList"/>
 		<typeAlias type="kr.co.don.userMypage.model.vo.UserAttendListVO" alias="userAttendList"/>
+		<typeAlias type="kr.co.don.userMypage.model.vo.UserBankVO" alias="userBank"/>
+		<typeAlias type="kr.co.don.userMypage.model.vo.UserBankInVO" alias="userBankIn"/>
+		<typeAlias type="kr.co.don.companyMypage.model.vo.CompanyReqBoardVO" alias="companyReqBoard"/>
 		<typeAlias type="kr.co.don.donation.model.vo.DonationVo" alias="donation"/>
 		<typeAlias type="kr.co.don.support.model.vo.Support" alias="support"/>
 		<typeAlias type="kr.co.don.support.model.vo.SupportApply" alias="supportApply"/>

@@ -100,7 +100,7 @@
 						<a href="/userMypage.don?reqPage=1&memberId=${sessionScope.member.memberId}" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
 					</c:if>
 					<c:if test="${sessionScope.member.memberType == 2}">
-						<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
+						<a href="/companyMypage.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
 					</c:if>
 					<span>·</span>
 					<a href="/member/logout.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">로그아웃</a>

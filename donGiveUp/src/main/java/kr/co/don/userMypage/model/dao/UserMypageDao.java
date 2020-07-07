@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.don.member.model.vo.Member;
 import kr.co.don.userMypage.model.vo.UserAttendListVO;
+import kr.co.don.userMypage.model.vo.UserBankInVO;
+import kr.co.don.userMypage.model.vo.UserBankVO;
 import kr.co.don.userMypage.model.vo.UserMoneyUseListVO;
 
 @Repository("userMypageDao")
@@ -76,6 +78,22 @@ public class UserMypageDao {
 
 	public String selectCompanyReqContent(HashMap<String, String> map) {
 		return session.selectOne("userMypage.selectCompanyReqContent", map);
+	}
+
+	public UserBankVO selectBankInfo(String memberId) {
+		return session.selectOne("userMypage.selectBankInfo", memberId);
+	}
+
+	public int selectBankInListTotalCount(HashMap<String, String> map) {
+		return session.selectOne("userMypage.selectBankInListTotalCount", map);
+	}
+
+	public List<UserBankInVO> selectBankInList(HashMap<String, String> map) {
+		return session.selectList("userMypage.selectBankInList", map);
+	}
+
+	public int bankCancelReq(int bankNo) {
+		return session.update("userMypage.bankCancelReq", bankNo);
 	}
 
 }

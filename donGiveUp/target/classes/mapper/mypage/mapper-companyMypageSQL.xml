@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="companyMypage">
+	<select id="selectCompanyReqListTotalCount" parameterType="map" resultType="_int">
+		<if test='type.equals("donation")'>
+			select count(*) from donation where donation_writer=#{memberId}
+		</if>
+		<if test='type.equals("funding")'>
+			select count(*) from funding where funding_manager=#{memberId}
+		</if>
+		<if test='type.equals("vwork")'>
+			select count(*) from vwork where vwork_writer=#{memberId}
+		</if>
+		<if test='type.equals("support")'>
+			select count(*) from support where support_id=#{memberId}
+		</if>
+		<if test='type.equals("regular")'>
+			select count(*) from regular where regular_id=#{memberId}
+		</if>
+	</select>
+	
+	<select id="selectCompanyReqList" parameterType="map" resultType="companyReqBoard">
+		<if test='type.equals("donation")'>
+		select * from 
+			(select ROWNUM as rnum, r.* from
+				(select donation_no as boardNo, donation_title as boardTitle, donation_state from donation where donation_writer=#{memberId})
+			r)
+		where rnum between #{start} and #{end}
+		</if>
+		<if test='type.equals("funding")'>
+		select * from
+			(select ROWNUM as rnum, r.* from
+				(select funding_no as boardNo, funding_title as boardTitle, funding_type as boardState from funding where funding_manager=#{memberId})
+			r)
+		where rnum between #{start} and #{end}
+		</if>
+		<if test='type.equals("vwork")'>
+		select * from
+			(select ROWNUM as rnum, r.* from
+				(select vwork_no as boardNo, vwork_title as boardTitle, vwork_state as boardState from vwork where vwork_writer=#{memberId})
+			r)
+		where rnum between #{start} and #{end}
+		</if>
+		<if test='type.equals("support")'>
+		select * from
+			(select ROWNUM as rnum, r.* from
+				(select support_no as boardNo, support_name as boardTitle, support_negative as negativeContent, 
+				 support_state as boardState from support where support_id=#{memberId})
+			r)
+		where rnum between #{start} and #{end}
+		</if>
+		<if test='type.equals("regular")'>
+		select * from
+			(select ROWNUM as rnum, r.* from
+				(select regular_no as boardNo, regular_title as boardTitle, regular_state as boardState from regular where regular_id=#{memberId})
+			r)
+		where rnum between #{start} and #{end}
+		</if>
+	</select>
+</mapper>
