@@ -43,7 +43,7 @@ public class TalentService {
 		List<Talent> list = dao.talentList(map);
 		
 		
-		int pageNaviSize = 11;
+		int pageNaviSize = 8;
 		int pageNo; 
 		if (reqPage % pageNaviSize == 0) {
 			pageNo = ((reqPage / pageNaviSize) - 1) * pageNaviSize + 1;
@@ -54,13 +54,13 @@ public class TalentService {
 		StringBuffer pageNavi = new StringBuffer("");
 		
 		if (pageNo != 1) {
-			pageNavi.append("<a href='/talent/talentFrm.don?reqPage=" + (pageNo - 1) + "&type=" + type +"'><</a>");
+			pageNavi.append("<a class='talentPrevBtn' href='/talent/talentFrm.don?reqPage=" + (pageNo - 1) + "&type=" + type +"'>이전</a>");
 		}
 		
 		for (int i = 0; i < pageNaviSize; i++) {
 			
 			if (pageNo == reqPage) {
-				pageNavi.append("<span>" + pageNo + "</span>");
+				pageNavi.append("<span class='selectTalentPage'>" + pageNo + "</span>");
 			} else {
 				pageNavi.append("<a href='/talent/talentFrm.don?reqPage=" + pageNo + "&type=" + type + "'>" + pageNo + "</a>");
 			}
@@ -72,7 +72,7 @@ public class TalentService {
 		}
 		
 		if (pageNo <= totalPage) {
-			pageNavi.append("<a href='/talent/talentFrm?reqPage=" + pageNo + "&type=" + type + "'>></a>");
+			pageNavi.append("<a class='talentNextBtn' href='/talent/talentFrm?reqPage=" + pageNo + "&type=" + type + "'>다음</a>");
 		}
 				
 		return new TalentData((ArrayList<Talent>)list, pageNavi.toString(),totalCount);
