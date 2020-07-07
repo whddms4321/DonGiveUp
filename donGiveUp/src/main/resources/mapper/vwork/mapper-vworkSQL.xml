@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="vwork">
- 
+ 	<insert id="insertVwork" parameterType="vwork">
+ 		insert into vwork values(
+ 			vwork_seq.nextval,
+ 			#{vworkTitle},
+ 			sysdate,
+ 			#{vworkDlDate},
+ 			#{vworkJoinDate},
+ 			#{vworkPer},
+ 			#{vworkIntro},
+ 			#{vworkDetail},
+ 			#{vworkAddress},
+ 			#{vworkFee},
+ 			#{vworkFilename},
+ 			#{vworkFilepath},
+ 			#{vworkWriter},
+ 			0,
+ 			#{vworkSelect},
+ 			null
+ 		)
+ 	</insert>
 </mapper>

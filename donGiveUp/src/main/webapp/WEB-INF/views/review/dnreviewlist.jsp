@@ -111,6 +111,146 @@
                         </a>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <a href="/dnrview.don">
+                            <div class="dnreviewBox">
+                                <div class="dnrimg">
+                                    <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                                </div>
+                                <div class="dnrText">
+                                    <span class="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <span class="=prgWrap">
+                                    <progress value="100" max="100" class="prgBar"></progress>
+                                </span>
+                                <span class="finalDnMoney">70,000</span>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="dnreviewBox">
+                                <div class="dnrimg">
+                                    <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                                </div>
+                                <div class="dnrText">
+                                    <span class="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <span class="=prgWrap">
+                                    <progress value="70" max="100" class="prgBar"></progress>
+                                </span>
+                                <span class="finalDnMoney">700,000,000</span>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="dnreviewBox">
+                                <div class="dnrimg">
+                                    <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                                </div>
+                                <div class="dnrText">
+                                    <span class="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <span class="=prgWrap">
+                                    <progress value="70" max="100" class="prgBar"></progress>
+                                </span>
+                                <span class="finalDnMoney">700,000,000</span>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="dnreviewBox">
+                                <div class="dnrimg">
+                                    <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                                </div>
+                                <div class="dnrText">
+                                    <span class="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <span class="=prgWrap">
+                                    <progress value="70" max="100" class="prgBar"></progress>
+                                </span>
+                                <span class="finalDnMoney">700,000,000</span>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/dnrview.don">
+                            <div class="dnreviewBox">
+                                <div class="dnrimg">
+                                    <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                                </div>
+                                <div class="dnrText">
+                                    <span class="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <span class="=prgWrap">
+                                    <progress value="100" max="100" class="prgBar"></progress>
+                                </span>
+                                <span class="finalDnMoney">70,000</span>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="dnreviewBox">
+                                <div class="dnrimg">
+                                    <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                                </div>
+                                <div class="dnrText">
+                                    <span class="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <span class="=prgWrap">
+                                    <progress value="70" max="100" class="prgBar"></progress>
+                                </span>
+                                <span class="finalDnMoney">700,000,000</span>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="dnreviewBox">
+                                <div class="dnrimg">
+                                    <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                                </div>
+                                <div class="dnrText">
+                                    <span class="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <span class="=prgWrap">
+                                    <progress value="70" max="100" class="prgBar"></progress>
+                                </span>
+                                <span class="finalDnMoney">700,000,000</span>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="dnreviewBox">
+                                <div class="dnrimg">
+                                    <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                                </div>
+                                <div class="dnrText">
+                                    <span class="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <span class="=prgWrap">
+                                    <progress value="70" max="100" class="prgBar"></progress>
+                                </span>
+                                <span class="finalDnMoney">700,000,000</span>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>

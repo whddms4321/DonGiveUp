@@ -41,8 +41,6 @@ public class MemberController {
 	@RequestMapping(value = "/login.don")
 	public String loginMember(HttpSession session,Member m,Model model) {
 		Member member = service.selectOneMemberEnc(m);
-		System.out.println(""+member);
-		System.out.println(""+m);
 		if(member != null) {
 			session.setAttribute("member", member);
 			model.addAttribute("msg","로그인 성공");

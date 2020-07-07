@@ -128,7 +128,7 @@ input::placeholder{
 .dnreviewWrap {
     width: 85%;
     margin: 0 auto;
-    margin-top: -20px;
+    margin-top: 10px;
 }
 
 .dnreviewList {
@@ -145,7 +145,7 @@ input::placeholder{
 .dnreviewBox {
     margin: 0 auto;
     width: 230px;
-    height: 290px;
+    height: 340px;
     box-sizing: border-box;
 }
 

@@ -99,6 +99,122 @@
                         </a>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <a href="/fdrview.don">
+                            <div class="fdreviewBox">
+                                <div class="fdrimg">
+                                    <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                                </div>
+                                <div class="fdrText">
+                                    <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
+                                    <span class="foundationName">차녀기아슈크림가게</span>
+                                </div>
+                                <div class="fdrLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="fdreviewBox">
+                                <div class="fdrimg">
+                                    <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                                </div>
+                                <div class="fdrText">
+                                    <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
+                                    <span class="foundationName">차녀기아슈크림가게</span>
+                                </div>
+                                <div class="fdrLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="fdreviewBox">
+                                <div class="fdrimg">
+                                    <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                                </div>
+                                <div class="fdrText">
+                                    <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
+                                    <span class="foundationName">차녀기아슈크림가게</span>
+                                </div>
+                                <div class="fdrLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="fdreviewBox">
+                                <div class="fdrimg">
+                                    <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                                </div>
+                                <div class="fdrText">
+                                    <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
+                                    <span class="foundationName">차녀기아슈크림가게</span>
+                                </div>
+                                <div class="fdrLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/fdrview.don">
+                            <div class="fdreviewBox">
+                                <div class="fdrimg">
+                                    <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                                </div>
+                                <div class="fdrText">
+                                    <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
+                                    <span class="foundationName">차녀기아슈크림가게</span>
+                                </div>
+                                <div class="fdrLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="fdreviewBox">
+                                <div class="fdrimg">
+                                    <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                                </div>
+                                <div class="fdrText">
+                                    <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
+                                    <span class="foundationName">차녀기아슈크림가게</span>
+                                </div>
+                                <div class="fdrLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="fdreviewBox">
+                                <div class="fdrimg">
+                                    <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                                </div>
+                                <div class="fdrText">
+                                    <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
+                                    <span class="foundationName">차녀기아슈크림가게</span>
+                                </div>
+                                <div class="fdrLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="fdreviewBox">
+                                <div class="fdrimg">
+                                    <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                                </div>
+                                <div class="fdrText">
+                                    <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
+                                    <span class="foundationName">차녀기아슈크림가게</span>
+                                </div>
+                                <div class="fdrLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>

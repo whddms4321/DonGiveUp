@@ -41,23 +41,7 @@
         <div class="bookingWrap2">
             <div class="vwInfo">
                 <div class="introWrap">
-                    <p class="introDetail">
-                        <br>
-                        [모집대상] 14세 이상 청소년 포함 누구나
-                        <br>
-                        [봉사활동시간] 13-16시
-                        <br>
-                        <br>
-                        [봉사활동소개]
-                        <br>
-                        1. 오늘 하루, 우리가 해야 할 일에 대해 배우고 역할을 나눕니다.
-                        <br>
-                        2. 각자 맡은 음식의 재료를 준비하고, 씻고 다듬어 요리합니다.
-                        <br>
-                        3. 길게 줄 선 이웃을 위해 배식을 진행합니다.
-                        <br><br>
-                        * 초록우산어린이재단이 주최하는 본 활동의 원활한 운영을 위해 재단법인 Don Give Up에서 신청 모집을 대행, 지원합니다.
-                    </p>
+                   ${vw.vworkIntroBr }
                 </div>
             </div>
             <form id="vserForm" method="post">
