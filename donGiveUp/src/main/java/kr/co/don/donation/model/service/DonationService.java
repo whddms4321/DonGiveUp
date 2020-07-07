@@ -6,7 +6,8 @@ import java.util.List;
 
 import kr.co.don.donation.model.dao.DonationDao;
 import kr.co.don.donation.model.vo.DonationData;
-import kr.co.don.donation.model.vo.DonationVo;
+import kr.co.don.member.model.vo.Member;
+import kr.co.don.donation.model.vo.Donation;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +17,24 @@ import org.springframework.stereotype.Service;
 @Service("donationService")
 
 
-
 public class DonationService {
 
 	@Autowired
 	@Qualifier("donationDao")
 	private DonationDao donationDao;
+	
+	
 
 	
 	public DonationData DonationList(int reqPage, String type) {
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", type);
+		System.out.println(type);
 		
 		int totalCount = donationDao.totalCount(map);
-		
-		int numPerPage = 5;
+		System.out.println(totalCount);
+		int numPerPage = 11;
 		int totalPage;
 		if (totalCount % numPerPage == 0) {
 			totalPage = totalCount / numPerPage;
@@ -44,10 +47,10 @@ public class DonationService {
 		
 		map.put("start", String.valueOf(start));
 		map.put("end", String.valueOf(end));
-		List<DonationVo> list = donationDao.donationList(map);
 		
+		List<Donation> list = donationDao.donationList(map);
 		
-		int pageNaviSize = 11;
+		int pageNaviSize = 5;
 		int pageNo; 
 		if (reqPage % pageNaviSize == 0) {
 			pageNo = ((reqPage / pageNaviSize) - 1) * pageNaviSize + 1;
@@ -78,17 +81,36 @@ public class DonationService {
 		if (pageNo <= totalPage) {
 			pageNavi.append("<a href='donationList.do?reqPage=" + pageNo + "&type=" + type + "'>></a>");
 		}
+		
+		
 				
-		return new DonationData((ArrayList<DonationVo>)list, pageNavi.toString(),totalCount);
+		return new DonationData((ArrayList<Donation>)list, pageNavi.toString(),totalCount);
 	}
 
 
-	public DonationVo DonationDetail(int donationNo) {
+	public Donation DonationDetail(int donationNo) {
 		return donationDao.DonationDetail(donationNo);
 	}
 
-	public int donationInsert(DonationVo donation) {
-		return donationDao.donationInsert(donation);
+	public int donationInsert(Donation donation) {
+		System.out.println(donation.getDonationTitle());
+		System.out.println(donation.getDonationWriter());
+		System.out.println(donation.getDonationType());
+		System.out.println(donation.getDonationGoalMoney());
+		System.out.println(donation.getDonationContent());
+		System.out.println(donation.getDonationEndDate());
+		System.out.println(donation.getDonationFilepath());
+		System.out.println(donation.getDonationFilename());
+		return donationDao.DonationInsert(donation);
 	}
+
+
+	public Member MemberDetail(String donationWriter) {
+		
+		return  donationDao.DonationMember(donationWriter);
+	}
+
+
+
 
 }

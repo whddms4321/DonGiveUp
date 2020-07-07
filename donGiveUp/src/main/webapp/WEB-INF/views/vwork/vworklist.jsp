@@ -7,7 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <link href="/resources/dahyun/css/vworklist.css" rel="stylesheet">
+
     <title>함께해요 게시판</title>
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
@@ -129,6 +131,7 @@
                             </a>
                         </div>
                     </td>
+
                 </tr><br><br><br><br>
                  <tr>
                     <td>
@@ -231,6 +234,7 @@
                         </div>
                     </td>
                 </tr>
+
             </table>
         </div>
     </div>

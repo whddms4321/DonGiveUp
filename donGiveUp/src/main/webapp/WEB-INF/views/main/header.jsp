@@ -93,7 +93,15 @@
 					<a href="/member/joinFrm.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">회원가입</a>
 				</c:if>
 				<c:if test="${not empty sessionScope.member }">
-					<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
+					<c:if test="${sessionScope.member.memberType == 1 && sessionScope.member.memberId == 'admin'}">
+						<a href="/dashboard.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
+					</c:if>
+					<c:if test="${sessionScope.member.memberType == 1 && sessionScope.member.memberId != 'admin'}">
+						<a href="/userMypage.don?reqPage=1&memberId=${sessionScope.member.memberId}" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
+					</c:if>
+					<c:if test="${sessionScope.member.memberType == 2}">
+						<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
+					</c:if>
 					<span>·</span>
 					<a href="/member/logout.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">로그아웃</a>
 				</c:if>

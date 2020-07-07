@@ -101,7 +101,7 @@
             	<div class="joinAreaCheckSec">
             		<span style="margin-left: 40px;">[필수]이용약관 동의</span>
             	</div>
-            	<textarea style="resize:none; margin-left: 40px;" rows="10" cols="85" readonly>
+            	<textarea style="resize:none; margin-left: 40px;" rows="10" cols="90" readonly>
                                                                                                                                                                                             제 1 장 총칙
                                                                                                                                                               
                                                                                                                                                               
@@ -169,7 +169,7 @@
                 <div><input type="checkbox" id="chk1" required style="margin-left: 40px;"><span>동의함</span></div>
                 <br><br>
                 <span style="margin-left: 40px;">[필수]개인정보 처리방침 동의</span>
-                <textarea style="resize:none; margin-left: 40px;" rows="10" cols="85" readonly >
+                <textarea style="resize:none; margin-left: 40px;" rows="10" cols="90" readonly >
                                 																     개인정보 처리방침 동의
                 									
 Don Give Up는 「개인정보보호법」 제15조제1항제1호, 제17조제1항제1호, 제23조제1호, 제24조제1항 제1호에 따라
@@ -209,7 +209,7 @@ IP주소, 쿠키, 서비스 이용기록, 방문기록 등
                 <div><input type="checkbox" id="chk2" required  style="margin-left: 40px;"><span>동의함</span></div>
                 <br><br>
                 <span style="margin-left: 40px;">[선택]마케팅 활용 동의</span>
-                 <textarea style="resize:none; margin-left: 40px;" rows="10" cols="85" readonly >
+                 <textarea style="resize:none; margin-left: 40px;" rows="10" cols="90" readonly >
                                 																마케팅/홍보의 수집의 이용 동의
                 											
                 											

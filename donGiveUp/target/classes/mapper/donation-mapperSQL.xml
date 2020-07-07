@@ -3,7 +3,7 @@
 <mapper namespace="donation">
 	
 	<select id="totalCount" parameterType="map" resultType="_int">
-		select count(*) from donation where donation_type = #{type}
+		select count(*) from donation where donation_type like '%'||#{type}||'%' 
 	</select>
 	
 	<select id="donationList" parameterType="map" resultType="donation">
@@ -28,7 +28,7 @@
   					DONATION_NEGATIVE AS donationNegative    
 		        FROM DONATION
 		        
-				where donation_type = #{type}
+				where donation_type like '%'||#{type}||'%' 
 			
 		        ORDER BY DONATION_NO DESC) 
 		    N
@@ -55,6 +55,18 @@
 		where donation_no = #{_parameter}
 	</select>
 	<insert id="donationInsert" parameterType="donation">
-		insert into donation values(donation_seq.nextval, #{donationTitle}, #{donationContent}, #{donationType}, #{donationFilename}, #{donationFilepath},null ,#{donationGoalMoney}, null,#{donationEndDate}, sysdate, #{donationWriter}, 0)
+		insert into donation values(donation_seq.nextval, #{donationTitle}, #{donationContent}, #{donationType}, #{donationFilename}, #{donationFilepath},null ,#{donationGoalMoney},0,#{donationEndDate}, sysdate, #{donationWriter}, 0,null)
 	</insert>
+	<select id="donationMember" parameterType="string" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			COMPANY_FILENAME AS companyFilename,
+			COMPANY_FILEPATH AS companyFilename,
+			CHART_FILENAME AS chartFilename,
+			CHART_FILENAME AS chartFilepath,
+			COMPANY_NAME AS companyName
+		        FROM MEMBER
+		where member_id = #{_parameter}
+	</select>
+	
 </mapper>

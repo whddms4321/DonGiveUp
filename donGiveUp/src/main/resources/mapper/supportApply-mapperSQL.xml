@@ -13,5 +13,10 @@
 			where support_apply_id = #{supportApplyId }	
  	 </select>
 
-  
+  	<insert id="insertApply" parameterType="supportApply">
+  		insert into supportapply values(
+  		1,#{supportApplyReason},0,#{supportNo},#{supportApplyId}
+  		)
+  		
+  	</insert>
 </mapper>
