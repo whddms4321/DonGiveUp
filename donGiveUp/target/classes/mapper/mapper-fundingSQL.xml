@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="funding">
+	<select id="selectList" parameterType="map" resultType="funding">
+		select 
+			funding_no as fundingNo,funding_title as fundingTitle,
+			funding_content as fundingContent, funding_group as fundingGroup,
+			funding_group_introduce as fundingGroupIntroduce,
+			funding_class as fundingClass, funding_type as fundingType,
+			funding_start_date as fundingStartDate, funding_end_date as fundingEndDate,
+			funding_manager as fundingManager, funding_goal_price as fundingGoalPRice,
+			funding_now_price as fundingNowPrice, funding_negative as fundingNegative
+			
+			from (select rownum, m.* from(select * from funding where funding_type = 1 order by funding_no desc)m)
+			where rownum between  #{rnumMin} and #{rnumMax}
+	</select>
+	<select id="selectOne" resultType="_int">
+		select count(*)
+			from funding
+	</select>
+	
+</mapper>

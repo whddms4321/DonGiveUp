@@ -55,6 +55,9 @@ public class SupportController {
 	
 	@RequestMapping(value="/supportList.don")
 	public String supportList(int count,Model model,HttpSession session) {
+		Member mm = (Member) session.getAttribute("member");
+		System.out.println(mm.getMemberType());
+		
 		String supportApplyId;
 		
 		try{			
@@ -152,7 +155,7 @@ public class SupportController {
 			// 확장자
 			String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
 			//파일이름 + 확장자
-			String filepath = onlyFilename + "_" + System.currentTimeMillis() + extension;
+			String filepath = onlyFilename + "_" + getCurrentTime() + extension;
 			
 			String fullpath = savePath + filepath;
 

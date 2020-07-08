@@ -22,11 +22,6 @@ public class SupportDao {
 		return sqlSession.selectList("support.supportList", map);
 	}
 
-	public List<SupportApply> applyList(HashMap<String, String> map) {
-		
-		return sqlSession.selectList("supportApply.applyList", map);
-	}
-
 	public Support selectOne(int supportNo) {
 		
 		return sqlSession.selectOne("support.selectOne",supportNo);

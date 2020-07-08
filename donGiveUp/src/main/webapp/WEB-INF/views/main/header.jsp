@@ -78,7 +78,7 @@
 				<div class="header_navi">
 
 					<a href="/donation.don?reqPage=1&type=전체" class="header_navi_a" style="font-size: 18px; font-weight: bold;">기부</a> 
-					<a href="/test.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">펀딩</a> 
+					<a href="/fundingMain.don?count=1" class="header_navi_a" style="font-size: 18px; font-weight: bold;">펀딩</a> 
 					<a href="/supportFrm.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">물품후원</a>
 
 					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">재능기부</a> 

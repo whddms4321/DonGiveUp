@@ -42,9 +42,9 @@ body {
 }
 
 .content_wrap {
-	width: 70%;
+	width: 65%;
 	margin: 0 auto;
-	border: 1px solid pink;
+	border: 0.5px solid black;
 }
 
 .content_wrap>h1 {
@@ -55,7 +55,7 @@ body {
     width:150px;
     height:70px; 
     padding:10px;
-    margin-right:100px;
+    margin-right:130px;
 }
     .support_try div{
         color:white;
@@ -84,12 +84,24 @@ body {
 }
 
 .category_ul {
+	width:85px;
 	list-style: none;
 	padding: 0;
+	left:-70px;
+	top:-35px;
 	position: absolute;
+	/* border: 0.3px solid black; */
+	z-index:100;
 }
-
+.category_ul>li{
+	color:threedface;
+	/* text-decoration: underline #0fbcff; */
+}
+.category_ul>li:hover{
+	opacity: 0.7
+}
 .on {
+	
 	display: block;
 }
 
@@ -98,7 +110,7 @@ body {
 }
 
 .supportList_ul {
-	width: 85%;
+	width: 95%;
 	overflow: hidden;
 	list-style: none;
 	padding: 0;
@@ -106,17 +118,18 @@ body {
 }
 
 .supportList_li {
-	height: 350px;
+	height: 420px;
 	display: inline-block;
 	border: none;
 	margin: 25px;
+	
 }
 
 .supportList {
 	display: inline-block;
 	width: 220px;
 	height: 240px;
-	border: 0.1px solid red;
+	
 	position: relative;
 }
 
@@ -125,36 +138,20 @@ body {
 	height: 100%;
 }
 
-.supportList_img:hover {
+/* .supportList_img:hover {
 	width: 120%;
 	height: 120%;
 	transition-duration: 1s;
 }
 
-.supportList_img
-:not
- 
-(
-:hover
- 
-){
-width
-:
- 
-100%;
-height
-:
- 
-100%;
-transition-duration
-:
- 
-1
-s
-;
-
+.supportList_img:not(:hover){
+	width:100%;
+	height:100%;
+	transition-duration:1s;
 
 }
+ */
+ 
 .supportList_band {
 	display: inline-block;
 	width: 60px;
@@ -184,6 +181,7 @@ s
 }
 
 .supportList_name {
+margin-top:5px;
 	color: gray;
 }
 /* .supportList_img{
@@ -195,15 +193,21 @@ s
 <script>
 	$(function() {
 		$(".category_content").click(function() {
+			
 			if ($(".category_ul").hasClass("off")) {
 				$(".category_ul").removeClass("off");
 				$(".category_ul").addClass("on");
+				$(".category_content>i").removeClass("fa-caret-up");
+				$(".category_content>i").addClass("fa-caret-down");
 			} else {
 				$(".category_ul").removeClass("on");
 				$(".category_ul").addClass("off");
+				$(".category_content>i").removeClass("fa-caret-down");
+				$(".category_content>i").addClass("fa-caret-up");
 			}
 
 		});
+		$(".category_ul")
 	});
 	//물품후원 신청하기
 	$(document).on('click','.supportListApply',function(event){
@@ -246,7 +250,7 @@ s
 
 											html += "<li class='supportList_li'>";
 											html += "<div class='supportList'>";
-											html += "<img class='supportList_img' src="+List[i].supportFilename+">";
+											html += "<img class='supportList_img' src='/resources/upload/support/'"+List[i].supportFilepath+"'>";
 											html += "<h2 class='supportList_name'>"
 													+ List[i]['supportName']
 													+ "</h2>";
@@ -289,8 +293,8 @@ s
 			<h1>물품 후원 리스트</h1>
 			<br> <br> <br>
 			<div class="category_div">
-				<span class="category_content">전체 ▽</span>
-				<ul class="category_ul off">
+				<span class="category_content"  style='font-size:24px' >전체 <i class='fas fa-caret-up'   style='font-size:27px' ></i></span>
+				<ul class="category_ul off" style="cursor:pointer">
 					<li>전체</li>
 					<li>의류</li>
 					<li>생리대</li>
@@ -302,31 +306,36 @@ s
 					<li>학용품</li>
 				</ul>
 				<div class="support_try">
+				
 				<a href="/supportAd.don">
-					<div class="apply">물품 후원하기</div>
+				<%-- <c:if test="${sessionScope.member.memberType eq 1 }"></c:if> --%>
+					<div class="apply" value="나중에 css 수정">물품 후원하러 가기</div>
 				</a>
 			</div>
 			</div>
 			<br>
 			<ul class="supportList_ul">
+				
 				<c:forEach var="n" items="${List }" varStatus="status">
 					<li class="supportList_li">
 						<div class="supportList">
-							<img class="supportList_img" src="${n.supportFilename }">
+							<img class="supportList_img" src="/resources/upload/support/${n.supportFilepath }">
 							<h2 class="supportList_name">${n.supportName }</h2>
 							<div>마감 기한 : ${n.enrollEndDate }</div>
 							<div>물품 수량 : ${n.supportAmount }</div>
 							<c:if test="${n.supportApplyId eq sessionScope.member.memberId }">
 								<span class="supportList_band myband">요청중</span>
 							</c:if>
-							<c:if test="${n.supportApplyId ne sessionScope.member.memberId }">
-								
-								<button class="supportListApply" value="${n.supportNo }">요청하기</button>
+							<c:if test="${n.supportApplyId ne sessionScope.member.memberId}">
+								<c:if test="${sessionScope.member.memberType eq 0 }">
+									<button class="supportListApply" value="${n.supportNo }">요청하기</button>
+								</c:if>
 							</c:if>
 						</div>
 					</li>
 				</c:forEach>
 			</ul>
+			<img src="/resources/upload/support//127.0.0.1_supportApplyAd.don.png">
 			<span class="button">${button }</span>
 		</div>
 	</div>
