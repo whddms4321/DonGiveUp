@@ -66,7 +66,7 @@
 	text-align: center;
 	height: 50px;
 	margin: 0 auto;
-	margin-top: 50px;
+	margin-top: 70px;
 	height: 200px;
 }
 
@@ -147,6 +147,10 @@
 	transform: scale(1.2);
 }
 
+.talentListPart:hover{
+	cursor: pointer;
+}
+
 .talentImage img {
 	max-width: 100%;
 	transition: all 0.7s;
@@ -172,6 +176,15 @@
 	margin-left: 30px;
 }
 </style>
+<script>
+	$(function () {
+		
+	});
+	
+	function talentList(talentNo) {
+		location.href="/talent/talentDetail.don?talentNo="+talentNo;
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
@@ -193,12 +206,14 @@
 
 			</ul>
 			<br> <br> <br> <a href="/talent/insertTalentFrm.don"
-				style="float: right; text-decoration: none; display: block; background-color: #cdcdcd; border-radius: 5px; width: 70px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold;">글등록</a>
+				style="float: right; text-decoration: none; display: block; background-color: #0fbcff; border-radius: 5px; width: 70px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 40px;">글등록</a>
+				<a href="/talent/talentListMyList.don?memberId=${sessionScope.member.memberId }" style="float: right; text-decoration: none; display: block; background-color:#0fbcff; border-radius: 5px; width: 150px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 20px;">재능기부 참여목록</a>
+				<span>${sessionScope.member.memberId }</span>
 		</div>
 		<div style="margin-top: 25px; width: 1200px;">
 			<div style="width: 1200px; height: 100%;">
 				<c:forEach items="${list }" var="list">
-					<div class="talentListPart" style="position: relative;">
+					<div class="talentListPart" style="position: relative;" onclick="talentList('${list.talentNo }')">
 						<div class="talentImage">
 							<img src="/resources/song/talent/thumbs/${list.talentFilepath }"
 								style="width: 100%; height: 100%;">

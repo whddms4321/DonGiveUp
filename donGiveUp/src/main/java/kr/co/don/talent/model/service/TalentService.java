@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import kr.co.don.talent.model.dao.TalentDao;
 import kr.co.don.talent.model.vo.Talent;
 import kr.co.don.talent.model.vo.TalentData;
+import kr.co.don.talent.model.vo.TalentJoin;
+import kr.co.don.talent.model.vo.TalentList;
 
 @Service("talentService")
 public class TalentService {
@@ -76,5 +78,34 @@ public class TalentService {
 		}
 				
 		return new TalentData((ArrayList<Talent>)list, pageNavi.toString(),totalCount);
+	}
+
+	public Talent talentDetail(int talentNo) {
+		return dao.talentDetail(talentNo);
+	}
+
+	public int insertTalentList(TalentList t) {
+		TalentList talent = dao.selectTalentList(t);
+		if(talent!=null) {
+			return 0;
+		}else {
+			return dao.insertTalentList(t);
+		}
+	}
+
+	public int updateTalent(Talent t) {
+		return dao.updateTalent(t);
+	}
+
+	public Talent selectTalentOne(int talentNo) {
+		return dao.selectTalentOne(talentNo);
+	}
+
+	public int deleteTalent(int talentNo) {
+		return dao.deleteTalent(talentNo);
+	}
+
+	public ArrayList<TalentJoin> talentListMyList(String memberId) {
+		return dao.talentListMyList(memberId);
 	}
 }

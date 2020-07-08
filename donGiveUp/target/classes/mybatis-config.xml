@@ -20,6 +20,8 @@
 		<typeAlias type="kr.co.don.support.model.vo.SupportApply" alias="supportApply"/>
 		<typeAlias type="kr.co.don.member.model.vo.Member" alias="member"/>
 		<typeAlias type="kr.co.don.talent.model.vo.Talent" alias="talent"/>
+		<typeAlias type="kr.co.don.talent.model.vo.TalentList" alias="talentList"/>
+		<typeAlias type="kr.co.don.talent.model.vo.TalentJoin" alias="talentJoin"/>
 	</typeAliases>
 
 

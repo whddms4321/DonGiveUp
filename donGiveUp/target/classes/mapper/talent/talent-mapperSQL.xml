@@ -45,4 +45,44 @@
 		 FROM TALENT
 	</if>
 	</select>
+	
+	<select id="talentDetail" parameterType="talent" resultType="talent">
+		SELECT 
+		        TALENT_NO AS talentNo,
+    			TALENT_TITLE AS talentTitle,
+    			TALENT_WRITER AS talentWriter, 
+    			TALENT_CONTENT AS talentContent,
+    			TALENT_COUNT AS talentCount,
+    			TALENT_PART AS talentPart,
+  				TALENT_FILENAME AS talentFilename,
+   				TALENT_FILENPATH AS talentFilepath,
+   				TALENT_ENROLL_DATE AS talentEnrollDate
+		 FROM TALENT
+		 	where talent_no = #{talentNo}
+	</select>
+	
+	<select id="selectTalentOne" parameterType="talent" resultType="talent">
+		SELECT 
+		        TALENT_NO AS talentNo,
+    			TALENT_TITLE AS talentTitle,
+    			TALENT_WRITER AS talentWriter, 
+    			TALENT_CONTENT AS talentContent,
+    			TALENT_COUNT AS talentCount,
+    			TALENT_PART AS talentPart,
+  				TALENT_FILENAME AS talentFilename,
+   				TALENT_FILENPATH AS talentFilepath,
+   				TALENT_ENROLL_DATE AS talentEnrollDate
+		 FROM TALENT
+		 	where talent_no = #{talentNo}
+	</select>
+	
+	<update id="updateTalent" parameterType="talent">
+		update talent set talent_title = #{talentTitle},talent_content=#{talentContent},talent_part=#{talentPart},talent_count=#{talentCount} where talent_no= #{talentNo}
+	</update>
+	
+	<delete id="deleteTalent" parameterType="talent">
+		delete from talent where talent_no = #{talentNo}
+	</delete>
+	
+	
 </mapper>
