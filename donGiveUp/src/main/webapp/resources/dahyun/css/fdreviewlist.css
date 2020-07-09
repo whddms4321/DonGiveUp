@@ -131,12 +131,14 @@ input::placeholder {
     color: #fff;
     font-weight: 600;
     font-size: 16px;
+    cursor: pointer;
+    outline: none;
 }
 
 .fdreviewWrap {
     width: 85%;
     margin: 0 auto;
-    margin-top: -17px;
+    margin-top: 10px;
 }
 
 
@@ -154,7 +156,7 @@ input::placeholder {
 .fdreviewBox {
     margin: 0 auto;
     width: 230px;
-    height: 290px;
+    height: 340px;
     box-sizing: border-box;
 }
 

@@ -7,7 +7,6 @@
 	
 
 	 <typeAliases>
-      <typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminSupportApplyVO" alias="adminSupportapply"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO" alias="adminDeadSupport"/>
 		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRequestBoardVO" alias="adminRequestBoard"/>
@@ -23,7 +22,9 @@
 		<typeAlias type="kr.co.don.funding.model.vo.Funding" alias="fundingImg"/>
 		<typeAlias type="kr.co.don.funding.model.vo.Funding" alias="fundingIn"/>
 		<typeAlias type="kr.co.don.funding.model.vo.Funding" alias="RewardList"/>
-		
+	
+		<typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
+
 	</typeAliases>
 
 
