@@ -118,7 +118,7 @@ public class TalentService {
 		int numPerPage = 5;
 		// 총 게시물 수
 		int totalCount = dao.totalCount(talentNo);
-		System.out.println(totalCount);
+//		System.out.println(totalCount);
 		int totalPage = 0;
 		// 총 페이지 수를 연산
 		if (totalCount % numPerPage == 0) {
@@ -129,7 +129,7 @@ public class TalentService {
 		int start = (reqPage - 1) * numPerPage + 1;
 		int end = reqPage * numPerPage;
 		// 해당 페이지의 게시물들 조회
-		ArrayList<TalentBoard> list = dao.selectTalentBoard(start, end);
+		ArrayList<TalentBoard> list = dao.selectTalentBoard(start, end,talentNo);
 
 		// 페이지 내비게이션 작성 시작
 		String pageNavi = "";
@@ -137,12 +137,12 @@ public class TalentService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		if (pageNo != 1) {
-			pageNavi += "<a class='talentPrevBtn' href='/talentBoard.don?reqPage=" + (pageNo - pageNaviSize)
+			pageNavi += "<a class='noticePrevBtn' href='/talentBoard.don?reqPage=" + (pageNo - pageNaviSize)
 					+ "'>이전</a>";
 		}
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (reqPage == pageNo) {
-				pageNavi += "<span class='selectTalentPage'>" + pageNo + "</span>";
+				pageNavi += "<span class='selectNoticePage'>" + pageNo + "</span>";
 			} else {
 				pageNavi += "<a href='/talentBoard.don?reqPage=" + pageNo + "'>" + pageNo + "</a>";
 			}
@@ -152,7 +152,7 @@ public class TalentService {
 			}
 		}
 		if (pageNo <= totalPage) {
-			pageNavi += "<a class='talentNextBtn' href='/talentBoard.don?reqPage=" + pageNo + "'>다음</a>";
+			pageNavi += "<a class='noticeNextBtn' href='/talentBoard.don?reqPage=" + pageNo + "'>다음</a>";
 		}
 		TalentBoardData data = new TalentBoardData(list, pageNavi);
 

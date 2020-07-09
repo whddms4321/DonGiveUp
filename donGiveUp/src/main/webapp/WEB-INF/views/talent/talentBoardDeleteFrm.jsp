@@ -37,7 +37,7 @@
 	display: block;
 }
 
-.listTab:nth-child(1) {
+.listTab:nth-child(2) {
 	background-color: #D4D4Cd;
 	color: white;
 	font-weight: bold;
@@ -138,30 +138,15 @@
 			<div style="width: 100%; height: 300px; background-color: white; color: black; float: left;">
 				<ul style="list-style: none; border: 1px solid #dedede;padding-left: 0;">
 					<li class="listTab" style="border-bottom: 1px solid #dedede;"><a href="/talent/talentBoard.don?reqPage=1&talentNo=${talentNo }" style="margin-left: 40px;">게시판</a></li>
-					<li class="listTab"><a href="/talent/talentBoardDeleteFrm.don?reqPage=1&talentNo=${talentNo }" style="margin-left: 40px;">탈퇴 신청</a></li>
+					<li class="listTab"><a href="/talentBoardDeleteFrm.don" style="margin-left: 40px;">탈퇴 신청</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="boardWrap">
-			<h2 style="margin-left: 20px;">게시판</h2>
-			<table class="noticeTable">
-                <tr>
-                	<th>글번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                </tr>
-                <c:forEach items="${list }" var="talentBoard">
-				<tr>
-					<td style="border-bottom: 0.1px solid #DDE3E9;">
-					${talentBoard.talentBoardNo }</td>
-					<td style="border-bottom: 0.1px solid #DDE3E9;"><a href="/talent/talentBoardDetail.don?talentBoardNo=${talentBoard.talentBoardNo}" style="font-weight: bold">${talentBoard.talentBoardTitle }</a></td>
-					<td style="border-bottom: 0.1px solid #DDE3E9;">
-					${talentBoard.talentBoardWriter }</td>
-				</tr>
-							
-				</c:forEach>
-            </table>
-            <div class="noticePageNavi">${pageNavi }</div>
+			<h2 style="margin-left: 20px;">탈퇴신청</h2>
+			<div>
+				
+			</div>
 		</div>
 	</div>
 	<c:if test="${not empty sessionScope.member }">

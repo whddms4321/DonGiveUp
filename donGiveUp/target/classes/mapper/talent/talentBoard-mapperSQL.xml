@@ -14,6 +14,6 @@
   		from
 			(select rownum as rnum, n.* from
 			(select * from talent_board order by talent_board_no desc)n)
-		where rnum between #{start} and #{end}
+		where rnum between #{start} and #{end} and talent_no = #{talentNo}
 </select>
 </mapper>

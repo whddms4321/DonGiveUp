@@ -167,6 +167,16 @@ public class TalentController {
 		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage);
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
+		model.addAttribute("talentNo",talentNo);
 		return "talent/talentBoard";
+	}
+	
+	@RequestMapping(value = "/talentBoardDeleteFrm.don")
+	public String talentBoardDeleteFrm(int talentNo,int reqPage,Model model) {
+		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage);
+		model.addAttribute("list", data.getList());
+		model.addAttribute("pageNavi", data.getPageNavi());
+		model.addAttribute("talentNo",talentNo);
+		return "talent/talentBoardDeleteFrm";
 	}
 }

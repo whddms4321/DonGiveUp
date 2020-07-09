@@ -60,10 +60,11 @@ public class TalentDao {
 		return (ArrayList<TalentJoin>)list;
 	}
 
-	public ArrayList<TalentBoard> selectTalentBoard(int start, int end) {
+	public ArrayList<TalentBoard> selectTalentBoard(int start, int end,int talentNo) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("talentNo",talentNo);
 		List list = sqlSession.selectList("talentBoard.selectTalentBoard",map); 
 		return (ArrayList<TalentBoard>)list;
 	}
