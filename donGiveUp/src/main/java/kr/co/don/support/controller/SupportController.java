@@ -122,8 +122,8 @@ public class SupportController {
 			data.setButton("<button id=\"moreList\" value="+(count+1)+">더 보기</button>");	
 		}else {
 			data.setButton("");
-		}
 		
+		}
 		return new Gson().toJson(data);
 		
 	}

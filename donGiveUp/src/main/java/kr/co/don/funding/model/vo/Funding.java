@@ -18,6 +18,7 @@ public class Funding {
 	private int fundingGoalPrice;
 	private int fundingNowPrice;
 	private int fundingNegative;
+	private String fundingFilepath;
 	
 	
 }

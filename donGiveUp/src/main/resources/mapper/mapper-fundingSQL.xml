@@ -9,14 +9,44 @@
 			funding_class as fundingClass, funding_type as fundingType,
 			funding_start_date as fundingStartDate, funding_end_date as fundingEndDate,
 			funding_manager as fundingManager, funding_goal_price as fundingGoalPRice,
-			funding_now_price as fundingNowPrice, funding_negative as fundingNegative
+			funding_now_price as fundingNowPrice, funding_negative as fundingNegative,
+			(select 
+	            funding_filepath 
+		        from fundingimg s 
+		        where s.funding_no = f.funding_no and 
+		        funding_img_no= (
+		            select min(funding_img_no) 
+		            from fundingimg u
+		            where s.funding_no = u.funding_no)
+	        ) as fundingFilepath
+			from (select rownum, m.* from(select * from funding where funding_type = 1 
+			<if test="type != null">
+				and
+				funding_class =#{type}
+				<!-- <if test="type.equals('0')">
+					 funding_class = 0 
+				</if>
+				<if test="type.equals('1')">
+					funding_class = 1 
+				</if>
+				<if test="type.equals('2')">
+					funding_class = 2 
+				</if> -->
+			</if>
 			
-			from (select rownum, m.* from(select * from funding where funding_type = 1 order by funding_no desc)m)
+				order by funding_no desc 
+				)m
+			)f
 			where rownum between  #{rnumMin} and #{rnumMax}
-	</select>
-	<select id="selectOne" resultType="_int">
+
+	</select>	
+	<select id="selectOne" parameterType="map" resultType="_int">
 		select count(*)
 			from funding
+		<if test="type != null">
+			where 
+				funding_class = #{type}
+		</if>
 	</select>
-	
+		
 </mapper>

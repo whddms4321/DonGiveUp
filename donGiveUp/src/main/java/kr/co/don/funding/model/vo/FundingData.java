@@ -8,5 +8,6 @@ import lombok.Data;
 public class FundingData {
 	
 	private ArrayList<Funding> list;
-	private String pageNavi;
+	private StringBuffer pageNavi;
+	private int totalCount;
 }

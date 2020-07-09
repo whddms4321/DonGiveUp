@@ -22,9 +22,8 @@ public class FundingDao {
 		return sqlSession.selectList("funding.selectList", map);
 	}
 
-	public int selectone() {
-		
-		return sqlSession.selectOne("funding.selectOne");
+	public int selectone(HashMap<String, String> map) {
+		return sqlSession.selectOne("funding.selectOne",map);
 	
 
 	}

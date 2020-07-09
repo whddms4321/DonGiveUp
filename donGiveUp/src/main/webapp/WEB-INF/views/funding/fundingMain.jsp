@@ -43,7 +43,7 @@ body {
 }
 
 .content_wrap {
-	width: 80%;
+	width: 1200px;
 	margin: 0 auto;
 }
 .content_wrap>h2{
@@ -67,58 +67,103 @@ body {
 		background-color:#0fbcff;
 		border-color:#0fbcff;
 }
-.col-lg-3{
-	
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+    
+    background-color: #0fbcff; 
+    border-color: #0fbcff; 
+}
+.first_menu>img{
+	width:24px;
+	height:24px;
+	margin-bottom:5px;
+}
+.funding_tap{
+	font-size: 22px;
+}
+.fa-angle-right{
+	/* font-size:18px; */
 	
 }
+.content_top{
+	width:100%;
+	
+}
+.container>*{
+
+	float:right;
+
+}
+.dropdown{
+	/* display:inline-block;
+	float:left; */
+}
+.pageNavi_div{
+ width:10%;
+ margin:0 auto;
+}
+.pageNavi_div>div{
+	margin:0 auto;
+	width:100%;	
+}
 </style>
+<script>
+	
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp" />
 	<div class="content">
 		<div class="content_wrap">
 			<h2>펀딩목록</h2>
+				<div class="funding_tap">
+					<a href="/" class="first_menu"><img src="/resources/upload/images/펀딩아이콘_2번.png"></a>
+					  &nbsp; &nbsp;<i class='fa fa-angle-right'></i> &nbsp;<span>${type }</span> 
+				</div>
 			<hr>
-			<div class="content_top">
-				<div class="dropdown">
+			<div class="content_top row">
+				<div class="dropdown col-lg-2">
 					<button type="button" class="btn btn-primary dropdown-toggle"
-						data-toggle="dropdown">전체 000개</button>
+						data-toggle="dropdown">${type } ${totalCount } 개</button>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">aaa</a> <a class="dropdown-item"
-							href="#">Link 2</a> <a class="dropdown-item" href="#">Link 3</a>
+						<a class="dropdown-item" href="/fundingMain.don?reqPage=1&type=0">공익 나눔</a> 
+						<a class="dropdown-item" href="/fundingMain.don?reqPage=1&type=1">대안 상생</a>
+						<a class="dropdown-item" href="/fundingMain.don?reqPage=1&type=2">미디어 창작</a>
 					</div>
 				</div>
-			</div>
-			<div class="container">
-				<form action="/action_page.php">
-					<div class="custom-control custom-switch">
-						<input type="checkbox" class="custom-control-input" id="switch1"
-							name="example"> <label class="custom-control-label"
-							for="switch1">마감된 펀딩만 보기</label>
-					</div>
-					<br>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+				<div class="col-lg-6"></div>
+				<div class="container col-lg-4">
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="switch1"
+								name="example"> <label class="custom-control-label"
+								for="switch1">마감된 펀딩만 보기</label>
+						</div>			
+						<br>		
+				</div>
 			</div>
 			<br>
 			<div class="row funding_List">
-				<%-- <c:forEach var="n" items="${list }"></c:forEach> --%>
-				<div class="col-lg-3 funding_div">
-					<img class="funding_img" src="/">
-					<input type="hidden" name="fundingNo">
-					<%-- <div class="funding_title">
-						<span>${fundingTitle }</span>
+				<c:forEach var="n" items="${list }">
+					<div class="col-lg-3 funding_div">
+						<img class="funding_img" src="/resources/upload/funding/${n.fundingFilepath }">
+						<input type="hidden" name="fundingNo">
+						<div class="funding_title">
+							<span>${n.fundingTitle }</span>
+						</div>
+						<div class="funding_group_introduce">
+							<span>${n.fundingGroupIntroduce }</span>
+						</div>
+						<hr>
+						<div class="funding_info">
+							<span>현재 금액 : ${fundingNowPrice }</span>
+							
+						</div> 
 					</div>
-					<div class="funding_group">
-						<span>${fundingGroup }</span>
-					</div>
-					<hr>
-					<div class="funding_info">
-						<span><c:set var= ${funding }</span>
-					</div> --%>
-				</div>
+				</c:forEach>
 			</div>
-
+		<br><br><br><br><br><br>
+		<div class="pageNavi_div">
+			<div>${pageNavi }</div>
+		</div>
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
