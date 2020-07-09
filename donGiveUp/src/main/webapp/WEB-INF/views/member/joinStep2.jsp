@@ -676,7 +676,6 @@ function noBack(){window.history.forward();}
         
             <div class="joinPersonWrap">
             	<form action="/member/insertMember.don" method="post" id="joinForm1">
-            	<br>
             		<table class="personTable">
             			<tr>
             				<td style="width: 100px;">*아이디</td>

@@ -22,6 +22,7 @@
 		<typeAlias type="kr.co.don.talent.model.vo.Talent" alias="talent"/>
 		<typeAlias type="kr.co.don.talent.model.vo.TalentList" alias="talentList"/>
 		<typeAlias type="kr.co.don.talent.model.vo.TalentJoin" alias="talentJoin"/>
+		<typeAlias type="kr.co.don.talent.model.vo.TalentBoard" alias="talentBoard"/>
 	</typeAliases>
 
 

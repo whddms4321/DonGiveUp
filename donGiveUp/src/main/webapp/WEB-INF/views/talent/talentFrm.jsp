@@ -119,7 +119,7 @@
 	float: left;
 	width: 395px;
 	height : 100%;
-	margin-top: 50px;
+	margin-top: 60px;
 }
 
 .talentImage {
@@ -208,7 +208,6 @@
 			<br> <br> <br> <a href="/talent/insertTalentFrm.don"
 				style="float: right; text-decoration: none; display: block; background-color: #0fbcff; border-radius: 5px; width: 70px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 40px;">글등록</a>
 				<a href="/talent/talentListMyList.don?memberId=${sessionScope.member.memberId }" style="float: right; text-decoration: none; display: block; background-color:#0fbcff; border-radius: 5px; width: 150px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 20px;">재능기부 참여목록</a>
-				<span>${sessionScope.member.memberId }</span>
 		</div>
 		<div style="margin-top: 25px; width: 1200px;">
 			<div style="width: 1200px; height: 100%;">

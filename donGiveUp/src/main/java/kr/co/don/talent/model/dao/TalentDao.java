@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.don.talent.model.vo.Talent;
+import kr.co.don.talent.model.vo.TalentBoard;
 import kr.co.don.talent.model.vo.TalentJoin;
 import kr.co.don.talent.model.vo.TalentList;
 
@@ -57,5 +58,17 @@ public class TalentDao {
 	public ArrayList<TalentJoin> talentListMyList(String memberId) {
 		List list = sqlSession.selectList("talentJoin.talentListMyList",memberId); 
 		return (ArrayList<TalentJoin>)list;
+	}
+
+	public ArrayList<TalentBoard> selectTalentBoard(int start, int end) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		List list = sqlSession.selectList("talentBoard.selectTalentBoard",map); 
+		return (ArrayList<TalentBoard>)list;
+	}
+
+	public int totalCount(int talentNo) {
+		return sqlSession.selectOne("talentBoard.totalCount",talentNo);
 	}
 }

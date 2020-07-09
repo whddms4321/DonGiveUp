@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.don.talent.model.service.TalentService;
 import kr.co.don.talent.model.vo.Talent;
+import kr.co.don.talent.model.vo.TalentBoard;
+import kr.co.don.talent.model.vo.TalentBoardData;
 import kr.co.don.talent.model.vo.TalentData;
 import kr.co.don.talent.model.vo.TalentJoin;
 import kr.co.don.talent.model.vo.TalentList;
@@ -95,7 +97,7 @@ public class TalentController {
 		TalentList t = new TalentList();
 		t.setMemberId(memberId);
 		t.setTalentNo(talentNo);
-		if(memberId!=null) {
+		if(memberId==null) {
 			model.addAttribute("msg","로그인이 필요합니다.");
 			model.addAttribute("loc","/member/loginFrm.don");
 			return "main/msg";
@@ -158,5 +160,13 @@ public class TalentController {
 			model.addAttribute("loc","/talent/talentFrm.don?reqPage=1&type=전체");
 			return "main/msg";
 		}
+	}
+	
+	@RequestMapping(value = "/talentBoard.don")
+	public String talentBoard(int talentNo,int reqPage,Model model) {
+		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage);
+		model.addAttribute("list", data.getList());
+		model.addAttribute("pageNavi", data.getPageNavi());
+		return "talent/talentBoard";
 	}
 }
