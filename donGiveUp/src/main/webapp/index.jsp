@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +68,9 @@
 		</div>
 	</div>
 	<div class="content"></div>
+	<c:if test="${not empty sessionScope.member }">
+		<jsp:include page="/WEB-INF/views/main/chat.jsp"></jsp:include>
+	</c:if>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 
 
