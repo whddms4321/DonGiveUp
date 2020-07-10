@@ -11,6 +11,7 @@
 	margin: 0 auto;
 	font-family: 'Noto Sans KR', sans-serif;
 	margin-bottom: 100px;
+	
 }
 
 .vworkwTitle {
@@ -145,12 +146,6 @@ select {
 	height: 50px;
 }
 
-
-
-.but1 {
-	width: 47%;
-	margin: 1%;
-}
 .buttonCss{
 	width: 150px;
 	height: 50px;
@@ -164,6 +159,12 @@ select {
 .buttonCss:hover{
 color:black;
 }
+
+.but1 {
+	width: 47%;
+	margin: 1%;
+}
+
 
 </style>
 <meta charset="UTF-8">
@@ -190,23 +191,18 @@ color:black;
 		<div class="vworkwTitle">기부 글 등록신청</div>
 		<div class="vworkwpage">
 			<div class="inputTable">
-				<form class="donationDetail2" method="post" enctype="multipart/form-data">
+				<form class="regularDetail2" method="post" enctype="multipart/form-data">
 					<table class="vwwTable">
 						<tr>
 							<td class="ipName">제목</td>
 							<td class="ipFrame"><input id="vwork_title"
-								name="donationTitle" type="text"></td>
-							<td class="ipName">마감 날짜</td>
+								name="regularTitle" type="text">
 						</tr>
 						<tr>
 							<td class="ipName">작성자</td>
-							<td class="ipFrame"><input name="donationWriter" id="vwork_writer" type="text" value="${sessionScope.member.memberId }" readonly>
+							<td class="ipFrame"><input name="regularWriter" id="vwork_writer" type="text" value="${sessionScope.member.memberId }" readonly>
 							</td>
-							<td rowspan="5" class="dpFrame">
-								<div id="dpwrap">
-									<input name="donationEndDate" class="datepicker-here" data-language='en' type="hidden">
-								</div>
-							</td>
+							
 						</tr>
 						<tr>
 							<td class="ipName">단체 이름</td>
@@ -227,17 +223,7 @@ color:black;
 									<option value="기타">기타</option>
 							</select></td>
 						</tr>
-						 <tr>
-							<td class="ipName">목표 금액</td>
-							<td class="ipFrame"><input id="vwork_fee" type="text"
-								name="donationGoalMoney"></td>				
-						</tr>
-						 <tr>
-							<td class="ipName">대표이미지</td>
-							<td colspan="2" class="ipImg">
-								<input type="file" name="file">
-							</td>
-						</tr>			
+						
 						<tr>
 							<td colspan="3"><textarea class="form-control"
 									id="p_content" name="donationContent"></textarea></td>
@@ -246,7 +232,7 @@ color:black;
 							<td colspan="3" class="ipButton">
 							
 								<button class ="buttonCss" onclick="reviewInsert()" type="button">미리보기</button>
-    							<input class ="buttonCss" type="submit" value="신청하기" onclick="javascript: form.action='/donationInsert.don';"/>
+    							<input class ="buttonCss" type="submit" value="신청하기" onclick="javascript: form.action='/regularInsert.don';"/>
 
 							</td>
 						</tr>
@@ -269,14 +255,14 @@ color:black;
 		
 		function reviewInsert() {
 			console.log("시작");
-			var url = "/donationDetail2.don";
-			var title = "donationDetail2";
+			var url = "/regularDetail2.don";
+			var title = "regularDetail2";
 			var status = "left=500px, top=100px, width=1200px, height=500px, menubar=no, status=no, scrollbars=yes";
 			var popup = window.open("", title, status);
-			$(".donationDetail2").attr("action", url);
-			$(".donationDetail2").attr("method", "post");
-			$(".donationDetail2").attr("target", title);//새로 열린 popup창과 form태그를 연결
-			$(".donationDetail2").submit();
+			$(".regularDetail2").attr("action", url);
+			$(".regularDetail2").attr("method", "post");
+			$(".regularDetail2").attr("target", title);//새로 열린 popup창과 form태그를 연결
+			$(".regularDetail2").submit();
 		}
 		
 	</script>

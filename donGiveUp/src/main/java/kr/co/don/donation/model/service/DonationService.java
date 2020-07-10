@@ -109,18 +109,48 @@ public class DonationService {
 	}
 
 
-	public ArrayList<DonationInVo> DonationInType(String type) {
-		List<DonationInVo> list = donationDao.DonationInType(type);
+	
+	 public ArrayList<DonationInVo> DonationInType(String type) {
+		 List<DonationInVo> list = donationDao.DonationInType(type);
+		 
+		 return (ArrayList<DonationInVo>)list; }
+	 
+	 
+	 public ArrayList<DonationInVo> DonationInToday(String type) {
+	 List<DonationInVo> list2 = donationDao.DonationInToday(type);
+	 
+	 return (ArrayList<DonationInVo>)list2; }
+
+
+	public int DonationInInsert(DonationInVo d) {
 		
-		return (ArrayList<DonationInVo>)list;
+		return donationDao.DonationInInsert(d);
 	}
 
 
-	public ArrayList<DonationInVo> DonationInToday(String type) {
-		List<DonationInVo> list = donationDao.DonationInToday(type);
-		
-		return (ArrayList<DonationInVo>)list;
+	public int MemberMoneyUpdate(Member m) {
+		// TODO Auto-generated method stub
+		return donationDao.MemberMoneyUpdate(m);
 	}
+
+
+	public int DonationMoneyUpdate(Donation d1) {
+		// TODO Auto-generated method stub
+		return donationDao.DonationMoneyUpdate(d1);
+	}
+
+
+	public Member MemberSerch(String memberId) {
+		// TODO Auto-generated method stub
+		return  donationDao.MemberSerch(memberId);
+	}
+
+
+	public Donation DonationSerch(Donation d1) {
+		// TODO Auto-generated method stub
+		return  donationDao.DonationSerch(d1);
+	}
+	
 
 
 

@@ -39,13 +39,39 @@ public class DonationDao {
 		return sqlSession.selectOne("donation.donationMember",donationWriter);
 	}
 
-	public List<DonationInVo> DonationInType(String type) {
+	
+	 public List<DonationInVo> DonationInType(String type) {
+	
+	 return sqlSession.selectList("donation.donationInType",type); 
+	 }
+	 
+	 public List<DonationInVo> DonationInToday(String type) { 
+		 return sqlSession.selectList("donation.donationInToday",type);
+		 }
+
+	public int DonationInInsert(DonationInVo d) {
 		
-		return sqlSession.selectList("donationIn.donationInType",type);
+		return sqlSession.insert("donation.donationInInsert", d);
 	}
 
-	public List<DonationInVo> DonationInToday(String type) {
-		return sqlSession.selectList("donationIn.donationInToday",type);
+	public int MemberMoneyUpdate(Member m) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("donation.memberMoneyUpdate",m);
+	}
+
+	public int DonationMoneyUpdate(Donation d1) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("donation.donationMoneyUpdate",d1);
+	}
+
+	public Member MemberSerch(String memberId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("donation.memberSerch",memberId);
+	}
+
+	public Donation DonationSerch(Donation d1) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("donation.donationSerch",d1);
 	}
 
 	

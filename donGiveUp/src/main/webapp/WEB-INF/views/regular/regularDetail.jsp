@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>기부 상세 페이지</title>
+<title>단체 상세 페이지</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
 .content-main{
 margin:0 auto;
@@ -119,9 +120,9 @@ margin-left: 15px;
 }
 .content-main-right-money-a5{
 	
-	margin-left: 15px;
-	font-size: 30px;
-	font-weight: bold;
+	
+	font-size: 20px;
+	
 	
 }
 .content-main-right-money-a6{
@@ -182,55 +183,62 @@ font-size: 23px;
 	font-size: 13px;
 	margin: 10px;
 }
+.money-div{
+line-height:35px;
+width: 90%;
+margin: 0 auto;
+text-align:center;
+}
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 
+	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<div class="content">
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="content-main-left-tap">
-					<a class="content-main-left-tap1">기부 > ${d.donationType}</a>
+					<a class="content-main-left-tap1">기부 > ${detail.regularType}</a>
 				</div>
 				<div class="content-main-left-title">
-					<a class="content-main-left-title-a">${d.donationTitle}</a>
+					<a class="content-main-left-title-a">${detail.regularTitle}</a>
 				</div><br>
 				<div class="content-main-left-content">
-					<a class="content-main-left-content-a">${d.donationContent}</a>
+					<a class="content-main-left-content-a">${detail.regularContent}</a>
 				</div><hr>
 				<div class="content-main-left-file">
-					<a class="content-main-left-file-a">첨부 파일 : </a>
+					<a class="content-main-left-file-a">첨부 파일 : ${company.chartFilepath }</a>
 				</div><hr>
 				<div class="content-main-left-comment">
-					<a class="content-main-left-comment-a"></a><br>
+					<a class="content-main-left-comment-a">댓글</a><br>
 					<button>더보기</button>
 				</div>
-				
-				<form>
-				
-				<input type="submit" value="돌아가기" onclick="javascript: form.action='/donationInsertFrm.don';"/>
-				</form>
 				
 			</div>
 			<div class="content-main-right">
 				<div class="content-main-right-money">
-				<div class="content-main-right-money-d1"><a class="content-main-right-money-a1">80%</a></div>
-				<a class="content-main-right-money-a2"><progress value="80" max="100"></progress></a><br>
-				<a class="content-main-right-money-a3">${d.donationStartDate} ~ ${d.donationEndDate}까지</a><br>
-				<div class="content-main-right-money-d2"><a class="content-main-right-money-a4">D-59</a></div><br>	
-				<a class="content-main-right-money-a5">${d.donationNowMoney}원</a><br><br>
-				<a class="content-main-right-money-a6">목표 : ${d.donationGoalMoney}원</a><br>						
+				
+				
+				<div class="money-div">
+				<a class="content-main-right-money-a5"><b><br>총 모금액 </b><br>${detail.regularNowMoney}원</a><br><br>
+				<a class="content-main-right-money-a5"><b>이번 달 모금액</b><br>0원</a><br><hr>
+				<a class="content-main-right-money-a5">인원수 : 0명</a><br>						
+				</div>
 				
 					
 				</div>
 				<div class="content-main-right-donation">
-					<button class="content-main-right-donation-button">모금함 기부 하기</button>	
+				<form class="regularMoney">
+				<input type="hidden" name="regularNo" value="${detail.regularNo }">
+				<input type="hidden" name="regularId" value="${company.memberId}">
+				<input type="hidden" name="companyName" value="${company.companyName}">
+				<button class="content-main-right-donation-button" onclick="regularMoney('${detail.regularNo}')" type="button">단체 구독하기</button>	
+				</form>
 				</div>
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체 안내</a></div><br>
-				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="/resources/upload/images/1.JPG"></a><br>
-				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3"></a></div><br>
+				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="${company.companyFilepath }"></a><br>
+				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3">${company.companyName }</a></div><br>
 				<div class="content-main-right-organization-d3"><a class="content-main-right-organization-a4" href="#">기부 단체 리뷰</a>	</div>
 				</div>
 				<div class="content-main-right-require">
@@ -250,11 +258,31 @@ font-size: 23px;
 		</a></div>
 				</div>
 				<div class="content-main-right-relation">
-					<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 기부 글</a></div>
+					<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 단체 글</a></div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+	<script>
+	function regularMoney(regularNo) {
+		console.log("시작");
+		var memberId = "${sessionScope.member.memberId}";
+		var regularId ="${company.memberId}";
+		var companyName ="${company.companyName}";
+		var url = "/regularMoney.don";
+		var title = "regularMoney";
+		var status = "left=500px, top=100px, width=550px, height=500px, menubar=no, status=no, scrollbars=yes";
+		var popup = window.open("", title, status);
+		$("input[name=regularNo]").val(regularNo);
+		$("input[name=regularId]").val(memberId);
+		$("input[name=companyName]").val(companyName);
+		$("input[name=memberId]").val(memberId);
+		$(".regularMoney").attr("action", url);
+		$(".regularMoney").attr("method", "post");
+		$(".regularMoney").attr("target", title);//새로 열린 popup창과 form태그를 연결
+		$(".regularMoney").submit();
+	}
+	</script>
 </body>
 </html>

@@ -191,41 +191,35 @@ font-size: 23px;
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="content-main-left-tap">
-					<a class="content-main-left-tap1">기부 > ${d.donationType}</a>
+					<a class="content-main-left-tap1">기부 > ${r.regularType}</a>
 				</div>
 				<div class="content-main-left-title">
-					<a class="content-main-left-title-a">${d.donationTitle}</a>
+					<a class="content-main-left-title-a">${r.regularTitle}</a>
 				</div><br>
 				<div class="content-main-left-content">
-					<a class="content-main-left-content-a">${d.donationContent}</a>
+					<a class="content-main-left-content-a">${r.regularContent}</a>
 				</div><hr>
-				<div class="content-main-left-file">
-					<a class="content-main-left-file-a">첨부 파일 : </a>
-				</div><hr>
-				<div class="content-main-left-comment">
-					<a class="content-main-left-comment-a"></a><br>
-					<button>더보기</button>
-				</div>
+				
 				
 				<form>
 				
-				<input type="submit" value="돌아가기" onclick="javascript: form.action='/donationInsertFrm.don';"/>
+				<!-- <input type="submit" value="돌아가기" onclick="javascript: form.action='/reguInsertFrm.don';"/> -->
 				</form>
 				
 			</div>
 			<div class="content-main-right">
 				<div class="content-main-right-money">
-				<div class="content-main-right-money-d1"><a class="content-main-right-money-a1">80%</a></div>
-				<a class="content-main-right-money-a2"><progress value="80" max="100"></progress></a><br>
-				<a class="content-main-right-money-a3">${d.donationStartDate} ~ ${d.donationEndDate}까지</a><br>
-				<div class="content-main-right-money-d2"><a class="content-main-right-money-a4">D-59</a></div><br>	
-				<a class="content-main-right-money-a5">${d.donationNowMoney}원</a><br><br>
-				<a class="content-main-right-money-a6">목표 : ${d.donationGoalMoney}원</a><br>						
+				
+				<a class="content-main-right-money-a5">총 모금액 : ${r.regularNowMoney}원</a><br>
+				<a class="content-main-right-money-a5">이번 달 모금액 : 원</a><br>
+				<a class="content-main-right-money-a6">인원수 : 명</a><br>			
+				
+								
 				
 					
 				</div>
 				<div class="content-main-right-donation">
-					<button class="content-main-right-donation-button">모금함 기부 하기</button>	
+					<button class="content-main-right-donation-button">단체 정기 기부 하기</button>	
 				</div>
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체 안내</a></div><br>
@@ -250,7 +244,7 @@ font-size: 23px;
 		</a></div>
 				</div>
 				<div class="content-main-right-relation">
-					<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 기부 글</a></div>
+					<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 단체 글</a></div>
 				</div>
 			</div>
 		</div>

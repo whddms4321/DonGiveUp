@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>기부</title>
 </head>
+<script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
 <!-- <link rel="stylesheet" href="/resources/css/donation/donation.css"> -->
 <style>
 
@@ -31,52 +32,46 @@
 }
 
 .content-header-tap {
-	border: 1px solid lightgray;
+	
 	width: 60px;
-	height: 60px;
-	line-height: 60px;
-	margin-top: 35px;
+	height: 80px;
+	
+	margin-top: 30px;
 	text-align: center;
-	border-radius: 50px 50px;
-	background-color: lightgray;
+	
 	float: left;
 	margin-right: 50px;
 }
 
-.content-header-tap2 {
+ .content-header-tap2 {
 	margin-left : 10%;
-	background-color: darkgray;
+	
 }
 
 .content-header-tap1:hover {
-	background-color: darkgray;
-	color: white;
+	color: black;
 }
 
 .content-header2-tap:hover {
-	color: white;
+	color: black;
 }
 
 .content-header-tap1 {
-	color: black;
-	border-radius: 50px 50px;
+	color: white;
 	display: block;
 	font-weight: bold;
 	text-decoration: none;
 }
 
 .content-header2-tap {
-	color: black;
+	color: white;
 	font-weight: bold;
 	text-decoration: none;
 	line-height: 50px;
-	margin-left: 230px;
-	font-size: 20px;
+	margin-left: 250px;
+	font-size: 15px;
 }
 
-.content-header2-tap1 {
-	
-}
 
 .content-main {
 	border: 1px solid gray;
@@ -86,7 +81,8 @@
 }
 
 .content-main-top {
-	width: 90%;
+	width: 87%;
+	height:70px;
 	margin: 0 auto;
 }
 
@@ -198,7 +194,14 @@ height: 15px;
 margin-left: 2%;
 
 }
-			 		
+	i{
+	width:65px;
+	height:65px;
+	
+		
+		font-size: 48px;
+		color: white;
+	}		 		
 			 	
 </style>
 
@@ -207,67 +210,68 @@ margin-left: 2%;
 	<div class="content">
 		<div class="content-header">
 			<div class="content-header-tap content-header-tap2">
+			
 				<a href="/donation.don?reqPage=1&type=전체"
-					class="content-header-tap1">전체</a>
+					class="content-header-tap1"><i class="fas fa-globe-americas"></i>전체</a>
 			</div>
 			<div class="content-header-tap">
 				<a href="/donation.don?reqPage=1&type=아동"
-					class="content-header-tap1">아동</a>
+					class="content-header-tap1"><i class="fas fa-baby"></i>아동</a>
 			</div>
 			<div class="content-header-tap">
 				<a href="/donation.don?reqPage=1&type=어르신"
-					class="content-header-tap1">어르신</a>
+					class="content-header-tap1"><i class="fas fa-blind"></i>어르신</a>
 			</div>
 			<div class="content-header-tap">
 				<a href="/donation.don?reqPage=1&type=장애인"
-					class="content-header-tap1">장애인</a>
+					class="content-header-tap1"><i class="fas fa-wheelchair"></i>장애인</a>
 			</div>
 			<div class="content-header-tap">
 				<a href="/donation.don?reqPage=1&type=다문화"
-					class="content-header-tap1">다문화</a>
+					class="content-header-tap1"><i class="fas fa-user-friends"></i>다문화</a>
 			</div>
 			<div class="content-header-tap">
 				<a href="/donation.don?reqPage=1&type=여성"
-					class="content-header-tap1">여성</a>
+					class="content-header-tap1"><i class="fas fa-female"></i>여성</a>
 			</div>
 			<div class="content-header-tap">
 				<a href="/donation.don?reqPage=1&type=동물"
-					class="content-header-tap1">동물</a>
+					class="content-header-tap1"><i class="fas fa-paw"></i>동물</a>
 			</div>
 			<div class="content-header-tap">
 				<a href="/donation.don?reqPage=1&type=환경"
-					class="content-header-tap1">환경</a>
+					class="content-header-tap1"><i class="fab fa-canadian-maple-leaf"></i>환경</a>
 			</div>
 			<div class="content-header-tap">
 				<a href="/donation.don?reqPage=1&type=기타"
-					class="content-header-tap1">기타</a>
+					class="content-header-tap1"><i class="fab fa-rocketchat"></i>기타</a>
 			</div>
 		</div>
 		<div class="content-header2">
 			<a href="/donation.don?reqPage=1&type=전체"
 				class="content-header2-tap content-header2-tap1">일반기부</a> <a
-				href="#" class="content-header2-tap">단체기부</a> <a href="/donationInsertFrm.don"
+				href="/regular.don?reqPage=1&type=전체" class="content-header2-tap">단체기부</a> <a href="/donationInsertFrm.don"
 				class="content-header2-tap">기부 신청</a>
 		</div>
 		<div class="content-main">
 			<div class="content-main-top">
-				<a class="content-main-top1">모금함 : ${totalCount} 개</a> <select
+				<a class="content-main-top1">모금함 : ${totalCount} 개</a> <!-- <select
 					class="content-main-top-select">
 					<option>최신 등록순</option>
 					<option>마감 시간순</option>
 					<option>기부 모금순</option>
-				</select>
+				</select> -->
 			</div>
 			<div class="content-main-list">
 			 	<div class="content-main-list1 content-main-list2">
 			 	<div class="content-main-list2-1">
-			 		<a class="content-main-list2-a">Today</a><br>
-					<a class="content-main-list2-a2">2020-06-28</a><br><hr>
+			 		<a class="content-main-list2-a">Today</a><br><br>
+					<a class="content-main-list2-a2">${time2}</a><hr>
 					</div>
 					<div class="content-main-list2-2">
-					<a class="content-main-list2-a3"><b>총 기부 금액</b><br>원</a><br><br>
-					<a class="content-main-list2-a3"><b>총 기부 참여자</b><br>120명</a><br><br>
-					<a class="content-main-list2-a3"><b>오늘 기부 금액</b><br>1,000,000원</a><br>
+					<a class="content-main-list2-a3"><br><b>총 기부 금액</b><br>${typeTotalCount }원</a><br><br>
+					<a class="content-main-list2-a3"><b>총 기부 참여자</b><br>${typeMemberCount }명</a><br><br>
+					<a class="content-main-list2-a3"><b>오늘 기부 금액</b><br>${typeTodayCount }원</a><br>
 					</div>
 			 	</div>
 			 	
@@ -293,11 +297,26 @@ margin-left: 2%;
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+
+
+<script>
+function reviewInsert() {
+	console.log("시작");
+	
+	var url = "/donationMoney.don";
+	var title = "donationMoney";
+	var status = "left=500px, top=100px, width=400px, height=500px, menubar=no, status=no, scrollbars=yes";
+	var popup = window.open("", title, status);
+	$(".donationMoney").attr("action", url);
+	$(".donationMoney").attr("method", "post");
+	$(".donationMoney").attr("target", title);//새로 열린 popup창과 form태그를 연결
+	$(".donationMoney").submit();
+}
+
+</script>
 </body>
 
 
-
-<body>
 
 
 
