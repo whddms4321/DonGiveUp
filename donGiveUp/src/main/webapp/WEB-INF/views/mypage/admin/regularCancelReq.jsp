@@ -12,6 +12,7 @@
 		}
 		table th{
 			font-size:20px;
+			background-color : #F1F1F1;
 		}
 		#pageNavi a, span{
 			padding:13px;
@@ -41,15 +42,15 @@
 						<div style="margin-top:20px;">
 							<table class="table">
 								<tr>
-									<th>번호</th><th>구분</th><th>결제번호</th><th>아이디</th><th>금액</th><th>연락처</th><th>이메일</th><th>비고</th>
+									<th>번호</th><th>구분</th><th>자동결제일</th><th>아이디</th><th>금액</th><th>연락처</th><th>이메일</th><th>비고</th>
 								</tr>
 								<c:forEach items="${list}" var="c" varStatus="l">
 									<tr class="newTr">
 										<td>${(reqPage-1)*10 + l.count }</td>
 										<td>${c.groupName }</td>
-										<td>${c.regularInPayNum }</td>
+										<td>${c.regularInPayNum }</td> <!--결제번호에서 매달 돈토리 결제일로 변경  -->
 										<td>${c.regularId }</td>
-										<td>${c.regularInMoney }</td>
+										<td>${c.regularInMoney }</td> 
 										<td>${c.memberPhone }</td>
 										<td>${c.memberEmail }</td>
 										<c:if test="${c.regularInCancel == 1 }">

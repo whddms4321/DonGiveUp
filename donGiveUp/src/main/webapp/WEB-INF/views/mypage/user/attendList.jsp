@@ -78,7 +78,7 @@ li{
 	margin-bottom :20px;
 }
 .regular-cancel-btn{
-	margin-left : 20px;
+	margin : 0 auto;
 	border : none;
 	background-color: #0fbcff;
 	color : #fff;
@@ -90,21 +90,31 @@ li{
 }
 th{
 	text-align: center;
+	background-color : #F1F1F1;
+	padding : 10px;
+	font-size : 18px;
 }
 td{
+	padding : 10px;
 }
 .pageNavi{
 	text-align : center;
 	padding : 10px;
 }
-
+.inputDiv{
+ 	padding : 20px; 
+}
+.inList>a{
+	background-color : #0fbcff;
+	color : white;
+}
 </style>
 
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/main/header.jsp"/>
 	
-	<div class="content">
+	<div class="content" style="height:1000px;">
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="userInfo">
@@ -136,11 +146,11 @@ td{
 			<div class="content-main-right">
 				<div style="margin:0 auto; margin-bottom:50px;">
 					<h2>활동내역</h2>
-					<div id="chartdiv"></div>
+					<div id="chartdiv" style="margin:0 auto;"></div>
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" style="margin:0px; padding-left:0px;">
 					<div class="col-md-6" style="padding-left:0px;">
-						<div class="panel panel-default" style="width:920px; height:300px; border:none;">
+						<div class="panel panel-default" style="width:920px; border:none;">
 							<div class="panel-body tabs">
 								<ul class="nav nav-tabs">
 									<li class="active"><a href="#tab1" onclick="saveValue('donation', 0, 1, `${sessionScope.member.memberId}`);" data-toggle="tab">기부</a></li>
@@ -149,10 +159,10 @@ td{
 									<li><a href="#tab4" onclick="saveValue('support', 0, 1, `${sessionScope.member.memberId}`);" data-toggle="tab">물품후원</a></li>
 									<li><a href="#tab5" onclick="saveValue('regular', 0, 1, `${sessionScope.member.memberId}`);" data-toggle="tab">정기후원</a></li>
 								</ul>
-								<div class="tab-content" style="margin-left:50px; padding-right:70px;">
+								<div class="tab-content"  style="width:100%;" style="margin-left:50px; padding-right:70px;">
 									<div class="tab-pane fade in active" id="tab1">
 										<div class="inputDiv">
-											<label><input type="radio" name="donation" value="0" checked> 진행중 목록</label> &nbsp;&nbsp;&nbsp;&nbsp;
+											<label><input type="radio" name="donation" value="0" checked> 진행중 목록</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<label><input type="radio" name="donation" value="1"> 종료된 목록</label>
 										</div>
 										<div class="donationDiv tableDiv">
@@ -164,7 +174,7 @@ td{
 									</div>
 									<div class="tab-pane fade" id="tab2">
 										<div class="inputDiv">
-											<label><input type="radio" name="funding" value="0" checked> 진행중 목록</label> &nbsp;&nbsp;&nbsp;&nbsp;
+											<label><input type="radio" name="funding" value="0" checked> 진행중 목록</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<label><input type="radio" name="funding" value="1"> 종료된 목록</label>
 										</div>
 										<div class="fundingDiv tableDiv">
@@ -176,7 +186,7 @@ td{
 									</div>
 									<div class="tab-pane fade" id="tab3">
 										<div class="inputDiv">
-											<label><input type="radio" name="vwork" value="0" checked> 참여 예정</label> &nbsp;&nbsp;&nbsp;&nbsp;
+											<label><input type="radio" name="vwork" value="0" checked> 참여 예정</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<label><input type="radio" name="vwork" value="1"> 참여 완료</label>
 										</div>
 										<div class="vworkDiv tableDiv">
@@ -188,8 +198,8 @@ td{
 									</div>
 									<div class="tab-pane fade" id="tab4">
 										<div class="inputDiv">
-											<label><input type="radio" name="support" value="0" checked> 진행중 목록</label> &nbsp;&nbsp;&nbsp;&nbsp;
-											<label><input type="radio" name="support" value="1"> 종료된 목록</label>
+											<label><input type="radio" name="support" value="0" checked> 승인대기 목록 </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<label><input type="radio" name="support" value="1"> 승인완료 목록 </label>
 										</div>
 										<div class="supportDiv tableDiv">
 											<table class="table">
@@ -200,7 +210,7 @@ td{
 									</div>
 									<div class="tab-pane fade" id="tab5">
 										<div class="inputDiv">
-											<label><input type="radio" name="regular" value="0" checked> 진행중 목록</label> &nbsp;&nbsp;&nbsp;&nbsp;
+											<label><input type="radio" name="regular" value="0" checked> 진행중 목록</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<label><input type="radio" name="regular" value="1"> 종료된 목록</label>
 										</div>
 										<div class="regularDiv tableDiv">
@@ -281,7 +291,7 @@ td{
 							
 							for(var i=0; i<list.length; i++){
 								html += "<tr>";
-								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td><td>" + list[i].boardMoney  + "</td><td>" + list[i].boardDate + "</td>";
+								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td><td>" + list[i].boardMoney.toLocaleString();  + "</td><td>" + list[i].boardDate + "</td>";
 								html += "</tr>";
 							}
 							
@@ -293,23 +303,15 @@ td{
 							$(".fundingPageNavi").children().remove();
 							
 							html += "<tr>";
-							html += "<th>번호</th><th>글제목</th><th>리워드명</th><th>금액(원)</th><th>참여일자</th>";
+							html += "<th>번호</th><th>글제목</th><th>리워드명</th><th>수량</th><th>금액(원)</th><th>참여일자</th>";
 							html += "</tr>";
 								
 							for(var i=0; i<list.length; i++){
 								html += "<tr>";
 								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td>";
-								if(list[i].boardCount > 0 ){ //리워드 수량! 즉, 리워드로 펀딩을 한 경우 (리워드 수량 * 리워드 개당 가격)
-									html += "<td>" + list[i].boardRewardName + "</td>";
-									html += "<td>" + String(list[i].boardCount * list[i].rewardOnePrice) + "</td>";
-								}else{ //일반 금액 or 돈토리로 펀딩을 한 경우
-									html += "<td>X</td>";
-									if(list[i].boardMoney > 0){ //돈토리로 펀딩 (돈토리수 * 개당 100원 )
-										html += "<td>" + String((list[i].boardMoney) * 100) + "</td>";	
-									}else{ //일반 금액
-										html += "<td>" + String(list[i].fundingCashMoney) + "</td>";
-									}
-								}
+								html += "<td>" + list[i].boardRewardName + "</td>";
+								html += "<td>" + list[i].boardCount + "</td>";
+								html += "<td>" + (list[i].boardCount * list[i].rewardOnePrice).toLocaleString(); + "</td>";
 								html += "<td>" + list[i].boardDate + "</td>";
 								html += "</tr>";
 							}
@@ -338,28 +340,37 @@ td{
 						
 						if(radio == 0){
 							html += "<tr>";
-							html += "<th>번호</th><th>대상기관</th><th>금액</th><th>시작일자</th><th></th>";
+							html += "<th style='width=15%;'>번호</th>";
+							html += "<th style='width=55%;'>대상기관</th>";
+							html += "<th style='width=20%;'>돈토리(개)</th>";
+							html += "<th style='width=15%;'>자동 결제일자</th>";
+							html += "<th style='width=15%;'>-</th>";
 							html += "</tr>";
 							
 							for(var i=0; i<list.length; i++){
 								html += "<tr>";
-								html += "<td style='width:150px;'>" + ((reqPage-1)*5+1+i) + "</td><td style='width:200px;'>" + list[i].boardTitle + "</td><td style='width:100px;'>" + list[i].boardMoney + "</td>";
-								html += "<td style='width:150px;'>" + list[i].boardDate + "</td>";
-								html += "<td style='width:100px;'>" + "<button class='regular-cancel-btn' onclick='regularCancelReq(" + list[i].boardNo + "," + reqPage +");'>해지요청</button>"  + "</td>";
+								html += "<td style='padding:3px;'>" + ((reqPage-1)*5+1+i) + "</td><td style='padding:3px;'>" + list[i].boardTitle + "</td><td style='padding:3px;'>" + list[i].boardMoney + "</td>";
+								html += "<td style='padding:3px;'>" + list[i].boardDate + "</td>";
+								html += "<td style='padding:3px;'>" + "<button class='regular-cancel-btn' onclick='regularCancelReq(" + list[i].boardNo + "," + reqPage +");'>해지요청</button>"  + "</td>";
 								html += "</tr>";
 							}
 						}else{ //종료된 목록
 							html += "<tr>";
-							html += "<th>번호</th><th>대상기관</th><th>금액</th><th>종료일자</th><th>상태</th>";
+							html += "<th style='width=15%;'>번호</th>";
+							html += "<th style='width=25%;'>대상기관</th>";
+							html += "<th style='width=20%;'>돈토리(개)</th>";
+							html += "<th style='width=25%;'>종료일자</th>";
+							html += "<th style='width=15%;'>상태</th>";
 							html += "</tr>";
 							
 							for(var i=0; i<list.length; i++){
 								html += "<tr>";
 								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td><td>" + list[i].boardMoney + "</td>";
-								html += "<td>" + list[i].regularEndDate + "</td>";
 								if(list[i].boardState==1){
+									html += "<td> - </td>";
 									html +="<td>요청대기</td>";
 								}else if(list[i].boardState==2){
+									html += "<td>" + list[i].regularEndDate + "</td>";
 									html +="<td>해지완료</td>";
 								}
 								html += "</tr>";
@@ -373,7 +384,12 @@ td{
 						$(".supportPageNavi").children().remove();
 						
 						html += "<tr>";
-						html += "<th>번호</th><th>글제목</th><th>종류</th><th>수량</th><th>마감일</th><th>상태</th>";
+						html += "<th style='width=10%;'>번호</th>";
+						html += "<th style='width=20%;'>글제목</th>";
+						html += "<th style='width=10%;'>종류</th>";
+						html += "<th style='width=10%;'>수량</th>";
+						html += "<th style='width=25%;'>마감일</th>";
+						html += "<th style='width=10%;'>상태</th>";
 						html += "</tr>";
 						
 						for(var i=0; i<list.length; i++){
@@ -381,28 +397,34 @@ td{
 							html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td>";
 							switch(list[i].supportKind){
 								case 0 : 
+									html += "<td>X</td>";
+									break;
+								case 1 : 
 									html += "<td>의류</td>";
 									break;
-								case 1 :
-									html += "<td>생리대</td>";
-									break;
 								case 2 :
-									html += "<td>화장품</td>";
+									html += "<td>유아용품</td>";
 									break;
 								case 3 :
-									html += "<td>도서</td>";
+									html += "<td>생리대</td>";
 									break;
 								case 4 :
-									html += "<td>생활용품</td>";
+									html += "<td>화장품</td>";
 									break;
 								case 5 :
-									html += "<td>가전제품</td>";
+									html += "<td>학용품</td>";
 									break;
 								case 6 :
-									html += "<td>유아제품</td>";
+									html += "<td>도서</td>";
 									break;
 								case 7 :
-									html += "<td>학용품</td>";
+									html += "<td>가전제품</td>";
+									break;
+								case 8 :
+									html += "<td>생활용품</td>";
+									break;
+								case 9 :
+									html += "<td>가구/침구</td>";
 									break;
 							}
 							html += "<td>" + list[i].boardCount + "</td>";
@@ -422,13 +444,13 @@ td{
 									var day = Number(today.getDate());
 									
 									if(date[0] > year){ //마감년도가 오늘보다 늦은 경우
-										html += "<td>승인대기</td>";
+										html += "<td>기관 모집중</td>";
 									}else if(date[0] == year){ //같은 년도 
 										if(date[1] > month){ //마감월이 오늘보다 늦은 경우
-											html += "<td>승인대기</td>";	
+											html += "<td>기관 모집중</td>";	
 										}else if(date[1] == month){ //같은 월
 											if(date[2] > day){ //마감일이 오늘보다 늦은 경우
-												html += "<td>승인대기</td>";		
+												html += "<td>기관 모집중</td>";		
 											}else if(date[2] == day){ //마감일이 오늘인 경우
 												html += "<td>심사중</td>";
 											}else{

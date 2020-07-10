@@ -69,6 +69,42 @@
 	width : 177px;
 	text-align : center;
 }
+table{
+	text-align : center;
+}
+th{
+	text-align : center;
+	height:50px;
+	font-size:15px;
+}
+td{
+	text-align : center;
+	height:50px;
+	
+}
+tr{
+	border-bottom: 1px solid #E7E7E7;
+}
+.tableDiv{
+	padding-top : 30px;
+}
+.pageNavi{
+	text-align:center;
+	padding:10px;
+}
+.th1{
+	width: 25%;
+}
+.th2{
+	width : 50%;
+}
+.th3{
+	width:25%;
+}
+.home>a{
+	background-color : #0fbcff;
+	color : white;
+}
 </style>
 </head>
 <body>
@@ -100,8 +136,8 @@
 			</div>
 			<div class="content-main-right">
 				<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" style="margin:0px; padding-left:0px;">
-					<div class="col-md-6" style="padding-left:0px;">
-						<div class="panel panel-default" style="width:920px; height:300px; border:none;">
+					<div class="col-md-6" style="padding-left:0px; border:none;">
+						<div class="panel panel-default" style="width:920px;  border:none;">
 							<div class="panel-body tabs">
 								<ul class="nav nav-tabs">
 									<li class="active panels"><a href="#tab1" onclick="reqBoard('donation', 1,'${sessionScope.member.memberId}');" data-toggle="tab">기부</a></li>
@@ -175,6 +211,8 @@
 		</div>
 	</div>
 	<script>
+	
+		
 		var memberId = "${sessionScope.member.memberId}";
 		reqBoard('donation', 1, memberId);
 		
@@ -188,20 +226,50 @@
 					var html = "";
 					$(".newTr").remove();
 					$("." +type+"PageNavi").children().remove();
-					html += "<tr><th>번호</th><th>글제목</th><th>상태</th></tr>";
+					html += "<tr class='newTr'><th class='th1'>번호</th><th class='th2'>글제목</th><th class='th2'>상태</th></tr>";
 					
 					for(var i=0; i<list.length; i++){
 						html += "<tr class='newTr'>";
-						html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td>";
+						html += "<td>" + ((reqPage-1)*10+1+i) + "</td><td>" + list[i].boardTitle + "</td>";
 						if(type == 'support'){
-							if(list[i].boardState == 0){
+							
+							if(list[i].boardState == 0){ //신청상태 (심사대기, 심사중= 기간종료)
+								var date = list[i].boardEndDate;
+								date = Number(date.split("/"));
+								date[0] = "20" + date[0];
 								
-							}else if(list[i].boardState == 1){
+								var today = new Date;
+								var year = Number(today.getFullYear());
+								var month = Number(today.getMonth() + 1);
+								var day = Number(today.getDate());
 								
-							}else if(list[i].boardState == 2){
+								if(date[0] > year){ //마감년도가 오늘보다 늦은 경우
+									html += "<td>심사대기</td>";
+								}else if(date[0] == year){ //같은 년도 
+									if(date[1] > month){ //마감월이 오늘보다 늦은 경우
+										html += "<td>심사대기</td>";	
+									}else if(date[1] == month){ //같은 월
+										if(date[2] > day){ //마감일이 오늘보다 늦은 경우
+											html += "<td>심사대기</td>";		
+										}else if(date[2] == day){ //마감일이 오늘인 경우
+											html += "<td>심사중</td>";
+										}else{
+											html += "<td>심사중</td>";
+										}
+									}else{
+										html += "<td>심사중</td>";
+									}
+								}else{ //마감된 경우
+									html += "<td>심사중</td>";
+								}
 								
+							}else if(list[i].boardState == 1){ // 내가 배정됨
+								html += "<td><a</td>";
+							}else if(list[i].boardState == 2){ // 다른 기관이 배정됨
+								html += "<td>배정실패</td>";
 							}
 						}else{
+							console.log(typeof(list[i].boardState));
 							if(list[i].boardState == 0){
 								html += "<td>승인대기</td>";
 							}else if(list[i].boardState == 1){
@@ -225,7 +293,8 @@
 		
 		$('#dataModal').on('show.bs.modal', function(event) {
 			var negativeContent = $(event.relatedTarget).data('content');
-			
+			$("#negativeContent").html("");
+			$("#negativeContent").html(negativeContent);
 		});
 	</script>
 </body>

@@ -8,4 +8,6 @@ public class CompanyReqBoardVO {
 	private String boardTitle;
 	private int boardState;
 	private String negativeContent;
+	private String boardStartDate;
+	private String boardEndDate;
 }

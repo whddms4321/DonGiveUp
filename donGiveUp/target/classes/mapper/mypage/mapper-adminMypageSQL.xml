@@ -307,7 +307,7 @@
 			funding set funding_type=1, funding_start_date=sysdate, funding_end_date=sysdate+7 where funding_no=#{key}
 		</if>
 		<if test='type.equals("vwork")'>
-			vwork set vwork_state=1, vwork_req_date=sysdate, vwork_dl_date=sysdate+7 where vwork_no=#{key}
+			vwork set vwork_state=1, vwork_req_date=sysdate where vwork_no=#{key}
 		</if>
 		<if test='type.equals("support")'>
 			support set support_state=1, enroll_start_date=sysdate, enroll_end_date=sysdate+7 where support_no=#{key}

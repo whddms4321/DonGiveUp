@@ -9,7 +9,7 @@ public class AdminRegularInVO {
 	private String groupName;
 	private String regularId;
 	private int regularInMoney;
-	private int regularInPayNum;
+	private String regularInPayNum;
 	private int regularNo;
 	private int regularInCancel;
 	private String memberPhone;

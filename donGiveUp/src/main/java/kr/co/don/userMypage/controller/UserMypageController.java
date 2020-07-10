@@ -144,4 +144,10 @@ public class UserMypageController {
 	public int bankCancelReq(int bankNo) {
 		return service.bankCancelReq(bankNo);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/donationToCompany.don")
+	public void donationToCompany(String memberId, String companyName, int price, int bankNo) {
+		HashMap<String, String> map =service.donationToCompany(memberId,companyName,price,bankNo);
+	}
 }

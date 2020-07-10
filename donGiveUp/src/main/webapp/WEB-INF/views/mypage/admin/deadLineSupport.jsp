@@ -11,6 +11,7 @@
 		text-align:center;
 	}
 	table th{
+		background-color : #F1F1F1;
 		font-size:20px;
 	}
 	#pageNavi a{
@@ -22,6 +23,9 @@
 	#pageNaviModal{
 		margin-top:35px;
 		text-align:center;
+	}
+	.modalTable th{
+		background-color : #F1F1F1;
 	}
 </style>
 </head>
@@ -90,8 +94,9 @@
 		//-----------------------------------신청사유 보여주기----------------------------------
 		function requestContentShow(obj){
 			$(".requestContent").css("display", "none");
-			$(obj).next().css("display", "block");
-			$(obj).next().next().css("display", "block");
+			$(obj).parent().parent().next().css("display", "table-row");
+			//$(obj).next().css("display", "block");
+			//$(obj).next().next().css("display", "block");
 		}
 		//--------------------------글 제목 클릭 시 Modal로 신청기관 목록을 보여줌------------------------
 		var supportNo = "";
@@ -117,13 +122,38 @@
 	        		  var html = "";
 	        		  
 	        		  if(list.length > 0){
-		        		  html += "<div><span style='font-weight:bold; font-size:20px; margin-left:20px;'>선택</span><span style='font-weight:bold; font-size:20px; margin-left:90px;'>신청자</span></div>";  
+	        			  html += "<table class='table modalTable'>";
+	        			  	html += "<tr><th>번호</th><th>신청자</th><th>선택</th></tr>";
+		        		  //html += "<div style='padding-top:10px; padding-bottom:10px;'><span style='font-weight:bold; font-size:20px; margin-left:20px;'>선택</span><span style='font-weight:bold; font-size:20px; margin-left:90px;'>신청자</span></div>";  
 		        		  for(var i=0; i<list.length; i++){
-		        			  html += "<div style='width:400px; margin-left:15px; padding-left:20px; border-bottom:1px dotted gray;'><label onclick='requestContentShow(this);'><input type='radio' name='company' style=' margin-right:100px;'> &nbsp;&nbsp;&nbsp;<span>" + list[i].supportApplyId + "</span>&nbsp;&nbsp;&nbsp;</label>";
-		        			  html += "<div class='requestContent' style='display:none; margin-top:15px; width:360px; height:200px;'>" + list[i].supportApplyReason + "</div>";
-		        			  html += "<div class='requestContent' style='display:none; text-align:center; margin-bottom:15px;'><button class='btn-sm btn-primary' onclick='assignCompany("+ supportNo + ",`" + list[i].supportApplyId +"`);'>선정</button></div></div>";
+		        			  html += "<tr>";
+		        			  	html += "<td>" + ((reqPage-1)*5+1+i) +"</td>";
+		        			  	html += "<td>" + list[i].supportApplyId + "</td>";
+		        			  	html += "<td><input type='radio' onclick='requestContentShow(this);' name='company'></td>";
+		        			  html += "</tr>";
+		        			  html += "<tr class='requestContent' style='display:none;'>";
+		        			  	html += "<td colspan='3'>";
+		        			  		html += "<div  style='margin-top:15px; width:360px; height:200px;'>" + list[i].supportApplyReason + "</div>";
+		        			  		html += "<div  style='text-align:center; margin-bottom:15px;'>";
+		        			  			html += "<button class='btn-sm btn-primary' onclick='assignCompany("+ supportNo + ",`" + list[i].supportApplyId +"`);'>선정</button>";
+		        			  		html += "</div></td></tr>";
+		        			  		
+		        			  /*
+		        			  html += "<div style='width:400px; margin-left:15px; padding-left:20px; border-bottom:1px dotted gray;'>";
+		        			  	html += "<label onclick='requestContentShow(this);'>";
+		        			  		html += "<input type='radio' name='company' style=' margin-right:100px;'> &nbsp;&nbsp;&nbsp;";
+		        			 		 html += "<span>" + list[i].supportApplyId + "</span>&nbsp;&nbsp;&nbsp;";
+		        			  	html +="</label>";
+		        			  	html += "<div class='requestContent' style='display:none; margin-top:15px; width:360px; height:200px;'>" + list[i].supportApplyReason + "</div>";
+		        			  	html += "<div class='requestContent' style='display:none; text-align:center; margin-bottom:15px;'>";
+		        			  		html += "<button class='btn-sm btn-primary' onclick='assignCompany("+ supportNo + ",`" + list[i].supportApplyId +"`);'>선정</button>";
+		        			  	html += "</div>";
+		        			  html += "</div>";
+		        			  */
 		        			  
 		        		  }
+		        		  html += "</table>";
+		        		  console.log(html);
 		        		  $("#content").css("overflow", "auto");
 		        		  $("#content").append(html);
 		        		  $("#pageNaviModal").append(pageNavi);        			  

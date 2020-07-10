@@ -96,4 +96,8 @@ public class UserMypageDao {
 		return session.update("userMypage.bankCancelReq", bankNo);
 	}
 
+	public HashMap<String, String> donationToCompany(HashMap<String, String> map) {
+		return session.selectOne("userMypage.donationToCompany",map);
+	}
+
 }

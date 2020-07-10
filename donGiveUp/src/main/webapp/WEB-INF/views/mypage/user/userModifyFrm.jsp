@@ -32,7 +32,6 @@
 .userInfo{
 	width:80%;
 	height:230px;
-	border : 1px solid red;
 	margin: 0 auto;
 	margin-top:100px;
 }
@@ -97,12 +96,16 @@
 	padding : 6px;
 	border-radius : 5px;
 }
+.modify>a{
+	background-color : #0fbcff;
+	color : white;
+}
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/main/header.jsp"/>
 	
-	<div class="content">
+	<div class="content"  style="height:1000px;">
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="userInfo">

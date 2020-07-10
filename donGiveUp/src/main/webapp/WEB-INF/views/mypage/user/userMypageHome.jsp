@@ -92,12 +92,13 @@
 .table-wrap{
 	margin-top : 20px;
 }
-.pageNavi{
+#pageNavi{
 	text-align : center;
 }
 
 .table th{
 	font-size : 18px;
+	background-color : #F1F1F1;
 }
 .table th, td{
 	text-align : center;
@@ -129,12 +130,22 @@
 .pageNavi{
 	padding:10px;
 }
+.plus{
+	color:blue;
+}
+.minus{
+	color:red;
+}
+.home>a{
+	background-color : #0fbcff;
+	color : white;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"/>
 	
-	<div class="content">
+	<div class="content"  style="height:1000px;">
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="userInfo">
@@ -190,18 +201,18 @@
 								<td>${((reqPage-1)*10+i.count)}</td>
 								<c:if test="${u.moneyStock == '입금' }">
 									<td>입금</td>
-									<td>+${u.moneyHistory}</td>
+									<td class="moneys"><span class="plus">(+)</span> ${u.moneyHistory}</td>
 								</c:if>
 								<c:if test="${u.moneyStock == '출금' }">
 									<td>출금</td>
-									<td>-${u.moneyHistory}</td>
+									<td class="moneys"><span class="minus">(-)</span> ${u.moneyHistory}</td>
 								</c:if>
 								<td>${u.moneyUseDate }</td>
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
- 				<div class="pageNavi">
+ 				<div id="pageNavi">
 					${pageNavi }
 				</div>
 			</div>
@@ -222,7 +233,7 @@
 							<tr><td style="text-align:left;">10,000원 - 110 돈토리</td><td><input type="radio" name="price" value=10000></td></tr>
 							<tr><td style="text-align:left;">30,000원 - 350 돈토리</td><td><input type="radio" name="price" value=30000></td></tr>
 							<tr><td style="text-align:left;">50,000원 - 600 돈토리</td><td><input type="radio" name="price" value=50000></td></tr>
-							<tr><td style="text-align:left;">100,000원 - 1300 돈토리</td><td><input type="radio" name="price" value=100000></td></tr>
+							<tr><td style="text-align:left;">100,000원 - 1,300 돈토리</td><td><input type="radio" name="price" value=100000></td></tr>
 						</table> 
 						<div style="margin-top:20px;">
 							<button type="button" class="cash-modal" id="cashPay">+ 충전하기</button>
@@ -236,6 +247,7 @@
 		</div>
 	<script>
 		var memberId = "${sessionScope.member.memberId}";
+		
 		
 		$("#cashPay").click(function(){
 			
@@ -260,6 +272,7 @@
 				    		data : {memberId : memberId, amount : amount},
 				    		success : function(result){
 				    			pageMove(1, memberId);
+				    			location.reload();
 				    		},
 				    		error : function(){
 				    			
@@ -284,7 +297,7 @@
 				url : "/allUseMoney.don",
 				data : {memberId : memberId},
 				success : function(result){
-					$("#allUseMoney").html(result);
+					$("#allUseMoney").html(result.toLocaleString());
 				}
 			});
 			
@@ -292,7 +305,7 @@
 				url : "/nowMoney.don",
 				data : {memberId : memberId},
 				success : function(result){
-					$("#nowMoney").html(result);
+					$("#nowMoney").html(result.toLocaleString());
 				}
 			});
 		});
@@ -300,7 +313,7 @@
 		function pageMove(reqPage, memberId){
 			$(".newTr").remove();
 			$("#pageNavi").children().remove();
-			
+			console.log("reqPage : " + reqPage);
 			$.ajax({
 				url : "/pageMove.don",
 				data : {reqPage : reqPage, memberId : memberId},
@@ -308,15 +321,15 @@
 					var list = data.list;
 					var pageNavi = data.pageNavi;
 					var html = "";
-					
+					console.log("페이지내비 : " + pageNavi);
 					for(var i=0; i<list.length; i++){
 						html += "<tr class='newTr'><td>" + ((reqPage-1)*5+1+i) + "</td>";
 						if(list[i].moneyStock == "입금"){
 							html += "<td>입금</td>";
-							html += "<td>+" + list[i].moneyHistory + "</td>";							
+							html += "<td><span class='plus'>(+)</span> " + list[i].moneyHistory.toLocaleString(); + "</td>";							
 						}else if(list[i].moneyStock == "출금"){
 							html += "<td>출금</td>";
-							html += "<td>-" + list[i].moneyHistory + "</td>";
+							html += "<td><span class='minus'>(-)</span> " + list[i].moneyHistory.toLocaleString(); + "</td>";
 						}
 						html += "<td>" + list[i].moneyUseDate + "</td></tr>";
 					}

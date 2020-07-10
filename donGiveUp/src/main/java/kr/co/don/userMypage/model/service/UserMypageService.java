@@ -24,6 +24,65 @@ public class UserMypageService {
 
 	public AdminPageDataGenericVO<UserMoneyUseListVO> moneyUserList(String memberId, int reqPage) {
 		int numPerPage = 5; //한번에 표시할 게시물 수
+		System.out.println("req!! : " + reqPage);
+		//검색 조건을 위한 map
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		int totalCount =   dao.moneyUserListTotalCount(memberId);
+		
+		int start = (reqPage-1)*numPerPage+1;
+		int end = reqPage*numPerPage;
+		
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("memberId", memberId);
+		
+		int totalPage = 0; //총 페이지 수
+		
+		if(totalCount%numPerPage==0) {
+			totalPage =  totalCount/numPerPage;
+		}else {
+			totalPage =  totalCount/numPerPage+1;
+		}
+		
+		ArrayList<UserMoneyUseListVO> list = (ArrayList<UserMoneyUseListVO>)dao.moneyUserList(map);
+				
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		
+		// pageNo 연산 -> 페이지 시작번호
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		//int pageNo = 1;
+		if (reqPage != 1) {
+			pageNo = reqPage - 1;
+		}
+		// 이전버튼 생선
+		if (pageNo != 1) {
+				pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo - 1) + ",`"+memberId+"`);'>이전</a>";
+		}
+				
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span class='pageNavi'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>" + pageNo+"</a>";	
+			}
+			pageNo++;
+			if (pageNo > totalPage) {
+				break;
+			}
+		}
+		
+		if (pageNo <= totalPage) {
+			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>다음</a>";
+		}
+		
+		AdminPageDataGenericVO<UserMoneyUseListVO> pageData = new AdminPageDataGenericVO<UserMoneyUseListVO>(list, pageNavi);
+		
+		return pageData;
+		
+		/*
+		int numPerPage = 5; //한번에 표시할 게시물 수
 		
 		//검색 조건을 위한 map
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -89,6 +148,7 @@ public class UserMypageService {
 		AdminPageDataGenericVO<UserMoneyUseListVO> pageData = new AdminPageDataGenericVO<UserMoneyUseListVO>(list, pageNavi);
 		
 		return pageData;
+		*/
 	}
 
 	public int allUseMoney(String memberId) {
@@ -316,6 +376,15 @@ public class UserMypageService {
 
 	public int bankCancelReq(int bankNo) {
 		return dao.bankCancelReq(bankNo);
+	}
+
+	public HashMap<String, String> donationToCompany(String memberId, String companyName, int price, int bankNo) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("companyName", companyName);
+		map.put("price", String.valueOf(price));
+		map.put("bankNo", String.valueOf(bankNo));
+		return dao.donationToCompany(map);
 	}
 
 
