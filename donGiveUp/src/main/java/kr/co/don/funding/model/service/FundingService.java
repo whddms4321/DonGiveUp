@@ -21,7 +21,7 @@ public class FundingService {
 	public FundingData selectList(HashMap<String,String> map) {
 				
 		//총 게시물 숫자
-		int totalCount = fundingDao.selectone(map);
+		int totalCount = fundingDao.totalCount(map);
 		System.out.println("토탈"+totalCount);
 		//보여줄 최대 게시물 숫자
 		int numPerPage = 12;
@@ -132,6 +132,11 @@ public class FundingService {
 		
 	
 		return data; 
+	}
+
+	public Funding fundingView(int fundingNo) {
+		
+		return fundingDao.fundingView(fundingNo);
 	}
 
 }

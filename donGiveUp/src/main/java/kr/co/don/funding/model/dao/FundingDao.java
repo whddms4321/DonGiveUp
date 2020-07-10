@@ -22,8 +22,14 @@ public class FundingDao {
 		return sqlSession.selectList("funding.selectList", map);
 	}
 
-	public int selectone(HashMap<String, String> map) {
-		return sqlSession.selectOne("funding.selectOne",map);
+	public int totalCount(HashMap<String, String> map) {
+		
+		return sqlSession.selectOne("funding.totalCount",map);
+	
+	}
+	public Funding fundingView(int fundingNo) {
+		
+		return sqlSession.selectOne("funding.fundingView",fundingNo);
 	
 
 	}

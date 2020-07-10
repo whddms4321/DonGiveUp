@@ -37,7 +37,13 @@
 body {
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
+a:hover{
+	text-decoration: none;
+	opacity: 0.7;
+}
+a{
+	color:black;
+}
 .content {
 	overflow: hidden;
 }
@@ -93,6 +99,28 @@ body {
 	float:right;
 
 }
+.funding_percent{
+	position:absolute;
+	top:220px;
+	left:250px;
+	width:50px;
+	height:50px;
+	border:1.5px solid #0fbcff;
+	padding:0.3px;
+	border-radius:50%; 
+	text-align: center;
+	font-size:18px;
+	font-weight: 400;
+	line-height: 45px;
+	color:white;
+	background-color:#0fbcff;	
+}
+.fundingPercent{
+	
+}
+.percent{
+	font-size:15px;
+}
 .dropdown{
 	/* display:inline-block;
 	float:left; */
@@ -104,6 +132,26 @@ body {
 .pageNavi_div>div{
 	margin:0 auto;
 	width:100%;	
+}
+.fundingList_div{
+	position: relative;
+}
+.funding_img{
+	width:99%;
+	height:220px;
+	margin:0 auto;
+	background-size:cover;
+}
+.dateLeft{
+	float:left;
+}
+.funding_now_price{
+	float:right;
+}
+.fundingList_a{
+	display:block;
+	width:100%;
+	height:100%;
 }
 </style>
 <script>
@@ -141,22 +189,31 @@ body {
 				</div>
 			</div>
 			<br>
-			<div class="row funding_List">
+			<div class="row">
 				<c:forEach var="n" items="${list }">
-					<div class="col-lg-3 funding_div">
-						<img class="funding_img" src="/resources/upload/funding/${n.fundingFilepath }">
-						<input type="hidden" name="fundingNo">
-						<div class="funding_title">
-							<span>${n.fundingTitle }</span>
-						</div>
-						<div class="funding_group_introduce">
-							<span>${n.fundingGroupIntroduce }</span>
-						</div>
-						<hr>
-						<div class="funding_info">
-							<span>현재 금액 : ${fundingNowPrice }</span>
+					<div class="col-lg-3 fundingList_div">
+						<a class="fundingList_a" href="/fundingView.don?fundingNo=${n.fundingNo }">
+							<img class="funding_img" src="/resources/upload/funding/${n.fundingFilepath }">
+							<input type="hidden" name="fundingNo">
+							<div class="funding_title">
+								<span>${n.fundingTitle }</span>
+							</div>
+							<div class="funding_group_introduce">
+								<span>${n.fundingGroupIntroduce }</span>
+							</div>
+							<div class="funding_percent">
 							
-						</div> 
+								<span class="fundingPercent">${n.fundingPercent }</span>
+								<Strong class="percent"> %</Strong>
+							</div>
+							<hr>
+							<div class="funding_info">
+								<span class="dateLeft">${n.dateLeft } 일 남음</span>
+								<span class="funding_now_price">현재 금액 : ${n.fundingNowPrice }</span>
+								
+							</div>
+						</a>
+						<br><br><br><br> 
 					</div>
 				</c:forEach>
 			</div>

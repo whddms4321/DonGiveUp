@@ -2,6 +2,8 @@ package kr.co.don.funding.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -111,6 +113,18 @@ public class FundingController {
 		
 		return new Gson().toJson(fd);
 		
+	}
+	
+	@RequestMapping(value="/fundingView.don")
+	public String fundingView(Model model, int fundingNo) {
+		
+		Funding funding = new Funding();
+		funding = fundingService.fundingView(fundingNo);
+		
+		model.addAttribute("funding", funding);
+		
+		
+		return "funding/fundingView";
 	}
 	
 }

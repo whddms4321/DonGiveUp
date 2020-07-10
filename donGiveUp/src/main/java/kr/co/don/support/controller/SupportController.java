@@ -142,6 +142,8 @@ public class SupportController {
 	public String supportInsert(HttpServletRequest request, MultipartFile file, Support support) {
 		System.out.println(support);
 		
+		
+		
 		if (!file.isEmpty()) {
 			//저장할 기본 경로
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/support/");
