@@ -72,4 +72,8 @@ public class TalentDao {
 	public int totalCount(int talentNo) {
 		return sqlSession.selectOne("talentBoard.totalCount",talentNo);
 	}
+
+	public int deleteTalentList(TalentList list) {
+		return sqlSession.delete("talentList.deleteTalentList",list);
+	}
 }

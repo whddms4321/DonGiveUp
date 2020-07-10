@@ -158,4 +158,8 @@ public class TalentService {
 
 		return data;
 	}
+
+	public int deleteTalentList(TalentList list) {
+		return dao.deleteTalentList(list);
+	}
 }

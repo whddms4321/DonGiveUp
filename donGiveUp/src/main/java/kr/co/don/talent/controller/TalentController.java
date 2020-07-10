@@ -179,4 +179,18 @@ public class TalentController {
 		model.addAttribute("talentNo",talentNo);
 		return "talent/talentBoardDeleteFrm";
 	}
+	
+	@RequestMapping(value = "/deleteTalentList.don")
+	public String deleteTalentList(TalentList list,Model model) {
+		int result = service.deleteTalentList(list);
+		if(result!=0) {
+			model.addAttribute("msg","탈퇴 성공");
+			model.addAttribute("loc","/");
+			return "main/msg";
+		}else {
+			model.addAttribute("msg","탈퇴 신청 실패");
+			model.addAttribute("loc","/");
+			return "main/msg";
+		}
+	}
 }

@@ -223,4 +223,19 @@ public class MemberController {
 			return "main/msg";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectMemberPw.don",produces = "text/html;charset=utf-8")
+	public String selectMemberPw(String memberPw){
+		Member member = new Member();
+		member.setMemberPw(memberPw);
+		ArrayList<Member> list = service.selectMemberPwEnc(member);
+		if(list.isEmpty()) {
+			// 탈퇴 불가능한 상태
+			return "0";
+		}else {
+			// 탈퇴 가능한 상태
+			return "1";
+		}
+	}
 }

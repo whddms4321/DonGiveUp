@@ -11,4 +11,7 @@
 		from talent_list
 			where member_id=#{memberId} and talent_no=#{talentNo}
 	</select>
+	<delete id="deleteTalentList" parameterType="talentList">
+		delete from talent_list where member_id=#{memberId} and talent_no=#{talentNo} 
+	</delete>
 </mapper>

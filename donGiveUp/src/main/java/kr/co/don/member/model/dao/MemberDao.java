@@ -58,4 +58,9 @@ public class MemberDao {
 		return sqlSession.update("member.updateMemberPw",m);
 	}
 
+	public ArrayList<Member> selectMemberPw(Member member) {
+		List list = sqlSession.selectList("member.selectMemberPw",member); 
+		return (ArrayList<Member>)list; 
+	}
+
 }
