@@ -14,7 +14,7 @@
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <!--캐러셀-->
-   
+
 </head>
 
 <body>
@@ -45,9 +45,9 @@
                                     <span class="foundationName">댕댕이행복재단</span>
                                 </div>
                                 <span class="=prgWrap">
-                                    <progress value="70" max="100" class="prgBar"></progress>
+                                    <progress value="100" max="100" class="prgBar"></progress>
                                 </span>
-                                <span class="finalDnMoney">700,000,000</span>
+                                <span class="finalDnMoney">70,000</span>
                             </div>
                         </a>
                     </td>
@@ -106,16 +106,18 @@
             <table class="fdreviewList">
                 <tr>
                     <td>
-                        <div class="fdreviewBox">
-                            <div class="fdrimg">
-                                <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                        <a href="/fdrview.don">
+                            <div class="fdreviewBox">
+                                <div class="fdrimg">
+                                    <img src="/resources/dahyun/imgs/아슈크림.jpg">
+                                </div>
+                                <div class="fdrText">
+                                    <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
+                                    <span class="foundationName">차녀기아슈크림가게</span>
+                                </div>
+                                <div class="fdrLine"></div>
                             </div>
-                            <div class="fdrText">
-                                <span class="fdrTitle">찬혀긔가 직접 만든 우유 아이스크림 펀딩 후기.</span>
-                                <span class="foundationName">차녀기아슈크림가게</span>
-                            </div>
-                            <div class="fdrLine"></div>
-                        </div>
+                        </a>
                     </td>
                     <td>
                         <div class="fdreviewBox">
@@ -163,16 +165,18 @@
             <table class="spreviewList">
                 <tr>
                     <td>
-                        <div class="spreviewBox">
-                            <div class="sprimg">
-                                <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                        <a href="/sprview.don">
+                            <div class="spreviewBox">
+                                <div class="sprimg">
+                                    <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                                </div>
+                                <div class="sprText">
+                                    <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <div class="sprLine"></div>
                             </div>
-                            <div class="sprText">
-                                <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
-                                <span class="foundationName">댕댕이행복재단</span>
-                            </div>
-                            <div class="sprLine"></div>
-                        </div>
+                        </a>
                     </td>
                     <td>
                         <div class="spreviewBox">
@@ -215,7 +219,7 @@
         </div>
         <div class="vsreviewWrap">
             <div class="vsrHead"><a href="#">함께해요 후기<i class="iconmore fas fa-angle-right"></i></a></div>
-           
+
         </div>
     </div>
 

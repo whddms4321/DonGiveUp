@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>기부 상세 페이지</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
 .content-main{
 margin:0 auto;
@@ -51,18 +53,24 @@ font-size: 40px;
 font-weight: bold;
 }
 .content-main-left-content{
-	width: 100%;
-height: 1000px;
+	width: 90%;
+	margin: 0 auto;
+
+
 
 }
 .content-main-left-file{
-width: 100%;
-height: 100px;
+margin: 0 auto;
+width: 90%;
+height: 50px;
+line-height: 50px;
+
 
 }
 .content-main-left-comment{
-	width: 100%;
-height: 380px;
+margin: 0 auto;
+width: 90%;
+	
 
 }
 .content-main-right-money{
@@ -135,7 +143,7 @@ line-height: 70px;
 
 }
 .content-main-right-donation-button{
-	width: 99.2%;
+	width: 99%;
 	height: 100%;
 	background-color: #0fbcff;
 	font-size: 25px;
@@ -209,13 +217,20 @@ font-size: 23px;
 				<a class="content-main-right-money-a3">${detail.donationStartDate} ~ ${detail.donationEndDate}까지</a><br>
 				<div class="content-main-right-money-d2"><a class="content-main-right-money-a4">D-59</a></div><br>	
 				<a class="content-main-right-money-a5">${detail.donationNowMoney}원</a><br><br>
-				<a class="content-main-right-money-a6">목표${detail.donationGoalMoney}원</a><br>						
+				<a class="content-main-right-money-a6">${detail.donationGoalMoney}원 목표</a><br>						
 				
 					
 				</div>
 				<div class="content-main-right-donation">
-					<button class="content-main-right-donation-button">모금함 기부 하기</button>	
-				</div>
+				<form class="donationMoney">
+				<input type="hidden" name="memberId" value="${sessionScope.member.memberId}">
+				<input type="hidden" name="donationNowMoney" value="${detail.donationNowMoney}">	
+				<input type="hidden" name="donationNo" value="${detail.donationNo }">
+				<input type="hidden" name="donationType" value="${detail.donationType }">
+				<input type="hidden" name="companyName" value="${sessionScope.member.companyName}">
+				
+				<button class="content-main-right-donation-button" onclick="donationMoney('${detail.donationNo}','${detail.donationType }','${detail.donationNowMoney}')" type="button">모금함 기부 하기</button>	
+				</form></div>
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체 안내</a></div><br>
 				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="/resources/upload/images/1.JPG"></a><br>
@@ -245,5 +260,26 @@ font-size: 23px;
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+	<script>
+	function donationMoney(donationNo,donationType,donationNowMoney) {
+		console.log("시작");
+		var memberId = "${sessionScope.member.memberId}";
+		var companyName ="${company.companyName}";
+		var url = "/donationMoney.don";
+		var title = "donationMoney";
+		var status = "left=500px, top=100px, width=550px, height=500px, menubar=no, status=no, scrollbars=yes";
+		var popup = window.open("", title, status);
+		$("input[name=memberId]").val(memberId);
+		$("input[name=donationNo]").val(donationNo);
+		$("input[name=donationNowMoney]").val(donationNowMoney);
+		$("input[name=donationType]").val(donationType);
+		$("input[name=companyName]").val(companyName);
+		$("input[name=memberId]").val(memberId);
+		$(".donationMoney").attr("action", url);
+		$(".donationMoney").attr("method", "post");
+		$(".donationMoney").attr("target", title);//새로 열린 popup창과 form태그를 연결
+		$(".donationMoney").submit();
+	}
+	</script>
 </body>
 </html>

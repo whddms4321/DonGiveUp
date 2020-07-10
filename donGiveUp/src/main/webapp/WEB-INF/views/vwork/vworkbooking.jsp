@@ -16,13 +16,16 @@
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=5tpvdsp8rb&submodules=geocoder"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css">
+    <!--데이트피커-->
+    <link href="/resources/dahyun/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <script src="/resources/dahyun/dist/js/datepicker.min.js"></script>
+
+    <!-- Include English language -->
+    <script src="/resources/dahyun/dist/js/i18n/datepicker.en.js"></script>
 </head>
 
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.kr.min.js"></script>
     <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
     <div class="content">
         <div class="vworkbTitle">봉사활동제목가나다라마사아자차카타파하<span>&nbsp;>&nbsp;예약 정보 입력</span></div>
@@ -32,28 +35,15 @@
                 <img src="/resources/dahyun/imgs/둥둥2.jpg">
             </div>
             <div class="vwDate">
+                <div class="dpWrap">
+                    <input class="datepicker-here" id="datePicker" type="hidden" data-language='en'>
+                </div>
             </div>
         </div>
         <div class="bookingWrap2">
             <div class="vwInfo">
                 <div class="introWrap">
-                    <p class="introDetail">
-                        <br>
-                        [모집대상] 14세 이상 청소년 포함 누구나
-                        <br>
-                        [봉사활동시간] 13-16시
-                        <br>
-                        <br>
-                        [봉사활동소개]
-                        <br>
-                        1. 오늘 하루, 우리가 해야 할 일에 대해 배우고 역할을 나눕니다.
-                        <br>
-                        2. 각자 맡은 음식의 재료를 준비하고, 씻고 다듬어 요리합니다.
-                        <br>
-                        3. 길게 줄 선 이웃을 위해 배식을 진행합니다.
-                        <br><br>
-                        * 초록우산어린이재단이 주최하는 본 활동의 원활한 운영을 위해 재단법인 Don Give Up에서 신청 모집을 대행, 지원합니다.
-                    </p>
+                   ${vw.vworkIntroBr }
                 </div>
             </div>
             <form id="vserForm" method="post">
@@ -166,7 +156,7 @@
                 $("#totalFee").html(fee * count);
             });
         });
-        
+
         $("#addressBtn").css("cursor", "pointer").click(function() {
             $(this).css("background-color", "#fff");
             $(this).css("color", "rgba(0,0,0,.5)");

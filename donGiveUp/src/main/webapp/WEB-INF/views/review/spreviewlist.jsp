@@ -43,7 +43,7 @@
             <table class="spreviewList">
                 <tr>
                     <td>
-                        <a href="#">
+                        <a href="/sprview.don">
                             <div class="spreviewBox">
                                 <div class="sprimg">
                                     <img src="/resources/dahyun/imgs/강쥐용품.jpg">
@@ -99,7 +99,123 @@
                         </a>
                     </td>
                 </tr>
-              
+                <tr>
+                    <td>
+                        <a href="/sprview.don">
+                            <div class="spreviewBox">
+                                <div class="sprimg">
+                                    <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                                </div>
+                                <div class="sprText">
+                                    <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <div class="sprLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="spreviewBox">
+                                <div class="sprimg">
+                                    <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                                </div>
+                                <div class="sprText">
+                                    <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <div class="sprLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="spreviewBox">
+                                <div class="sprimg">
+                                    <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                                </div>
+                                <div class="sprText">
+                                    <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <div class="sprLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="spreviewBox">
+                                <div class="sprimg">
+                                    <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                                </div>
+                                <div class="sprText">
+                                    <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <div class="sprLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/sprview.don">
+                            <div class="spreviewBox">
+                                <div class="sprimg">
+                                    <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                                </div>
+                                <div class="sprText">
+                                    <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <div class="sprLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="spreviewBox">
+                                <div class="sprimg">
+                                    <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                                </div>
+                                <div class="sprText">
+                                    <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <div class="sprLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="spreviewBox">
+                                <div class="sprimg">
+                                    <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                                </div>
+                                <div class="sprText">
+                                    <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <div class="sprLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <div class="spreviewBox">
+                                <div class="sprimg">
+                                    <img src="/resources/dahyun/imgs/강쥐용품.jpg">
+                                </div>
+                                <div class="sprText">
+                                    <span class="sprTitle">강아지용품 후원 유기견들에게 행복을.</span>
+                                    <span class="foundationName">댕댕이행복재단</span>
+                                </div>
+                                <div class="sprLine"></div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                
             </table>
         </div>
     </div>
@@ -114,8 +230,8 @@
             });
         });
 
-        function fdrWrite() {
-            location.href = "/fdrwrite.don";
+        function sprWrite() {
+            location.href = "/sprwrite.don";
         };
 
     </script>

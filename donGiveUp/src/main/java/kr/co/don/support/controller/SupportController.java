@@ -68,7 +68,6 @@ public class SupportController {
 			supportApplyId = "";
 			
 		}
-		 
 		ArrayList<Support> list = supportService.supportList(count,supportApplyId);
 		
 		String button ="<button id=\"moreList\" value="+(count+1)+">더 보기</button>";
