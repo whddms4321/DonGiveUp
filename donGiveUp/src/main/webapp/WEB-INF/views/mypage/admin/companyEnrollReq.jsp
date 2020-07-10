@@ -12,6 +12,7 @@
 		}
 		table th{
 			font-size:20px;
+			background-color : #F1F1F1;
 		}
 		#pageNavi a, span{
 			padding:13px;

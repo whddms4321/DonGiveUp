@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javafx.scene.control.Alert;
 import kr.co.don.donation.model.service.DonationService;
 import kr.co.don.donation.model.vo.DonationData;
+import kr.co.don.donationIn.model.vo.DonationInVo;
 import kr.co.don.member.model.vo.Member;
 import kr.co.don.donation.model.vo.Donation;
 
@@ -43,7 +45,36 @@ public class DonationController {
 	public String donation(int reqPage, String type,Model model) {
 		
 		DonationData data = service.DonationList(reqPage, type);
+			
 		
+		SimpleDateFormat format2 = new SimpleDateFormat ( "yyyy년 MM월 dd일");
+				
+		Date time = new Date();
+				
+	int typeTotalCount = 0;
+	int typeMemberCount = 0;
+	int typeTodayCount =0;
+	
+		String time2 = format2.format(time);
+		ArrayList<DonationInVo> list = service.DonationInType(type);	
+		ArrayList<DonationInVo> list2 = service.DonationInToday(type); 
+		for(int i=0; i<list.size(); i++) { 
+			typeTotalCount +=
+				  list.get(i).getDonationInMoney(); 
+			}
+		for(int i=0; i<list2.size(); i++) {
+			  typeTodayCount += list.get(i).getDonationInMoney(); 
+			  }
+		typeMemberCount = list.size();
+		
+//		int goal = (data.getList().get(0).getDonationGoalMoney());
+//		int now = (data.getList().get(0).getDonationNowMoney());
+//		int per= (now/goal)*100;
+		
+		model.addAttribute("typeTodayCount",typeTodayCount);
+		model.addAttribute("typeMemberCount",typeMemberCount);
+		model.addAttribute("typeTotalCount",typeTotalCount);
+		model.addAttribute("time2",time2);
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
 		model.addAttribute("totalCount", data.getTotalCount());
@@ -67,7 +98,7 @@ public class DonationController {
 		return "donation/donationDetail";	
 	}
 	
-	@RequestMapping(value = "/donationDetailFrm.don")
+	@RequestMapping(value = "/donationDetail2.don")
 	public String donationDetailFrm(Donation donation, Model model) {
 
 		
@@ -77,15 +108,54 @@ public class DonationController {
 		return "donation/donationDetail2";	
 	}
 	
-	
+	@RequestMapping(value = "/donationMoney.don")
+	public String donationMoney(Donation donation,String companyName,int donationNowMoney,String memberId ,Model model) {
+		
+		Member m = service.MemberSerch(memberId);
+		
+		model.addAttribute("m",m);
+		model.addAttribute("d", donation);
+		model.addAttribute("donationNowMoney", donationNowMoney);
+		model.addAttribute("companyName",companyName);
+		return "donation/donationMoney";	
+	}
 	
 	
 	@RequestMapping(value = "/donationInsertFrm.don")
 	public String donationInsertFrm() {
 		return "donation/donationInsert";
 	}
-	
-
+	@RequestMapping(value = "/donationInInsert.don")
+	public String donationInInsert(Member m,DonationInVo d, int donationNowMoney , Donation d1) {
+		
+		int result = service.DonationInInsert(d);
+		Donation d2 = service.DonationSerch(d1);
+		int memMon= m.getMemberMoney();
+		int donInMon = d.getDonationInMoney();
+		int resultMon = memMon-donInMon;
+		
+		int resultDon = donationNowMoney+(donInMon*100);
+		System.out.println("전 : "+donationNowMoney);
+		d2.setDonationNowMoney(resultDon);
+		System.out.println("후 "+d2.getDonationNowMoney());
+		m.setMemberId(d.getDonationInMemberid());
+		m.setMemberMoney(resultMon);
+		
+		if (result > 0) {
+			int result2 = service.MemberMoneyUpdate(m);
+			int result3 = service.DonationMoneyUpdate(d2);
+			if(result2>0 && result3>0) {
+			return "donation/donationInSuccess";
+		} else {
+			return "donation/donationInFail";
+			
+		}
+		
+	}else {
+		return "donation/donationInFail";
+	}
+		
+	}
 	
 	@RequestMapping(value = "/donationInsert.don")
 	public String donationInsert(HttpServletRequest request, MultipartFile file, Donation donation) {
@@ -106,11 +176,10 @@ public class DonationController {
 			String fullpath = savePath + filepath;
 
 			try {  
-
 				donation.setDonationFilename(originalFilename);
-				donation.setDonationFilepath(filepath);
+				donation.setDonationFilepath(fullpath);
 				byte[] bytes = file.getBytes();
-
+				
 				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
 				bos.write(bytes);
 				bos.close();
@@ -121,12 +190,13 @@ public class DonationController {
 				e.printStackTrace();
 			}
 		}
-
+		donation.setDonationType("전체,"+donation.getDonationType());
+		
 		int result = service.donationInsert(donation);
 		
 
 		if (result > 0) {
-			return "donation/donation";
+			return "donation/donation.don?reqPage=1&type=전체";
 		} else {
 			return "donation/donationInsert";
 		}

@@ -41,11 +41,13 @@
 <tx:annotation-driven/>
 
 <task:annotation-driven/>
-
-
+	<context:component-scan base-package="kr.co.don.regularIn"/>
+	<context:component-scan base-package="kr.co.don.regular"/>
+	<context:component-scan base-package="kr.co.don.donationIn"/>
+	<context:component-scan base-package="kr.co.don.donation"/>
 	<context:component-scan base-package="kr.co.don.funding"/>
 	<context:component-scan base-package="kr.co.don.fundingIn"/>
 	<context:component-scan base-package="kr.co.don.support"/>
 	<context:component-scan base-package="kr.co.don.member"/>
-
+	<context:component-scan base-package="kr.co.don.talent"/>
 </beans>

@@ -18,7 +18,7 @@ public class MemberService {
 	@Qualifier("memberDao")
 	private MemberDao dao;
 	
-	
+	@Transactional
 	public Member selectOneMemberEnc(Member m) {
 		return dao.selectOneMember(m);
 	}
@@ -65,6 +65,11 @@ public class MemberService {
 	@Transactional
 	public int updateMemberPwEnc(Member m) {
 		return dao.updateMemberPw(m);
+	}
+	
+	@Transactional
+	public ArrayList<Member> selectMemberPwEnc(Member member) {
+		return dao.selectMemberPw(member);
 	}
 
 }

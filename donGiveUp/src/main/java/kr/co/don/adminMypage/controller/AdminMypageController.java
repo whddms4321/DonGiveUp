@@ -1,5 +1,5 @@
-package kr.co.don.adminMypage.controller;
 
+package kr.co.don.adminMypage.controller;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,7 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
-
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -58,7 +56,6 @@ public class AdminMypageController {
 	
 	//관리자 마이페이지 메인(DashBoard) 이동 
 	@RequestMapping(value="/dashboard.don")
-
 	public String dashboard(Model m ) {
 		HashMap<String, Integer> map = service.dashboard();
 		m.addAttribute("board", map.get("board"));
@@ -66,7 +63,6 @@ public class AdminMypageController {
 		m.addAttribute("comMem", map.get("comMember"));
 		m.addAttribute("mem", map.get("member"));
 		m.addAttribute("regular", map.get("regular"));
-
 		return "/mypage/admin/dashboard";
 	}
 	
@@ -396,7 +392,6 @@ public class AdminMypageController {
 	public int updateRegular(int regularNo, String type) {
 		return service.updateRegular(regularNo, type);
 	}
-
 	
 	@ResponseBody
 	@RequestMapping(value="/chartData.don" , produces = "application/json;")
@@ -452,6 +447,4 @@ public class AdminMypageController {
 
 
 	}
-
 }
-

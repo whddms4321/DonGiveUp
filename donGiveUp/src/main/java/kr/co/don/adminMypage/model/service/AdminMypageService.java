@@ -1,3 +1,4 @@
+
 package kr.co.don.adminMypage.model.service;
 
 import java.util.ArrayList;
@@ -313,13 +314,11 @@ public class AdminMypageService {
 		map.put("supportNo", String.valueOf(supportNo));
 		ArrayList<AdminSupportApplyVO> list = (ArrayList<AdminSupportApplyVO>)dao.selectSupportRequestCompany(map);
 		
-
 		for(int i=0; i<list.size(); i++) {
 			System.out.println("테스트 아이디 : "  +  list.get(i).getSupportApplyId());
 			System.out.println("테스트 어플라이 숫자 : "  +  list.get(i).getSupportApplyNo());
 			System.out.println("테스트 신청사유 : "  +  list.get(i).getSupportApplyReason());
 		}
-
 		System.out.println("마감신청기관 리스트 사이즈 : " + list.size());
 		
 		
@@ -370,9 +369,7 @@ public class AdminMypageService {
 		HashMap<String,String> map = new HashMap<String,String>();
 		map.put("supportNo", String.valueOf(supportNo));
 		map.put("applyId",applyId);
-
 		System.out.println("테스트~!@!@#!@$#!@#!@");
-
 		HashMap<String,String> result = dao.supportAssignToCompany(map);
 		return result;
 	}
@@ -613,7 +610,6 @@ public class AdminMypageService {
 		return dao.updateRegular(map);
 	}
 
-
 	public HashMap<String, Integer> dashboard() {
 		int boardList =  dao.allBoardCount();
 		int companyCompleteList = dao.allCompanyCompleteCount();
@@ -687,27 +683,6 @@ public class AdminMypageService {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
-
 
 }

@@ -8,5 +8,6 @@ public class DonationInVo {
 	private String donationInMemberid;
 	private int donationInMoney;
 	private String donationInDate;
+	private String donationInType;
 	private int donationNo;
 }

@@ -147,8 +147,8 @@
 		<if test='type.equals("regular")'>
 			select * from
 				(select ROWNUM as rnum, r.* from
-					(select regular_in_no as boardNo, regular_in_id as boardWriter, company_name as boardTitle, regular_in_money as boardMoney,
-					regular_in_date as boardDate, regular_in_end_date as regularEndDate from regular_in left join member on(regular_id=member_id) where regular_in_id=#{memberId}
+					(select regular_in_no as boardNo, regular_in_id as boardWriter, company_name as boardTitle, regular_in_money as boardMoney, regular_in_cancel as boardState,
+					regular_in_pay_num as boardDate, regular_in_end_date as regularEndDate from regular_in left join member on(regular_id=member_id) where regular_in_id=#{memberId}
 					<if test='radio.equals("0")'> 
 					and	regular_in_cancel=0)
 					</if>
@@ -204,5 +204,44 @@
 		<if test='type.equals("company")'>
 			select support_apply_reason from supportapply where support_no=#{boardNo} and support_apply_state=1
 		</if> 
+	</select>
+	
+	<select id="selectBankInfo" parameterType="string" resultType="userBank">
+		select
+			 bank_no as bankNo,
+			 bank_title as bankTitle,
+			 bank_goal_money as bankGoalMoney,
+			 bank_now_money as bankNowMoney,
+			 bank_writer as bankWriter,
+			 bank_date as bankDate,
+			 bank_type as bankType,
+			 bank_organization as bankOrganization
+		 from bank where bank_writer=#{_parameter} and bank_type=0
+	</select>
+	<select id="selectBankInListTotalCount" parameterType="map" resultType="_int">
+		select count(*) from bank_in left join bank using(bank_no) where bank_in_id=#{memberId} and bank_in_type=#{type}
+	</select>
+	<select id="selectBankInList" parameterType="map" resultType="userBankIn">
+		select * from
+			(select ROWNUM as rnum, r.* from
+				(select bank_in_no as bankInNo, bank_in_id as bankInId, bank_in_money as bankInMoney, bank_in_date as bankInDate, bank_in_end_date as bankInEndDate,
+				bank_in_pay_num as bankInPayNum, bank_in_type as bankInType, bank_in_cancel as bankInCancel, bank_no as bankNo, bank_title as bankTitle, bank_type as bankType
+				from bank_in left join bank using(bank_no)where bank_in_id=#{memberId} and bank_in_type=#{type})
+			r)
+		where rnum between #{start} and #{end}
+	</select>
+	<update id="bankCancelReq" parameterType="_int">
+		update bank_in set bank_in_cancel=1 where bank_in_no=#{_parameter}
+	</update>
+	
+	<select id="donationToCompany" parameterType="map" statementType="CALLABLE">
+		{call pro_bankToCompany(
+			#{memberId},
+			#{price},
+			#{companyName},
+			#{bankNo}
+			
+		)
+		}
 	</select>
 </mapper>

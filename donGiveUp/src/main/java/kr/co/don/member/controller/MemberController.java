@@ -48,7 +48,7 @@ public class MemberController {
 			return "main/msg";
 		}else {
 			model.addAttribute("msg","로그인 실패 (아이디 패스워드를 확인하세요)");
-			model.addAttribute("loc","/");
+			model.addAttribute("loc","/member/loginFrm.don");
 			return "main/msg";
 		}
 	}
@@ -221,6 +221,21 @@ public class MemberController {
 			model.addAttribute("msg","비밀번호 변경 실패");
 			model.addAttribute("loc","/");
 			return "main/msg";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectMemberPw.don",produces = "text/html;charset=utf-8")
+	public String selectMemberPw(String memberPw){
+		Member member = new Member();
+		member.setMemberPw(memberPw);
+		ArrayList<Member> list = service.selectMemberPwEnc(member);
+		if(list.isEmpty()) {
+			// 탈퇴 불가능한 상태
+			return "0";
+		}else {
+			// 탈퇴 가능한 상태
+			return "1";
 		}
 	}
 }
