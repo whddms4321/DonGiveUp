@@ -127,7 +127,7 @@
         <script>
             $(function() {
                 $("#addBtn").click(function() {
-                    $("#billTable > tbody:last").append('<tr><td class="bName"><input type="text"></td><td class="bContent"><input type="text"></td><td class="bMoney"><input type="text"></td></tr>');
+                    $("#billTable > tbody").append('<tr><td class="bName"><input type="text"></td><td class="bContent"><input type="text"></td><td class="bMoney"><input type="text"></td></tr>');
                 });
 
             </script>

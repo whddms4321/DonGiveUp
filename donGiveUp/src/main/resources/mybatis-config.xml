@@ -19,6 +19,7 @@
 		<typeAlias type="kr.co.don.support.model.vo.SupportApply" alias="supportApply"/>
 		<typeAlias type="kr.co.don.member.model.vo.Member" alias="member"/>
 		<typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
+		<typeAlias type="kr.co.don.vserver.model.vo.VserverVo" alias="vserver"/>
 
 
 	</typeAliases>

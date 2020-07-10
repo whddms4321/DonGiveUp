@@ -81,7 +81,6 @@
 td{
     width: 312px;
 }
-
 .vworkBox {
     display: block;
     width: 300px;
@@ -228,7 +227,7 @@ td{
     border: 1px solid white;
     border-top-color: rgba(0,0,0,.2); 
 }
-#applyBtn{
+.vworkEnroll>button{
     margin-top: 10px;
     box-sizing: border-box;
     border:1px solid white;
@@ -237,20 +236,7 @@ td{
     height: 32px;
     color: #fff;
     font-weight: 600;
-    outline: none;
-    cursor: pointer;
-}
-#noneapplyBtn{
-    margin-top: 10px;
-    box-sizing: border-box;
-    border:1px solid white;
-    background-color: lightgray;
-    width: 100%;
-    height: 32px;
-    color: #3D3B3A;
-    font-weight: 600;
-    outline: none;
-    cursor: pointer;
+    
 }
 .moreBtn{
     width: 97%;

@@ -81,14 +81,42 @@ select {
     padding: 5px;
     border: 0.5px solid black;
     border-radius: 3px;
-
 }
+
 
 .ipImg {
     width: 90%;
     height: 40px;
+    
 }
-
+#vwork_img{
+    width: 40%;
+    height: 100%;
+    box-sizing: border-box;
+}
+#orjdate{
+    width: 47%;
+    height: 100%;
+    box-sizing: border-box;
+    
+}
+.noedit{
+    background-color: #E0E3DA;
+    border: none;
+    color: #a3a1a1;
+    outline: none;
+}
+.Orjd{
+    width: 10%;
+    height: 40px;
+    background-color: rgba(0, 0, 0, .2);
+    color: #fff;
+    font-weight: 600;
+    font-size: 12.5px;
+    padding: 10px;
+    padding-top: 11px;
+    
+}
 .ipJoindate {
     width: 90%;
     height: 40px;
