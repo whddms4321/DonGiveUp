@@ -10,7 +10,6 @@
 <link href="/resources/adminMypage/css/datepicker3.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="/resources/adminMypage/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 .content {
 	width: 100%;
@@ -33,7 +32,6 @@
 .userInfo{
 	width:80%;
 	height:230px;
-	border : 1px solid red;
 	margin: 0 auto;
 	margin-top:100px;
 }
@@ -98,12 +96,16 @@
 	padding : 6px;
 	border-radius : 5px;
 }
+.modify>a{
+	background-color : #0fbcff;
+	color : white;
+}
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/main/header.jsp"/>
 	
-	<div class="content">
+	<div class="content"  style="height:1000px;">
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="userInfo">
@@ -120,12 +122,12 @@
 							</a>
 						</div>
 						<div class="inList">
-							<a href="/userAttendList.don?reqPage=1&type=donation&kind=prev&memberId=${sessionScope.member.memberId}">
+							<a href="/userAttendList.don">
 							- 참여 목록
 							</a>
 						</div>
 						<div class="bank">
-							<a href="/userBank.don?reqPage=1&memberId=${sessionScope.member.memberId }">
+							<a href="/userBank.don">
 							- 저금통
 							</a>
 						</div>

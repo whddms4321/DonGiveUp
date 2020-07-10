@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="regular">
+	
+	
+	<select id="regularList" parameterType="string" resultType="member">
+	select
+	 MEMBER_ID AS memberId,
+			COMPANY_FILENAME AS companyFilename,
+			COMPANY_FILEPATH AS companyFilepath,
+			CHART_FILENAME AS chartFilename,
+			CHART_FILENAME AS chartFilepath,
+			COMPANY_NAME AS companyName
+	 from member left join regular on regular_id = member_id where regular_state = 1 and regular_type like '%'||#{_parameter}||'%' 
+
+	</select>
+	<insert id="regularInsert" parameterType="regular">
+		insert into regular values(regular_seq.nextval, #{regularWriter},#{regularTitle}, #{regularContent}, #{regularType},0 ,sysdate,0,null)
+	</insert>
+	
+	<select id="regularDetail" parameterType="String" resultType="regular">
+		SELECT 
+			REGULAR_NO AS regularNo,
+			REGULAR_ID AS regularId,
+    				REGULAR_TITLE AS regularTitle,
+    				REGULAR_CONTENT AS regularContent,
+    				REGULAR_TYPE AS regularType,
+  					REGULAR_NOW_MONEY AS regularNowMoney,	
+					REGULAR_START_DATE AS regularStartDate,
+   					REGULAR_STATE AS regularState,
+  					REGULAR_NEGATIVE AS regularNegative    
+		        FROM REGULAR
+		where regular_id = #{_parameter}
+	</select>
+	
+	<select id="regularMember" parameterType="string" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			COMPANY_FILENAME AS companyFilename,
+			COMPANY_FILEPATH AS companyFilepath,
+			CHART_FILENAME AS chartFilename,
+			CHART_FILENAME AS chartFilepath,
+			COMPANY_NAME AS companyName
+		        FROM MEMBER
+		where member_id = #{_parameter}
+	</select>
+	
+	<insert id="regularInInsert" parameterType="regularIn">
+		insert into regular_in values(regular_in_seq.nextval, #{regularInId}, #{regularInMoney},sysdate ,null,#{regularInPayNum},0,#{regularId})
+	</insert>
+	
+	<update id="memberMoneyUpdate" parameterType="member">
+		update member 
+		set 
+			member_money = #{memberMoney}
+		where member_id = #{memberId}
+	</update>
+	
+</mapper>

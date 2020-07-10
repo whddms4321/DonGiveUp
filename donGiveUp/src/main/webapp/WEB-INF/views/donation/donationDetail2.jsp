@@ -51,19 +51,24 @@ font-size: 40px;
 font-weight: bold;
 }
 .content-main-left-content{
-margin:0 auto;
-	width: 100%;
-height: 1000px;
+	width: 90%;
+	margin: 0 auto;
+
+
 
 }
 .content-main-left-file{
-width: 100%;
-height: 100px;
+margin: 0 auto;
+width: 90%;
+height: 50px;
+line-height: 50px;
+
 
 }
 .content-main-left-comment{
-	width: 100%;
-height: 380px;
+margin: 0 auto;
+width: 90%;
+	
 
 }
 .content-main-right-money{
@@ -136,7 +141,7 @@ line-height: 70px;
 
 }
 .content-main-right-donation-button{
-	width: 99.2%;
+	width: 99%;
 	height: 100%;
 	background-color: #0fbcff;
 	font-size: 25px;
@@ -198,7 +203,7 @@ font-size: 23px;
 					<a class="content-main-left-file-a">첨부 파일 : </a>
 				</div><hr>
 				<div class="content-main-left-comment">
-					<a class="content-main-left-comment-a">댓글</a><br>
+					<a class="content-main-left-comment-a"></a><br>
 					<button>더보기</button>
 				</div>
 				
@@ -215,7 +220,7 @@ font-size: 23px;
 				<a class="content-main-right-money-a3">${d.donationStartDate} ~ ${d.donationEndDate}까지</a><br>
 				<div class="content-main-right-money-d2"><a class="content-main-right-money-a4">D-59</a></div><br>	
 				<a class="content-main-right-money-a5">${d.donationNowMoney}원</a><br><br>
-				<a class="content-main-right-money-a6">목표${d.donationGoalMoney}원</a><br>						
+				<a class="content-main-right-money-a6">목표 : ${d.donationGoalMoney}원</a><br>						
 				
 					
 				</div>

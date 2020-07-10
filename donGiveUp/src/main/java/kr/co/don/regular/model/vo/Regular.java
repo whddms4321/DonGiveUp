@@ -3,12 +3,12 @@ package kr.co.don.regular.model.vo;
 import lombok.Data;
 
 @Data
-public class RegularVo {
+public class Regular {
 	private int regularNo;
 	private String regularId;
 	private String regularTitle;
 	private String regularContent;
-	private int regularType;
+	private String regularType;
 	private int regularNowMoney;
 	private String regularStartDate;
 	private int regularState;
