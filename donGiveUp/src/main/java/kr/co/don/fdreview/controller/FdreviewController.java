@@ -22,5 +22,10 @@ public class FdreviewController {
 	public String fdrwrite() {
 		return "review/fdrwrite";
 	}
+	
+	@RequestMapping(value="/fdrview.don")
+	public String fdrveiw() {
+		return "review/fdrviewpage";
+	}
 
 }

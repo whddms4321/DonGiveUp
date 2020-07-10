@@ -36,9 +36,10 @@
 .textwrap {
     width: 1000px;
     height: 150px;
+    text-align: center;
+    line-height: 100px;
     top: 200px;
     left: 130px;
-    line-height: 100px;
     position: absolute;
 }
 
@@ -56,24 +57,260 @@
 #dnrFoundation {
     font-size: 25px;
     font-weight: bold;
-    color: darkgray;
+    color: lightgrey;
 }
 
 .dnrviewWrap {
     width: 1200px;
     margin: 0 auto;
     margin-bottom: 100px;
-    border: 1px solid black;
+    
 }
 .dnrContent{
     width: 70%;
     height: 500px;
     margin: 0 auto;
-    border: 1px solid blue;
+    margin-top: 50px;
+    border: 1px solid darkgray;
+    margin-bottom: 30px;
 }
 .imgwrap{
     width: 70%;
     height: 450px;
     margin: 0 auto;
-    border: 1px solid orange;
+    
+}
+.carousel-item > img {
+    width: 100%;
+    height: 450px;
+    
+}
+.tableWrap1{
+    width: 70%;
+    margin: 0 auto;
+}
+.Fmoney{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    line-height: 95px;
+    font-size: 50px;
+    font-weight: bold;
+    color: #0fbcff;
+}
+.tableWrap1>span{
+    font-weight: bold;
+}
+.tableWrap1>table{
+    width: 100%;
+    margin-top: 7px;
+}
+.tableWrap1 tr{
+    height: 60px;
+}
+.trHead{
+    background-color: #0fbcff;
+}
+.t1Name{
+    width: 30%;
+    font-weight: bold;
+    font-size: 17px;
+}
+.t1Content{
+    width: 70%;
+    font-size: 17px;
+    font-weight: 600;
+    
+}
+#fmoney{
+    font-weight: 600;
+    color: #0fbcff;
+    margin-right: 10px;
+}
+.tableWrap2{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+
+.tableWrap2>table{
+    width: 100%;
+}
+.tableWrap2 tr{
+    height: 60px;
+}
+.trHead{
+    background-color: #0fbcff;
+}
+.billName{
+    width: 30%;
+    font-weight: bold;
+    font-size: 17px;
+}
+.bDetail{
+    width: 40%;
+    font-size: 17px;
+    font-weight: 600;
+}
+.bmoney{
+    width: 30%;
+    text-align: right;
+    font-size: 17px;
+    font-weight: 600;
+}
+.bmoney>span{
+    margin-right: 10px;
+}
+
+.foundationBox{
+    
+    width: 70%;
+    height: 150px;
+    margin: 0 auto;
+    margin-top: 70px;
+    border: 2px solid darkgray;
+    border-right: none;
+    border-left: none;
+    line-height: 150px;
+}
+#foundationName{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 7px;
+}
+#foundationH{
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 20px;
+}
+#foundationH>a{
+    text-decoration: none;
+    font-weight: 500;
+    color:#3D3B3A;
+}
+#writeDate{
+    float: right;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.cwriteBox{
+    width: 70%;
+    height: 250px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.cmtFrm{
+    width: 100%;
+}
+.cmtWrap{
+    width: 95%;
+    height: 150px;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: rgba(0,0,0,.1);
+    margin-bottom: 10px;
+}
+#dnCmt{
+    width: 95%;
+    height: 120px;
+    margin-top: 20px;
+    margin-left: 20px;
+    resize: none;
+    background-color: rgba(0,0,0,.0);
+    border: none;
+}
+.textLimit{
+    margin-left: 690px;
+    margin-top: 7px;
+    padding-top: 10px;
+}
+#nowTxt{
+    color: #0fbcff;
+}
+.cmtBtn{
+    float: right;
+    width: 65px;
+    height: 35px;
+    border-radius: 25px;
+    background-color: #e3f0f6;
+    border: none;
+    font-size: 17px;
+    font-weight: 900;
+    margin-right: 25px;
+    margin-top: -4px;
+}
+.cmtsWrap{
+    width: 70%;
+    margin: 0 auto;
+    border: 2px solid darkgray;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+.cmtsHead{
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    line-height: 40px;
+}
+.cmtsHead>span{
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+#cmtCnt{
+    color: #0fbcff;
+}
+.cmtsBox{
+    margin-top: 20px;
+    width: 100%;
+   
+}
+#cmtwriter{
+    font-weight: 900;
+    font-size: 18px;
+    margin-left: 25px;
+}
+#cmtsdetail{
+    width: 95%;
+    height: 90px;
+    margin: 0 auto;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: rgba(0,0,0,.1);
+    text-align: center;
+    margin-bottom: 7px;
+    
+}
+#cmtsdetail>input{
+    width: 95%;
+    height: 35px;
+    margin-top: 20px;
+    font-size: 16px;
+    background-color: rgba(0,0,0,.0);
+    border: none;
+    
+}
+
+#cmtswDate{
+    font-size: 17px;
+    margin-left: 25px;
+}
+
+#cmtsLike{
+    float: right;
+    margin-right: 27px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #3D3B3A;
+    margin-top: -2px;
+}
+
+#cmtsLike>i{
+    margin-right: 5px;
 }
