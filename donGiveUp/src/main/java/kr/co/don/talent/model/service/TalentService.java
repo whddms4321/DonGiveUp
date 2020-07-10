@@ -30,15 +30,13 @@ public class TalentService {
 		map.put("type", type);
 
 		int totalCount = dao.totalCount(map);
-
-		int numPerPage = 5;
+		int numPerPage = 3;
 		int totalPage;
 		if (totalCount % numPerPage == 0) {
 			totalPage = totalCount / numPerPage;
 		} else {
 			totalPage = totalCount / numPerPage + 1;
 		}
-
 		int start = (reqPage - 1) * numPerPage + 1;
 		int end = reqPage * numPerPage;
 
@@ -67,7 +65,7 @@ public class TalentService {
 				pageNavi.append("<span class='selectTalentPage'>" + pageNo + "</span>");
 			} else {
 				pageNavi.append(
-						"<a href='/talent/talentFrm.don?reqPage=" + pageNo + "&type=" + type + "'>" + pageNo + "</a>");
+						"<a class='talentBtn' href='/talent/talentFrm.don?reqPage=" + pageNo + "&type=" + type + "'>" + pageNo + "</a>");
 			}
 
 			pageNo++;
@@ -80,7 +78,6 @@ public class TalentService {
 			pageNavi.append("<a class='talentNextBtn' href='/talent/talentFrm?reqPage=" + pageNo + "&type=" + type
 					+ "'>다음</a>");
 		}
-
 		return new TalentData((ArrayList<Talent>) list, pageNavi.toString(), totalCount);
 	}
 
@@ -115,7 +112,7 @@ public class TalentService {
 
 	public TalentBoardData selectTalentBoard(int talentNo, int reqPage) {
 		// 페이지 당 출력 수
-		int numPerPage = 5;
+		int numPerPage = 3;
 		// 총 게시물 수
 		int totalCount = dao.totalCount(talentNo);
 //		System.out.println(totalCount);
@@ -134,7 +131,7 @@ public class TalentService {
 		// 페이지 내비게이션 작성 시작
 		String pageNavi = "";
 		// 페이지 내비게이션 길이
-		int pageNaviSize = 5;
+		int pageNaviSize = 3;
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		if (pageNo != 1) {
 			pageNavi += "<a class='noticePrevBtn' href='/talentBoard.don?reqPage=" + (pageNo - pageNaviSize)
@@ -144,7 +141,7 @@ public class TalentService {
 			if (reqPage == pageNo) {
 				pageNavi += "<span class='selectNoticePage'>" + pageNo + "</span>";
 			} else {
-				pageNavi += "<a href='/talentBoard.don?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+				pageNavi += "<a class='noticeBtn' href='/talentBoard.don?reqPage=" + pageNo + "'>" + pageNo + "</a>";
 			}
 			pageNo++;
 			if (pageNo > totalPage) {
@@ -161,5 +158,9 @@ public class TalentService {
 
 	public int deleteTalentList(TalentList list) {
 		return dao.deleteTalentList(list);
+	}
+
+	public ArrayList<Talent> selectTalentList(String memberId) {
+		return dao.selectTalentList(memberId);
 	}
 }

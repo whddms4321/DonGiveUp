@@ -10,7 +10,7 @@
 	src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
 .content {
-	height: 1100px;
+	height: 650px;
 	width: 1200px;
 	margin: 0 auto;
 	font-family: 'Noto Sans KR', sans-serif;
@@ -207,7 +207,8 @@
 			</ul>
 			<br> <br> <br> <a href="/talent/insertTalentFrm.don"
 				style="float: right; text-decoration: none; display: block; background-color: #0fbcff; border-radius: 5px; width: 70px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 40px;">글등록</a>
-				<a href="/talent/talentListMyList.don?memberId=${sessionScope.member.memberId }" style="float: right; text-decoration: none; display: block; background-color:#0fbcff; border-radius: 5px; width: 150px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 20px;">재능기부 참여목록</a>
+				<a href="/talent/talentListMyList.don?memberId=${sessionScope.member.memberId }" style="float: right; text-decoration: none; display: block; background-color:#0fbcff; border-radius: 5px; width: 150px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 20px;">재능기부 참여 목록</a>
+				<a href="/talent/talentListOpen.don?memberId=${sessionScope.member.memberId }" style="float: right; text-decoration: none; display: block; background-color:#0fbcff; border-radius: 5px; width: 150px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 20px;">재능기부 개설 목록</a>
 		</div>
 		<div style="margin-top: 25px; width: 1200px;">
 			<div style="width: 1200px; height: 100%;">

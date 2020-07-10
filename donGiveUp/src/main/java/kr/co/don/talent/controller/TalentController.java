@@ -94,14 +94,14 @@ public class TalentController {
 	
 	@RequestMapping(value = "/insertTalentList.don")
 	public String insertTalentList(int talentNo, String memberId, Model model) {
-		TalentList t = new TalentList();
-		t.setMemberId(memberId);
-		t.setTalentNo(talentNo);
-		if(memberId==null) {
+		if(memberId.equals("")) {
 			model.addAttribute("msg","로그인이 필요합니다.");
 			model.addAttribute("loc","/member/loginFrm.don");
 			return "main/msg";
 		}
+		TalentList t = new TalentList();
+		t.setMemberId(memberId);
+		t.setTalentNo(talentNo);
 		int result = service.insertTalentList(t);
 		if(result!=0) {
 			model.addAttribute("msg","재능기부 참여 성공");
@@ -151,12 +151,35 @@ public class TalentController {
 	
 	@RequestMapping(value = "/talentListMyList.don")
 	public String talentListMyList(String memberId,Model model) {
+		if(memberId.equals("")) {
+			model.addAttribute("msg","로그인이 필요합니다.");
+			model.addAttribute("loc","/member/loginFrm.don");
+			return "main/msg";
+		}
 		ArrayList<TalentJoin> join = service.talentListMyList(memberId);
-		if(join!=null) {
+		if(!join.isEmpty()) {
 			model.addAttribute("join",join);
 			return "talent/talentListMyList";
 		}else {
 			model.addAttribute("msg","참여한 목록이 존재하지 않습니다.");
+			model.addAttribute("loc","/talent/talentFrm.don?reqPage=1&type=전체");
+			return "main/msg";
+		}
+	}
+	
+	@RequestMapping(value = "/talentListOpen.don")
+	public String talentListOpen(String memberId,Model model) {
+		if(memberId.equals("")) {
+			model.addAttribute("msg","로그인이 필요합니다.");
+			model.addAttribute("loc","/member/loginFrm.don");
+			return "main/msg";
+		}
+		ArrayList<Talent> list = service.selectTalentList(memberId);
+		if(!list.isEmpty()) {
+			model.addAttribute("list",list);
+			return "talent/talentListOpen";
+		}else {
+			model.addAttribute("msg","개설한 목록이 존재하지 않습니다.");
 			model.addAttribute("loc","/talent/talentFrm.don?reqPage=1&type=전체");
 			return "main/msg";
 		}
@@ -188,7 +211,7 @@ public class TalentController {
 			model.addAttribute("loc","/");
 			return "main/msg";
 		}else {
-			model.addAttribute("msg","탈퇴 신청 실패");
+			model.addAttribute("msg","탈퇴 실패");
 			model.addAttribute("loc","/");
 			return "main/msg";
 		}

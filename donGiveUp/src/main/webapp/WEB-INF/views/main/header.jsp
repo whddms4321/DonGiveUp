@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 	.wrapper{
 		width: 100%;
@@ -67,8 +62,6 @@
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Open+Sans&family=Raleway&family=Source+Sans+Pro&family=Staatliches&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
-</head>
-<body>
 <div class="wrapper">
 		<div class="header">
 			<div class="header_top">
@@ -108,5 +101,3 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>

@@ -76,4 +76,9 @@ public class TalentDao {
 	public int deleteTalentList(TalentList list) {
 		return sqlSession.delete("talentList.deleteTalentList",list);
 	}
+
+	public ArrayList<Talent> selectTalentList(String memberId) {
+		List list = sqlSession.selectList("talent.talentListOpen",memberId); 
+		return (ArrayList<Talent>)list; 
+	}
 }

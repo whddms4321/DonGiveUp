@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <style>
 .footer {
 	width: 100%;
@@ -133,8 +129,7 @@
 	color: white;
 }
 </style>
-</head>
-<body>
+
 	<div class="section footer fp-auto-height">
 		<div class="fc1">
 			<div class="containFooter">
@@ -173,5 +168,3 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
