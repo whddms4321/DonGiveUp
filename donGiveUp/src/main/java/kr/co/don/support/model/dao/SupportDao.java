@@ -26,5 +26,18 @@ public class SupportDao {
 		
 		return sqlSession.selectList("supportApply.applyList", map);
 	}
+
+	public Support selectOne(int supportNo) {
+		
+		return sqlSession.selectOne("support.selectOne",supportNo);
+	}
 	
+	public int applyInsert(SupportApply supportApply) {
+		return sqlSession.insert("supportApply.insertApply", supportApply);
+	}
+
+	public int supportInsert(Support support) {
+		
+		return sqlSession.insert("support.insertSupport", support);
+	}
 }

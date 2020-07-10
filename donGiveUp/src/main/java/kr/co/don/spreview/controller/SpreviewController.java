@@ -17,4 +17,14 @@ public class SpreviewController {
 	public String spreview() {
 		return "review/spreviewlist";
 	}
+	
+	@RequestMapping(value="/sprwrite.don")
+	public String sprwrite() {
+		return "review/sprwrite";
+	}
+	
+	@RequestMapping(value="/sprview.don")
+	public String sprview() {
+		return "review/sprviewpage";
+	}
 }

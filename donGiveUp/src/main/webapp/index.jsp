@@ -11,6 +11,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <title>메인 페이지</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <style>
 	.content{
@@ -29,6 +32,7 @@
 
 </head>
 <body>
+
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<div>
 		<div id="demo" class="carousel slide" data-ride="carousel">
@@ -66,7 +70,10 @@
 	<div class="content"></div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 
-</body>
 
+</body>
+<script>
+
+</script>
 
 </html>

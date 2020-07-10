@@ -6,7 +6,9 @@ import java.util.List;
 
 import kr.co.don.donation.model.dao.DonationDao;
 import kr.co.don.donation.model.vo.DonationData;
-import kr.co.don.donation.model.vo.DonationVo;
+import kr.co.don.donationIn.model.vo.DonationInVo;
+import kr.co.don.member.model.vo.Member;
+import kr.co.don.donation.model.vo.Donation;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,13 @@ import org.springframework.stereotype.Service;
 @Service("donationService")
 
 
-
 public class DonationService {
 
 	@Autowired
 	@Qualifier("donationDao")
 	private DonationDao donationDao;
+	
+	
 
 	
 	public DonationData DonationList(int reqPage, String type) {
@@ -29,9 +32,10 @@ public class DonationService {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", type);
 		
+		
 		int totalCount = donationDao.totalCount(map);
 		
-		int numPerPage = 5;
+		int numPerPage = 11;
 		int totalPage;
 		if (totalCount % numPerPage == 0) {
 			totalPage = totalCount / numPerPage;
@@ -44,10 +48,14 @@ public class DonationService {
 		
 		map.put("start", String.valueOf(start));
 		map.put("end", String.valueOf(end));
-		List<DonationVo> list = donationDao.donationList(map);
 		
+		List<Donation> list = donationDao.donationList(map);
+		int total = 0;
+		for(int i=0; i<list.size(); i++) {
+			total += list.get(i).getDonationNowMoney();
+		}
 		
-		int pageNaviSize = 11;
+		int pageNaviSize = 5;
 		int pageNo; 
 		if (reqPage % pageNaviSize == 0) {
 			pageNo = ((reqPage / pageNaviSize) - 1) * pageNaviSize + 1;
@@ -78,17 +86,73 @@ public class DonationService {
 		if (pageNo <= totalPage) {
 			pageNavi.append("<a href='donationList.do?reqPage=" + pageNo + "&type=" + type + "'>></a>");
 		}
+		
+		
 				
-		return new DonationData((ArrayList<DonationVo>)list, pageNavi.toString(),totalCount);
+		return new DonationData((ArrayList<Donation>)list, pageNavi.toString(),totalCount);
 	}
 
 
-	public DonationVo DonationDetail(int donationNo) {
+	public Donation DonationDetail(int donationNo) {
 		return donationDao.DonationDetail(donationNo);
 	}
 
-	public int donationInsert(DonationVo donation) {
-		return donationDao.donationInsert(donation);
+	public int donationInsert(Donation donation) {
+	
+		return donationDao.DonationInsert(donation);
 	}
+
+
+	public Member MemberDetail(String donationWriter) {
+		
+		return  donationDao.DonationMember(donationWriter);
+	}
+
+
+	
+	 public ArrayList<DonationInVo> DonationInType(String type) {
+		 List<DonationInVo> list = donationDao.DonationInType(type);
+		 
+		 return (ArrayList<DonationInVo>)list; }
+	 
+	 
+	 public ArrayList<DonationInVo> DonationInToday(String type) {
+	 List<DonationInVo> list2 = donationDao.DonationInToday(type);
+	 
+	 return (ArrayList<DonationInVo>)list2; }
+
+
+	public int DonationInInsert(DonationInVo d) {
+		
+		return donationDao.DonationInInsert(d);
+	}
+
+
+	public int MemberMoneyUpdate(Member m) {
+		// TODO Auto-generated method stub
+		return donationDao.MemberMoneyUpdate(m);
+	}
+
+
+	public int DonationMoneyUpdate(Donation d1) {
+		// TODO Auto-generated method stub
+		return donationDao.DonationMoneyUpdate(d1);
+	}
+
+
+	public Member MemberSerch(String memberId) {
+		// TODO Auto-generated method stub
+		return  donationDao.MemberSerch(memberId);
+	}
+
+
+	public Donation DonationSerch(Donation d1) {
+		// TODO Auto-generated method stub
+		return  donationDao.DonationSerch(d1);
+	}
+	
+
+
+
 
 }
