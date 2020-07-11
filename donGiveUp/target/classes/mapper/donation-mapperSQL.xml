@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="donation">
+	
+	<select id="totalCount" parameterType="map" resultType="_int">
+		select count(*) from donation where donation_type like '%'||#{type}||'%' 
+	</select>
+	
+	<select id="donationList" parameterType="map" resultType="donation">
+		SELECT *
+		FROM 
+		    (SELECT ROWNUM AS RNUM, N.*
+		    FROM 
+		        (SELECT 
+		        	DONATION_NO AS donationNo,
+    				DONATION_TITLE AS donationTitle,
+    				DONATION_CONTENT AS donationContent,
+    				DONATION_TYPE AS donationType,
+  					DONATION_FILENAME AS donationFilename,
+   					DONATION_FILEPATH AS donationFilepath,
+  					DONATION_FILEPATH_ADD AS donationFilepathAdd,
+   					DONATION_GOAL_MONEY AS donationGoalMoney,
+  					DONATION_NOW_MONEY AS donationNowMoney,
+  					DONATION_END_DATE AS donationEndDate,
+					DONATION_START_DATE AS donationStartDate,
+   					DONATION_WRITER AS donationWriter,
+   					DONATION_STATE AS donationState,
+  					DONATION_NEGATIVE AS donationNegative    
+		        FROM DONATION
+		        
+				where donation_type like '%'||#{type}||'%' 
+			
+		        ORDER BY DONATION_NO DESC) 
+		    N
+		) WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
+		<select id="donationInType" parameterType="string" resultType="donationIn">
+		SELECT 
+		        DONATION_IN_NO AS donationInNo,
+		        DONATION_IN_MEMBERID AS donationInMemberid,
+		        DONATION_IN_MONEY AS donationInMoney,
+		        DONATION_IN_DATE AS donationInDate,
+		        DONATION_IN_TYPE AS donationInType,
+		        DONATION_NO AS donationNo
+		        FROM DONATION_IN
+				where donation_in_type like '%'||#{_parameter}||'%' 
+		  
+	</select>
+	
+
+	<select id="donationInToday" parameterType="string" resultType="donationIn">
+		SELECT 
+		        DONATION_IN_NO AS donationInNo,
+		        DONATION_IN_MEMBERID AS donationInMemberid,
+		        DONATION_IN_MONEY AS donationInMoney,
+		        DONATION_IN_DATE AS donationInDate,
+		        DONATION_IN_TYPE AS donationInType,
+		        DONATION_NO AS donationNo
+		        FROM DONATION_IN
+				where donation_in_type like '%'||#{_parameter}||'%' 
+				and donation_in_date = sysdate
+		  
+	</select>
+	
+
+	
+	
+	<select id="donationDetail" parameterType="_int" resultType="donation">
+		SELECT 
+			DONATION_NO AS donationNo,
+    				DONATION_TITLE AS donationTitle,
+    				DONATION_CONTENT AS donationContent,
+    				DONATION_TYPE AS donationType,
+  					DONATION_FILENAME AS donationFilename,
+   					DONATION_FILEPATH AS donationFilepath,
+  					DONATION_FILEPATH_ADD AS donationFilepathAdd,
+   					DONATION_GOAL_MONEY AS donationGoalMoney,
+  					DONATION_NOW_MONEY AS donationNowMoney,
+  					DONATION_END_DATE AS donationEndDate,
+					DONATION_START_DATE AS donationStartDate,
+   					DONATION_WRITER AS donationWriter,
+   					DONATION_STATE AS donationState,
+  					DONATION_NEGATIVE AS donationNegative    
+		        FROM DONATION
+		where donation_no = #{_parameter}
+	</select>
+	<insert id="donationInsert" parameterType="donation">
+		insert into donation values(donation_seq.nextval, #{donationTitle}, #{donationContent}, #{donationType}, #{donationFilename}, #{donationFilepath},null ,#{donationGoalMoney},0,#{donationEndDate}, sysdate, #{donationWriter}, 0,null)
+	</insert>
+	
+	<insert id="donationInInsert" parameterType="donationIn">
+		insert into donation_in values(donation_in_seq.nextval, #{donationInMemberid}, #{donationInMoney},sysdate ,#{donationInType}, #{donationNo})
+	</insert>
+	
+	<select id="donationMember" parameterType="string" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			COMPANY_FILENAME AS companyFilename,
+			COMPANY_FILEPATH AS companyFilepath,
+			CHART_FILENAME AS chartFilename,
+			CHART_FILENAME AS chartFilepath,
+			COMPANY_NAME AS companyName
+		        FROM MEMBER
+		where member_id = #{_parameter}
+	</select>
+	<update id="memberMoneyUpdate" parameterType="member">
+		update member 
+		set 
+			member_money = #{memberMoney}
+		where member_id = #{memberId}
+	</update>
+	<update id="donationMoneyUpdate" parameterType="donation">
+		update donation 
+		set 
+			donation_now_money = #{donationNowMoney}
+		where donation_no = #{donationNo}
+	</update>
+	<select id="memberSerch" parameterType="string" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			MEMBER_MONEY AS memberMoney,
+			COMPANY_NAME AS companyName
+		        FROM MEMBER
+		where member_id = #{memberId}
+	</select>
+		<select id="donationSerch" parameterType="_int" resultType="donation">
+		SELECT 
+			DONATION_NO AS donationNo,
+    				DONATION_TITLE AS donationTitle,
+    				DONATION_CONTENT AS donationContent,
+    				DONATION_TYPE AS donationType,
+  					DONATION_FILENAME AS donationFilename,
+   					DONATION_FILEPATH AS donationFilepath,
+  					DONATION_FILEPATH_ADD AS donationFilepathAdd,
+   					DONATION_GOAL_MONEY AS donationGoalMoney,
+  					DONATION_NOW_MONEY AS donationNowMoney,
+  					DONATION_END_DATE AS donationEndDate,
+					DONATION_START_DATE AS donationStartDate,
+   					DONATION_WRITER AS donationWriter,
+   					DONATION_STATE AS donationState,
+  					DONATION_NEGATIVE AS donationNegative    
+		        FROM DONATION
+		where donation_no = #{donationNo}
+	</select>
+	
+</mapper>

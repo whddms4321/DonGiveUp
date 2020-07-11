@@ -4,7 +4,37 @@
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
-	<typeAliases>
+	
+
+	 <typeAliases>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminSupportApplyVO" alias="adminSupportapply"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminDeadLineSupportVO" alias="adminDeadSupport"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRequestBoardVO" alias="adminRequestBoard"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminMemberVO" alias="adminMember"/>
+		<typeAlias type="kr.co.don.adminMypage.model.vo.AdminRegularInVO" alias="adminRegularIn"/>
+		<typeAlias type="kr.co.don.regularIn.model.vo.RegularInVo" alias="regularIn"/>
+		<typeAlias type="kr.co.don.regular.model.vo.Regular" alias="regular"/>
+		<typeAlias type="kr.co.don.donation.model.vo.Donation" alias="donation"/>
+		<typeAlias type="kr.co.don.donationIn.model.vo.DonationInVo" alias="donationIn"/>
+		<typeAlias type="kr.co.don.userMypage.model.vo.UserMoneyUseListVO" alias="userMoneyUseList"/>
+		<typeAlias type="kr.co.don.userMypage.model.vo.UserAttendListVO" alias="userAttendList"/>
+		<typeAlias type="kr.co.don.support.model.vo.Support" alias="support"/>
+		<typeAlias type="kr.co.don.support.model.vo.SupportApply" alias="supportApply"/>
 		<typeAlias type="kr.co.don.member.model.vo.Member" alias="member"/>
+		<typeAlias type="kr.co.don.talent.model.vo.Talent" alias="talent"/>
+		<typeAlias type="kr.co.don.talent.model.vo.TalentList" alias="talentList"/>
+		<typeAlias type="kr.co.don.talent.model.vo.TalentJoin" alias="talentJoin"/>
+		<typeAlias type="kr.co.don.talent.model.vo.TalentBoard" alias="talentBoard"/>
+
+		<typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
 	</typeAliases>
+
+
+    <typeHandlers>
+
+        <typeHandler handler="kr.co.don.common.LongHandler" javaType="String" jdbcType="LONGVARCHAR"/>
+
+    </typeHandlers>
+
+
 </configuration>

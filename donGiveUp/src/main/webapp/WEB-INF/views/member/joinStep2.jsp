@@ -12,7 +12,7 @@
 		font-family: 'Noto Sans KR', sans-serif;
 	}
 	.content{
-		height: 1400px;
+		height: 100%;
 		width: 100%;
 		margin: 0 auto;
 		background-image: url("/imgs/charities3.jpg");
@@ -20,7 +20,7 @@
 		background-size: cover;
 		background-position: 50%;
 		opacity: 0.8;
-		
+		padding-bottom: 150px;
 	}
 	
 	.joinArea{
@@ -105,19 +105,39 @@
 		height: 300px;
 		margin-right: 20px;
 		margin-bottom: 20px;
+		background-image: url("/resources/song/image/개인.jpg");
+		border : 1px solid #ebebeb;
+		border-radius: 8px;
 	}
 	
 	#joinPersonBtn:hover{
 		cursor: pointer;
+		border-color: dodgerBlue;
+		box-shadow: 0 0 8px 0 dodgerBlue;
 	}
 	
 	#joinCompanyBtn:hover{
 		cursor: pointer;
+		border-color: dodgerBlue;
+		box-shadow: 0 0 8px 0 dodgerBlue;
+	}
+	
+	#joinPersonBtn:focus{
+		border-color: dodgerBlue;
+		box-shadow: 0 0 8px 0 dodgerBlue;
+	}
+	
+	#joinCompanyBtn:focus{
+		border-color: dodgerBlue;
+		box-shadow: 0 0 8px 0 dodgerBlue;
 	}
 	
 	#joinCompanyBtn{
 		width: 300px;
 		height: 300px;
+		background-image: url("/resources/song/image/기관.jpg");
+		border : 1px solid #ebebeb;
+		border-radius: 8px;
 	}
 	
 	.joinPersonWrap{
@@ -204,6 +224,8 @@
 	.joinCompanyWrap{
 		display: none;
 	}
+	
+	
 </style>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
@@ -211,8 +233,10 @@
 
 $(function () {
 	var count = [false,false,false,false,false];
-	var checkCount = 0;
-	var requiredId = 0;
+	var checkCountM = 0;
+	var checkCountC = 0;
+	var requiredIdM = 0;
+	var requiredIdC = 0;
 	var stateM = 1;
 	var stateC = 1;
 	var company = [false,false,false,false,false,false];
@@ -249,11 +273,11 @@ $(function () {
 			if(id!=""){
 				if(!regExp.test(id)){
 					$("#errorId").css("display","inline-block");
-					checkCount = 0;
+					checkCountM = 0;
 					count[0]= false;
 				}else{
 					$("#errorId").css("display","none");
-					checkCount = 1;
+					checkCountM = 1;
 					count[0]= false;
 				}
 			}else{
@@ -263,7 +287,7 @@ $(function () {
 		});
 		
 		$("#memberIdCheck").click(function () {
-			if(checkCount==1){
+			if(checkCountM==1){
 				var memberId = $("#memberId").val();
 				$.ajax({
 		            url:"/member/checkId.don",
@@ -280,7 +304,7 @@ $(function () {
 		                	$("#successCheckId").css("display","inline-block");
 		                	$("#errorCheckId").css("display","none");
 		                	$("#memberId").attr("readonly","true");
-		                	requiredId = 1;
+		                	requiredIdM = 1;
 		                	count[0]= true;
 		                }
 		            }
@@ -318,6 +342,10 @@ $(function () {
 			}
 			
 			
+		});
+		
+		$("#memberPw").focusin(function () {
+			$("#memberPwRe").val("");
 		});
 		
 		$("#memberPwRe").focusout(function () {
@@ -394,7 +422,7 @@ $(function () {
 				alert("아이디 중복확인을 해주세요.");
 				return false;
 			}
-			if(requiredId==1){
+			if(requiredIdM==1){
 				
 				if(bool){
 					var num=0;
@@ -429,11 +457,11 @@ $(function () {
 			if(id!=""){
 				if(!regExp.test(id)){
 					$("#errorId1").css("display","inline-block");
-					checkCount = 0;
+					checkCountC = 0;
 					company[0]= false;
 				}else{
 					$("#errorId1").css("display","none");
-					checkCount = 1;
+					checkCountC = 1;
 					company[0]= false;
 				}
 			}else{
@@ -444,7 +472,7 @@ $(function () {
 		});
 		
 		$("#memberIdCheck1").click(function () {
-			if(checkCount==1){
+			if(checkCountC==1){
 				var memberId = $("#memberId1").val();
 				$.ajax({
 		            url:"/member/checkId.don",
@@ -461,7 +489,7 @@ $(function () {
 		                	$("#successCheckId1").css("display","inline-block");
 		                	$("#errorCheckId1").css("display","none");
 		                	$("#memberId").attr("readonly","true");
-		                	requiredId = 1;
+		                	requiredIdC = 1;
 		                	company[0]= true;
 		                }
 		            }
@@ -573,11 +601,11 @@ $(function () {
 		
 		$("#joinForm2").submit(function () {
 			var bool = confirm("입력한 정보로 가입하시겠습니까?");
-			if(requiredId==0){
+			if(requiredIdC==0){
 				alert("아이디 중복확인을 해주세요.");
 				return false;
 			}
-			if(requiredId==1){
+			if(requiredIdC==1){
 				
 				if(bool){
 					var num=0;
@@ -640,8 +668,12 @@ function noBack(){window.history.forward();}
 		<br><br>
 		<div class="joinArea">
 		<br><br>
-        <button type="button" id="joinPersonBtn">개인</button>
-        <button type="button" id="joinCompanyBtn">기관</button>
+        <button type="button" id="joinPersonBtn"></button>
+        <button type="button" id="joinCompanyBtn"></button>
+        <br>
+        <span style="margin-left: 220px; font-weight: bold;">개인</span>
+        <span style="margin-left: 300px; font-weight: bold;">기관</span>
+        
             <div class="joinPersonWrap">
             	<form action="/member/insertMember.don" method="post" id="joinForm1">
             		<table class="personTable">
@@ -723,7 +755,7 @@ function noBack(){window.history.forward();}
             	</div>
             	
             	<div class="joinCompanyWrap">
-            	<form action="/member/insertCompany.don" method="post" id="joinForm2">
+            	<form action="/member/insertCompany.don" method="post" id="joinForm2" enctype="multipart/form-data">
             		<table class="companyTable">
             			<tr>
             				<td style="width: 100px;">*아이디</td>
@@ -764,17 +796,18 @@ function noBack(){window.history.forward();}
             			</tr>
             			<tr>
             				<td>*기관이미지</td>
-            				<td><input type="file" name="companyFilename" required></td>
+            				<td><input type="file" name="companyFile"></td>
             				<td style="width: 100px;"></td>
             			</tr>
             			<tr>
             				<td>*기관 소개</td>
-            				<td colspan="3"><textarea style="resize:none;" rows="10" cols="70"  required></textarea></td>
-            				
+            				<td colspan="3"><textarea style="resize:none;" rows="10" cols="60"  required name="companyContent"></textarea></td>
+            				<td><input type="hidden" name="memberType" value="0"></td>
+            				<td><input type="hidden" name="memberNumber" value="0"></td>
             			</tr>
             			<tr>
             				<td>*제무제표</td>
-            				<td><input type="file" name="chartFilename" required></td>
+            				<td><input type="file" name="chartFile"></td>
             				<td style="width: 100px;"></td>
             				
             			</tr>
