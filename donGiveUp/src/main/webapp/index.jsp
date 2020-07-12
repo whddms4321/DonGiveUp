@@ -68,7 +68,7 @@
 		</div>
 	</div>
 	<div class="content">
-		<h1>테스트</h1>
+		
 	</div>
 	<c:if test="${not empty sessionScope.member }">
 		<jsp:include page="/WEB-INF/views/main/chat.jsp"></jsp:include>
