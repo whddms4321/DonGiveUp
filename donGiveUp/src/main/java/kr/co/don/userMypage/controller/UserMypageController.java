@@ -19,8 +19,11 @@ import kr.co.don.adminMypage.model.vo.AdminPageDataGenericVO;
 import kr.co.don.member.model.vo.Member;
 import kr.co.don.userMypage.model.service.UserMypageService;
 import kr.co.don.userMypage.model.vo.UserAttendListVO;
+<<<<<<< HEAD
 import kr.co.don.userMypage.model.vo.UserBankInVO;
 import kr.co.don.userMypage.model.vo.UserBankVO;
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 import kr.co.don.userMypage.model.vo.UserMoneyUseListVO;
 import net.sf.json.JSONArray;
 
@@ -82,7 +85,12 @@ public class UserMypageController {
 	}
 	
 	@RequestMapping(value="/userAttendList.don")
+<<<<<<< HEAD
 	public String userAttendList() {
+=======
+	public String userAttendList(String memberId, String type, String kind) {
+		
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		return "mypage/user/attendList";
 	}
 	
@@ -120,6 +128,7 @@ public class UserMypageController {
 		String reqContent = service.selectCompanyReqContent(boardNo, type);
 		return reqContent;
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping(value="/userBank.don")
 	public String userBank() {
@@ -150,4 +159,6 @@ public class UserMypageController {
 	public void donationToCompany(String memberId, String companyName, int price, int bankNo) {
 		HashMap<String, String> map =service.donationToCompany(memberId,companyName,price,bankNo);
 	}
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 }

@@ -10,8 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.don.member.model.vo.Member;
 import kr.co.don.userMypage.model.vo.UserAttendListVO;
+<<<<<<< HEAD
 import kr.co.don.userMypage.model.vo.UserBankInVO;
 import kr.co.don.userMypage.model.vo.UserBankVO;
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 import kr.co.don.userMypage.model.vo.UserMoneyUseListVO;
 
 @Repository("userMypageDao")
@@ -80,6 +83,7 @@ public class UserMypageDao {
 		return session.selectOne("userMypage.selectCompanyReqContent", map);
 	}
 
+<<<<<<< HEAD
 	public UserBankVO selectBankInfo(String memberId) {
 		return session.selectOne("userMypage.selectBankInfo", memberId);
 	}
@@ -100,4 +104,6 @@ public class UserMypageDao {
 		return session.selectOne("userMypage.donationToCompany",map);
 	}
 
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 }

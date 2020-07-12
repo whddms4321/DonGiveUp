@@ -42,9 +42,15 @@ body {
 }
 
 .content_wrap {
+<<<<<<< HEAD
 	width: 65%;
 	margin: 0 auto;
 	border: 0.5px solid black;
+=======
+	width: 70%;
+	margin: 0 auto;
+	border: 1px solid pink;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 }
 
 .content_wrap>h1 {
@@ -55,7 +61,11 @@ body {
     width:150px;
     height:70px; 
     padding:10px;
+<<<<<<< HEAD
     margin-right:130px;
+=======
+    margin-right:100px;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 }
     .support_try div{
         color:white;
@@ -84,6 +94,7 @@ body {
 }
 
 .category_ul {
+<<<<<<< HEAD
 	width:85px;
 	list-style: none;
 	padding: 0;
@@ -102,6 +113,14 @@ body {
 }
 .on {
 	
+=======
+	list-style: none;
+	padding: 0;
+	position: absolute;
+}
+
+.on {
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	display: block;
 }
 
@@ -110,7 +129,11 @@ body {
 }
 
 .supportList_ul {
+<<<<<<< HEAD
 	width: 95%;
+=======
+	width: 85%;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	overflow: hidden;
 	list-style: none;
 	padding: 0;
@@ -118,18 +141,29 @@ body {
 }
 
 .supportList_li {
+<<<<<<< HEAD
 	height: 420px;
 	display: inline-block;
 	border: none;
 	margin: 25px;
 	
+=======
+	height: 350px;
+	display: inline-block;
+	border: none;
+	margin: 25px;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 }
 
 .supportList {
 	display: inline-block;
 	width: 220px;
 	height: 240px;
+<<<<<<< HEAD
 	
+=======
+	border: 0.1px solid red;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	position: relative;
 }
 
@@ -138,12 +172,17 @@ body {
 	height: 100%;
 }
 
+<<<<<<< HEAD
 /* .supportList_img:hover {
+=======
+.supportList_img:hover {
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	width: 120%;
 	height: 120%;
 	transition-duration: 1s;
 }
 
+<<<<<<< HEAD
 .supportList_img:not(:hover){
 	width:100%;
 	height:100%;
@@ -152,6 +191,32 @@ body {
 }
  */
  
+=======
+.supportList_img
+:not
+ 
+(
+:hover
+ 
+){
+width
+:
+ 
+100%;
+height
+:
+ 
+100%;
+transition-duration
+:
+ 
+1
+s
+;
+
+
+}
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 .supportList_band {
 	display: inline-block;
 	width: 60px;
@@ -181,7 +246,10 @@ body {
 }
 
 .supportList_name {
+<<<<<<< HEAD
 margin-top:5px;
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	color: gray;
 }
 /* .supportList_img{
@@ -193,6 +261,7 @@ margin-top:5px;
 <script>
 	$(function() {
 		$(".category_content").click(function() {
+<<<<<<< HEAD
 			
 			if ($(".category_ul").hasClass("off")) {
 				$(".category_ul").removeClass("off");
@@ -208,6 +277,17 @@ margin-top:5px;
 
 		});
 		$(".category_ul")
+=======
+			if ($(".category_ul").hasClass("off")) {
+				$(".category_ul").removeClass("off");
+				$(".category_ul").addClass("on");
+			} else {
+				$(".category_ul").removeClass("on");
+				$(".category_ul").addClass("off");
+			}
+
+		});
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	});
 	//물품후원 신청하기
 	$(document).on('click','.supportListApply',function(event){
@@ -247,10 +327,17 @@ margin-top:5px;
 										html = "";
 
 										for (var i = 0; i < List.length; i++) {
+<<<<<<< HEAD
 											
 											html += "<li class='supportList_li'>";
 											html += "<div class='supportList'>";
 											html += "<img class='supportList_img' src='/resources/upload/support/'"+List[i].supportFilepath+"'>";
+=======
+
+											html += "<li class='supportList_li'>";
+											html += "<div class='supportList'>";
+											html += "<img class='supportList_img' src="+List[i].supportFilename+">";
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 											html += "<h2 class='supportList_name'>"
 													+ List[i]['supportName']
 													+ "</h2>";
@@ -293,8 +380,13 @@ margin-top:5px;
 			<h1>물품 후원 리스트</h1>
 			<br> <br> <br>
 			<div class="category_div">
+<<<<<<< HEAD
 				<span class="category_content"  style='font-size:24px' >전체 <i class='fas fa-caret-up'   style='font-size:27px' ></i></span>
 				<ul class="category_ul off" style="cursor:pointer">
+=======
+				<span class="category_content">전체 ▽</span>
+				<ul class="category_ul off">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 					<li>전체</li>
 					<li>의류</li>
 					<li>생리대</li>
@@ -306,36 +398,57 @@ margin-top:5px;
 					<li>학용품</li>
 				</ul>
 				<div class="support_try">
+<<<<<<< HEAD
 				
 				<a href="/supportAd.don">
 				<%-- <c:if test="${sessionScope.member.memberType eq 1 }"></c:if> --%>
 					<div class="apply" value="나중에 css 수정">물품 후원하러 가기</div>
+=======
+				<a href="/supportAd.don">
+					<div class="apply">물품 후원하기</div>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 				</a>
 			</div>
 			</div>
 			<br>
 			<ul class="supportList_ul">
+<<<<<<< HEAD
 				
 				<c:forEach var="n" items="${List }" varStatus="status">
 					<li class="supportList_li">
 						<div class="supportList">
 							<img class="supportList_img" src="/resources/upload/support/${n.supportFilepath }">
+=======
+				<c:forEach var="n" items="${List }" varStatus="status">
+					<li class="supportList_li">
+						<div class="supportList">
+							<img class="supportList_img" src="${n.supportFilename }">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 							<h2 class="supportList_name">${n.supportName }</h2>
 							<div>마감 기한 : ${n.enrollEndDate }</div>
 							<div>물품 수량 : ${n.supportAmount }</div>
 							<c:if test="${n.supportApplyId eq sessionScope.member.memberId }">
 								<span class="supportList_band myband">요청중</span>
 							</c:if>
+<<<<<<< HEAD
 							<c:if test="${n.supportApplyId ne sessionScope.member.memberId}">
 								<c:if test="${sessionScope.member.memberType eq 0 }">
 									<button class="supportListApply" value="${n.supportNo }">요청하기</button>
 								</c:if>
+=======
+							<c:if test="${n.supportApplyId ne sessionScope.member.memberId }">
+								
+								<button class="supportListApply" value="${n.supportNo }">요청하기</button>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 							</c:if>
 						</div>
 					</li>
 				</c:forEach>
 			</ul>
+<<<<<<< HEAD
 			<img src="/resources/upload/support//127.0.0.1_supportApplyAd.don.png">
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 			<span class="button">${button }</span>
 		</div>
 	</div>

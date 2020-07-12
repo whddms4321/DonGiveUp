@@ -52,8 +52,13 @@
                             </td>
                          	<td rowspan="5" class="dpFrame">
 
+<<<<<<< HEAD
                                 <div id="dpwrap" style="margin-left:20px;">
                                     <input name="vworkJoinDate" class="datepicker-here" id="datePicker" type="hidden" data-language='en' data-multiple-dates="5" data-multiple-dates-separator=",">
+=======
+                                <div id="dpwrap">
+                                    <input name="vworkJoinDate" class="datepicker-here" id="datePicker" type="hidden" data-language='en' data-multiple-dates="5" data-multiple-dates-separator=", ">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
                                 </div>
                             </td>
 

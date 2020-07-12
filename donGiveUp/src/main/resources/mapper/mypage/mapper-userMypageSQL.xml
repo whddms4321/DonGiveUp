@@ -147,8 +147,13 @@
 		<if test='type.equals("regular")'>
 			select * from
 				(select ROWNUM as rnum, r.* from
+<<<<<<< HEAD
 					(select regular_in_no as boardNo, regular_in_id as boardWriter, company_name as boardTitle, regular_in_money as boardMoney, regular_in_cancel as boardState,
 					regular_in_pay_num as boardDate, regular_in_end_date as regularEndDate from regular_in left join member on(regular_id=member_id) where regular_in_id=#{memberId}
+=======
+					(select regular_in_no as boardNo, regular_in_id as boardWriter, company_name as boardTitle, regular_in_money as boardMoney,
+					regular_in_date as boardDate, regular_in_end_date as regularEndDate from regular_in left join member on(regular_id=member_id) where regular_in_id=#{memberId}
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 					<if test='radio.equals("0")'> 
 					and	regular_in_cancel=0)
 					</if>
@@ -205,6 +210,7 @@
 			select support_apply_reason from supportapply where support_no=#{boardNo} and support_apply_state=1
 		</if> 
 	</select>
+<<<<<<< HEAD
 	
 	<select id="selectBankInfo" parameterType="string" resultType="userBank">
 		select
@@ -244,4 +250,6 @@
 		)
 		}
 	</select>
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 </mapper>

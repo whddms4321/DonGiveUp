@@ -169,6 +169,7 @@
 
 .support_kinds {
 	width: 100%;
+<<<<<<< HEAD
 	height: 520px;
 	background-color: #dedcee;
 	padding-top: 40px;
@@ -208,11 +209,34 @@
 	display: block;
 }
   
+=======
+	height: 450px;
+	background-color: #dedcee;
+	padding-top: 40px;
+}
+
+.support_kinds_imags {
+	margin: 0 auto;
+	display: none;
+}
+
+.img_show {
+	display: block;
+}
+ 
+ .support_kinds_imags img_show test{
+ 	background-image: url('http://www.gfound.org/img/sub1_8_sum1.png');
+ }   
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 </style>
 <script>
 	function func1() {
         var test = '${sessionScope.member}';
+<<<<<<< HEAD
      	
+=======
+     	alert("로그인 후 이용해 주세요.");
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
         if( test != ''){
             var win = window
 				.open(
@@ -239,8 +263,15 @@
 			</div>
 			<div class="support_kinds">
 				<div class="support_kinds_imag">
+<<<<<<< HEAD
 					<div>
 						<img class="support_kinds_imags img_show"
+=======
+					<a class="support_kinds_imags img_show test">
+					
+					</a>
+					<img class="support_kinds_imags"
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 						src="../../../resources/upload/images/sub1_8_banner_1.png">
 					<img class="support_kinds_imags"
 						src="../../../resources/upload/images/sub1_8_banner_2.png">
@@ -258,6 +289,7 @@
 						src="../../../resources/upload/images/sub1_8_banner_8.png">
 					<img class="support_kinds_imags"
 						src="../../../resources/upload/images/sub1_8_banner_9.png">
+<<<<<<< HEAD
 					
 					</div>
 						
@@ -274,6 +306,10 @@
 						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum9.png">
 						
 					</div>
+=======
+						
+						
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 				</div>
 			</div>
 			<div class="support_method">

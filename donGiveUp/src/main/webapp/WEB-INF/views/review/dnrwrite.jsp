@@ -127,7 +127,11 @@
         <script>
             $(function() {
                 $("#addBtn").click(function() {
+<<<<<<< HEAD
                     $("#billTable > tbody").append('<tr><td class="bName"><input type="text"></td><td class="bContent"><input type="text"></td><td class="bMoney"><input type="text"></td></tr>');
+=======
+                    $("#billTable > tbody:last").append('<tr><td class="bName"><input type="text"></td><td class="bContent"><input type="text"></td><td class="bMoney"><input type="text"></td></tr>');
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
                 });
 
             </script>

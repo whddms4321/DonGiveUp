@@ -55,9 +55,12 @@ public class SupportController {
 	
 	@RequestMapping(value="/supportList.don")
 	public String supportList(int count,Model model,HttpSession session) {
+<<<<<<< HEAD
 		Member mm = (Member) session.getAttribute("member");
 		System.out.println(mm.getMemberType());
 		
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		String supportApplyId;
 		
 		try{			
@@ -67,12 +70,17 @@ public class SupportController {
 			System.out.println(supportApplyId);
 			
 		}catch(Exception e){
+<<<<<<< HEAD
 					
+=======
+			
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 			supportApplyId = "";
 			
 		}
 		ArrayList<Support> list = supportService.supportList(count,supportApplyId);
 		
+<<<<<<< HEAD
 		String button;
 		//System.out.println(list.size());
 		if( list.size() == 16) {
@@ -91,6 +99,13 @@ public class SupportController {
 		model.addAttribute("button", button);
 		
 
+=======
+		String button ="<button id=\"moreList\" value="+(count+1)+">더 보기</button>";
+		
+		model.addAttribute("List",list);
+		model.addAttribute("button", button);
+		
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		return "support/supportList";
 		
 	}
@@ -115,6 +130,7 @@ public class SupportController {
 		}
 		SupportData data = new SupportData();
 		
+<<<<<<< HEAD
 		data.setSupportList(supportService.supportList(count,supportApplyId));
 		//support가 끝번호까지 나온경우 더보기 버튼 생성 안하기
 		
@@ -124,6 +140,11 @@ public class SupportController {
 			data.setButton("");
 		
 		}
+=======
+		data.setSupportList(supportService.supportList(count,supportApplyId));	
+		data.setButton("<button id=\"moreList\" value="+(count+1)+">더 보기</button>");
+		
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		return new Gson().toJson(data);
 		
 	}
@@ -141,9 +162,12 @@ public class SupportController {
 	@RequestMapping(value="/supportInsert.don")
 	public String supportInsert(HttpServletRequest request, MultipartFile file, Support support) {
 		System.out.println(support);
+<<<<<<< HEAD
 		
 		
 		
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		if (!file.isEmpty()) {
 			//저장할 기본 경로
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/support/");
@@ -157,7 +181,11 @@ public class SupportController {
 			// 확장자
 			String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
 			//파일이름 + 확장자
+<<<<<<< HEAD
 			String filepath = onlyFilename + "_" + getCurrentTime() + extension;
+=======
+			String filepath = onlyFilename + "_" + System.currentTimeMillis() + extension;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 			
 			String fullpath = savePath + filepath;
 
@@ -181,9 +209,15 @@ public class SupportController {
 		int result = supportService.supportInsert(support);
 
 		if (result > 0) {
+<<<<<<< HEAD
 			return "redirect:/";
 		} else {
 			return "redirect:/";
+=======
+			return "/";
+		} else {
+			return "/";
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		}
 	}
 	

@@ -12,7 +12,10 @@
 		}
 		table th{
 			font-size:20px;
+<<<<<<< HEAD
 			background-color : #F1F1F1;
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		}
 		#pageNavi a, span{
 			padding:13px;

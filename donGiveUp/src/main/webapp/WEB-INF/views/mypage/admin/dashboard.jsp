@@ -72,7 +72,11 @@
 		</div>
 		<div id="chartWrap">
 			<div style="background-color : #fff;">
+<<<<<<< HEAD
 				<h3 style="margin-bottom:0px; padding:20px; font-weight:bold; border-bottom:1px dotted gray;">게시글 신청/승인 현황</h3>
+=======
+				<h3 style="margin-bottom:0px; padding:20px; font-weight:bold; border-bottom:1px dotted gray;">게시글 현황</h3>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 			</div>
 			<div id="chartdiv">
 			</div>

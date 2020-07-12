@@ -30,7 +30,11 @@
 		font-size : 20px;
 		text-align:center;
 		height :  50px;
+<<<<<<< HEAD
 		background-color : #F1F1F1;
+=======
+		background-color : deepskyblue;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	}
 	.th1{
 		width : 100px;
@@ -119,7 +123,11 @@
 										<th class="th4">담당자</th>
 										<th class="th5">연락처</th>
 										<th class="th6">이메일</th>
+<<<<<<< HEAD
 										<th class="th7">신청/승인일</th>
+=======
+										<th class="th7">신청일자</th>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 										<th class="th8">상태</th>
 									</tr>
 									<c:forEach items="${reqBoardList}" var="b" varStatus="s">
@@ -227,7 +235,11 @@
 										<th class="th4">담당자</th>
 										<th class="th5">연락처</th>
 										<th class="th6">이메일</th>
+<<<<<<< HEAD
 										<th class="th7">신청/승인일</th>
+=======
+										<th class="th7">신청일자</th>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 										<th class="th8">상태</th>
 									</tr>
 								</table>
@@ -271,7 +283,11 @@
 										<th class="th4">담당자</th>
 										<th class="th5">연락처</th>
 										<th class="th6">이메일</th>
+<<<<<<< HEAD
 										<th class="th7">신청/승인일</th>
+=======
+										<th class="th7">신청일자</th>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 										<th class="th8">상태</th>
 									</tr>
 								</table>
@@ -315,7 +331,11 @@
 										<th class="th4">담당자</th>
 										<th class="th5">연락처</th>
 										<th class="th6">이메일</th>
+<<<<<<< HEAD
 										<th class="th7">신청/승인일</th>
+=======
+										<th class="th7">신청일자</th>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 										<th class="th8">상태</th>
 									</tr>
 								</table>
@@ -358,7 +378,11 @@
 										<th class="th4">담당자</th>
 										<th class="th5">연락처</th>
 										<th class="th6">이메일</th>
+<<<<<<< HEAD
 										<th class="th7">신청/승인일</th>
+=======
+										<th class="th7">신청일자</th>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 										<th class="th8">상태</th>
 									</tr>
 								</table>
@@ -401,7 +425,11 @@
 										<th class="th4">담당자</th>
 										<th class="th5">연락처</th>
 										<th class="th6">이메일</th>
+<<<<<<< HEAD
 										<th class="th7">신청/승인일</th>
+=======
+										<th class="th7">신청일자</th>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 										<th class="th8">상태</th>
 									</tr>
 								</table>
@@ -550,7 +578,11 @@
 						var pageNavi = data.pageNavi;
 						$("#table").children().children().remove(); //테이블의 모든행 삭제
 						var html ="";
+<<<<<<< HEAD
 						html += "<tr><th class='th1'>번호</th><th class='th2'>타입</th><th class='th3'>글제목</th><th class='th4'>담당자</th><th class='th5'>연락처</th><th class='th6'>이메일</th><th class='th7'>신청/승인일</th><th class='th8'>상태</th></tr>"
+=======
+						html += "<tr><th class='th1'>번호</th><th class='th2'>타입</th><th class='th3'>글제목</th><th class='th4'>담당자</th><th class='th5'>연락처</th><th class='th6'>이메일</th><th class='th7'>신청일자</th><th class='th8'>상태</th></tr>"
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 						for(var i=0; i<boardList.length; i++){
 							html += "<tr><td>"+((reqPage-1)*10+1+i)+"</td><td>"+boardList[i].groupName+"</td>";
 							html += "<td><a href='#'>"+boardList[i].boardTitle+"</a></td><td>"+boardList[i].boardWriter+"</td>";

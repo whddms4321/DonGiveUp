@@ -77,9 +77,18 @@
     outline: none;
     cursor: pointer;
 }
+<<<<<<< HEAD
 
 td{
     width: 312px;
+=======
+.vworkCardlist {
+
+    
+    width: 90%;
+    
+
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 }
 
 .vworkBox {
@@ -176,7 +185,10 @@ td{
 }
 
 .vwboxTitle {
+<<<<<<< HEAD
     height: 54px;
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
     letter-spacing: -.8px;
     font-size: 20px;
     line-height: 20px;
@@ -228,7 +240,11 @@ td{
     border: 1px solid white;
     border-top-color: rgba(0,0,0,.2); 
 }
+<<<<<<< HEAD
 #applyBtn{
+=======
+.vworkEnroll>button{
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
     margin-top: 10px;
     box-sizing: border-box;
     border:1px solid white;
@@ -237,6 +253,7 @@ td{
     height: 32px;
     color: #fff;
     font-weight: 600;
+<<<<<<< HEAD
     outline: none;
     cursor: pointer;
 }
@@ -263,5 +280,7 @@ td{
     height: 100%;
     border: 1px solid #e5e5e5;
     background-color: #f6f6f6;
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
     
 }

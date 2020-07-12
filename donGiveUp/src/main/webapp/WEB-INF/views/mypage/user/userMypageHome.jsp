@@ -92,13 +92,20 @@
 .table-wrap{
 	margin-top : 20px;
 }
+<<<<<<< HEAD
 #pageNavi{
+=======
+.pageNavi{
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	text-align : center;
 }
 
 .table th{
 	font-size : 18px;
+<<<<<<< HEAD
 	background-color : #F1F1F1;
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 }
 .table th, td{
 	text-align : center;
@@ -127,6 +134,7 @@
 	background-color : #fff;
 	color : #0fbcff;
 }
+<<<<<<< HEAD
 .pageNavi{
 	padding:10px;
 }
@@ -140,12 +148,18 @@
 	background-color : #0fbcff;
 	color : white;
 }
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 </style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"/>
 	
+<<<<<<< HEAD
 	<div class="content"  style="height:1000px;">
+=======
+	<div class="content">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="userInfo">
@@ -162,12 +176,20 @@
 							</a>
 						</div>
 						<div class="inList">
+<<<<<<< HEAD
 							<a href="/userAttendList.don">
+=======
+							<a href="/userAttendList.don?reqPage=1&type=donation&kind=prev&memberId=${sessionScope.member.memberId}">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 							- 참여 목록
 							</a>
 						</div>
 						<div class="bank">
+<<<<<<< HEAD
 							<a href="/userBank.don">
+=======
+							<a href="/userBank.don?reqPage=1&memberId=${sessionScope.member.memberId }">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 							- 저금통
 							</a>
 						</div>
@@ -201,18 +223,30 @@
 								<td>${((reqPage-1)*10+i.count)}</td>
 								<c:if test="${u.moneyStock == '입금' }">
 									<td>입금</td>
+<<<<<<< HEAD
 									<td class="moneys"><span class="plus">(+)</span> ${u.moneyHistory}</td>
 								</c:if>
 								<c:if test="${u.moneyStock == '출금' }">
 									<td>출금</td>
 									<td class="moneys"><span class="minus">(-)</span> ${u.moneyHistory}</td>
+=======
+									<td>+${u.moneyHistory}</td>
+								</c:if>
+								<c:if test="${u.moneyStock == '출금' }">
+									<td>출금</td>
+									<td>-${u.moneyHistory}</td>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 								</c:if>
 								<td>${u.moneyUseDate }</td>
 							</tr>
 						</c:forEach>
 					</table>
 				</div>
+<<<<<<< HEAD
  				<div id="pageNavi">
+=======
+ 				<div class="pageNavi">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 					${pageNavi }
 				</div>
 			</div>
@@ -233,7 +267,11 @@
 							<tr><td style="text-align:left;">10,000원 - 110 돈토리</td><td><input type="radio" name="price" value=10000></td></tr>
 							<tr><td style="text-align:left;">30,000원 - 350 돈토리</td><td><input type="radio" name="price" value=30000></td></tr>
 							<tr><td style="text-align:left;">50,000원 - 600 돈토리</td><td><input type="radio" name="price" value=50000></td></tr>
+<<<<<<< HEAD
 							<tr><td style="text-align:left;">100,000원 - 1,300 돈토리</td><td><input type="radio" name="price" value=100000></td></tr>
+=======
+							<tr><td style="text-align:left;">100,000원 - 1300 돈토리</td><td><input type="radio" name="price" value=100000></td></tr>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 						</table> 
 						<div style="margin-top:20px;">
 							<button type="button" class="cash-modal" id="cashPay">+ 충전하기</button>
@@ -248,7 +286,10 @@
 	<script>
 		var memberId = "${sessionScope.member.memberId}";
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		$("#cashPay").click(function(){
 			
 			var amount = $("input[name=price]:checked").val();
@@ -272,7 +313,10 @@
 				    		data : {memberId : memberId, amount : amount},
 				    		success : function(result){
 				    			pageMove(1, memberId);
+<<<<<<< HEAD
 				    			location.reload();
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 				    		},
 				    		error : function(){
 				    			
@@ -297,7 +341,11 @@
 				url : "/allUseMoney.don",
 				data : {memberId : memberId},
 				success : function(result){
+<<<<<<< HEAD
 					$("#allUseMoney").html(result.toLocaleString());
+=======
+					$("#allUseMoney").html(result);
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 				}
 			});
 			
@@ -305,7 +353,11 @@
 				url : "/nowMoney.don",
 				data : {memberId : memberId},
 				success : function(result){
+<<<<<<< HEAD
 					$("#nowMoney").html(result.toLocaleString());
+=======
+					$("#nowMoney").html(result);
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 				}
 			});
 		});
@@ -313,7 +365,11 @@
 		function pageMove(reqPage, memberId){
 			$(".newTr").remove();
 			$("#pageNavi").children().remove();
+<<<<<<< HEAD
 			console.log("reqPage : " + reqPage);
+=======
+			
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 			$.ajax({
 				url : "/pageMove.don",
 				data : {reqPage : reqPage, memberId : memberId},
@@ -321,15 +377,26 @@
 					var list = data.list;
 					var pageNavi = data.pageNavi;
 					var html = "";
+<<<<<<< HEAD
 					console.log("페이지내비 : " + pageNavi);
+=======
+					
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 					for(var i=0; i<list.length; i++){
 						html += "<tr class='newTr'><td>" + ((reqPage-1)*5+1+i) + "</td>";
 						if(list[i].moneyStock == "입금"){
 							html += "<td>입금</td>";
+<<<<<<< HEAD
 							html += "<td><span class='plus'>(+)</span> " + list[i].moneyHistory.toLocaleString(); + "</td>";							
 						}else if(list[i].moneyStock == "출금"){
 							html += "<td>출금</td>";
 							html += "<td><span class='minus'>(-)</span> " + list[i].moneyHistory.toLocaleString(); + "</td>";
+=======
+							html += "<td>+" + list[i].moneyHistory + "</td>";							
+						}else if(list[i].moneyStock == "출금"){
+							html += "<td>출금</td>";
+							html += "<td>-" + list[i].moneyHistory + "</td>";
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 						}
 						html += "<td>" + list[i].moneyUseDate + "</td></tr>";
 					}

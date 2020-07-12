@@ -18,6 +18,7 @@
 		<typeAlias type="kr.co.don.donationIn.model.vo.DonationInVo" alias="donationIn"/>
 		<typeAlias type="kr.co.don.userMypage.model.vo.UserMoneyUseListVO" alias="userMoneyUseList"/>
 		<typeAlias type="kr.co.don.userMypage.model.vo.UserAttendListVO" alias="userAttendList"/>
+<<<<<<< HEAD
 		<typeAlias type="kr.co.don.userMypage.model.vo.UserBankVO" alias="userBank"/>
 		<typeAlias type="kr.co.don.userMypage.model.vo.UserBankInVO" alias="userBankIn"/>
 		<typeAlias type="kr.co.don.companyMypage.model.vo.CompanyReqBoardVO" alias="companyReqBoard"/>
@@ -35,13 +36,21 @@
 		<typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
 		<typeAlias type="kr.co.don.vserver.model.vo.VserverVo" alias="vserver"/>
 
+=======
+		<typeAlias type="kr.co.don.support.model.vo.Support" alias="support"/>
+		<typeAlias type="kr.co.don.support.model.vo.SupportApply" alias="supportApply"/>
+		<typeAlias type="kr.co.don.member.model.vo.Member" alias="member"/>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		<typeAlias type="kr.co.don.talent.model.vo.Talent" alias="talent"/>
 		<typeAlias type="kr.co.don.talent.model.vo.TalentList" alias="talentList"/>
 		<typeAlias type="kr.co.don.talent.model.vo.TalentJoin" alias="talentJoin"/>
 		<typeAlias type="kr.co.don.talent.model.vo.TalentBoard" alias="talentBoard"/>
 
 		<typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	</typeAliases>
 
 

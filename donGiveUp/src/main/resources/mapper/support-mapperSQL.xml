@@ -35,7 +35,11 @@
  			1,#{supportId},#{supportName},#{supportCategory},
  			#{supportAmount},#{supportAmount},#{supportFilename},
  			#{supportFilepath},sysdate,null,
+<<<<<<< HEAD
  			#{supportPrice},1,null
+=======
+ 			#{supportPrice},0,null
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
  		)
  		  
  	</insert>

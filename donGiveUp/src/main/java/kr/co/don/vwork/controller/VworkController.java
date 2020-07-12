@@ -6,16 +6,24 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+<<<<<<< HEAD
+=======
+import java.util.HashMap;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +32,11 @@ import com.google.gson.Gson;
 import kr.co.don.vserver.model.vo.VserverVo;
 import kr.co.don.vwork.model.service.VworkServiceImpl;
 import kr.co.don.vwork.model.vo.VworkData;
+=======
+import org.springframework.web.multipart.MultipartFile;
+
+import kr.co.don.vwork.model.service.VworkServiceImpl;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 import kr.co.don.vwork.model.vo.VworkVo;
 
 @Controller
@@ -34,6 +47,7 @@ public class VworkController {
 	private VworkServiceImpl service;
 	
 	@RequestMapping(value="/vworklist.don")
+<<<<<<< HEAD
 	public String vworklist(int count,Model model) {
 		
 		ArrayList<VworkVo> list = service.vworkList(count);
@@ -198,6 +212,21 @@ public class VworkController {
 		model.addAttribute("v",v);
 		
 		return "vwork/vworkeditFrm";
+=======
+	public String vworklist(int count,VworkVo vw,Model model) {
+		
+		int rnumMin = ((count-1)*9)+1;
+		int rnumMax = count*9;
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("rnumMin", String.valueOf(rnumMin));
+		map.put("rnumMax", String.valueOf(rnumMax));
+		
+		
+		
+		return "vwork/vworklist";
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	}
 	
 	@RequestMapping(value="/vworkwrite.don")
@@ -206,11 +235,15 @@ public class VworkController {
 	}
 	
 	@RequestMapping(value="/vworkbooking.don")
+<<<<<<< HEAD
 	public String vworkbooking(int vworkNo, Model model) {
 		VworkVo v = service.selectOneVwork(vworkNo);
 		//System.out.println(v);
 		model.addAttribute("v",v);
 		
+=======
+	public String vworkbooking() {
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		return "vwork/vworkbooking";
 	}
 	@RequestMapping(value="/vworkpayment.don")
@@ -218,6 +251,7 @@ public class VworkController {
 		return "vwork/vworkpayment";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(value="/vworkupdate.don")
 	public String vworkupdate(int vworkNo,VworkVo v,Model model) {
 		String str = v.getVworkJoinDate();
@@ -246,6 +280,8 @@ public class VworkController {
 			return "vwork/msg";
 		}
 	}
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	@RequestMapping(value="/vworkinsert.don")
 	public String vworkinsert(HttpServletRequest request,MultipartFile file, VworkVo vw) {
 		

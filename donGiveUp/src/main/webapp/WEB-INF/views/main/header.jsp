@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 	.wrapper{
 		width: 100%;
@@ -67,8 +62,6 @@
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Open+Sans&family=Raleway&family=Source+Sans+Pro&family=Staatliches&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
-</head>
-<body>
 <div class="wrapper">
 		<div class="header">
 			<div class="header_top">
@@ -78,10 +71,17 @@
 				<div class="header_navi">
 
 					<a href="/donation.don?reqPage=1&type=전체" class="header_navi_a" style="font-size: 18px; font-weight: bold;">기부</a> 
+<<<<<<< HEAD
 					<a href="/fundingMain.don?reqPage=1" class="header_navi_a" style="font-size: 18px; font-weight: bold;">펀딩</a> 
 					<a href="/supportFrm.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">물품후원</a>
 					<a href="/talent/talentFrm.don?reqPage=1&type=전체" class="header_navi_a" style="font-size: 18px; font-weight: bold;">재능기부</a> 
 					<a href="/vworklist.don?count=1" class="header_navi_a" style="font-size: 18px; font-weight: bold;">함께해요</a> 
+=======
+					<a href="/test.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">펀딩</a> 
+					<a href="/supportFrm.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">물품후원</a>
+					<a href="/talent/talentFrm.don?reqPage=1&type=전체" class="header_navi_a" style="font-size: 18px; font-weight: bold;">재능기부</a> 
+					<a href="/vworklist.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">함께해요</a> 
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">저금통</a>
 					<a href="/reviewmain.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">후기</a>
 				</div>
@@ -99,7 +99,11 @@
 						<a href="/userMypage.don?reqPage=1&memberId=${sessionScope.member.memberId}" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
 					</c:if>
 					<c:if test="${sessionScope.member.memberType == 2}">
+<<<<<<< HEAD
 						<a href="/companyMypage.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
+=======
+						<a href="#" class="header_log_a" style="font-size: 18px; font-weight: bold;">마이페이지</a>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 					</c:if>
 					<span>·</span>
 					<a href="/member/logout.don" class="header_log_a" style="font-size: 18px; font-weight: bold;">로그아웃</a>
@@ -108,5 +112,3 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>

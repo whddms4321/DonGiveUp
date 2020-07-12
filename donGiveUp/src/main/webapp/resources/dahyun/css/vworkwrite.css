@@ -112,7 +112,15 @@ select {
 }
 
 
+<<<<<<< HEAD
 
+=======
+.ipImg > input {
+    width: 90%;
+    height: 100%;
+    box-sizing: border-box;
+}
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 
 .ipButton {
     

@@ -19,5 +19,8 @@ public class UserAttendListVO {
 	private int supportKind;
 	private String regularEndDate;
 	private int rewardOnePrice;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 }

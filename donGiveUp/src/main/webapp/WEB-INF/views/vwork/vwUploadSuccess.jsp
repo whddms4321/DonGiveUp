@@ -74,7 +74,11 @@
     <script>
         $(function() {
             $("#Btn").click(function() {
+<<<<<<< HEAD
                 location.href = "/vworklist.don?count=1"
+=======
+                location.href = "/vworklist.don"
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
             });
         });
 

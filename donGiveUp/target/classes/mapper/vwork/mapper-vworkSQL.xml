@@ -21,6 +21,7 @@
  			null
  		)
  	</insert>
+<<<<<<< HEAD
  	<select id="vworkList" parameterType="map" resultType="vwork">
  		select 
  			vwork_no as vworkNo, vwork_title as vworkTitle, 
@@ -69,4 +70,6 @@
  			vwork_select = #{vworkSelect}
  		where vwork_no = #{vworkNo}
  	</update>
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 </mapper>

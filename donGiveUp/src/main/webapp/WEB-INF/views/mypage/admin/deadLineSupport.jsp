@@ -11,7 +11,10 @@
 		text-align:center;
 	}
 	table th{
+<<<<<<< HEAD
 		background-color : #F1F1F1;
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		font-size:20px;
 	}
 	#pageNavi a{
@@ -24,9 +27,12 @@
 		margin-top:35px;
 		text-align:center;
 	}
+<<<<<<< HEAD
 	.modalTable th{
 		background-color : #F1F1F1;
 	}
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 </style>
 </head>
 <body>
@@ -94,9 +100,14 @@
 		//-----------------------------------신청사유 보여주기----------------------------------
 		function requestContentShow(obj){
 			$(".requestContent").css("display", "none");
+<<<<<<< HEAD
 			$(obj).parent().parent().next().css("display", "table-row");
 			//$(obj).next().css("display", "block");
 			//$(obj).next().next().css("display", "block");
+=======
+			$(obj).next().css("display", "block");
+			$(obj).next().next().css("display", "block");
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		}
 		//--------------------------글 제목 클릭 시 Modal로 신청기관 목록을 보여줌------------------------
 		var supportNo = "";
@@ -123,6 +134,7 @@
 	        		  var html = "";
 	        		  
 	        		  if(list.length > 0){
+<<<<<<< HEAD
 /*
 	        			  html += "<table class='table modalTable'>";
 	        			  	html += "<tr><th>번호</th><th>신청자</th><th>선택</th></tr>";
@@ -153,6 +165,8 @@
 		        			  html += "</div>";
 		        			  */
 
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 
 		        		  html += "<div><span style='font-weight:bold; font-size:20px; margin-left:20px;'>선택</span><span style='font-weight:bold; font-size:20px; margin-left:90px;'>신청자</span></div>";  
 		        		  for(var i=0; i<list.length; i++){
@@ -160,11 +174,16 @@
 
 		        			  html += "<div class='requestContent' style='display:none; margin-top:15px; width:360px; height:200px;'>" + list[i].supportApplyReason + "</div>";
 		        			  html += "<div class='requestContent' style='display:none; text-align:center; margin-bottom:15px;'><button class='btn-sm btn-primary' onclick='assignCompany("+ supportNo + ",`" + list[i].supportApplyId +"`);'>선정</button></div></div>";
+<<<<<<< HEAD
 
 		        			  
 		        		  }
 		        		  html += "</table>";
 		        		  console.log(html);
+=======
+		        			  
+		        		  }
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		        		  $("#content").css("overflow", "auto");
 		        		  $("#content").append(html);
 		        		  $("#pageNaviModal").append(pageNavi);        			  

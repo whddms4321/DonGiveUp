@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+.content {
+    width: 1200px;
+    margin: 0 auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin-bottom: 100px;
+}
+
+.reviewTitle {
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 85%;
+    height: 80px;
+    
+   
+}
+.dnrtText{
+    width: 25%;
+    height: 80px;
+    font-size: 43px;
+    color: #3D3B3A;
+    font-weight: bold;
+    line-height: 80px;
+}
+.searchBox{
+    margin-top: 15px;
+    margin-right: 100px;
+    width: 70%;
+    height: 55px;
+    background-color: rgba(0,0,0,.1);
+    border-radius: 30px;
+    line-height: 55px;
+    float: right;
+}
+.sText{
+    margin-left: 20px;
+}
+.sText>input{
+    margin-top: 12px;
+    width: 50%;
+    height: 34px;
+    font-size: 25px;
+    background-color: transparent;
+    color: rgba(0,0,0,.2);
+    font-weight: 600;
+    border: 0 none;
+}
+input::placeholder{
+    color: rgba(0,0,0,.2);
+    font-weight: 600;
+}
+.icon{
+    float: right;
+}
+.icon>button{
+    width: 50px;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 7px;
+    background-color: transparent;
+    border: 0 none;
+}
+.iconsearch{
+    font-size: 30px;
+}
+
+.dnrNavi {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 85%;
+    height: 50px;
+    background-color: #0fbcff;
+}
+
+.dnrNavi > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dnrNavi li {
+    float: left;
+}
+
+.dnrNavi li > a {
+    font-weight: 900;
+    font-size: 20px;
+    color: white;
+    width: 340px;
+    height: 50px;
+    line-height: 50px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.dnrlistWrap {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.dnrlisthead {
+    width: 100%;
+    height: 60px;
+
+
+}
+
+.dnrWriteBtn {
+   float: right;
+    margin-right: 18px;
+    margin-top: 15px;
+    margin-bottom: -20px;
+    width: 120px;
+    height: 40px;
+    background-color: #ffc952;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+.dnreviewWrap {
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.dnreviewList {
+    width: 100%;
+    height: 350px;
+
+}
+
+.dnreviewList a {
+    text-decoration: none;
+    color: #3D3B3A;
+}
+
+.dnreviewBox {
+    margin: 0 auto;
+    width: 230px;
+    height: 340px;
+    box-sizing: border-box;
+}
+
+.dnrimg {
+    width: 100%;
+    height: 180px;
+    box-sizing: border-box;
+
+}
+
+.dnrimg > img {
+    width: 100%;
+    height: 100%;
+
+}
+
+.dnrText {
+    width: 100%;
+    height: 74px;
+    margin-top: 5px;
+}
+
+.dnrTitle {
+    display: block;
+    font-size: 18px;
+    letter-spacing: -.8px;
+    font-weight: bold;
+    color: #3D3B3A;
+}
+
+
+
+progress {
+    width: 55%;
+    height: 4px;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+    
+}
+
+
+.prgWrap {
+    width: 48%;
+    height: 24px;
+    border: 1px solid red;
+    
+}
+.finalDnMoney{
+    float: right;
+    margin-right: 5px;
+    margin-bottom: -20px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.foundationName {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+    color: rgba(0, 0, 0, .7);
+}

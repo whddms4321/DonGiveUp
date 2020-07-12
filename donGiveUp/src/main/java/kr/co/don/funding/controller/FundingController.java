@@ -1,5 +1,6 @@
 package kr.co.don.funding.controller;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -16,18 +17,26 @@ import com.google.gson.Gson;
 import kr.co.don.funding.model.service.FundingService;
 import kr.co.don.funding.model.vo.Funding;
 import kr.co.don.funding.model.vo.FundingData;
+=======
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 
 @Controller
 public class FundingController {
 	
+<<<<<<< HEAD
 	@Autowired
 	@Qualifier("fundingService")
 	private FundingService fundingService; 
 	
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	@RequestMapping(value="/test.don")
 	public String test() {
 		return "funding/tt";
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping(value="/fundingMain.don")
 	public String fundingMain(Funding funding,int reqPage,Model model,String type) {
@@ -127,4 +136,6 @@ public class FundingController {
 		return "funding/fundingView";
 	}
 	
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 }

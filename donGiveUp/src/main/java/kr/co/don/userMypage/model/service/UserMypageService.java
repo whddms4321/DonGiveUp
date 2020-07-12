@@ -12,8 +12,11 @@ import kr.co.don.adminMypage.model.vo.AdminPageDataGenericVO;
 import kr.co.don.member.model.vo.Member;
 import kr.co.don.userMypage.model.dao.UserMypageDao;
 import kr.co.don.userMypage.model.vo.UserAttendListVO;
+<<<<<<< HEAD
 import kr.co.don.userMypage.model.vo.UserBankInVO;
 import kr.co.don.userMypage.model.vo.UserBankVO;
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 import kr.co.don.userMypage.model.vo.UserMoneyUseListVO;
 
 @Service("userMypageService")
@@ -24,6 +27,7 @@ public class UserMypageService {
 
 	public AdminPageDataGenericVO<UserMoneyUseListVO> moneyUserList(String memberId, int reqPage) {
 		int numPerPage = 5; //한번에 표시할 게시물 수
+<<<<<<< HEAD
 		System.out.println("req!! : " + reqPage);
 		//검색 조건을 위한 map
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -83,6 +87,8 @@ public class UserMypageService {
 		
 		/*
 		int numPerPage = 5; //한번에 표시할 게시물 수
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		
 		//검색 조건을 위한 map
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -124,15 +130,25 @@ public class UserMypageService {
 		
 		// 이전버튼 생선
 		if (pageNo != 1) {
+<<<<<<< HEAD
 			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo - 1) + ",`"+memberId+"`);'>이전</a>";
+=======
+			pageNavi += "<a href='javascript:void(0);' onclick='pageMove(" + (pageNo - 1) + ",`"+memberId+"`);'>이전</a>";
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (reqPage == pageNo) {
+<<<<<<< HEAD
 				pageNavi += "<span class='pageNavi'>" + pageNo + "</span>";
 			} else {
 				pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>" + pageNo+"</a>";	
+=======
+				pageNavi += "<span>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>" + pageNo+"</a>";	
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 			}
 			pageNo++;
 			if (pageNo > totalPage) {
@@ -142,13 +158,20 @@ public class UserMypageService {
 
 		// 다음버튼
 		if (pageNo <= totalPage) {
+<<<<<<< HEAD
 			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>다음</a>";
+=======
+			pageNavi += "<a href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>다음</a>";
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		}
 		
 		AdminPageDataGenericVO<UserMoneyUseListVO> pageData = new AdminPageDataGenericVO<UserMoneyUseListVO>(list, pageNavi);
 		
 		return pageData;
+<<<<<<< HEAD
 		*/
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	}
 
 	public int allUseMoney(String memberId) {
@@ -300,6 +323,7 @@ public class UserMypageService {
 		return dao.selectCompanyReqContent(map);
 	}
 
+<<<<<<< HEAD
 	public UserBankVO selectBankInfo(String memberId) {
 		return dao.selectBankInfo(memberId);
 	}
@@ -387,6 +411,8 @@ public class UserMypageService {
 		return dao.donationToCompany(map);
 	}
 
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 
 }
 

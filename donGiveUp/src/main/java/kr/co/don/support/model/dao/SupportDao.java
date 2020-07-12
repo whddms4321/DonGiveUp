@@ -22,6 +22,14 @@ public class SupportDao {
 		return sqlSession.selectList("support.supportList", map);
 	}
 
+<<<<<<< HEAD
+=======
+	public List<SupportApply> applyList(HashMap<String, String> map) {
+		
+		return sqlSession.selectList("supportApply.applyList", map);
+	}
+
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	public Support selectOne(int supportNo) {
 		
 		return sqlSession.selectOne("support.selectOne",supportNo);

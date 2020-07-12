@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <!-- 부트스트림4 지원 메타 포트 -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -75,5 +76,25 @@ body {
 	
 		</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
+=======
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+	<script type="text/javascript" src="/resources/ckeditor4/ckeditor.js"></script>
+
+
+</head>
+<body>
+	<textarea class="form-control" id="p_content"></textarea>
+<script type="text/javascript">
+ CKEDITOR.replace('p_content'
+                , {height: 500
+	 
+                 });
+</script>
+
+
+
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 </body>
 </html>

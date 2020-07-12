@@ -10,6 +10,10 @@
 <link href="/resources/adminMypage/css/datepicker3.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="/resources/adminMypage/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
+=======
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 <style>
 .content {
 	width: 100%;
@@ -32,6 +36,10 @@
 .userInfo{
 	width:80%;
 	height:230px;
+<<<<<<< HEAD
+=======
+	border : 1px solid red;
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 	margin: 0 auto;
 	margin-top:100px;
 }
@@ -96,16 +104,23 @@
 	padding : 6px;
 	border-radius : 5px;
 }
+<<<<<<< HEAD
 .modify>a{
 	background-color : #0fbcff;
 	color : white;
 }
+=======
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/main/header.jsp"/>
 	
+<<<<<<< HEAD
 	<div class="content"  style="height:1000px;">
+=======
+	<div class="content">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 		<div class="content-main">
 			<div class="content-main-left">
 				<div class="userInfo">
@@ -122,12 +137,20 @@
 							</a>
 						</div>
 						<div class="inList">
+<<<<<<< HEAD
 							<a href="/userAttendList.don">
+=======
+							<a href="/userAttendList.don?reqPage=1&type=donation&kind=prev&memberId=${sessionScope.member.memberId}">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 							- 참여 목록
 							</a>
 						</div>
 						<div class="bank">
+<<<<<<< HEAD
 							<a href="/userBank.don">
+=======
+							<a href="/userBank.don?reqPage=1&memberId=${sessionScope.member.memberId }">
+>>>>>>> parent of 87b6781... Revert "Merge branch 'ssong-branch' of https://github.com/whddms4321/DonGiveUp into ssong-branch"
 							- 저금통
 							</a>
 						</div>
