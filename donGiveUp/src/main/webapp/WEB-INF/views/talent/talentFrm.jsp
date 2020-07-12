@@ -56,7 +56,7 @@
 	text-align: center;
 }
 
-.contentHeadPart>ul>li:nth-child(1)>a {
+.contentHeadColor:active {
 	border: 1px solid #0fbcff;
 	color: #0fbcff;
 }
@@ -178,7 +178,9 @@
 </style>
 <script>
 	$(function () {
-		
+		$(".contentHeadColor").click(function () {
+			$(this).css({border:"1px solid #0fbcff",color:"#0fbcff"});
+		});
 	});
 	
 	function talentList(talentNo) {
@@ -195,23 +197,30 @@
 
 		<div class="contentHeadPart">
 			<ul>
-				<li><a href="/talent/talentFrm.don?reqPage=1&type=전체">#전체</a></li>
-				<li><a href="/talent/talentFrm.don?reqPage=1&type=디자인">#디자인</a></li>
-				<li><a href="/talent/talentFrm.don?reqPage=1&type=프로그래밍">#프로그래밍</a></li>
-				<li><a href="/talent/talentFrm.don?reqPage=1&type=노하우">#노하우</a></li>
-				<li><a href="/talent/talentFrm.don?reqPage=1&type=생활">#생활</a></li>
-				<li><a href="/talent/talentFrm.don?reqPage=1&type=운동">#운동</a></li>
-				<li><a href="/talent/talentFrm.don?reqPage=1&type=번역">#번역</a></li>
-				<li><a href="/talent/talentFrm.don?reqPage=1&type=기타">#기타</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=전체" class="contentHeadColor">#전체</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=디자인" class="contentHeadColor">#디자인</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=프로그래밍" class="contentHeadColor">#프로그래밍</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=노하우" class="contentHeadColor">#노하우</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=생활" class="contentHeadColor">#생활</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=운동" class="contentHeadColor">#운동</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=번역" class="contentHeadColor">#번역</a></li>
+				<li><a href="/talent/talentFrm.don?reqPage=1&type=기타" class="contentHeadColor">#기타</a></li>
 
 			</ul>
-			<br> <br> <br> <a href="/talent/insertTalentFrm.don"
+			<br> <br> <br> 
+			<c:if test="${not empty sessionScope.member.memberId }">
+			
+			
+			<a href="/talent/insertTalentFrm.don"
 				style="float: right; text-decoration: none; display: block; background-color: #0fbcff; border-radius: 5px; width: 70px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 40px;">글등록</a>
 				<a href="/talent/talentListMyList.don?memberId=${sessionScope.member.memberId }" style="float: right; text-decoration: none; display: block; background-color:#0fbcff; border-radius: 5px; width: 150px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 20px;">재능기부 참여목록</a>
 				<a href="/talent/talentListOpen.don?memberId=${sessionScope.member.memberId }" style="float: right; text-decoration: none; display: block; background-color:#0fbcff; border-radius: 5px; width: 150px; height: 35px; line-height: 35px; color: white; text-align: center; font-weight: bold; margin-right: 20px;">재능기부 개설 목록</a>
+			</c:if>
+		
 		</div>
 		<div style="margin-top: 25px; width: 1200px;">
 			<div style="width: 1200px; height: 100%;">
+			<c:if test="${not empty list }">
 				<c:forEach items="${list }" var="list">
 					<div class="talentListPart" style="position: relative;" onclick="talentList('${list.talentNo }')">
 						<div class="talentImage">
@@ -223,7 +232,14 @@
 						<div class="talentCount"><span class="noticeDetailSpan2">제한인원</span>  ${list.talentCount } 명</div>
 					</div>
 
-				</c:forEach>
+				</c:forEach>			
+			</c:if>
+			<c:if test="${empty list }">
+				<div style="text-align: center; margin-top: 100px;">
+				<img src="/resources/song/image/경고.png">
+					<h1>해당 카테고리에 등록된 글이 없습니다.</h1>
+				</div>
+			</c:if>
 			</div>
 		</div>
 	</div>
