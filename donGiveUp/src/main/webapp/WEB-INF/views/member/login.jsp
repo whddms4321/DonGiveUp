@@ -82,8 +82,8 @@
 			<table style="margin: 0 auto; padding-top: 50px;">
 				<tr>
 					<td style="width: 300px; height: 30px;">아이디 / 비밀번호가 생각나지 않으세요?</td>
-					<td><a href="/member/findIdFrm.don" style="color: black;">아이디찾기</a></td>
-					<td><a href="/member/findPwFrm.don" style="color: black;">비밀번호찾기</a></td>
+					<td><a href="#" style="color: black;">아이디찾기</a></td>
+					<td><a href="#" style="color: black;">비밀번호찾기</a></td>
 				</tr>
 				<tr>
 					<td style="width: 300px;">후원자가 되어주세요.</td>
