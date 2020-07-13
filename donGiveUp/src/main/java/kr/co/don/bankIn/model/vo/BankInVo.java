@@ -1,5 +1,8 @@
 package kr.co.don.bankIn.model.vo;
 
+import lombok.Data;
+
+@Data
 public class BankInVo {
 	private int bankInNo;
 	private String bankInId;

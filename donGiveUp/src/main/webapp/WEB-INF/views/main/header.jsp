@@ -83,7 +83,7 @@
 
 					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">재능기부</a> 
 					<a href="/vworklist.don?count=1" class="header_navi_a" style="font-size: 18px; font-weight: bold;">함께해요</a> 
-					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">저금통</a>
+					<a href="/bank.don?reqPage=1&type=0" class="header_navi_a" style="font-size: 18px; font-weight: bold;">저금통</a>
 					<a href="/reviewmain.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">후기</a>
 				</div>
 				<div class="header_log_section">
