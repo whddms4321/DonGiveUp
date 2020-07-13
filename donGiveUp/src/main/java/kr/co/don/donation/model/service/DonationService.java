@@ -150,6 +150,12 @@ public class DonationService {
 		// TODO Auto-generated method stub
 		return  donationDao.DonationSerch(d1);
 	}
+
+
+	public int MoneyUseList(DonationInVo d) {
+		// TODO Auto-generated method stub
+		return donationDao.MoneyUseList(d);
+	}
 	
 
 

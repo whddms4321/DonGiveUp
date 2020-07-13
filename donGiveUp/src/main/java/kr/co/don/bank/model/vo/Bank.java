@@ -1,6 +1,9 @@
 package kr.co.don.bank.model.vo;
 
-public class BankVo {
+import lombok.Data;
+
+@Data
+public class Bank {
 	private int bankNo;
 	private String bankTitle;
 	private String bankContent;
@@ -10,5 +13,6 @@ public class BankVo {
 	private int bankNowMoney;
 	private String bankWriter;
 	private String bankDate;
+	private String  bankOrganization;
 	private int bankType;
 }

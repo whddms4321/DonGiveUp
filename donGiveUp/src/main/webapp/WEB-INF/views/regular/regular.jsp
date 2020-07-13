@@ -256,8 +256,8 @@ div>img {
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 
 	<div class="content">
-		<div class="content-header">
-			<div class="content-header-tap content-header-tap2">
+			<!-- <div class="content-header">
+		<div class="content-header-tap content-header-tap2">
 			
 				<a href="/donation.don?reqPage=1&type=전체"
 					class="content-header-tap1"><i class="fas fa-globe-americas"></i>전체</a>
@@ -293,18 +293,21 @@ div>img {
 			<div class="content-header-tap">
 				<a href="/donation.don?reqPage=1&type=기타"
 					class="content-header-tap1"><i class="fab fa-rocketchat"></i>기타</a>
-			</div>
-		</div>
+			</div> 
+		</div>-->
 		<div class="content-header2">
 			<a href="/donation.don?reqPage=1&type=전체"
 				class="content-header2-tap content-header2-tap1">일반기부</a> <a
 				href="/regular.don?reqPage=1&type=전체" class="content-header2-tap">단체기부</a> 
+				<c:if test="${not empty sessionScope.member }">
 				<a href="/regularInsertFrm.don"
-				class="content-header2-tap">단체 신청</a>
+				class="content-header2-tap">단체 신청</a></c:if>
+					<c:if test="${empty sessionScope.member }">
+				<a href=""
+				class="content-header2-tap">단체 신청</a></c:if>
 		</div>
 		<div class="content-main">
 		<div id="demo" class="carousel slide" data-ride="carousel">
-
 			<!-- Indicators -->
 			<ul class="carousel-indicators">
 				<li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -313,15 +316,18 @@ div>img {
 			</ul>
 
 			<!-- The slideshow -->
-			<div class="carousel-inner complict">
+			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="/resources/upload/ckImg.png" alt="Los Angeles">
+					<img src="/imgs/banner3.jpg" alt="image" width="100%"
+						height="300px">
 				</div>
 				<div class="carousel-item">
-					<img src="/resources/upload/test1.png" alt="Chicago">
+					<img src="/imgs/banner2.jpg" alt="image" width="100%"
+						height="300px">
 				</div>
 				<div class="carousel-item">
-					<img src="/resources/upload/test2.png" alt="New York">
+					<img src="/imgs/banner1.jpg" alt="image" width="100%"
+						height="300px">
 				</div>
 			</div>
 
@@ -331,11 +337,10 @@ div>img {
 			</a> <a class="carousel-control-next" href="#demo" data-slide="next">
 				<span class="carousel-control-next-icon"></span>
 			</a>
-
 		</div>
 		
 			<div class="content-main-top">
-				<a class="content-main-top1">단체 :  개</a> 
+				<a class="content-main-top1">단체 : ${count}개</a> 
 			</div>
 			
 			 	<div class="content-main-list">

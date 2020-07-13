@@ -100,7 +100,7 @@
 
 .content-main-list {
 	width: 90%;
-	
+	height : 970px;
 	margin: 0 auto;
 	
 }
@@ -183,13 +183,16 @@ font-size: 15px;
 color: gray;
 }
 .content-main-list1-text-a4{
-margin-left: 87%;
+text-align:right;
+margin-left: 10px;
 }
-.content-main-list1-text-a3{
-color: green;
+
+.text-aa{
+text-align:right;
+margin-right:10px;
 }
 progress{
-width: 80%;
+width: 90%;
 height: 15px;
 margin-left: 2%;
 
@@ -250,8 +253,13 @@ margin-left: 2%;
 		<div class="content-header2">
 			<a href="/donation.don?reqPage=1&type=전체"
 				class="content-header2-tap content-header2-tap1">일반기부</a> <a
-				href="/regular.don?reqPage=1&type=전체" class="content-header2-tap">단체기부</a> <a href="/donationInsertFrm.don"
-				class="content-header2-tap">기부 신청</a>
+				href="/regular.don?reqPage=1&type=전체" class="content-header2-tap">단체기부</a> 
+				<c:if test="${not empty sessionScope.member }">
+				<a href="/donationInsertFrm.don"
+				class="content-header2-tap">기부 신청</a></c:if>
+				<c:if test="${empty sessionScope.member }">
+				<a href="#"
+				class="content-header2-tap">기부 신청</a></c:if>
 		</div>
 		<div class="content-main">
 			<div class="content-main-top">
@@ -280,14 +288,15 @@ margin-left: 2%;
 				<div class="content-main-list1">
 			 		<div class="content-main-list1-img" >
 			 		<a href="/donationDetail.don?donationNo=${n.donationNo }&donationWriter=${n.donationWriter }">
-			 			<img class="content-main-list1-img1" src="${n.donationFilepath }"></a>
+			 			<img class="content-main-list1-img1" src="${n.donationFilepath}"></a>
 			 		</div>
 			 		<div class="content-main-list1-text">
 			 			<a class="content-main-list1-text-a"><b>${n.donationTitle }</b></a><br>
 			 			<a class="content-main-list1-text-a2">${n.donationWriter }</a><br>
-			 			<a class="content-main-list1-text-a3"><progress value="80" max="100"></progress> 80%</a><br>
-			 			<a class="content-main-list1-text-a4">${n.donationNowMoney }원</a>
-			 		</div>
+			 			<a class="content-main-list1-text-a2"><progress value="${n.dnrPercent }" max="100"></progress></a><br>
+			 			<div class="text-aa">
+			 			<a class="content-main-list1-text-a4">모금<a style="color: #0fbcff;">${n.donationNowMoney }</a>원</a>
+			 		</div></div>
 			 	</div>
 			 	</c:forEach>
 			</div>
