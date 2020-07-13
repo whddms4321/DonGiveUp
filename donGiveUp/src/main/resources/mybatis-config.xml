@@ -34,7 +34,11 @@
 	
 		<typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
 		<typeAlias type="kr.co.don.vserver.model.vo.VserverVo" alias="vserver"/>
-
+		<typeAlias type="kr.co.don.dnreview.model.vo.DnreviewVo" alias="dnreview"/>
+		<typeAlias type="kr.co.don.dnreview.model.vo.DnreviewimgVo" alias="dnreviewimg"/>
+		<typeAlias type="kr.co.don.dnreview.model.vo.DnbillVo" alias="dnbill"/>
+		<typeAlias type="kr.co.don.dnreview.model.vo.DncommentVo" alias="dncomment"/>
+		
 		<typeAlias type="kr.co.don.talent.model.vo.Talent" alias="talent"/>
 		<typeAlias type="kr.co.don.talent.model.vo.TalentList" alias="talentList"/>
 		<typeAlias type="kr.co.don.talent.model.vo.TalentJoin" alias="talentJoin"/>

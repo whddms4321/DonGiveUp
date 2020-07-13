@@ -143,16 +143,16 @@
     margin: 1.5px;
     width: 237px;
     text-indent: 75px;
-    background-color: #80d4f6;
+    background-color: #e3f0f6;
     box-sizing: border-box;
 }
 
 .ul > li:hover {
-    background-color: #e3f0f6;
+    background-color: #80d4f6;
 }
 
 .ul > li:hover > a {
-    color: #3D3B3A;
+    color: #fff;
 }
 
 .ul a {
@@ -160,7 +160,7 @@
     display: block;
     text-decoration: none;
     font-weight: bold;
-    color: #fff;
+    color: darkgray;
 }
 
 .ul2Wrap {

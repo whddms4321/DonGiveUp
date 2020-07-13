@@ -24,18 +24,17 @@
         <div class="reviewNavi">
             <ul>
 
-                <li><a href="/dnreview.don">기부후기</a></li>
-                <li><a href="/fdreview.don">펀딩후기</a></li>
+                <li><a href="/dnreviewlist.don?count=1">기부후기</a></li>
+                <li><a href="/fdreviewlist.don?count=1">펀딩후기</a></li>
                 <li><a href="/spreview.don">물품후원후기</a></li>
             </ul>
         </div>
         <div class="dnreviewWrap">
-            <div class="tableHead"><a href="/dnreview.don">기부 후기<i class="iconmore fas fa-angle-right"></i></a></div>
+            <div class="tableHead"><a href="/dnreviewlist.don?count=1">기부 후기<i class="iconmore fas fa-angle-right"></i></a></div>
             <table class="dnreviewList">
                 <tr>
                     <td>
                         <a href="/dnrview.don">
-
                             <div class="dnreviewBox">
                                 <div class="dnrimg">
                                     <img src="/resources/dahyun/imgs/콩삼이.jpg">
@@ -101,7 +100,7 @@
         </div>
         <div class="fdreviewWrap">
 
-            <div class="tableHead"><a href="/fdreview.don">펀딩 후기<i class="iconmore fas fa-angle-right"></i></a></div>
+            <div class="tableHead"><a href="/fdreviewlist.don?count=1">펀딩 후기<i class="iconmore fas fa-angle-right"></i></a></div>
 
             <table class="fdreviewList">
                 <tr>
