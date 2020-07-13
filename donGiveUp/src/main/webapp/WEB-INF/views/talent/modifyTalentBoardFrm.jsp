@@ -89,28 +89,28 @@ $(function () {
 <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 <div class="insertInfo">
 <br>
-		<h1>재능기부 게시판 글등록</h1>
-		<h4>재능기부 게시판 등록을 통해 참여인원에 대해 정보 공유를 해주세요.</h4>
+		<h1>재능기부 게시판 글수정</h1>
+		<h4>재능기부 게시판 등록을 통해 자신이 보유한 재능을 재능이 필요한 모두에게 선물하세요.</h4>
 </div>
 <div class="content">
-	<h2>글등록</h2>
-	<form action="/talent/insertTalentBoard.don" method="post" enctype="multipart/form-data">
+	<h2>글수정</h2>
+	<form action="/talent/modifyTalentBoard.don?talentBoardNo=${board.talentBoardNo }" method="post">
 		<table class="insertTalentTable">
 			<tr>
 				<th>제목</th>
 				<td>
-					<input type="text" name="talentBoardTitle" style="width: 1070px; height: 20px; margin-left: 10px;" required>
+					<input type="text" name="talentBoardTitle" style="width: 1070px; height: 20px; margin-left: 10px;" required value="${board.talentBoardTitle }">
 					<input type="hidden" name="talentBoardWriter" value="${sessionScope.member.memberId }">
-					<input type="hidden" name="talentNo" value="${talentNo }">
+					<input type="hidden" name="talentBoardNo" value="${board.talentBoardNo }">
 				</td>
 			</tr>
 			<tr>
 				<th>게시판 내용</th>
-				<td><textarea class="form-control" id="p_content" name="talentBoardContent" style="resize: none;"  required></textarea></td>
+				<td><textarea class="form-control" id="p_content" name="talentBoardContent" style="resize: none;"  required >${board.talentBoardContent }</textarea></td>
 			</tr>
 		</table>
 		<div class="btnClass">
-			<button type="submit">등록</button>
+			<button type="submit">수정</button>
 			<button type="reset">취소</button>
 		</div>
 	</form>

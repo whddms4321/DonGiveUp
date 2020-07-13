@@ -179,12 +179,28 @@ public class TalentService {
 		return dao.selectTalentList(memberId);
 	}
 
-	public TalentBoard talentBoardDetail(int talentNo) {
-		return dao.talentBoardDetail(talentNo);
+	public TalentBoard talentBoardDetail(int talentBoardNo) {
+		return dao.talentBoardDetail(talentBoardNo);
 	}
 
 
 	public int insertTalentBoard(TalentBoard board) {
 		return dao.insertTalentBoard(board);
+	}
+
+	public TalentBoard selectTalentBoard(int talentBoardNo) {
+		return dao.selectTalentBoard(talentBoardNo);
+	}
+
+	public int modifyTalentBoard(TalentBoard board) {
+		return dao.modifyTalentBoard(board);
+	}
+
+	public int deleteTalentBoard(int talentBoardNo) {
+		return dao.deleteTalentBoard(talentBoardNo);
+	}
+
+	public int countTalentList(int talentNo) {
+		return dao.countTalentList(talentNo);
 	}
 }

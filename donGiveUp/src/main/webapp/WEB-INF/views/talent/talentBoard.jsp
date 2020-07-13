@@ -170,11 +170,10 @@
 		</div>
 		<div class="boardWrap">
 			<h2 style="margin-left: 20px;">게시판</h2>
-			<c:forEach items="${list }" var="talentBoard">
-			<c:if test="${sessionScope.member.memberId eq talentBoard.talentBoardWriter }">
-				<a href="/talent/insertTalentBoardFrm.don?talentNo=${talentBoard.talentNo }" class="adminNoticeBtn">글 등록</a>
+			<c:if test="${sessionScope.member.memberId eq talentWriter }">
+				<a href="/talent/insertTalentBoardFrm.don?talentNo=${talentNo }" class="adminNoticeBtn">글 등록</a>
 			</c:if>
-			</c:forEach>
+			<c:if test="${not empty list }">
 			<table class="noticeTable">
 				<tr>
 					<th>글번호</th>
@@ -186,24 +185,26 @@
 						<td style="border-bottom: 0.1px solid #DDE3E9;">
 							${talentBoard.talentBoardNo }</td>
 						<td style="border-bottom: 0.1px solid #DDE3E9;"><a
-							href="/talent/talentBoardDetail.don?talentNo=${talentBoard.talentNo}"
+							href="/talent/talentBoardDetail.don?talentBoardNo=${talentBoard.talentBoardNo}"
 							style="font-weight: bold">${talentBoard.talentBoardTitle }</a></td>
 						<td style="border-bottom: 0.1px solid #DDE3E9;">
 							${talentBoard.talentBoardWriter }</td>
 					</tr>
-
 				</c:forEach>
 			</table>
 			<div class="noticePageNavi">${pageNavi }</div>
+			</c:if>
+			<c:if test="${empty list }">
+				<div style="text-align: center; margin-top: 100px;">
+				<img src="/resources/song/image/경고.png">
+					<h1>해당 게시판에 등록된 글이 없습니다.</h1>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<c:if test="${not empty sessionScope.member }">
 		<jsp:include page="/WEB-INF/views/main/chat.jsp"></jsp:include>
 	</c:if>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
-	<script>
-		console.log("${talentBoard.talentBoardWriter}");
-		console.log("${sessionScope.member.memberId}");
-	</script>
 </body>
 </html>

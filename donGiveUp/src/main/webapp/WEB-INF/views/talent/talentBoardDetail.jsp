@@ -207,10 +207,10 @@
 				test="${sessionScope.member.memberId eq board.talentBoardWriter }">
 				<div align="right">
 
-					<a href="/modifyTalentBoardFrm?talentNo=${board.talentNo}"
+					<a href="/talent/modifyTalentBoardFrm.don?talentBoardNo=${board.talentBoardNo}"
 						class="adminNoticeBtn">수정하기</a> <a href="javascript:void(0)"
 						class="adminNoticeBtn"
-						onclick="deleteTalentBoard('${board.talentNo}')">삭제하기</a>
+						onclick="deleteTalentBoard('${board.talentBoardNo}')">삭제하기</a>
 
 				</div>
 			</c:if>
@@ -248,7 +248,7 @@ $(function() {
 });
 function deleteTalentBoard() {
 	if(confirm("삭제하시겠습니까?")){
-		location.href="/deleteNotice?talentNo=${board.talentNo}"
+		location.href="/talent/deleteTalentBoard.don?talentBoardNo=${board.talentBoardNo}&talentNo=${board.talentNo}"
 	}else{
 		return false;
 	}

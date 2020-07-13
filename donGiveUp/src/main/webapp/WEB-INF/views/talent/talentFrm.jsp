@@ -136,6 +136,9 @@
 	font-size: 20px;
 	text-align: center;
 	margin-bottom: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .talentWriter {
@@ -178,9 +181,13 @@
 </style>
 <script>
 	$(function () {
-		$(".contentHeadColor").click(function () {
-			$(this).css({border:"1px solid #0fbcff",color:"#0fbcff"});
-		});
+		var type = "#"+"${type}";
+		var head = $(".contentHeadColor");
+		for(var i=0;i<head.length;i++){
+			if(type == head.eq(i).html()){
+				head.eq(i).css({border:"1px solid #0fbcff",color:"#0fbcff"});
+			}
+		}
 	});
 	
 	function talentList(talentNo) {

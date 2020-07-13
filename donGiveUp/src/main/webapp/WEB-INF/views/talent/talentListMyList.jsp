@@ -25,8 +25,7 @@
 .talentListPart {
 	float: left;
 	width: 395px;
-	height: 100%;
-	z-index: 1000;
+	height: 500px;
 }
 
 .talentImage {
@@ -84,8 +83,8 @@ function talentBoard(talentNo) {
 	<div class="content">
 	<h1>참여목록</h1>
 	<hr>
-		<div style="margin-top: 25px; width: 1200px;">
-			<div style="width: 1200px; height: 500px; overflow: hidden;">
+		<div style="margin-top: 25px; width: 1200px; height: 100%;overflow: hidden;">
+			<div style="width: 1200px; height: 100%;" class="divFloat">
 				<c:forEach items="${join }" var="list">
 					<div class="talentListPart"
 						onclick="talentBoard('${list.talentNo }')">
@@ -98,9 +97,6 @@ function talentBoard(talentNo) {
 								style="margin-right: 20px;"> ${list.talentWriter }</span>
 						</div>
 						<div class="talentTitle">${list.talentTitle }</div>
-					</div>
-					<div style="width: 805px; height: 100%;">
-					
 					</div>
 				</c:forEach>
 			</div>

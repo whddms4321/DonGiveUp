@@ -78,11 +78,27 @@ public class TalentDao {
 		return (ArrayList<Talent>)list; 
 	}
 
-	public TalentBoard talentBoardDetail(int talentNo) {
-		return sqlSession.selectOne("talentBoard.talentBoardDetail",talentNo);
+	public TalentBoard talentBoardDetail(int talentBoardNo) {
+		return sqlSession.selectOne("talentBoard.talentBoardDetail",talentBoardNo);
 	}
 
 	public int insertTalentBoard(TalentBoard board) {
 		return sqlSession.insert("talentBoard.insertTalentBoard",board);
+	}
+
+	public TalentBoard selectTalentBoard(int talentBoardNo) {
+		return sqlSession.selectOne("talentBoard.selectTalentBoardOne",talentBoardNo);
+	}
+
+	public int modifyTalentBoard(TalentBoard board) {
+		return sqlSession.update("talentBoard.modifyTalentBoard",board);
+	}
+
+	public int deleteTalentBoard(int talentBoardNo) {
+		return sqlSession.delete("talentBoard.deleteTalentBoard",talentBoardNo);
+	}
+
+	public int countTalentList(int talentNo) {
+		return sqlSession.selectOne("talentList.countTalentList",talentNo);
 	}
 }
