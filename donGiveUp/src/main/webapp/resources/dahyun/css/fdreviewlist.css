@@ -140,10 +140,14 @@ input::placeholder {
     margin: 0 auto;
     margin-top: 10px;
 }
-
+td{
+    width: 234px;
+    height: 322px;
+}
 
 .fdreviewList {
-    width: 100%;
+   border-collapse: separate;
+    border-spacing: 12px;
     height: 350px;
 
 }
@@ -156,7 +160,7 @@ input::placeholder {
 .fdreviewBox {
     margin: 0 auto;
     width: 230px;
-    height: 340px;
+    height: 320px;
     box-sizing: border-box;
 }
 

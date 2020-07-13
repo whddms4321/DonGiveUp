@@ -21,4 +21,52 @@
  			null
  		)
  	</insert>
+ 	<select id="vworkList" parameterType="map" resultType="vwork">
+ 		select 
+ 			vwork_no as vworkNo, vwork_title as vworkTitle, 
+ 			vwork_req_date as vworkReqDate, vwork_dl_date as vworkDlDate,
+ 			vwork_join_date as vworkJoinDate, vwork_per as vworkPer,
+ 			vwork_intro as vworkIntro, vwork_detail as vworkDetail,
+ 			vwork_address as vworkAddress, vwork_fee as vworkFee, 
+ 			vwork_filename as vworkFilename, vwork_filepath as vworkFilepath, 
+ 			vwork_select as vworkSelect, company_name as companyName, 
+ 			company_filename as companyFilename, company_filepath as companyFilepath 
+ 		from (select rownum as rnum, s.* 
+ 		from (select * from vwork left join member on vwork_writer = member_id
+		where vwork_state=1 order by vwork_no desc)s)s
+        where rnum between #{rnumMin} and #{rnumMax}
+ 	</select>
+ 	<select id="vwListsearch" parameterType="map" resultType="vwork">
+ 		select 
+ 			vwork_no as vworkNo, vwork_title as vworkTitle, 
+ 			vwork_req_date as vworkReqDate, vwork_dl_date as vworkDlDate,
+ 			vwork_join_date as vworkJoinDate, vwork_per as vworkPer,
+ 			vwork_intro as vworkIntro, vwork_detail as vworkDetail,
+ 			vwork_address as vworkAddress, vwork_fee as vworkFee, 
+ 			vwork_filename as vworkFilename, vwork_filepath as vworkFilepath, 
+ 			vwork_select as vworkSelect, company_name as companyName, 
+ 			company_filename as companyFilename, company_filepath as companyFilepath 
+ 		from (select rownum as rnum, s.* 
+ 		from (select * from vwork left join member on vwork_writer = member_id
+		where vwork_state=1 and vwork_select=#{keyword} order by vwork_no desc)s)s
+        where rnum between #{rnumMin} and #{rnumMax}
+ 	</select>
+ 	<select id="selectOneVwork" parameterType="_int" resultType="vwork">
+ 		select 
+ 			vwork_no as vworkNo, vwork_title as vworkTitle, vwork_req_date as vworkReqDate, 
+ 			vwork_dl_date as vworkDlDate, vwork_join_date as vworkJoinDate, vwork_per as vworkPer, 
+ 			vwork_intro vworkIntro, vwork_detail as vworkDetail, vwork_address as vworkAddress, 
+ 			vwork_fee as vworkFee, vwork_filename as vworkFilename, vwork_filepath as vworkFilepath, 
+ 			vwork_select as vworkSelect, vwork_writer as vworkWriter, company_name as companyName, 
+ 			member_phone as memberPhone 
+ 		from (select * from vwork left join member on vwork_writer = member_id
+		where vwork_no = #{_parameter})
+ 	</select>
+ 	<update id="vworkupdate" parameterType="vwork">
+ 		update vwork set
+ 			vwork_title = #{vworkTitle}, vwork_dl_date = #{vworkDlDate}, vwork_join_date = #{vworkJoinDate},
+ 			vwork_intro = #{vworkIntro}, vwork_detail = #{vworkDetail}, vwork_address = #{vworkAddress},
+ 			vwork_select = #{vworkSelect}
+ 		where vwork_no = #{vworkNo}
+ 	</update>
 </mapper>

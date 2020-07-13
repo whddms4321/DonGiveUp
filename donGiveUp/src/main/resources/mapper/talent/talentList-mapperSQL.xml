@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="talentList">
+	<insert id="insertTalentList" parameterType="talentList">
+		insert into talent_list values (#{talentNo},#{memberId})
+	</insert>
+	<select id="selectTalentList" parameterType="talentList" resultType="talentList">
+		select
+			talent_no as talentNo,
+			member_id as memberId
+		from talent_list
+			where member_id=#{memberId} and talent_no=#{talentNo}
+	</select>
+	<delete id="deleteTalentList" parameterType="talentList">
+		delete from talent_list where member_id=#{memberId} and talent_no=#{talentNo} 
+	</delete>
+	<select id="countTalentList" parameterType="_int" resultType="_int">
+		select count(*) from talent_list where talent_no=#{_parameter}
+	</select>
+</mapper>

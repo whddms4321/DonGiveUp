@@ -19,6 +19,8 @@ import kr.co.don.adminMypage.model.vo.AdminPageDataGenericVO;
 import kr.co.don.member.model.vo.Member;
 import kr.co.don.userMypage.model.service.UserMypageService;
 import kr.co.don.userMypage.model.vo.UserAttendListVO;
+import kr.co.don.userMypage.model.vo.UserBankInVO;
+import kr.co.don.userMypage.model.vo.UserBankVO;
 import kr.co.don.userMypage.model.vo.UserMoneyUseListVO;
 import net.sf.json.JSONArray;
 
@@ -80,8 +82,7 @@ public class UserMypageController {
 	}
 	
 	@RequestMapping(value="/userAttendList.don")
-	public String userAttendList(String memberId, String type, String kind) {
-		
+	public String userAttendList() {
 		return "mypage/user/attendList";
 	}
 	
@@ -118,5 +119,35 @@ public class UserMypageController {
 	public String selectCompanyReqContent(int boardNo, String type) {
 		String reqContent = service.selectCompanyReqContent(boardNo, type);
 		return reqContent;
+	}
+	
+	@RequestMapping(value="/userBank.don")
+	public String userBank() {
+		return "mypage/user/userBank";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/selectBankInfo.don", produces="application/json; charset=utf-8;")
+	public UserBankVO selectBankInfo(String memberId) {
+		return service.selectBankInfo(memberId);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/selectBankInList.don", produces="application/json; charset=utf-8;")
+	public String selectBankInList(String memberId, int reqPage, int type) {
+		AdminPageDataGenericVO<UserBankInVO> pageData = service.selectBankInList(memberId, reqPage, type);
+		return new Gson().toJson(pageData);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/bankCancelReq.don")
+	public int bankCancelReq(int bankNo) {
+		return service.bankCancelReq(bankNo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/donationToCompany.don")
+	public void donationToCompany(String memberId, String companyName, int price, int bankNo) {
+		HashMap<String, String> map =service.donationToCompany(memberId,companyName,price,bankNo);
 	}
 }

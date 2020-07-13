@@ -1,23 +1,21 @@
 package kr.co.don.common;
 
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import kr.co.don.member.model.vo.Member;
 import kr.co.don.regular.model.service.RegularService;
 import kr.co.don.regularIn.model.vo.RegularInVo;
-
+import kr.co.don.funding.model.service.FundingService;
 
 
 @Component
 public class ScheduledTest {
-
 	@Autowired
 	@Qualifier("regularService")
 	private RegularService service;
@@ -39,20 +37,6 @@ public class ScheduledTest {
 		
 	}
 		
+}	
 		
-		
-		/*
-		 * ArrayList<RegularInVo> list = service.RegularInPay(); for(int i=0;
-		 * i<list.size(); i++) { ArrayList<Member> list2 =
-		 * service.MemberPaySearch(list.get(i).getRegularInId()); } for( RegularInVo n :
-		 * list) { count, max,min
-		 * 
-		 * select s.*,(select member_) from member s; } System.out.println("테스트");
-		 */
-	}
-	
-//	@Scheduled(fixedDelay = 5000)
-//	public void scheduleTest3() {
-//		System.out.println("5초마다 동작");
-//	}
 

@@ -77,12 +77,9 @@
     outline: none;
     cursor: pointer;
 }
-.vworkCardlist {
 
-    
-    width: 90%;
-    
-
+td{
+    width: 312px;
 }
 
 .vworkBox {
@@ -179,6 +176,7 @@
 }
 
 .vwboxTitle {
+    height: 54px;
     letter-spacing: -.8px;
     font-size: 20px;
     line-height: 20px;
@@ -230,7 +228,7 @@
     border: 1px solid white;
     border-top-color: rgba(0,0,0,.2); 
 }
-.vworkEnroll>button{
+#applyBtn{
     margin-top: 10px;
     box-sizing: border-box;
     border:1px solid white;
@@ -239,5 +237,31 @@
     height: 32px;
     color: #fff;
     font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+#noneapplyBtn{
+    margin-top: 10px;
+    box-sizing: border-box;
+    border:1px solid white;
+    background-color: lightgray;
+    width: 100%;
+    height: 32px;
+    color: #3D3B3A;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+.moreBtn{
+    width: 97%;
+    height: 40px;
+    margin: 0 auto;
+    
+}
+.moreBtn>button{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #e5e5e5;
+    background-color: #f6f6f6;
     
 }

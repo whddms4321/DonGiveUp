@@ -72,7 +72,7 @@
 		</div>
 		<div id="chartWrap">
 			<div style="background-color : #fff;">
-				<h3 style="margin-bottom:0px; padding:20px; font-weight:bold; border-bottom:1px dotted gray;">게시글 현황</h3>
+				<h3 style="margin-bottom:0px; padding:20px; font-weight:bold; border-bottom:1px dotted gray;">게시글 신청/승인 현황</h3>
 			</div>
 			<div id="chartdiv">
 			</div>

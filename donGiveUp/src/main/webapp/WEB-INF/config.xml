@@ -18,9 +18,9 @@
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
 
-	<baseDir>C:\Users\kamas\final-pjt\DonGiveUp\donGiveUp\src\main\webapp\resources\upload</baseDir>
+	<baseDir>C:\Users\user1\spring-workspace\DonGiveUp\donGiveUp\src\main\webapp\resources\song\talent</baseDir>
 
-	<baseURL>/resources/upload/</baseURL>
+	<baseURL>/resources/song/talent/</baseURL>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>
 	<!--

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dnreview">
+  <select id="mydnlist" parameterType="string" resultType="donation">
+  	select
+  		donation_no as donationNo, donation_title as donationTitle, donation_goal_money as donationGoalMoney,
+  		donation_now_money as donationNowMoney, donation_type as donationType,
+  		donation_start_date as donationStartDate, donation_end_date as donationEndDate
+  	from donation where donation_writer = #{_parameter} and (sysdate-to_date(donation_end_date))&gt;0 and donation_state = 1
+  	order by donation_no desc
+  </select>
+  <select id="dnreviewSList" parameterType="string" resultType="dnreview">
+  		select 
+			dnreview_no as dnreviewNo, dnreview_title as dnreviewTitle, dnreview_ref as dnreviewRef, 
+			company_name as companyName, dnreview_targetper as dnreviewTargetper, dnreview_content as dnreviewContent,
+			dnreview_Filepath as dnreviewFilepath, donation_type  as donationType, 
+			donation_goal_money as donationGoalMoney, donation_now_money as donationNowMoney, 
+			donation_start_date as donationStartDate, donation_end_date as donationEndDate
+		from 
+		((select * from (select * from dnreview left join donation on dnreview_ref = donation_no)
+		left join member on dnreview_writer = member_id) 
+		order by dnreview_no desc)
+        where dnreview_title like '%'||#{_parameter}||'%'
+  </select>
+  <select id="selectonednrview" parameterType="_int" resultType="dnreview">
+  		select 
+			dnreview_no as dnreviewNo, dnreview_title as dnreviewTitle, dnreview_ref as dnreviewRef, 
+			company_name as companyName, dnreview_targetper as dnreviewTargetper, dnreview_content as dnreviewContent,
+			dnreview_Filepath as dnreviewFilepath, donation_type  as donationType, dnreview_writer as dnreviewWriter,
+			donation_goal_money as donationGoalMoney, donation_now_money as donationNowMoney, 
+			donation_start_date as donationStartDate, donation_end_date as donationEndDate
+		from 
+        (select * from (select * from dnreview left join donation on dnreview_ref = donation_no)
+		left join member on dnreview_writer = member_id) where dnreview_no = #{_parameter}
+  </select>
+  <select id="selectdnCommentlist" parameterType="_int" resultType="dncomment">
+  		 select 
+  		 	dncomment_no as dncommentNo, dncomment_writer as dncommentWriter,
+  		 	dncomment_content as dncommentContent, dncomment_date as dncommentDate,
+  		 	dncomment_ref as dncommentRef, dncomment_like as dncommentLike 
+  		 from dncomment where dncomment_ref = #{_parameter}
+  </select>
+  <select id="selectAlldnrimg" parameterType="_int" resultType="dnreviewimg">
+  		select
+  			dnreviewimg_no as dnreviewImg, dnreviewimg_filepath as dnreviewimgFilepath,
+  			dnreviewimg_filename as dnreviewimgFilename, dnreviewimg_ref as dnreviewimgRef
+  		from dnreviewimg where dnreviewimg_ref = ${_parameter}
+  </select>
+  <select id="selectAlldnrbill" parameterType="_int" resultType="dnbill">
+  		select 
+  			dnbill_no as dnbillNo, dnbill_ref as dnbillRef,
+  			dnbill_name as dnbillName, dnbill_detail as dnbillDetail,
+  			dnbill_money as dnbillMoney
+  		from dnbill where dnbill_ref = #{_parameter}
+  </select>
+  <select id="selectmydnsel" parameterType="_int" resultType="donation">
+  	select
+  		donation_no as donationNo, donation_title as donationTitle, donation_goal_money as donationGoalMoney,
+  		donation_now_money as donationNowMoney, donation_type as donationType,
+  		donation_start_date as donationStartDate, donation_end_date as donationEndDate
+  	from donation where donation_no = #{_parameter}
+  </select>
+  <insert id="insertdnreview" parameterType="dnreview">
+  	insert into dnreview values(
+ 			dnreview_seq.nextval,
+ 			#{dnreviewTitle},
+ 			#{dnreviewRef},
+ 			#{dnreviewWriter},
+ 			#{dnreviewTargetper},
+ 			#{dnreviewContent},
+ 			sysdate,
+ 			#{dnreviewFilename},
+ 			#{dnreviewFilepath}
+ 		)
+  </insert>
+  <insert id="insertdnrImg" parameterType="dnreviewimg">
+   	insert into dnreviewimg values(
+   			dnreviewimg_seq.nextval,
+   			#{dnreviewimgFilename},
+   			#{dnreviewimgFilepath},
+   			dnreview_seq.currval
+   	)
+  </insert>
+  <insert id="insertdnbill" parameterType="dnbill">
+  	insert into dnbill values(
+  			dnbill_seq.nextval,
+  			dnreview_seq.currval,
+  			#{dnbillName},
+  			#{dnbillDetail},
+  			#{dnbillMoney}	
+  	)
+  </insert>
+	<select id="selectdnrList" parameterType="map" resultType="dnreview">
+		select 
+			dnreview_no as dnreviewNo, dnreview_title as dnreviewTitle, dnreview_ref as dnreviewRef, 
+			company_name as companyName, dnreview_targetper as dnreviewTargetper, dnreview_content as dnreviewContent,
+			dnreview_Filepath as dnreviewFilepath, donation_type  as donationType, 
+			donation_goal_money as donationGoalMoney, donation_now_money as donationNowMoney, 
+			donation_start_date as donationStartDate, donation_end_date as donationEndDate
+		from (select rownum as rnum, s.* from
+		((select * from (select * from dnreview left join donation on dnreview_ref = donation_no)
+		left join member on dnreview_writer = member_id) 
+		order by dnreview_no desc)s)s
+		where rnum between #{rnumMin} and #{rnumMax}
+	</select>
+	<insert id="insertDnCmt" parameterType="dncomment">
+		insert into dncomment values(
+			dncomment_seq.nextval,
+			#{dncommentWriter},
+			#{dncommentContent},
+			sysdate,
+			#{dncommentRef},
+			0
+		)
+	</insert>
+	<select id="selectOneDnCmt" resultType="dncomment">
+		select 
+			dncomment_writer as dncommentWriter, dncomment_content as dncommentContent,
+			dncomment_date as dncommentDate, dncomment_like as dncommentLike
+		from dncomment where dncomment_no = dncomment_seq.currval
+	</select>
+	<select id="selectcount" parameterType="_int" resultType="_int">
+		select 
+			count(*)
+		from dncomment where dncomment_ref = #{_parameter}
+	</select>
+</mapper>
