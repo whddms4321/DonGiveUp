@@ -12,4 +12,5 @@ public class VserverVo {
 	private String vserverWriter;
 	private int vserverRef;
 	private int vserverPrice;
+	private int ticketcount;
 }

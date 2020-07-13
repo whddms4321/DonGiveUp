@@ -74,5 +74,10 @@ public class DonationDao {
 		return sqlSession.selectOne("donation.donationSerch",d1);
 	}
 
+	public int MoneyUseList(DonationInVo d) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("donation.moneyUseList",d);
+	}
+
 	
 }

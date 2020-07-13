@@ -18,4 +18,5 @@ public class Donation {
 	private String donationWriter;
 	private int donationState;
 	private String donationNegative;
+	private int dnrPercent;
 }

@@ -17,5 +17,10 @@ public class Funding {
 	private String fundingManager;
 	private int fundingGoalPrice;
 	private int fundingNowPrice;
+	private int fundingNegative;
+	private String fundingFilepath;
+	private int fundingPercent;
+	private int dateLeft;
+	
 	
 }

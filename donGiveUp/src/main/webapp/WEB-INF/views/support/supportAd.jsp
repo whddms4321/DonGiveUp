@@ -169,28 +169,50 @@
 
 .support_kinds {
 	width: 100%;
-	height: 450px;
+	height: 520px;
 	background-color: #dedcee;
 	padding-top: 40px;
 }
-
-.support_kinds_imags {
+.support_kinds_imag{
+	
+	width:95%;
+	height:490px;
 	margin: 0 auto;
-	display: none;
+	margin-bottom:30px;
+	
+	
 }
 
+.support_kinds_imags {
+
+	display: none;
+	
+}
+
+.support_kinds_icon{
+	
+	width:460px;
+	height:363px;
+	border:none;
+	float:left;
+	
+}
+.icon_banner{
+	
+	width:150px;
+	height:121px;
+	border:none;
+	
+}
 .img_show {
 	display: block;
 }
- 
- .support_kinds_imags img_show test{
- 	background-image: url('http://www.gfound.org/img/sub1_8_sum1.png');
- }   
+  
 </style>
 <script>
 	function func1() {
         var test = '${sessionScope.member}';
-     	alert("로그인 후 이용해 주세요.");
+     	
         if( test != ''){
             var win = window
 				.open(
@@ -217,10 +239,8 @@
 			</div>
 			<div class="support_kinds">
 				<div class="support_kinds_imag">
-					<a class="support_kinds_imags img_show test">
-					
-					</a>
-					<img class="support_kinds_imags"
+					<div>
+						<img class="support_kinds_imags img_show"
 						src="../../../resources/upload/images/sub1_8_banner_1.png">
 					<img class="support_kinds_imags"
 						src="../../../resources/upload/images/sub1_8_banner_2.png">
@@ -238,8 +258,22 @@
 						src="../../../resources/upload/images/sub1_8_banner_8.png">
 					<img class="support_kinds_imags"
 						src="../../../resources/upload/images/sub1_8_banner_9.png">
+					
+					</div>
 						
+					<div class="support_kinds_icon">
+					
+						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum1.png">
+						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum2.png">
+						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum3.png">
+						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum4.png">
+						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum5.png">
+						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum6.png">
+						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum7.png">
+						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum8.png">
+						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum9.png">
 						
+					</div>
 				</div>
 			</div>
 			<div class="support_method">

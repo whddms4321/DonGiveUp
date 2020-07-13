@@ -47,6 +47,8 @@ public class RegularController {
 	@RequestMapping(value = "/regular.don")
 	public String regular(int reqPage, String type, Model model) {
 		ArrayList<Member> list = service.RegularList(reqPage, type);
+		int count = list.size();
+		model.addAttribute("count", count);
 		model.addAttribute("regular", list);
 		return "regular/regular";
 
@@ -69,13 +71,20 @@ public class RegularController {
 	
 	
 	@RequestMapping(value = "/regularInsert.don")
-	public String regularInsert(Regular regular) {
+	public String regularInsert(Regular regular,Model model) {
 		
 		regular.setRegularType("전체,"+regular.getRegularType());
 		
 		int result = service.regularInsert(regular);
 		
-
+		int reqPage =1;
+		String type="전체";
+		ArrayList<Member> list = service.RegularList(reqPage, type);
+		int count = list.size();
+		model.addAttribute("count", count);
+		model.addAttribute("regular", list);
+		
+		
 		if (result > 0) {
 			return "regular/regular";
 		} else {

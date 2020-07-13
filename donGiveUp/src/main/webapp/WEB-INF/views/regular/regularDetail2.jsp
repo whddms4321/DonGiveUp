@@ -73,7 +73,7 @@ width: 90%;
 }
 .content-main-right-money{
 width: 100%;
-height: 280px;
+height: 240px;
 
 
 }
@@ -84,7 +84,7 @@ height: 80px;
 }
 .content-main-right-organization{
 width: 100%;
-height: 300px;
+height: 250px;
 
 }
 .content-main-right-require{
@@ -141,8 +141,8 @@ line-height: 70px;
 
 }
 .content-main-right-donation-button{
-	width: 99%;
-	height: 100%;
+	width: 99.3%;
+	height: 70px;
 	background-color: #0fbcff;
 	font-size: 25px;
 	font-weight: bold;
@@ -223,9 +223,8 @@ font-size: 23px;
 				</div>
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체 안내</a></div><br>
-				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="/resources/upload/images/1.JPG"></a><br>
+				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src=""></a><br>
 				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3"></a></div><br>
-				<div class="content-main-right-organization-d3"><a class="content-main-right-organization-a4" href="#">기부 단체 리뷰</a>	</div>
 				</div>
 				<div class="content-main-right-require">
 				<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">주의 사항</a></div><br>
@@ -244,7 +243,7 @@ font-size: 23px;
 		</a></div>
 				</div>
 				<div class="content-main-right-relation">
-					<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 단체 글</a></div>
+				<!-- 	<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 단체 글</a></div> -->
 				</div>
 			</div>
 		</div>

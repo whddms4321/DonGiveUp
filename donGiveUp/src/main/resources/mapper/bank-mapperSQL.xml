@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bank">
+
+	<select id="totalCount" parameterType="map" resultType="_int">
+
+		select count(*) from bank where bank_type = #{type}
+		<if test="keyword != null">
+			and bank_title like '%'||#{keyword}||'%'
+		</if>
+	</select>
+
+	<select id="bankList" parameterType="map" resultType="bank">
+		SELECT *
+		FROM
+		(SELECT ROWNUM AS RNUM, N.*
+		FROM
+		(SELECT
+		BANK_NO AS bankNo,
+		BANK_TITLE AS bankTitle,
+		BANK_CONTENT AS bankContent,
+		BANK_FILENAME AS bankFilename,
+		BANK_FILEPATH AS bankFilepath,
+		BANK_GOAL_MONEY AS bankGoalMoney,
+		BANK_NOW_MONEY AS bankNowMoney,
+		BANK_WRITER AS bankWriter,
+		BANK_DATE AS bankDate,
+		BANK_ORGANIZATION AS bankOrganization,
+		BANK_TYPE AS bankType
+		FROM bank
+		where bank_type = #{type}
+		<if test="keyword != null">
+			and bank_title like '%'||#{keyword}||'%'
+		</if>
+		ORDER BY BANK_NO DESC)
+		N
+		) WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="selectOrg" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			COMPANY_NAME AS companyName
+		        FROM MEMBER
+		        WHERE company_name is not null
+	</select>
+
+
+<insert id="bankInsert" parameterType="bank">
+		insert into bank values(bank_seq.nextval, #{bankTitle}, #{bankContent}, #{bankFilename}, #{bankFilepath},#{bankGoalMoney} ,0,#{bankWriter}, sysdate, #{bankOrganization},#{bankType})
+	</insert>
+
+<select id="bankDetail" parameterType="_int" resultType="bank">
+		SELECT
+		BANK_NO AS bankNo,
+		BANK_TITLE AS bankTitle,
+		BANK_CONTENT AS bankContent,
+		BANK_FILENAME AS bankFilename,
+		BANK_FILEPATH AS bankFilepath,
+		BANK_GOAL_MONEY AS bankGoalMoney,
+		BANK_NOW_MONEY AS bankNowMoney,
+		BANK_WRITER AS bankWriter,
+		BANK_DATE AS bankDate,
+		BANK_ORGANIZATION AS bankOrganization,
+		BANK_TYPE AS bankType
+		FROM bank
+		where bank_no = #{_parameter}
+	</select>
+
+
+<select id="memberSearch" parameterType="string" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			MEMBER_MONEY AS memberMoney,
+			COMPANY_NAME AS companyName
+		        FROM MEMBER
+		where member_id = #{memberId}
+	</select>
+	
+	<insert id="bankInInsert" parameterType="bankIn">
+		<if test="bankInType == 0">
+		insert into bank_in values(bank_in_seq.nextval, #{bankInId}, #{bankInMoney},sysdate ,null,null,#{bankInType},null,#{bankNo})
+		</if>
+		<if test="bankInType == 1">
+		insert into bank_in values(bank_in_seq.nextval, #{bankInId}, #{bankInMoney},sysdate ,#{bankInEndDate},#{bankInPayNum},#{bankInType},null,#{bankNo})
+		</if>
+	</insert>
+	
+	<update id="memberMoneyUpdate" parameterType="member">
+		update member 
+		set 
+			member_money = #{memberMoney}
+		where member_id = #{memberId}
+	</update>
+	<update id="bankMoneyUpdate" parameterType="bank">
+		update bank 
+		set 
+			bank_now_money = #{bankNowMoney}
+		where bank_no = #{bankNo}
+	</update>
+</mapper>

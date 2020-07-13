@@ -74,7 +74,7 @@
     <script>
         $(function() {
             $("#Btn").click(function() {
-                location.href = "/vworklist.don"
+                location.href = "/vworklist.don?count=1"
             });
         });
 

@@ -101,6 +101,7 @@ $(function () {
 				<td>
 					<input type="text" name="talentTitle" style="width: 1070px; height: 20px; margin-left: 10px;" required>
 					<input type="hidden" name="talentWriter" value="${sessionScope.member.memberId }">
+					
 				</td>
 			</tr>
 			<tr>

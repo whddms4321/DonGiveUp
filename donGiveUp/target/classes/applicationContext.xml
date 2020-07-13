@@ -42,6 +42,8 @@
 <tx:annotation-driven/>
 
 <task:annotation-driven/>
+	<context:component-scan base-package="kr.co.don.bankIn"/>
+	<context:component-scan base-package="kr.co.don.bank"/>
 	<context:component-scan base-package="kr.co.don.regularIn"/>
 	<context:component-scan base-package="kr.co.don.regular"/>
 	<context:component-scan base-package="kr.co.don.donationIn"/>
