@@ -89,50 +89,28 @@ $(function () {
 <jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 <div class="insertInfo">
 <br>
-		<h1>재능기부 글등록</h1>
-		<h4>재능기부 등록을 통해 자신이 보유한 재능을 재능이 필요한 모두에게 선물하세요.</h4>
+		<h1>재능기부 게시판 글수정</h1>
+		<h4>재능기부 게시판 등록을 통해 자신이 보유한 재능을 재능이 필요한 모두에게 선물하세요.</h4>
 </div>
 <div class="content">
-	<h2>글등록</h2>
-	<form action="/talent/insertTalent.don" method="post" enctype="multipart/form-data">
+	<h2>글수정</h2>
+	<form action="/talent/modifyTalentBoard.don?talentBoardNo=${board.talentBoardNo }" method="post">
 		<table class="insertTalentTable">
 			<tr>
 				<th>제목</th>
 				<td>
-					<input type="text" name="talentTitle" style="width: 1070px; height: 20px; margin-left: 10px;" required>
-					<input type="hidden" name="talentWriter" value="${sessionScope.member.memberId }">
-					
+					<input type="text" name="talentBoardTitle" style="width: 1070px; height: 20px; margin-left: 10px;" required value="${board.talentBoardTitle }">
+					<input type="hidden" name="talentBoardWriter" value="${sessionScope.member.memberId }">
+					<input type="hidden" name="talentBoardNo" value="${board.talentBoardNo }">
 				</td>
 			</tr>
 			<tr>
-				<th>대표 이미지</th>
-				<td>
-					<input type="file" name="file" style="margin-left: 10px;" required>
-				</td>
-			</tr>
-			<tr>
-				<th>재능기부 소개</th>
-				<td><textarea class="form-control" id="p_content" name="talentContent" style="resize: none;"  required></textarea></td>
-			</tr>
-			<tr>
-				<th>카테고리</th>
-				<td style="height: 30px; margin-left: 20px;">
-					<input type="radio" name="talentPart" value="디자인" style="margin-left: 20px;" required>디자인
-					<input type="radio" name="talentPart" value="프로그래밍" style="margin-left: 20px;" required>프로그래밍
-					<input type="radio" name="talentPart" value="노하우" style="margin-left: 20px;" required>노하우
-					<input type="radio" name="talentPart" value="생활" style="margin-left: 20px;" required>생활
-					<input type="radio" name="talentPart" value="운동" style="margin-left: 20px;" required>운동
-					<input type="radio" name="talentPart" value="번역" style="margin-left: 20px;" required>번역
-					<input type="radio" name="talentPart" value="기타" style="margin-left: 20px;" required>기타
-				</td>
-			</tr>
-			<tr>
-				<th>참여자 인원</th>
-				<td><input type="text" name="talentCount" style="width: 1070px; height: 20px; margin-left: 10px;" required placeholder="숫자만 입력하세요" id="talentCount"> 
+				<th>게시판 내용</th>
+				<td><textarea class="form-control" id="p_content" name="talentBoardContent" style="resize: none;"  required >${board.talentBoardContent }</textarea></td>
 			</tr>
 		</table>
 		<div class="btnClass">
-			<button type="submit">등록</button>
+			<button type="submit">수정</button>
 			<button type="reset">취소</button>
 		</div>
 	</form>

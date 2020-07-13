@@ -5,6 +5,20 @@
 	select count(*) from talent_board where talent_no=#{talentNo}
 </select>
 <select id="selectTalentBoard"  parameterType="map" resultType="talentBoard">
+	select * from
+			(select rownum as rnum, n.* from
+			(select 
+            talent_board_no as talentBoardNo,
+  			talent_board_title as talentBoardTitle,
+  			talent_board_content as talentBoardContent,
+  			talent_no as talentNo,
+  			talent_board_writer as talentBoardWriter
+            from talent_board 
+            where talent_no=#{talentNo}
+            order by talent_board_no desc)n)
+		where rnum between #{start} and #{end}
+</select>
+<select id="talentBoardDetail" resultType="talentBoard" parameterType="_int">
 	select 
   			talent_board_no as talentBoardNo,
   			talent_board_title as talentBoardTitle,
@@ -12,8 +26,27 @@
   			talent_no as talentNo,
   			talent_board_writer as talentBoardWriter
   		from
-			(select rownum as rnum, n.* from
-			(select * from talent_board order by talent_board_no desc)n)
-		where rnum between #{start} and #{end} and talent_no = #{talentNo}
+  			talent_board
+  		where talent_board_no=#{_parameter}
 </select>
+<insert id="insertTalentBoard" parameterType="talentBoard">
+	insert into talent_board values(TALENT_BOARD_SEQ.NEXTVAL,#{talentBoardTitle},#{talentBoardContent},#{talentNo},#{talentBoardWriter})
+</insert>
+<select id="selectTalentBoardOne" resultType="talentBoard" parameterType="_int">
+	select 
+  			talent_board_no as talentBoardNo,
+  			talent_board_title as talentBoardTitle,
+  			talent_board_content as talentBoardContent,
+  			talent_no as talentNo,
+  			talent_board_writer as talentBoardWriter
+  		from
+  			talent_board
+  		where talent_board_no=#{_parameter}
+</select>
+<update id="modifyTalentBoard" parameterType="talentBoard">
+	update talent_board set talent_board_title = #{talentBoardTitle},talent_board_content=#{talentBoardContent} where talent_board_no= #{talentBoardNo}
+</update>
+<delete id="deleteTalentBoard" parameterType="_int">
+	delete from talent_board where talent_board_no=#{_parameter}
+</delete>
 </mapper>

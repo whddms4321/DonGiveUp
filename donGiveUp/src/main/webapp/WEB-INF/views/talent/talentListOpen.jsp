@@ -12,6 +12,7 @@
 	width: 1200px;
 	margin: 0 auto;
 	font-family: 'Noto Sans KR', sans-serif;
+	overflow: hidden;
 }
 
 .insertInfo {
@@ -65,38 +66,49 @@
 	height: auto;
 	transform: scale(1);
 }
+
+.noticeDetailSpan2 {
+	color: red;
+	font-weight: bold;
+	margin-right: 10px;
+	margin-left: 30px;
+}
 </style>
 <script>
-function talentBoard(talentNo) {
-	location.href="/talent/talentBoard.don?reqPage=1&talentNo="+talentNo;
-}
+	function talentBoard(talentNo) {
+		console.log(talentNo);
+		location.href = "/talent/talentBoard.don?reqPage=1&talentNo="
+				+ talentNo+"&talentWriter=${sessionScope.member.memberId }";
+	}
 </script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/main/header.jsp" />
+
 	<div class="insertInfo">
 		<br>
-		<h1>재능기부 참여 목록</h1>
-		<h4>재능기부 커뮤니티에서 게시판을 통하여 배우고 싶은 분야에 대해 배워보세요.</h4>
+		<h1>재능기부 개설 목록</h1>
+		<h4>재능기부 커뮤니티에서 게시판을 작성하여 재능을 원하는 사람들에게 재능을 선사하세요.</h4>
 	</div>
 
 	<div class="content">
-	<h1>참여목록</h1>
-	<hr>
-		<div style="margin-top: 25px; width: 1200px; height: 100%;overflow: hidden;">
+		<h1>개설목록</h1>
+		<hr>
+		<div style="margin-top: 25px; width: 1200px; height: 100%;">
+<!-- 		 -->
 			<div style="width: 1200px; height: 100%;" class="divFloat">
-				<c:forEach items="${join }" var="list">
+				<c:forEach items="${list }" var="list">
 					<div class="talentListPart"
 						onclick="talentBoard('${list.talentNo }')">
 						<div class="talentImage">
 							<img src="/resources/song/talent/thumbs/${list.talentFilepath }"
 								style="width: 100%; height: 100%;">
 						</div>
-						<div class="talentWriter">
-							<span class="noticeDetailSpan1">개설자</span><span
-								style="margin-right: 20px;"> ${list.talentWriter }</span>
-						</div>
 						<div class="talentTitle">${list.talentTitle }</div>
+						<div class="talentCount">
+							<span class="noticeDetailSpan2">제한인원</span> ${list.talentCount }
+							명
+						</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -104,7 +116,7 @@ function talentBoard(talentNo) {
 
 	</div>
 	<c:if test="${not empty sessionScope.member }">
-		<jsp:include page="/WEB-INF/views/main/chat.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/main/chat.jsp"/>
 	</c:if>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
 </body>

@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
 .content {
 	height: 100%;
@@ -21,7 +23,7 @@
 
 .boardTab {
 	width: 15%;
-	height: 800px;
+	height: 1500px;
 }
 
 .listTab {
@@ -127,6 +129,40 @@
 	color: ghostwhite;
 	font-weight: bold;
 }
+
+.noticeDetailSpan1 {
+	color: #BDCCD9;
+	font-weight: bold;
+	font-style: italic;
+	margin-right: 10px;
+	margin-left: 30px;
+	font-size: 14px;
+}
+
+.noticeDetailSpan2 {
+	color: #5E6062;
+	font-size: 14px;
+}
+
+.noticeBtn {
+	border: 1px solid #D4D4Cd;
+	width: 90px;
+	line-height: 28px;
+	vertical-align: center;
+	color: #666666;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+	background-color: #ffffff;
+}
+
+.noticeBtn:hover {
+	cursor: pointer;
+	background-color: rgba(102, 102, 102, 0.3);
+	color: white;
+}
+
 .adminNoticeBtn {
 	display: inline-block;
 	width: 90px;
@@ -141,12 +177,9 @@
 	margin-left: 2px;
 	margin-right: 2px;
 	text-decoration: none;
-	float: right;
 }
 </style>
-<script>
-	
-</script>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
@@ -169,37 +202,35 @@
 			</div>
 		</div>
 		<div class="boardWrap">
-			<h2 style="margin-left: 20px;">게시판</h2>
-			<c:if test="${sessionScope.member.memberId eq talentWriter }">
-				<a href="/talent/insertTalentBoardFrm.don?talentNo=${talentNo }" class="adminNoticeBtn">글 등록</a>
-			</c:if>
-			<c:if test="${not empty list }">
-			<table class="noticeTable">
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-				</tr>
-				<c:forEach items="${list }" var="talentBoard">
-					<tr>
-						<td style="border-bottom: 0.1px solid #DDE3E9;">
-							${talentBoard.talentBoardNo }</td>
-						<td style="border-bottom: 0.1px solid #DDE3E9;"><a
-							href="/talent/talentBoardDetail.don?talentBoardNo=${talentBoard.talentBoardNo}"
-							style="font-weight: bold">${talentBoard.talentBoardTitle }</a></td>
-						<td style="border-bottom: 0.1px solid #DDE3E9;">
-							${talentBoard.talentBoardWriter }</td>
-					</tr>
-				</c:forEach>
-			</table>
-			<div class="noticePageNavi">${pageNavi }</div>
-			</c:if>
-			<c:if test="${empty list }">
-				<div style="text-align: center; margin-top: 100px;">
-				<img src="/resources/song/image/경고.png">
-					<h1>해당 게시판에 등록된 글이 없습니다.</h1>
+			<h2 style="margin-left: 20px;">상세 보기</h2>
+			<c:if
+				test="${sessionScope.member.memberId eq board.talentBoardWriter }">
+				<div align="right">
+
+					<a href="/talent/modifyTalentBoardFrm.don?talentBoardNo=${board.talentBoardNo}"
+						class="adminNoticeBtn">수정하기</a> <a href="javascript:void(0)"
+						class="adminNoticeBtn"
+						onclick="deleteTalentBoard('${board.talentBoardNo}')">삭제하기</a>
+
 				</div>
 			</c:if>
+			<div class="noticeDetailContent">
+				<hr style="border: 2px solid black;">
+				<h1 align="center">${board.talentBoardTitle}</h1>
+				<div style="text-align: right">
+					<span class="noticeDetailSpan2"><span
+						class="noticeDetailSpan1">by</span>${board.talentBoardWriter}</span>
+				</div>
+				<br>
+				<hr style="border: 2px solid black;">
+
+				<div style="width: 100%; margin-top: 50px; margin-bottom: 50px;"
+					class="noticeContentTable0">${board.talentBoardContent }</div>
+				<hr>
+				<br> <br>
+				<button type="button" class="noticeBtn">목록보기</button>
+				<br> <br> <br>
+			</div>
 		</div>
 	</div>
 	<c:if test="${not empty sessionScope.member }">
@@ -207,4 +238,20 @@
 	</c:if>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
 </body>
+<script>
+$(function() {
+	$(".noticeBtn").click(function () {
+		history.back();
+	});
+	
+	
+});
+function deleteTalentBoard() {
+	if(confirm("삭제하시겠습니까?")){
+		location.href="/talent/deleteTalentBoard.don?talentBoardNo=${board.talentBoardNo}&talentNo=${board.talentNo}"
+	}else{
+		return false;
+	}
+};
+</script>
 </html>

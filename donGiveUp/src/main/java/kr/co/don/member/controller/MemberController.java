@@ -42,10 +42,25 @@ public class MemberController {
 	public String loginMember(HttpSession session,Member m,Model model) {
 		Member member = service.selectOneMemberEnc(m);
 		if(member != null) {
-			session.setAttribute("member", member);
-			model.addAttribute("msg","로그인 성공");
-			model.addAttribute("loc","/");
-			return "main/msg";
+			if(member.getMemberType()==0) {
+				model.addAttribute("msg","관리자의 승인을 기다려주세요.");
+				model.addAttribute("loc","/");
+				return "main/msg";
+			}else if(member.getMemberType()==1 || member.getMemberType()==2) {
+				session.setAttribute("member", member);
+				model.addAttribute("msg","로그인 성공");
+				model.addAttribute("loc","/");
+				return "main/msg";
+			}else if(member.getMemberType()==3) {
+				model.addAttribute("msg","관리자의 승인이 거절되었습니다.");
+				model.addAttribute("loc","/");
+				return "main/msg";
+			}else {
+				model.addAttribute("msg","정지된 이용자입니다.");
+				model.addAttribute("loc","/");
+				return "main/msg";
+			}
+			
 		}else {
 			model.addAttribute("msg","로그인 실패 (아이디 패스워드를 확인하세요)");
 			model.addAttribute("loc","/member/loginFrm.don");
