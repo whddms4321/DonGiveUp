@@ -97,7 +97,13 @@ $(function () {
 function talentJoin(talentNo) {
 	var bool = confirm("신청하시겠습니까?");
 	if(bool){
-		location.href="/talent/insertTalentList.don?talentNo="+talentNo+"&memberId=${sessionScope.member.memberId}&talentCount=${talent.talentCount }";	
+		if("${sessionScope.member.memberId }" == "${talent.talentWriter }"){
+			alert("자신이 개최한 글입니다.");
+			return false;
+		}else{
+			location.href="/talent/insertTalentList.don?talentNo="+talentNo+"&memberId=${sessionScope.member.memberId}&talentCount=${talent.talentCount }";
+		}
+			
 	}else{
 		return false;
 	}
@@ -105,9 +111,10 @@ function talentJoin(talentNo) {
 }
 
 function deleteTalent(talentNo) {
-	var bool = confirm("삭제하시겠습니까?")
+	var bool = confirm("삭제하시겠습니까?");
 	if(bool){
 		location.href="/talent/deleteTalent.don?talentNo="+talentNo;
+		
 	}else{
 		return false;
 	}

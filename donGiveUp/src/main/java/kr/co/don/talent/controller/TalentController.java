@@ -203,7 +203,7 @@ public class TalentController {
 			model.addAttribute("loc","/");
 			return "main/msg";
 		}else {
-			model.addAttribute("msg","탈퇴 실패");
+			model.addAttribute("msg","개설자는 탈퇴할 수 없습니다.");
 			model.addAttribute("loc","/");
 			return "main/msg";
 		}
