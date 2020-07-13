@@ -60,13 +60,9 @@ public class TalentDao {
 		return (ArrayList<TalentJoin>)list;
 	}
 
-	public ArrayList<TalentBoard> selectTalentBoard(int start, int end,int talentNo) {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("start", start);
-		map.put("end", end);
-		map.put("talentNo",talentNo);
-		List list = sqlSession.selectList("talentBoard.selectTalentBoard",map); 
-		return (ArrayList<TalentBoard>)list;
+	public List<TalentBoard> selectTalentBoard(HashMap<String, String> map) {
+		return sqlSession.selectList("talentBoard.selectTalentBoard",map); 
+		
 	}
 
 	public int totalCount(int talentNo) {
@@ -80,5 +76,13 @@ public class TalentDao {
 	public ArrayList<Talent> selectTalentList(String memberId) {
 		List list = sqlSession.selectList("talent.talentListOpen",memberId); 
 		return (ArrayList<Talent>)list; 
+	}
+
+	public TalentBoard talentBoardDetail(int talentNo) {
+		return sqlSession.selectOne("talentBoard.talentBoardDetail",talentNo);
+	}
+
+	public int insertTalentBoard(TalentBoard board) {
+		return sqlSession.insert("talentBoard.insertTalentBoard",board);
 	}
 }

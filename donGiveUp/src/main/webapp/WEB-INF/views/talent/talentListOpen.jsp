@@ -76,6 +76,7 @@
 </style>
 <script>
 	function talentBoard(talentNo) {
+		console.log(talentNo);
 		location.href = "/talent/talentBoard.don?reqPage=1&talentNo="
 				+ talentNo;
 	}

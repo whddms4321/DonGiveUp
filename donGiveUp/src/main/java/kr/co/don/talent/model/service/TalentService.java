@@ -114,6 +114,8 @@ public class TalentService {
 	}
 
 	public TalentBoardData selectTalentBoard(int talentNo, int reqPage) {
+		System.out.println("talentNo : " + talentNo);
+		System.out.println("req :"  + reqPage);
 		// 페이지 당 출력 수
 		int numPerPage = 3;
 		// 총 게시물 수
@@ -129,8 +131,18 @@ public class TalentService {
 		int start = (reqPage - 1) * numPerPage + 1;
 		int end = reqPage * numPerPage;
 		// 해당 페이지의 게시물들 조회
-		ArrayList<TalentBoard> list = dao.selectTalentBoard(start, end,talentNo);
-
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("talentNo",String.valueOf(talentNo));
+		
+		ArrayList<TalentBoard> list = (ArrayList<TalentBoard>)dao.selectTalentBoard(map);
+		
+		System.out.println("리스트 사이즈 : " + list.size());
+		for(int i=0; i<list.size(); i++) {
+			System.out.println("제목 :ㅣ " +  list.get(i).getTalentBoardTitle());
+		}
 		// 페이지 내비게이션 작성 시작
 		String pageNavi = "";
 		// 페이지 내비게이션 길이
@@ -165,5 +177,14 @@ public class TalentService {
 	
 	public ArrayList<Talent> selectTalentList(String memberId) {
 		return dao.selectTalentList(memberId);
+	}
+
+	public TalentBoard talentBoardDetail(int talentNo) {
+		return dao.talentBoardDetail(talentNo);
+	}
+
+
+	public int insertTalentBoard(TalentBoard board) {
+		return dao.insertTalentBoard(board);
 	}
 }

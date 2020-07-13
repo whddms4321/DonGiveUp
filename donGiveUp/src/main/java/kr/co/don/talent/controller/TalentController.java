@@ -169,7 +169,11 @@ public class TalentController {
 	
 	@RequestMapping(value = "/talentBoard.don")
 	public String talentBoard(int talentNo,int reqPage,Model model) {
+		System.out.println("테스트 ㅣ " + talentNo);
 		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage);
+		for(int i=0; i<data.getList().size(); i++) {
+			System.out.println(data.getList().get(i).getTalentBoardWriter());
+		}
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
 		model.addAttribute("talentNo",talentNo);
@@ -213,6 +217,42 @@ public class TalentController {
 		}else {
 			model.addAttribute("msg","개설한 목록이 존재하지 않습니다.");
 			model.addAttribute("loc","/talent/talentFrm.don?reqPage=1&type=전체");
+			return "main/msg";
+		}
+	}
+	
+	@RequestMapping(value = "/talentBoardDetail.don")
+	public String talentBoardDetail(int talentNo,Model model) {
+		TalentBoard board = service.talentBoardDetail(talentNo);
+		if(board!=null) {
+			model.addAttribute("board",board);
+			model.addAttribute("talentNo",talentNo);
+			return "talent/talentBoardDetail";
+		}else {
+			model.addAttribute("msg","목록이 존재하지 않습니다.");
+			model.addAttribute("loc","/talent/talentFrm.don?reqPage=1&type=전체");
+			return "main/msg";
+		}
+	}
+	
+	@RequestMapping(value = "insertTalentBoardFrm.don")
+	public String insertTalentBoardFrm(int talentNo,Model model) {
+		System.out.println(talentNo);
+		model.addAttribute("talentNo",talentNo);
+		return "talent/insertTalentBoardFrm";
+	}
+	
+	@RequestMapping(value = "/insertTalentBoard.don")
+	public String insertTalentBoard(TalentBoard board,Model model) {
+		int result = service.insertTalentBoard(board);
+		int talentNo = board.getTalentNo();
+		if(result>0) {
+			model.addAttribute("msg","게시글 등록 성공");
+			model.addAttribute("loc","/talent/talentBoard.don?reqPage=1&talentNo="+talentNo);
+			return "main/msg";
+		}else {
+			model.addAttribute("msg","게시글 등록 실패");
+			model.addAttribute("loc","/talent/talentBoard.don?reqPage=1&talentNo="+talentNo);
 			return "main/msg";
 		}
 	}

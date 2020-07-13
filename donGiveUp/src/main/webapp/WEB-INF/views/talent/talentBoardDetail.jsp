@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
 .content {
 	height: 100%;
@@ -127,6 +129,40 @@
 	color: ghostwhite;
 	font-weight: bold;
 }
+
+.noticeDetailSpan1 {
+	color: #BDCCD9;
+	font-weight: bold;
+	font-style: italic;
+	margin-right: 10px;
+	margin-left: 30px;
+	font-size: 14px;
+}
+
+.noticeDetailSpan2 {
+	color: #5E6062;
+	font-size: 14px;
+}
+
+.noticeBtn {
+	border: 1px solid #D4D4Cd;
+	width: 90px;
+	line-height: 28px;
+	vertical-align: center;
+	color: #666666;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+	background-color: #ffffff;
+}
+
+.noticeBtn:hover {
+	cursor: pointer;
+	background-color: rgba(102, 102, 102, 0.3);
+	color: white;
+}
+
 .adminNoticeBtn {
 	display: inline-block;
 	width: 90px;
@@ -141,12 +177,9 @@
 	margin-left: 2px;
 	margin-right: 2px;
 	text-decoration: none;
-	float: right;
 }
 </style>
-<script>
-	
-</script>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
@@ -169,41 +202,56 @@
 			</div>
 		</div>
 		<div class="boardWrap">
-			<h2 style="margin-left: 20px;">게시판</h2>
-			<c:forEach items="${list }" var="talentBoard">
-			<c:if test="${sessionScope.member.memberId eq talentBoard.talentBoardWriter }">
-				<a href="/talent/insertTalentBoardFrm.don?talentNo=${talentBoard.talentNo }" class="adminNoticeBtn">글 등록</a>
-			</c:if>
-			</c:forEach>
-			<table class="noticeTable">
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-				</tr>
-				<c:forEach items="${list }" var="talentBoard">
-					<tr>
-						<td style="border-bottom: 0.1px solid #DDE3E9;">
-							${talentBoard.talentBoardNo }</td>
-						<td style="border-bottom: 0.1px solid #DDE3E9;"><a
-							href="/talent/talentBoardDetail.don?talentNo=${talentBoard.talentNo}"
-							style="font-weight: bold">${talentBoard.talentBoardTitle }</a></td>
-						<td style="border-bottom: 0.1px solid #DDE3E9;">
-							${talentBoard.talentBoardWriter }</td>
-					</tr>
+			<h2 style="margin-left: 20px;">상세 보기</h2>
+			<c:if
+				test="${sessionScope.member.memberId eq board.talentBoardWriter }">
+				<div align="right">
 
-				</c:forEach>
-			</table>
-			<div class="noticePageNavi">${pageNavi }</div>
+					<a href="/modifyTalentBoardFrm?talentNo=${board.talentNo}"
+						class="adminNoticeBtn">수정하기</a> <a href="javascript:void(0)"
+						class="adminNoticeBtn"
+						onclick="deleteTalentBoard('${board.talentNo}')">삭제하기</a>
+
+				</div>
+			</c:if>
+			<div class="noticeDetailContent">
+				<hr style="border: 2px solid black;">
+				<h1 align="center">${board.talentBoardTitle}</h1>
+				<div style="text-align: right">
+					<span class="noticeDetailSpan2"><span
+						class="noticeDetailSpan1">by</span>${board.talentBoardWriter}</span>
+				</div>
+				<br>
+				<hr style="border: 2px solid black;">
+
+				<div style="width: 100%; margin-top: 50px; margin-bottom: 50px;"
+					class="noticeContentTable0">${board.talentBoardContent }</div>
+				<hr>
+				<br> <br>
+				<button type="button" class="noticeBtn">목록보기</button>
+				<br> <br> <br>
+			</div>
 		</div>
 	</div>
 	<c:if test="${not empty sessionScope.member }">
 		<jsp:include page="/WEB-INF/views/main/chat.jsp"></jsp:include>
 	</c:if>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
-	<script>
-		console.log("${talentBoard.talentBoardWriter}");
-		console.log("${sessionScope.member.memberId}");
-	</script>
 </body>
+<script>
+$(function() {
+	$(".noticeBtn").click(function () {
+		history.back();
+	});
+	
+	
+});
+function deleteTalentBoard() {
+	if(confirm("삭제하시겠습니까?")){
+		location.href="/deleteNotice?talentNo=${board.talentNo}"
+	}else{
+		return false;
+	}
+};
+</script>
 </html>

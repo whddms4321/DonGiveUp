@@ -16,4 +16,18 @@
 			(select * from talent_board order by talent_board_no desc)n)
 		where rnum between #{start} and #{end} and talent_no = #{talentNo}
 </select>
+<select id="talentBoardDetail" resultType="talentBoard" parameterType="_int">
+	select 
+  			talent_board_no as talentBoardNo,
+  			talent_board_title as talentBoardTitle,
+  			talent_board_content as talentBoardContent,
+  			talent_no as talentNo,
+  			talent_board_writer as talentBoardWriter
+  		from
+  			talent_board
+  		where talent_no=#{_parameter}
+</select>
+<insert id="insertTalentBoard" parameterType="talentBoard">
+	insert into talent_board values(TALENT_BOARD_SEQ.NEXTVAL,#{talentBoardTitle},#{talentBoardContent},#{talentNo},#{talentBoardWriter})
+</insert>
 </mapper>
