@@ -34,7 +34,6 @@ public class AdminMypageService {
 		
 		int totalCount =   dao.selectboardRequestListTotalCount(map);
 		
-		System.out.println("글 총 갯수 : " + totalCount);
 		
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
@@ -49,18 +48,9 @@ public class AdminMypageService {
 		
 		map.put("start", String.valueOf(start));
 		map.put("end", String.valueOf(end));
-		System.out.println("타입"+type);
-		System.out.println("제목"+title);
-		System.out.println("구분"+requestList);
-		System.out.println("정렬"+sorting);
 		ArrayList<AdminRequestBoardVO> list = (ArrayList<AdminRequestBoardVO>)dao.selectboardRequestList(map);
 		
-		System.out.println("리스트 사이즈 : " + list.size());
-		
-		for (int i=0; i<list.size(); i++) {
-			System.out.println("리스트 " + i + " : " + list.get(i).getGroupName() + "  " + list.get(i).getBoardTitle() + "  " + list.get(i).getStartDate());
-		}
-		
+				
 		String pageNavi = "";
 		int pageNaviSize = 5;
 		
@@ -71,10 +61,10 @@ public class AdminMypageService {
 			pageNo = reqPage - 1;
 		}
 		
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
 			pageNavi += "<a href='javascript:void(0);' onclick='pageMove(this," + (pageNo - 1);
-			pageNavi += ");'>이전</a>";
+			pageNavi += ");'><</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -91,10 +81,10 @@ public class AdminMypageService {
 			}
 		}
 
-		// 다음버튼
+		// >버튼
 		if (pageNo <= totalPage) {
 			pageNavi += "<a href='javascript:void(0);' onclick='pageMove(this," + pageNo;
-			pageNavi += ");'>다음</a>";
+			pageNavi += ");'>></a>";
 		}
 		
 		AdminPageDataGenericVO<AdminRequestBoardVO> pageData = new AdminPageDataGenericVO<AdminRequestBoardVO>(list, pageNavi);
@@ -119,7 +109,6 @@ public class AdminMypageService {
 		
 		int totalCount =   dao.selectboardRequestListTotalCountEtc(map);
 		
-		System.out.println("ETC 글 총 갯수 : " + totalCount);
 		
 		int start = (etcReqPage-1)*numPerPage+1;
 		int end = etcReqPage*numPerPage;
@@ -137,11 +126,6 @@ public class AdminMypageService {
 		
 		ArrayList<AdminRequestBoardVO> list = (ArrayList<AdminRequestBoardVO>)dao.selectboardRequestListEtc(map);
 		
-		System.out.println("ETC 리스트 사이즈 : " + list.size());
-		
-		for (int i=0; i<list.size(); i++) {
-			System.out.println("etc 리스트 " + i + " : " + list.get(i).getGroupName() + "  " + list.get(i).getBoardTitle() + "  " + list.get(i).getStartDate());
-		}
 		
 		String pageNavi = "";
 		int pageNaviSize = 5;
@@ -153,19 +137,19 @@ public class AdminMypageService {
 			pageNo = etcReqPage - 1;
 		}
 		
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
 			//페이지 번호에 해당 게시글의 타입과, 요청 페이지를 매개변수로 가지는 savaValue() 호출 -> 다시 선택값을 저장하여 ajax 호출
-			pageNavi += "<a href='javascript:void(0);' onclick='saveValue(`" + etcType + "`," + (pageNo - 1) + ");'>이전</a>";
+			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='saveValue(`" + etcType + "`," + (pageNo - 1) + ");'><</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
 		for (int i = 0; i < pageNaviSize; i++) {
 			if (etcReqPage == pageNo) {
-				pageNavi += "<span>" + pageNo + "</span>";
+				pageNavi += "<span class='pageNavi'>" + pageNo + "</span>";
 			} else {
 				//페이지 번호에 해당 게시글의 타입과, 요청 페이지를 매개변수로 가지는 savaValue() 호출 -> 다시 선택값을 저장하여 ajax 호출
-				pageNavi += "<a href='javascript:void(0);' onclick='saveValue(`" + etcType + "`," +  pageNo + ");'>" + pageNo + "</a>";
+				pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='saveValue(`" + etcType + "`," +  pageNo + ");'>" + pageNo + "</a>";
 			}
 			pageNo++;
 			if (pageNo > totalPage) {
@@ -173,10 +157,10 @@ public class AdminMypageService {
 			}
 		}
 
-		// 다음버튼
+		// >버튼
 		if (pageNo <= totalPage) {
 			//페이지 번호에 해당 게시글의 타입과, 요청 페이지를 매개변수로 가지는 savaValue() 호출 -> 다시 선택값을 저장하여 ajax 호출
-			pageNavi += "<a href='javascript:void(0);' onclick='saveValue(`"  + etcType + "`," + pageNo + ");'>다음</a>";
+			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='saveValue(`"  + etcType + "`," + pageNo + ");'>></a>";
 		}
 		
 		AdminPageDataGenericVO<AdminRequestBoardVO> pageData = new AdminPageDataGenericVO<AdminRequestBoardVO>(list, pageNavi);
@@ -220,8 +204,6 @@ public class AdminMypageService {
 		
 		int totalCount =   dao.deadLineSupportListTotalCount();
 		
-		System.out.println("마감 글 총 갯수 : " + totalCount);
-		
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
 		
@@ -238,9 +220,6 @@ public class AdminMypageService {
 		
 		ArrayList<AdminDeadLineSupportVO> list = (ArrayList<AdminDeadLineSupportVO>)dao.deadLineSupportList(map);
 		
-		System.out.println("마감 리스트 사이즈 : " + list.size());
-		
-		
 		String pageNavi = "";
 		int pageNaviSize = 5;
 		
@@ -251,9 +230,9 @@ public class AdminMypageService {
 			pageNo = reqPage - 1;
 		}
 		
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
-			pageNavi += "<a href='/deadLineSupportList.don?reqPage=" + (pageNo - 1) + "'>이전</a>";
+			pageNavi += "<a href='/deadLineSupportList.don?reqPage=" + (pageNo - 1) + "'><</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -269,9 +248,9 @@ public class AdminMypageService {
 			}
 		}
 
-		// 다음버튼
+		// >버튼
 		if (pageNo <= totalPage) {
-			pageNavi += "<a href='/deadLineSupportList.don?reqPage=" + pageNo + "''>다음</a>";
+			pageNavi += "<a href='/deadLineSupportList.don?reqPage=" + pageNo + "''>></a>";
 		}
 		
 		AdminPageDataGenericVO<AdminDeadLineSupportVO> pageData = new AdminPageDataGenericVO<AdminDeadLineSupportVO>(list, pageNavi);
@@ -296,8 +275,6 @@ public class AdminMypageService {
 		
 		int totalCount =   dao.selectSupportRequestCompanyTotalCount(supportNo);
 		
-		System.out.println("마감신청기관 글 총 갯수 : " + totalCount);
-		
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
 		
@@ -314,12 +291,6 @@ public class AdminMypageService {
 		map.put("supportNo", String.valueOf(supportNo));
 		ArrayList<AdminSupportApplyVO> list = (ArrayList<AdminSupportApplyVO>)dao.selectSupportRequestCompany(map);
 		
-		for(int i=0; i<list.size(); i++) {
-			System.out.println("테스트 아이디 : "  +  list.get(i).getSupportApplyId());
-			System.out.println("테스트 어플라이 숫자 : "  +  list.get(i).getSupportApplyNo());
-			System.out.println("테스트 신청사유 : "  +  list.get(i).getSupportApplyReason());
-		}
-		System.out.println("마감신청기관 리스트 사이즈 : " + list.size());
 		
 		
 		String pageNavi = "";
@@ -332,9 +303,9 @@ public class AdminMypageService {
 			pageNo = reqPage - 1;
 		}
 		
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
-			pageNavi += "<a href='javascript:void(0);' onclick='companyList(" + supportNo + "," + (pageNo - 1) + ")'>이전</a>";
+			pageNavi += "<a href='javascript:void(0);' onclick='companyList(" + supportNo + "," + (pageNo - 1) + ")'><</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -350,9 +321,9 @@ public class AdminMypageService {
 			}
 		}
 
-		// 다음버튼
+		// >버튼
 		if (pageNo <= totalPage) {
-			pageNavi += "<a href='javascript:void(0);' onclick='companyList(" + supportNo + "," + pageNo + ")'>다음</a>";
+			pageNavi += "<a href='javascript:void(0);' onclick='companyList(" + supportNo + "," + pageNo + ")'>></a>";
 		}
 		
 		AdminPageDataGenericVO<AdminSupportApplyVO> pageData = new AdminPageDataGenericVO<AdminSupportApplyVO>(list, pageNavi);
@@ -369,7 +340,6 @@ public class AdminMypageService {
 		HashMap<String,String> map = new HashMap<String,String>();
 		map.put("supportNo", String.valueOf(supportNo));
 		map.put("applyId",applyId);
-		System.out.println("테스트~!@!@#!@$#!@#!@");
 		HashMap<String,String> result = dao.supportAssignToCompany(map);
 		return result;
 	}
@@ -385,7 +355,6 @@ public class AdminMypageService {
 		
 		int totalCount =   dao.companyEnrollReqTotalCount();
 		
-		System.out.println("등록 신청기관 글 총 갯수 : " + totalCount);
 		
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
@@ -402,9 +371,7 @@ public class AdminMypageService {
 		map.put("end", String.valueOf(end));
 		
 		ArrayList<AdminMemberVO> list = (ArrayList<AdminMemberVO>)dao.companyEnrollReq(map);
-		
-		System.out.println("등록 신청기관 리스트 사이즈 : " + list.size());
-		
+
 		
 		String pageNavi = "";
 		int pageNaviSize = 5;
@@ -416,9 +383,9 @@ public class AdminMypageService {
 			pageNo = reqPage - 1;
 		}
 		
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
-			pageNavi += "<a href='/companyEnrollReq.don?reqPage=" + (pageNo - 1) + "'>이전</a>";
+			pageNavi += "<a href='/companyEnrollReq.don?reqPage=" + (pageNo - 1) + "'><</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -434,9 +401,9 @@ public class AdminMypageService {
 			}
 		}
 
-		// 다음버튼
+		// >버튼
 		if (pageNo <= totalPage) {
-			pageNavi += "<a href='/companyEnrollReq.don?reqPage=" + pageNo + "'>다음</a>";
+			pageNavi += "<a href='/companyEnrollReq.don?reqPage=" + pageNo + "'>></a>";
 		}
 		
 		AdminPageDataGenericVO<AdminMemberVO> pageData = new AdminPageDataGenericVO<AdminMemberVO>(list, pageNavi);
@@ -468,7 +435,6 @@ public class AdminMypageService {
 		
 		int totalCount =   dao.memberManagementListTotalCount(type);
 		
-		System.out.println("회원 || 기관 총 갯수 : " + totalCount);
 		
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
@@ -487,8 +453,6 @@ public class AdminMypageService {
 		
 		ArrayList<AdminMemberVO> list = (ArrayList<AdminMemberVO>)dao.memberManagementList(map);
 		
-		System.out.println("회원 || 기관 리스트 사이즈 : " + list.size());
-		
 		
 		String pageNavi = "";
 		int pageNaviSize = 5;
@@ -500,9 +464,9 @@ public class AdminMypageService {
 			pageNo = reqPage - 1;
 		}
 		
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
-			pageNavi += "<a href='/memberManagementList.don?reqPage=" + (pageNo - 1) + "&type="+type+"'>이전</a>";
+			pageNavi += "<a href='/memberManagementList.don?reqPage=" + (pageNo - 1) + "&type="+type+"'><</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -518,9 +482,9 @@ public class AdminMypageService {
 			}
 		}
 
-		// 다음버튼
+		// >버튼
 		if (pageNo <= totalPage) {
-			pageNavi += "<a href='/memberManagementList.don?reqPage=" + pageNo + "&type="+type+"'>다음</a>";
+			pageNavi += "<a href='/memberManagementList.don?reqPage=" + pageNo + "&type="+type+"'>></a>";
 		}
 		
 		AdminPageDataGenericVO<AdminMemberVO> pageData = new AdminPageDataGenericVO<AdminMemberVO>(list, pageNavi);
@@ -544,7 +508,6 @@ public class AdminMypageService {
 		map.put("type", type);
 		int totalCount =   dao.regularCancelReqTotalCount(map);
 		
-		System.out.println("정기결제해지요청 총 갯수 : " + totalCount);
 		
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
@@ -562,8 +525,6 @@ public class AdminMypageService {
 		
 		ArrayList<AdminRegularInVO> list = (ArrayList<AdminRegularInVO>)dao.regularCancelReq(map);
 		
-		System.out.println("정기결제해지요청 리스트 사이즈 : " + list.size());
-		
 		
 		String pageNavi = "";
 		int pageNaviSize = 5;
@@ -575,9 +536,9 @@ public class AdminMypageService {
 			pageNo = reqPage - 1;
 		}
 		
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
-			pageNavi += "<a href='/regularCancelReq.don?reqPage=" + (pageNo - 1) + "&type="+type+"'>이전</a>";
+			pageNavi += "<a href='/regularCancelReq.don?reqPage=" + (pageNo - 1) + "&type="+type+"'><</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -593,9 +554,9 @@ public class AdminMypageService {
 			}
 		}
 
-		// 다음버튼
+		// >버튼
 		if (pageNo <= totalPage) {
-			pageNavi += "<a href='/regularCancelReq.don?reqPage=" + pageNo + "&type="+type+"'>다음</a>";
+			pageNavi += "<a href='/regularCancelReq.don?reqPage=" + pageNo + "&type="+type+"'>></a>";
 		}
 		
 		AdminPageDataGenericVO<AdminRegularInVO> pageData = new AdminPageDataGenericVO<AdminRegularInVO>(list, pageNavi);

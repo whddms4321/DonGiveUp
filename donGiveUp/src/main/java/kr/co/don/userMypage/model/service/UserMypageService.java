@@ -24,7 +24,6 @@ public class UserMypageService {
 
 	public AdminPageDataGenericVO<UserMoneyUseListVO> moneyUserList(String memberId, int reqPage) {
 		int numPerPage = 5; //한번에 표시할 게시물 수
-		System.out.println("req!! : " + reqPage);
 		//검색 조건을 위한 map
 		HashMap<String, String> map = new HashMap<String, String>();
 		
@@ -56,9 +55,9 @@ public class UserMypageService {
 		if (reqPage != 1) {
 			pageNo = reqPage - 1;
 		}
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
-				pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo - 1) + ",`"+memberId+"`);'>이전</a>";
+				pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo - 1) + ",`"+memberId+"`);'><</a>";
 		}
 				
 		for (int i = 0; i < pageNaviSize; i++) {
@@ -74,81 +73,14 @@ public class UserMypageService {
 		}
 		
 		if (pageNo <= totalPage) {
-			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>다음</a>";
+			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>></a>";
 		}
 		
 		AdminPageDataGenericVO<UserMoneyUseListVO> pageData = new AdminPageDataGenericVO<UserMoneyUseListVO>(list, pageNavi);
 		
 		return pageData;
 		
-		/*
-		int numPerPage = 5; //한번에 표시할 게시물 수
 		
-		//검색 조건을 위한 map
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		int totalCount =   dao.moneyUserListTotalCount(memberId);
-		
-		System.out.println("돈토리 사용내역 갯수 : " + totalCount);
-		
-		int start = (reqPage-1)*numPerPage+1;
-		int end = reqPage*numPerPage;
-		
-		int totalPage = 0; //총 페이지 수
-		
-		if(totalCount%numPerPage==0) {
-			totalPage =  totalCount/numPerPage;
-		}else {
-			totalPage =  totalCount/numPerPage+1;
-		}
-		
-		map.put("start", String.valueOf(start));
-		map.put("end", String.valueOf(end));
-		map.put("memberId", memberId);
-		
-		ArrayList<UserMoneyUseListVO> list = (ArrayList<UserMoneyUseListVO>)dao.moneyUserList(map);
-		
-		System.out.println("돈토리 사용내역 리스트 사이즈 : " + list.size());
-		
-		
-		String pageNavi = "";
-		int pageNaviSize = 5;
-		
-		// pageNo 연산 -> 페이지 시작번호
-		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-		//int pageNo = 1;
-		if (reqPage != 1) {
-			pageNo = reqPage - 1;
-		}
-		
-		
-		// 이전버튼 생선
-		if (pageNo != 1) {
-			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo - 1) + ",`"+memberId+"`);'>이전</a>";
-		}
-
-		// DB 게시물 50개 입력 후 COMMIT
-		for (int i = 0; i < pageNaviSize; i++) {
-			if (reqPage == pageNo) {
-				pageNavi += "<span class='pageNavi'>" + pageNo + "</span>";
-			} else {
-				pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>" + pageNo+"</a>";	
-			}
-			pageNo++;
-			if (pageNo > totalPage) {
-				break;
-			}
-		}
-
-		// 다음버튼
-		if (pageNo <= totalPage) {
-			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='pageMove(" + (pageNo) + ",`"+memberId+"`);'>다음</a>";
-		}
-		
-		AdminPageDataGenericVO<UserMoneyUseListVO> pageData = new AdminPageDataGenericVO<UserMoneyUseListVO>(list, pageNavi);
-		
-		return pageData;
-		*/
 	}
 
 	public int allUseMoney(String memberId) {
@@ -214,14 +146,7 @@ public class UserMypageService {
 		map.put("radio", radio);
 		
 		int totalCount =   dao.attendListTotalCount(map);
-		
-		System.out.println("type : " +  type);
-		System.out.println("radio : " + radio);
-		System.out.println("reqPage : " +  reqPage);
-		System.out.println("memberId : " +  memberId);
-		
-		System.out.println(type + " 총 갯수 : " + totalCount);
-		
+				
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
 		
@@ -238,8 +163,6 @@ public class UserMypageService {
 		
 		ArrayList<UserAttendListVO> list = (ArrayList<UserAttendListVO>)dao.attendList(map);
 		
-		System.out.println(type + " 리스트 사이즈 : " + list.size());
-		
 		
 		String pageNavi = "";
 		int pageNaviSize = 5;
@@ -252,9 +175,9 @@ public class UserMypageService {
 		}
 		
 		
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
-			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='saveValue(`" + type + "`," + radio + "," + (pageNo - 1) + ",`"+memberId+"`);'>이전</a>";
+			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='saveValue(`" + type + "`," + radio + "," + (pageNo - 1) + ",`"+memberId+"`);'><</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -270,9 +193,9 @@ public class UserMypageService {
 			}
 		}
 
-		// 다음버튼
+		// >버튼
 		if (pageNo <= totalPage) {
-			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='saveValue(`" + type + "`," + radio  + "," + pageNo  + ",`"+memberId+"`);'>다음</a>";
+			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='saveValue(`" + type + "`," + radio  + "," + pageNo  + ",`"+memberId+"`);'>></a>";
 		}
 		
 		AdminPageDataGenericVO<UserAttendListVO> pageData = new AdminPageDataGenericVO<UserAttendListVO>(list, pageNavi);
@@ -292,8 +215,6 @@ public class UserMypageService {
 	}
 
 	public String selectCompanyReqContent(int boardNo, String type) {
-		System.out.println("TYPE : " + type);
-		System.out.println("boardNo : " + boardNo);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", type);
 		map.put("boardNo", String.valueOf(boardNo));
@@ -313,9 +234,6 @@ public class UserMypageService {
 		
 		int totalCount =  dao.selectBankInListTotalCount(map);
 		
-		
-		System.out.println("저금참여 총 갯수 : " + totalCount);
-		
 		int start = (reqPage-1)*numPerPage+1;
 		int end = reqPage*numPerPage;
 		
@@ -332,9 +250,6 @@ public class UserMypageService {
 		
 		ArrayList<UserBankInVO> list = (ArrayList<UserBankInVO>)dao.selectBankInList(map);
 		
-		System.out.println("저금참여 리스트 사이즈 : " + list.size());
-		
-		
 		String pageNavi = "";
 		int pageNaviSize = 5;
 		
@@ -346,9 +261,9 @@ public class UserMypageService {
 		}
 		
 		
-		// 이전버튼 생선
+		// <버튼 생선
 		if (pageNo != 1) {
-			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='bankList(`" + memberId + "`," +  (pageNo - 1) + "," + type + ");'>이전</a>";
+			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='bankList(`" + memberId + "`," +  (pageNo - 1) + "," + type + ");'><</a>";
 		}
 
 		// DB 게시물 50개 입력 후 COMMIT
@@ -364,9 +279,9 @@ public class UserMypageService {
 			}
 		}
 
-		// 다음버튼
+		// >버튼
 		if (pageNo <= totalPage) {
-			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='bankList(`" + memberId + "`,"  + pageNo  + "," + type + ");'>다음</a>";
+			pageNavi += "<a class='pageNavi' href='javascript:void(0);' onclick='bankList(`" + memberId + "`,"  + pageNo  + "," + type + ");'>></a>";
 		}
 		
 		AdminPageDataGenericVO<UserBankInVO> pageData = new AdminPageDataGenericVO<UserBankInVO>(list, pageNavi);

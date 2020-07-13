@@ -12,7 +12,7 @@
 		}
 		table th{
 			font-size:20px;
-			background-color : #F1F1F1;
+			background-color : #CBD3D7;
 		}
 		#pageNavi a, span{
 			padding:13px;
@@ -35,26 +35,28 @@
 							<h1 style="font-weight:bold;">회원관리</h1>
 						</div>
 						<div style="margin-top:100px;">
-							<table class="table">
+							<table class="table table-striped">
 								<tr>
 									<th>번호</th><th>아이디</th><th>이름</th><th>주소</th><th>연락처</th><th>이메일</th><th>가입일</th><th>상태</th>
 								</tr>
 								<c:forEach items="${list}" var="c" varStatus="l">
-									<tr>
-										<td>${(reqPage-1)*10 + l.count }</td>
-										<td>${c.memberId }</td>
-										<td>${c.memberName }</td>
-										<td>${c.memberAddr }</td>
-										<td>${c.memberPhone }</td>
-										<td>${c.memberEmail }</td>
-										<td>${c.memberEnrollDate }</td>
-										<c:if test="${c.memberType == 1 }">
-											<td><a href="javascript:void(0);" onclick="memberStopAndRestore('stop','${c.memberId}');">일반</a></td>
-										</c:if>
-										<c:if test="${c.memberType == 4 }">
-											<td><a href="javascript:void(0);" onclick="memberStopAndRestore('restore','${c.memberId}');">정지</a></td>
-										</c:if>
-									</tr>
+									<c:if test="${c.memberId != 'admin' }">
+										<tr>
+											<td>${(reqPage-1)*10 + l.count }</td>
+											<td>${c.memberId }</td>
+											<td>${c.memberName }</td>
+											<td>${c.memberAddr }</td>
+											<td>${c.memberPhone }</td>
+											<td>${c.memberEmail }</td>
+											<td>${c.memberEnrollDate }</td>
+											<c:if test="${c.memberType == 1 }">
+												<td><a href="javascript:void(0);" onclick="memberStopAndRestore('stop','${c.memberId}');">일반</a></td>
+											</c:if>
+											<c:if test="${c.memberType == 4 }">
+												<td><a href="javascript:void(0);" onclick="memberStopAndRestore('restore','${c.memberId}');">정지</a></td>
+											</c:if>
+										</tr>
+									</c:if>
 								</c:forEach>
 							</table>
 						</div>
