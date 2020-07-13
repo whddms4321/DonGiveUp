@@ -23,7 +23,7 @@
 
 .boardTab {
 	width: 15%;
-	height: 800px;
+	height: 1500px;
 }
 
 .listTab {

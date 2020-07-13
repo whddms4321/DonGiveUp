@@ -178,7 +178,7 @@ public class TalentController {
 	
 	@RequestMapping(value = "/talentBoard.don")
 	public String talentBoard(int talentNo,int reqPage,Model model,String talentWriter) {
-		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage);
+		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage,talentWriter);
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
 		model.addAttribute("talentNo",talentNo);
@@ -187,8 +187,8 @@ public class TalentController {
 	}
 	
 	@RequestMapping(value = "/talentBoardDeleteFrm.don")
-	public String talentBoardDeleteFrm(int talentNo,int reqPage,Model model) {
-		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage);
+	public String talentBoardDeleteFrm(int talentNo,int reqPage,Model model,String talentWriter) {
+		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage,talentWriter);
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
 		model.addAttribute("talentNo",talentNo);

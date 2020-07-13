@@ -113,7 +113,7 @@ public class TalentService {
 		return dao.talentListMyList(memberId);
 	}
 
-	public TalentBoardData selectTalentBoard(int talentNo, int reqPage) {
+	public TalentBoardData selectTalentBoard(int talentNo, int reqPage,String talentWriter) {
 		System.out.println("talentNo : " + talentNo);
 		System.out.println("req :"  + reqPage);
 		// 페이지 당 출력 수
@@ -156,7 +156,7 @@ public class TalentService {
 			if (reqPage == pageNo) {
 				pageNavi += "<span class='selectNoticePage'>" + pageNo + "</span>";
 			} else {
-				pageNavi += "<a class='noticeBtn' href='/talentBoard.don?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+				pageNavi += "<a class='noticeBtn' href='/talent/talentBoard.don?reqPage=" + pageNo + "&talentNo="+talentNo+"&talentWriter="+talentWriter+"'>" + pageNo + "</a>";
 			}
 			pageNo++;
 			if (pageNo > totalPage) {
