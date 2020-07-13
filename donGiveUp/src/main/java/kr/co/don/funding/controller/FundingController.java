@@ -148,11 +148,25 @@ public class FundingController {
 	
 	
 	@RequestMapping(value="fundingInsert.don")
-	public String fundingInsert(HttpSession session,Funding funding,ArrayList<RewardList> list) {
+	public String fundingInsert(HttpSession session,Funding funding,String[] rewardName,String[] rewardContent,String[] rewardprice,
+			String[] rewardAmount) {
+		for(int i=0;i<rewardName.length;i++) {
+			System.out.println(rewardName[i]);
+		}
 		
-		System.out.println(list);
-		System.out.println(funding);
+		for(int i=0;i<rewardContent.length;i++) {
+			System.out.println(rewardContent[i]);
+		}
+		
+		//System.out.println(funding);
+		//System.out.println(rewardName);
+		
+		
+		int result = fundingService.insertFunding(funding);
+		
+		
 		
 		return "redirect:/";
 	}
+	
 }
