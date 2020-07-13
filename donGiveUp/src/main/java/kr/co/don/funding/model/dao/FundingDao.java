@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import jdk.nashorn.internal.ir.annotations.Reference;
 import kr.co.don.funding.model.vo.Funding;
+import kr.co.don.funding.model.vo.FundingIn;
 
 @Repository("fundingDao")
 public class FundingDao {
@@ -32,5 +33,9 @@ public class FundingDao {
 		return sqlSession.selectOne("funding.fundingView",fundingNo);
 	
 
+	}
+	public List<FundingIn> fundingInList(int fundingNo) {
+		
+		return sqlSession.selectList("funding.fundingInList",fundingNo);
 	}
 }

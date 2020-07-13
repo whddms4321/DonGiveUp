@@ -32,7 +32,7 @@
 <!-- ck에디터 링크 -->
 <script type="text/javascript" src="/resources/ckeditor4/ckeditor.js"></script>
 <!--링크 종료  -->
-<title>Insert title here</title>
+<title>펀딩 메인</title>
 <style>
 body {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -53,6 +53,7 @@ a{
 	margin: 0 auto;
 }
 .content_wrap>h2{
+	font-size: 35px;
 	text-align: center;
 	margin-top:10px;
 }
@@ -162,7 +163,8 @@ a{
 	<jsp:include page="/WEB-INF/views/main/header.jsp" />
 	<div class="content">
 		<div class="content_wrap">
-			<h2>펀딩목록</h2>
+		<br><br>
+			<h2>펀딩 &nbsp;목록</h2>
 				<div class="funding_tap">
 					<a href="/" class="first_menu"><img src="/resources/upload/images/펀딩아이콘_2번.png"></a>
 					  &nbsp; &nbsp;<i class='fa fa-angle-right'></i> &nbsp;<span>${type }</span> 
@@ -188,6 +190,9 @@ a{
 						<br>		
 				</div>
 			</div>
+			<c:if test="${sessionScope.member.memberType eq 2 }">
+				<a href="/fundingInsertFrm.don">펀딩 작성</a>
+			</c:if>
 			<br>
 			<div class="row">
 				<c:forEach var="n" items="${list }">
@@ -224,5 +229,6 @@ a{
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
+	
 </body>
 </html>

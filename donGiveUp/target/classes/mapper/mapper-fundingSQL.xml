@@ -65,5 +65,16 @@
 			where funding_no = #{fundingNo}
 			
 	</select>
+	<select id="fundingInList" parameterType="_int" resultType="FundingIn">
+		select 
+			funding_in_no as fundingInNo,funding_in_memberid as fundingInMemberId,
+			funding_in_count as fundingInCount,rewardlist_no as rewardListNo,
+			funding_in_price as fundingInPrice,  funding_no as fundingNo,
+			funding_in_date as fundingPayNo
+			
+			from fundingIn 
+			where funding_no = #{fundingNo}
+	
+	</select>	
 		
 </mapper>

@@ -69,7 +69,7 @@
   <url-pattern>/resources/ckfinder/core/connector/java/connector.java</url-pattern>
 </servlet-mapping>  
 <!-- CKFINDER END -->
->>
+
 
 
 </web-app>
