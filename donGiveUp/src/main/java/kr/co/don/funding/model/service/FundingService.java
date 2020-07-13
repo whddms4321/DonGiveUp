@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import kr.co.don.funding.model.dao.FundingDao;
 import kr.co.don.funding.model.vo.Funding;
 import kr.co.don.funding.model.vo.FundingData;
+import kr.co.don.funding.model.vo.FundingIn;
+import kr.co.don.funding.model.vo.FundingView;
 
 @Service
 public class FundingService {
@@ -134,9 +136,14 @@ public class FundingService {
 		return data; 
 	}
 
-	public Funding fundingView(int fundingNo) {
+	public FundingView fundingView(int fundingNo) {
 		
-		return fundingDao.fundingView(fundingNo);
+		FundingView fv = new FundingView();
+		
+		fv.setFunding(fundingDao.fundingView(fundingNo));
+		fv.setList((ArrayList<FundingIn>)fundingDao.fundingInList(fundingNo));
+		
+		return fv;
 	}
 
 }
