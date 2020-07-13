@@ -1,5 +1,6 @@
 package kr.co.don.funding.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,5 +38,29 @@ public class FundingDao {
 	public List<FundingIn> fundingInList(int fundingNo) {
 		
 		return sqlSession.selectList("funding.fundingInList",fundingNo);
+	}
+	public List<Funding> scheduledList(){
+		
+		return sqlSession.selectList("funding.scheduledList");
+	}
+
+	public int updateType(int fundingNo) {
+		
+		return sqlSession.update("funding.updateType",fundingNo);
+	}
+
+	public List<FundingIn> refundList(int fundingNo) {
+		
+		return sqlSession.selectList("funding.refundList",fundingNo);
+	}
+
+	public int refund(FundingIn m) {
+		
+		return sqlSession.update("funding.refund", m);
+	}
+
+	public int insertFunding(Funding funding) {
+		
+		return sqlSession.insert("funding.insert", funding);
 	}
 }

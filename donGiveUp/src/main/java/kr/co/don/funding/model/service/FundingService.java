@@ -20,6 +20,7 @@ public class FundingService {
 	@Qualifier("fundingDao")
 	private FundingDao fundingDao;
 	
+	
 	public FundingData selectList(HashMap<String,String> map) {
 				
 		//총 게시물 숫자
@@ -144,6 +145,35 @@ public class FundingService {
 		fv.setList((ArrayList<FundingIn>)fundingDao.fundingInList(fundingNo));
 		
 		return fv;
+	}
+
+	public void scheduledList() {
+		
+		ArrayList<Funding>list = new ArrayList<Funding>();
+		list = (ArrayList<Funding>)fundingDao.scheduledList();
+		
+		for( Funding n : list) {
+			if( n.getFundingGoalPrice() <= n.getFundingNowPrice()) {
+				int result = fundingDao.updateType(n.getFundingNo());
+				if( result>0) {
+					ArrayList<FundingIn>listIn = new ArrayList<FundingIn>();
+					listIn = (ArrayList<FundingIn>)fundingDao.refundList(n.getFundingNo());
+					for( FundingIn m : listIn) {
+						m.setFundingInPrice(m.getFundingInPrice()/100);
+						int resultM = fundingDao.refund(m);
+						
+					}
+				}
+			}
+			
+		}
+	 System.out.println("스케줄 서비스 실행");
+	}
+
+	public int insertFunding(Funding funding) {
+		
+		
+		return fundingDao.insertFunding(funding);
 	}
 
 }
