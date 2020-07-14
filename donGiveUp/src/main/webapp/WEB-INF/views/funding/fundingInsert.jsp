@@ -117,10 +117,12 @@ a {
 .reward_wrap{
  font-size: 23px;
 }
+
 .reward_wrap>input{
 margin:10px;
 font-size: 17px;
 }
+
 .reward_wrap>h2{
 	font-weight: 700px;
 	
@@ -309,7 +311,7 @@ font-size: 17px;
 				console.log(html);
 				$(".reward_span").eq(uncount).append(html);
 				$(event.target).parent().remove();
-				2 ,3 
+				
 			}
 			
 	});

@@ -55,9 +55,7 @@ public class SupportController {
 	
 	@RequestMapping(value="/supportList.don")
 	public String supportList(int count,Model model,HttpSession session) {
-		Member mm = (Member) session.getAttribute("member");
-		System.out.println(mm.getMemberType());
-		
+	
 		String supportApplyId;
 		
 		try{			
@@ -127,6 +125,7 @@ public class SupportController {
 		return new Gson().toJson(data);
 		
 	}
+	
 	@RequestMapping(value="/supportApplyWrite.don")
 	public String supportApplyWrite(int supportNo,Model model,Support support) {
 		
@@ -136,13 +135,12 @@ public class SupportController {
 		model.addAttribute("support", support);
 		
 		return "support/supportApplyWrite";
+		
 	}
 	
 	@RequestMapping(value="/supportInsert.don")
 	public String supportInsert(HttpServletRequest request, MultipartFile file, Support support) {
 		System.out.println(support);
-		
-		
 		
 		if (!file.isEmpty()) {
 			//저장할 기본 경로
@@ -196,12 +194,18 @@ public class SupportController {
 	
 	@RequestMapping(value="/supportApplyInsert.don")
 	public String supportApplyInsert(SupportApply supportApply) {
+		System.out.println("supportApply"+supportApply);
+		
 		
 		int check = supportService.applyInsert(supportApply);
-		
+		System.out.println(check);
+	
 		if( check !=0) {
+			System.out.println("성공");
 			return "";
+			
 		}else {
+			System.out.println("실패");
 			return "";
 			
 		}

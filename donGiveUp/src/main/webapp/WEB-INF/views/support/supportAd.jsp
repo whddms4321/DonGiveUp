@@ -230,14 +230,17 @@
 						"_blank",
 						"toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=450,height=600");
    			
-        }else {
+        } else {
+        	
             alert("재단으로 로그인 후 이용해주세요.");
             location.href="member/loginFrm.don";
             
         }
 		
 	}
+	
 	$(function(){
+			
 		$(".icon_banner").focusin(function(){
             
             var index = $(".icon_banner").index(this);
@@ -362,5 +365,6 @@
 		</div>
 
 		<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+		
 </body>
 </html>

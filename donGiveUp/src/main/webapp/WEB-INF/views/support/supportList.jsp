@@ -50,33 +50,34 @@ body {
 .content_wrap>h1 {
 	text-align: center;
 }
-.support_try{
-    float:right;
-    width:150px;
-    height:70px; 
-    padding:10px;
-    margin-right:130px;
+
+.support_try {
+	float: right;
+	width: 150px;
+	height: 70px;
+	padding: 10px;
+	margin-right: 130px;
 }
-    .support_try div{
-        color:white;
-        font-size:15px; 
-        font-weight: 600;
-        float: left;
-        border:none;
-        display: inline-block;
-        width: 100%;
-        height: 100%;
-        line-height: 50px;
-        text-align: center;
-        background-color: #0fbcff;
-        border-radius: 20px;
-        border:none;
-        
-        
-    }
-    .support_try div:hover{
-   		opacity: 0.6;
-    }
+
+.support_try div {
+	color: white;
+	font-size: 15px;
+	font-weight: 600;
+	float: left;
+	border: none;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	line-height: 50px;
+	text-align: center;
+	background-color: #0fbcff;
+	border-radius: 20px;
+	border: none;
+}
+
+.support_try div:hover {
+	opacity: 0.6;
+}
 
 .category_div {
 	position: relative;
@@ -84,24 +85,26 @@ body {
 }
 
 .category_ul {
-	width:85px;
+	width: 85px;
 	list-style: none;
 	padding: 0;
-	left:-70px;
-	top:-35px;
+	left: -70px;
+	top: -35px;
 	position: absolute;
 	/* border: 0.3px solid black; */
-	z-index:100;
+	z-index: 100;
 }
-.category_ul>li{
-	color:threedface;
+
+.category_ul>li {
+	color: threedface;
 	/* text-decoration: underline #0fbcff; */
 }
-.category_ul>li:hover{
+
+.category_ul>li:hover {
 	opacity: 0.7
 }
+
 .on {
-	
 	display: block;
 }
 
@@ -122,14 +125,12 @@ body {
 	display: inline-block;
 	border: none;
 	margin: 25px;
-	
 }
 
 .supportList {
 	display: inline-block;
 	width: 220px;
 	height: 240px;
-	
 	position: relative;
 }
 
@@ -151,7 +152,6 @@ body {
 
 }
  */
- 
 .supportList_band {
 	display: inline-block;
 	width: 60px;
@@ -181,7 +181,7 @@ body {
 }
 
 .supportList_name {
-margin-top:5px;
+	margin-top: 5px;
 	color: gray;
 }
 /* .supportList_img{
@@ -193,7 +193,7 @@ margin-top:5px;
 <script>
 	$(function() {
 		$(".category_content").click(function() {
-			
+
 			if ($(".category_ul").hasClass("off")) {
 				$(".category_ul").removeClass("off");
 				$(".category_ul").addClass("on");
@@ -210,10 +210,19 @@ margin-top:5px;
 		$(".category_ul")
 	});
 	//물품후원 신청하기
-	$(document).on('click','.supportListApply',function(event){
-		var windo = window.open("/supportApplyWrite.don?supportNo="+$(this).val(), "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=450,height=600"); 
-		
-	});
+	$(document)
+			.on(
+					'click',
+					'.supportListApply',
+					function(event) {
+						var windo = window
+								.open(
+										"/supportApplyWrite.don?supportNo="
+												+ $(this).val(),
+										"_blank",
+										"toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=450,height=600");
+
+					});
 
 	//document.on 으로 이벤트를 걸면 바뀐시점에서의 내용을 읽어서 새롭게 생성된 것들도 이벤트를 연결 가능하다.
 	$(document)
@@ -289,12 +298,13 @@ margin-top:5px;
 	<div class="content">
 		<div class="content_wrap">
 			<br> <br> <br>
-			
+
 			<h1>물품 후원 리스트</h1>
 			<br> <br> <br>
 			<div class="category_div">
-				<span class="category_content"  style='font-size:24px' >전체 <i class='fas fa-caret-up'   style='font-size:27px' ></i></span>
-				<ul class="category_ul off" style="cursor:pointer">
+				<!-- <span class="category_content" style='font-size: 24px'>전체 <i
+					class='fas fa-caret-up' style='font-size: 27px'></i></span> -->
+				<!-- <ul class="category_ul off" style="cursor:pointer">
 					<li>전체</li>
 					<li>의류</li>
 					<li>생리대</li>
@@ -304,22 +314,22 @@ margin-top:5px;
 					<li>가전제품</li>
 					<li>유아제품</li>
 					<li>학용품</li>
-				</ul>
+				</ul> -->
 				<div class="support_try">
-				
-				<a href="/supportAd.don">
-				<%-- <c:if test="${sessionScope.member.memberType eq 1 }"></c:if> --%>
-					<div class="apply" value="나중에 css 수정">물품 후원하러 가기</div>
-				</a>
-			</div>
+
+					<a href="/supportAd.don"> <%-- <c:if test="${sessionScope.member.memberType eq 1 }"></c:if> --%>
+						<div class="apply" value="나중에 css 수정">물품 후원하러 가기</div>
+					</a>
+				</div>
 			</div>
 			<br>
 			<ul class="supportList_ul">
-				
+
 				<c:forEach var="n" items="${List }" varStatus="status">
 					<li class="supportList_li">
 						<div class="supportList">
-							<img class="supportList_img" src="/resources/upload/support/${n.supportFilepath }">
+							<img class="supportList_img"
+								src="/resources/upload/support/${n.supportFilepath }">
 							<h2 class="supportList_name">${n.supportName }</h2>
 							<div>마감 기한 : ${n.enrollEndDate }</div>
 							<div>물품 수량 : ${n.supportAmount }</div>
@@ -331,15 +341,15 @@ margin-top:5px;
 									<button class="supportListApply" value="${n.supportNo }">요청하기</button>
 								</c:if>
 							</c:if>
-							
+
 						</div>
 					</li>
 				</c:forEach>
 			</ul>
 			<!-- <img src="/resources/upload/support//127.0.0.1_supportApplyAd.don.png"> -->
-			
+
 			<span class="button">${button }</span>
-			
+
 		</div>
 	</div>
 	<br>
