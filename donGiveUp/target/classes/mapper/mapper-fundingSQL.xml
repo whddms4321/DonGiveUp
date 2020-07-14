@@ -111,5 +111,15 @@
 		1,#{fundingTitle},#{fundingContent},#{fundingGroup},#{fundingGroupIntroduce},#{fundingClass},0,sysdate,sysdate,#{fundingManager},#{fundingGoalPrice},0,null
 		)
 	</insert>
-	
+	<insert id="insertRd" parameterType="rewardList">
+		insert into rewardList values(
+		#{fundingNo},rewardlist_seq.nextval,#{rewardName},#{rewardContent},#{rewardPrice},#{rewardAmount},null,null,null
+		)
+	</insert>
+	<select id="research" resultType="_int">
+		select funding_no 
+		from (select rownum, n.* from (select * from funding order by funding_no desc)n)
+        where rownum = 1
+        
+	</select>
 </mapper>

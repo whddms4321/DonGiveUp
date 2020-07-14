@@ -173,6 +173,7 @@
 	background-color: #dedcee;
 	padding-top: 40px;
 }
+
 .support_kinds_imag{
 	
 	width:95%;
@@ -182,9 +183,11 @@
 	
 	
 }
-
+.first_div{
+	float:left;
+	display:inline-block;
+}
 .support_kinds_imags {
-
 	display: none;
 	
 }
@@ -192,22 +195,29 @@
 .support_kinds_icon{
 	
 	width:460px;
-	height:363px;
+	height:362px;
 	border:none;
 	float:left;
+	box-sizing: border-box;
+	display:inline-block;
+	
 	
 }
+
 .icon_banner{
 	
-	width:150px;
+ 	background-color:white;
+	width:33%;
 	height:121px;
-	border:none;
-	
+	display:inline-block;
+	float:left;
+	border: 0.1px double black;
 }
 .img_show {
 	display: block;
 }
-  
+    
+
 </style>
 <script>
 	function func1() {
@@ -219,10 +229,30 @@
 						"/supportWrite.don",
 						"_blank",
 						"toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=500,width=450,height=600");
+   			
+        }else {
+            alert("재단으로 로그인 후 이용해주세요.");
+            location.href="member/loginFrm.don";
             
         }
 		
 	}
+	$(function(){
+		$(".icon_banner").focusin(function(){
+            
+            var index = $(".icon_banner").index(this);
+            console.log(index);
+            
+        });
+		
+        
+        $(".icon_banner").click(function(){
+            var index = $(".icon_banner").index(this);
+            console.log(index);
+            var check = document.getElementsByClassName(".icon_banner");
+            $(check[index]).css("bgColor","blue");
+        });
+	});
 	
 </script>
 <body>
@@ -239,7 +269,7 @@
 			</div>
 			<div class="support_kinds">
 				<div class="support_kinds_imag">
-					<div>
+					<div class="first_div">
 						<img class="support_kinds_imags img_show"
 						src="../../../resources/upload/images/sub1_8_banner_1.png">
 					<img class="support_kinds_imags"
@@ -258,10 +288,9 @@
 						src="../../../resources/upload/images/sub1_8_banner_8.png">
 					<img class="support_kinds_imags"
 						src="../../../resources/upload/images/sub1_8_banner_9.png">
-					
-					</div>
 						
-					<div class="support_kinds_icon">
+					</div>
+						<div class="support_kinds_icon">
 					
 						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum1.png">
 						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum2.png">
@@ -273,9 +302,11 @@
 						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum8.png">
 						<img class="icon_banner" src="/../../resources/upload/images/sub1_8_sum9.png">
 						
-					</div>
+						</div>
+					
 				</div>
 			</div>
+			
 			<div class="support_method">
 				<br>
 				<br>

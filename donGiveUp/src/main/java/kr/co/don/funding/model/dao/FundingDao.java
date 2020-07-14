@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import jdk.nashorn.internal.ir.annotations.Reference;
 import kr.co.don.funding.model.vo.Funding;
 import kr.co.don.funding.model.vo.FundingIn;
+import kr.co.don.funding.model.vo.RewardList;
 
 @Repository("fundingDao")
 public class FundingDao {
@@ -62,5 +63,15 @@ public class FundingDao {
 	public int insertFunding(Funding funding) {
 		
 		return sqlSession.insert("funding.insert", funding);
+	}
+
+	public int insertReward(RewardList rd) {
+		
+		return sqlSession.insert("funding.insertRd", rd);
+	}
+
+	public int research() {
+		
+		return sqlSession.selectOne("funding.research");
 	}
 }

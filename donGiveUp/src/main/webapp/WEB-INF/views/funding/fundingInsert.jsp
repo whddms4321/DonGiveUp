@@ -222,15 +222,15 @@ font-size: 17px;
 					}
 			}
 			
-			var message = CKEDITOR.instances['ck_content'].getData();
+			/* var message = CKEDITOR.instances['ck_content'].getData();
 			var list = $(message).find('img').attr("src");
 			var list2 = $(message).find('img').next().attr("src");
 			//var test = message.find('img').attr("src");
 			
 			console.log(list);
-            console.log(list2);
+            console.log(list2); */
         
-			return false;
+		
 			/* 리워드 이미지 저장 용 펑션  */
 			
 	}
@@ -394,7 +394,7 @@ font-size: 17px;
 				<input type="hidden" name="fundingType" value="0">
 				<div class="button_div">
 					<button type="submit" class="btn btn-primary" onclick="return fundingsubmit();">작성하기</button>
-					<button type="button" class="btn btn-primary" onclick="reviewFun();">미리보기</button>
+					<!-- <button type="button" class="btn btn-primary" onclick="reviewFun();">미리보기</button> -->
 					<button type="button" class="btn btn-primary"
 						onclick="returnButton();">돌아가기</button>
 						<br><br>

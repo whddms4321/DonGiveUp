@@ -154,6 +154,9 @@ a{
 	width:100%;
 	height:100%;
 }
+.funding_write{
+color:white;
+}
 </style>
 <script>
 	
@@ -183,16 +186,17 @@ a{
 				<div class="col-lg-6"></div>
 				<div class="container col-lg-4">
 						<div class="custom-control custom-switch">
-							<input type="checkbox" class="custom-control-input" id="switch1"
+						<c:if test="${sessionScope.member.memberType eq 2 }">
+							<button class="btn btn-primary"><a href="/fundingInsertFrm.don" class="funding_write">펀딩 작성</a></button>
+						</c:if>
+							<!-- <input type="checkbox" class="custom-control-input" id="switch1"
 								name="example"> <label class="custom-control-label"
-								for="switch1">마감된 펀딩만 보기</label>
+								for="switch1">마감된 펀딩만 보기</label> -->
 						</div>			
 						<br>		
 				</div>
 			</div>
-			<c:if test="${sessionScope.member.memberType eq 2 }">
-				<a href="/fundingInsertFrm.don">펀딩 작성</a>
-			</c:if>
+			
 			<br>
 			<div class="row">
 				<c:forEach var="n" items="${list }">

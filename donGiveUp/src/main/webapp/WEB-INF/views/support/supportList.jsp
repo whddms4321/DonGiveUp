@@ -327,16 +327,19 @@ margin-top:5px;
 								<span class="supportList_band myband">요청중</span>
 							</c:if>
 							<c:if test="${n.supportApplyId ne sessionScope.member.memberId}">
-								<c:if test="${sessionScope.member.memberType eq 0 }">
+								<c:if test="${sessionScope.member.memberType eq 2 }">
 									<button class="supportListApply" value="${n.supportNo }">요청하기</button>
 								</c:if>
 							</c:if>
+							
 						</div>
 					</li>
 				</c:forEach>
 			</ul>
-			<img src="/resources/upload/support//127.0.0.1_supportApplyAd.don.png">
+			<!-- <img src="/resources/upload/support//127.0.0.1_supportApplyAd.don.png"> -->
+			
 			<span class="button">${button }</span>
+			
 		</div>
 	</div>
 	<br>

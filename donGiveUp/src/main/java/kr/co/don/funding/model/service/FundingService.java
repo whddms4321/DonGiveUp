@@ -3,6 +3,8 @@ package kr.co.don.funding.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import kr.co.don.funding.model.vo.Funding;
 import kr.co.don.funding.model.vo.FundingData;
 import kr.co.don.funding.model.vo.FundingIn;
 import kr.co.don.funding.model.vo.FundingView;
+import kr.co.don.funding.model.vo.RewardList;
 
 @Service
 public class FundingService {
@@ -170,10 +173,38 @@ public class FundingService {
 	 System.out.println("스케줄 서비스 실행");
 	}
 
-	public int insertFunding(Funding funding) {
+	public String insertFunding(Funding funding, HttpSession session, String[] rewardName, String[] rewardContent, String[] rewardPrice, String[] rewardAmount) {
 		
+		int check = fundingDao.insertFunding(funding);
 		
-		return fundingDao.insertFunding(funding);
+		if( check !=0) {
+			ArrayList<RewardList> list = new ArrayList<RewardList>();
+			check = fundingDao.research();
+			System.out.println(check);
+			System.out.println("1차");
+			
+			for(int i=0; i<rewardName.length;i++) {
+				System.out.println("2차");
+				
+				RewardList rd = new RewardList();
+				
+				rd.setRewardName(rewardName[i]);
+				rd.setRewardContent(rewardContent[i]);
+				rd.setRewardPrice(Integer.parseInt(rewardPrice[i]));
+				rd.setRewardAmount(Integer.parseInt(rewardAmount[i]));
+				rd.setFundingNo(check);
+				System.out.println(rd);
+				fundingDao.insertReward(rd);
+					
+				
+				
+			}
+		}
+		
+
+		String result ="redirect:/";
+		
+		return result;
 	}
 
 }
