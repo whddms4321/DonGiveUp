@@ -19,5 +19,6 @@ public class UserAttendListVO {
 	private int supportKind;
 	private String regularEndDate;
 	private int rewardOnePrice;
+	private String boardInDate;
 	
 }

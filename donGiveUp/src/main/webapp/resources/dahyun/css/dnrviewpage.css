@@ -68,10 +68,11 @@
 }
 .dnrContent{
     width: 70%;
+    padding: 50px;
     height: 500px;
     margin: 0 auto;
     margin-top: 50px;
-    border: 1px solid darkgray;
+    border: 1px solid #e3f0f6;
     margin-bottom: 30px;
 }
 .imgwrap{
@@ -80,10 +81,10 @@
     margin: 0 auto;
     
 }
-.carousel-item > img {
-    width: 100%;
+
+.imggg{
+    width: 840px;
     height: 450px;
-    
 }
 .tableWrap1{
     width: 70%;

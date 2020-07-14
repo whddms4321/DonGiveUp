@@ -37,6 +37,7 @@ public class TalentController {
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
 		model.addAttribute("totalCount", data.getTotalCount());
+		model.addAttribute("type",type);
 		return "talent/talentFrm";
 	}
 	
@@ -88,20 +89,28 @@ public class TalentController {
 	@RequestMapping(value = "/talentDetail.don")
 	public String talentDetail(int talentNo,Model model){
 		Talent t = service.talentDetail(talentNo);
+		int count = service.countTalentList(talentNo);
 		model.addAttribute("talent",t);
+		model.addAttribute("count",count);
 		return "talent/talentDetail";
 	}
 	
 	@RequestMapping(value = "/insertTalentList.don")
-	public String insertTalentList(int talentNo, String memberId, Model model) {
-		TalentList t = new TalentList();
-		t.setMemberId(memberId);
-		t.setTalentNo(talentNo);
-		if(memberId==null) {
+	public String insertTalentList(int talentNo, String memberId, Model model,int talentCount) {
+		if(memberId.equals("")) {
 			model.addAttribute("msg","로그인이 필요합니다.");
 			model.addAttribute("loc","/member/loginFrm.don");
 			return "main/msg";
 		}
+		int count = service.countTalentList(talentNo);
+		if(count>=talentCount) {
+			model.addAttribute("msg","참여인원이 마감되었습니다.");
+			model.addAttribute("loc","/talent/talentFrm.don?reqPage=1&type=전체");
+			return "main/msg";
+		}
+		TalentList t = new TalentList();
+		t.setMemberId(memberId);
+		t.setTalentNo(talentNo);
 		int result = service.insertTalentList(t);
 		if(result!=0) {
 			model.addAttribute("msg","재능기부 참여 성공");
@@ -151,8 +160,13 @@ public class TalentController {
 	
 	@RequestMapping(value = "/talentListMyList.don")
 	public String talentListMyList(String memberId,Model model) {
+		if(memberId.equals("")) {
+			model.addAttribute("msg","로그인이 필요합니다.");
+			model.addAttribute("loc","/member/loginFrm.don");
+			return "main/msg";
+		}
 		ArrayList<TalentJoin> join = service.talentListMyList(memberId);
-		if(join!=null) {
+		if(!join.isEmpty()) {
 			model.addAttribute("join",join);
 			return "talent/talentListMyList";
 		}else {
@@ -163,17 +177,18 @@ public class TalentController {
 	}
 	
 	@RequestMapping(value = "/talentBoard.don")
-	public String talentBoard(int talentNo,int reqPage,Model model) {
-		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage);
+	public String talentBoard(int talentNo,int reqPage,Model model,String talentWriter) {
+		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage,talentWriter);
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
 		model.addAttribute("talentNo",talentNo);
+		model.addAttribute("talentWriter",talentWriter);
 		return "talent/talentBoard";
 	}
 	
 	@RequestMapping(value = "/talentBoardDeleteFrm.don")
-	public String talentBoardDeleteFrm(int talentNo,int reqPage,Model model) {
-		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage);
+	public String talentBoardDeleteFrm(int talentNo,int reqPage,Model model,String talentWriter) {
+		TalentBoardData data = service.selectTalentBoard(talentNo,reqPage,talentWriter);
 		model.addAttribute("list", data.getList());
 		model.addAttribute("pageNavi", data.getPageNavi());
 		model.addAttribute("talentNo",talentNo);
@@ -188,8 +203,97 @@ public class TalentController {
 			model.addAttribute("loc","/");
 			return "main/msg";
 		}else {
-			model.addAttribute("msg","탈퇴 신청 실패");
+			model.addAttribute("msg","탈퇴 실패");
 			model.addAttribute("loc","/");
+			return "main/msg";
+		}
+	}
+	
+	@RequestMapping(value = "/talentListOpen.don")
+	public String talentListOpen(String memberId,Model model) {
+		if(memberId.equals("")) {
+			model.addAttribute("msg","로그인이 필요합니다.");
+			model.addAttribute("loc","/member/loginFrm.don");
+			return "main/msg";
+		}
+		ArrayList<Talent> list = service.selectTalentList(memberId);
+		if(!list.isEmpty()) {
+			model.addAttribute("list",list);
+			return "talent/talentListOpen";
+		}else {
+			model.addAttribute("msg","개설한 목록이 존재하지 않습니다.");
+			model.addAttribute("loc","/talent/talentFrm.don?reqPage=1&type=전체");
+			return "main/msg";
+		}
+	}
+	
+	@RequestMapping(value = "/talentBoardDetail.don")
+	public String talentBoardDetail(int talentBoardNo,Model model) {
+		TalentBoard board = service.talentBoardDetail(talentBoardNo);
+		if(board!=null) {
+			model.addAttribute("board",board);
+			model.addAttribute("talentNo",board.getTalentNo());
+			return "talent/talentBoardDetail";
+		}else {
+			model.addAttribute("msg","목록이 존재하지 않습니다.");
+			model.addAttribute("loc","/talent/talentFrm.don?reqPage=1&type=전체");
+			return "main/msg";
+		}
+	}
+	
+	@RequestMapping(value = "insertTalentBoardFrm.don")
+	public String insertTalentBoardFrm(int talentNo,Model model) {
+		System.out.println(talentNo);
+		model.addAttribute("talentNo",talentNo);
+		return "talent/insertTalentBoardFrm";
+	}
+	
+	@RequestMapping(value = "/insertTalentBoard.don")
+	public String insertTalentBoard(TalentBoard board,Model model) {
+		int result = service.insertTalentBoard(board);
+		int talentNo = board.getTalentNo();
+		if(result>0) {
+			model.addAttribute("msg","게시글 등록 성공");
+			model.addAttribute("loc","/talent/talentBoard.don?reqPage=1&talentNo="+talentNo);
+			return "main/msg";
+		}else {
+			model.addAttribute("msg","게시글 등록 실패");
+			model.addAttribute("loc","/talent/talentBoard.don?reqPage=1&talentNo="+talentNo);
+			return "main/msg";
+		}
+	}
+	
+	@RequestMapping(value = "/modifyTalentBoardFrm.don")
+	public String modifyTalentBoardFrm(int talentBoardNo,Model model) {
+		TalentBoard board = service.selectTalentBoard(talentBoardNo);
+		model.addAttribute("board",board);
+		return "talent/modifyTalentBoardFrm";
+	}
+	
+	@RequestMapping(value = "/modifyTalentBoard.don")
+	public String modifyTalentBoard(Model model,TalentBoard board) {
+		int result = service.modifyTalentBoard(board);
+		if(result>0) {
+			model.addAttribute("msg","게시글 수정 성공");
+			model.addAttribute("loc","/talent/modifyTalentBoardFrm.don?talentBoardNo="+board.getTalentBoardNo());
+			return "main/msg";
+		}else {
+			model.addAttribute("msg","게시글 수정 실패");
+			model.addAttribute("loc","/talent/modifyTalentBoardFrm.don?talentBoardNo="+board.getTalentBoardNo());
+			return "main/msg";
+		}
+	}
+	
+	@RequestMapping(value = "/deleteTalentBoard.don")
+	public String deleteTalentBoard(int talentBoardNo,int talentNo,Model model) {
+		int result = service.deleteTalentBoard(talentBoardNo);
+		if(result>0) {
+			model.addAttribute("msg","게시글 삭제 성공");
+			model.addAttribute("loc","/talent/talentBoard.don?reqPage=1&talentNo="+talentNo);
+			return "main/msg";
+		}else {
+			model.addAttribute("msg","게시글 삭제 실패");
+			model.addAttribute("loc","/talent/talentBoard.don?reqPage=1&talentNo="+talentNo);
 			return "main/msg";
 		}
 	}

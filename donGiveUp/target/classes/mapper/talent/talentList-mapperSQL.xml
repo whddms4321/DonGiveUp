@@ -14,4 +14,7 @@
 	<delete id="deleteTalentList" parameterType="talentList">
 		delete from talent_list where member_id=#{memberId} and talent_no=#{talentNo} 
 	</delete>
+	<select id="countTalentList" parameterType="_int" resultType="_int">
+		select count(*) from talent_list where talent_no=#{_parameter}
+	</select>
 </mapper>

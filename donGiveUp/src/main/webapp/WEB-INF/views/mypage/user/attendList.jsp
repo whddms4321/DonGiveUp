@@ -145,7 +145,7 @@ td{
 			</div>
 			<div class="content-main-right">
 				<div style="margin:0 auto; margin-bottom:50px;">
-					<h2>활동내역</h2>
+					<h2 style="font-weight:bold;">활동내역</h2>
 					<div id="chartdiv" style="margin:0 auto;"></div>
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" style="margin:0px; padding-left:0px;">
@@ -256,11 +256,9 @@ td{
 		saveValue('donation', 0, 1, memberId);
 		
 		$("input[name=donation]").change(function(){
-			console.log(typeof($(this).val()), $(this).val());
 			saveValue('donation', $(this).val(), 1, memberId);
 		});
 		$("input[name=funding]").change(function(){
-			console.log(typeof($(this).val()), $(this).val());
 			saveValue('funding', $(this).val(), 1, memberId);		
 		});
 		$("input[name=vwork]").change(function(){
@@ -286,12 +284,12 @@ td{
 							$(".donationDiv").children().children().remove();
 							$(".donationPageNavi").children().remove();
 							html += "<tr>";
-							html += "<th>번호</th><th>글제목</th><th>돈토리</th><th>기부일자</th>";
+							html += "<th>번호</th><th>글제목</th><th>돈토리(개)</th><th>기부일자</th>";
 							html += "</tr>";
 							
 							for(var i=0; i<list.length; i++){
 								html += "<tr>";
-								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td><td>" + list[i].boardMoney.toLocaleString();  + "</td><td>" + list[i].boardDate + "</td>";
+								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td><td>" + list[i].boardMoney.toLocaleString()  + "</td><td>" + list[i].boardDate + "</td>";
 								html += "</tr>";
 							}
 							
@@ -311,7 +309,7 @@ td{
 								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td>";
 								html += "<td>" + list[i].boardRewardName + "</td>";
 								html += "<td>" + list[i].boardCount + "</td>";
-								html += "<td>" + (list[i].boardCount * list[i].rewardOnePrice).toLocaleString(); + "</td>";
+								html += "<td>" + (list[i].boardCount * list[i].rewardOnePrice).toLocaleString() + "</td>";
 								html += "<td>" + list[i].boardDate + "</td>";
 								html += "</tr>";
 							}
@@ -349,7 +347,7 @@ td{
 							
 							for(var i=0; i<list.length; i++){
 								html += "<tr>";
-								html += "<td style='padding:3px;'>" + ((reqPage-1)*5+1+i) + "</td><td style='padding:3px;'>" + list[i].boardTitle + "</td><td style='padding:3px;'>" + list[i].boardMoney + "</td>";
+								html += "<td style='padding:3px;'>" + ((reqPage-1)*5+1+i) + "</td><td style='padding:3px;'>" + list[i].boardTitle + "</td><td style='padding:3px;'>" + list[i].boardMoney.toLocaleString() + "</td>";
 								html += "<td style='padding:3px;'>" + list[i].boardDate + "</td>";
 								html += "<td style='padding:3px;'>" + "<button class='regular-cancel-btn' onclick='regularCancelReq(" + list[i].boardNo + "," + reqPage +");'>해지요청</button>"  + "</td>";
 								html += "</tr>";
@@ -365,7 +363,7 @@ td{
 							
 							for(var i=0; i<list.length; i++){
 								html += "<tr>";
-								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td><td>" + list[i].boardMoney + "</td>";
+								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].boardTitle + "</td><td>" + list[i].boardMoney.toLocaleString() + "</td>";
 								if(list[i].boardState==1){
 									html += "<td> - </td>";
 									html +="<td>요청대기</td>";
@@ -388,7 +386,11 @@ td{
 						html += "<th style='width=20%;'>글제목</th>";
 						html += "<th style='width=10%;'>종류</th>";
 						html += "<th style='width=10%;'>수량</th>";
-						html += "<th style='width=25%;'>마감일</th>";
+						if(radio==0){
+							html += "<th style='width=25%;'>신청일</th>";
+						}else{
+							html += "<th style='width=25%;'>마감일</th>";							
+						}
 						html += "<th style='width=10%;'>상태</th>";
 						html += "</tr>";
 						
@@ -428,7 +430,18 @@ td{
 									break;
 							}
 							html += "<td>" + list[i].boardCount + "</td>";
-							html += "<td>" + list[i].boardDate + "</td>";
+							if(radio == 0){
+								html += "<td>" + list[i].boardInDate + "</td>";
+							}else{
+								if(list[i].boardState == 1){
+									html += "<td>" + list[i].boardDate + "</td>";
+								}else if(list[i].boardState == 2){
+									html += "<td> - </td>";
+								}else if(list[i].boardState == 3){
+									html += "<td>" + list[i].boardDate + "</td>";
+								}
+																
+							}
 							
 							if(radio == 0 && list[i].boardState == 0){
 								html += "<td>승인대기</td>";
@@ -475,8 +488,6 @@ td{
 						$(".supportDiv").children().append(html);
 						$(".supportPageNavi").append(pageNavi);
 					}
-					console.log(list);
-					console.log(pageNavi);
 				},
 				error : function(){
 					console.log("실패");

@@ -13,4 +13,11 @@ public class DnreviewVo {
 	private String dnreviewDate;
 	private String dnreviewFilename;
 	private String dnreviewFilepath;
+	private String donationStartDate;
+	private String donationEndDate;
+	private String companyName;
+	private int donationGoalMoney;
+	private int donationNowMoney;
+	private int dnrPercent;
+	private String donationType;
 }

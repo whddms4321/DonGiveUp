@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 margin:0 auto;
 width: 1200px;
 height : 1700px;
+
 
 }
 .content-main-left{
@@ -74,7 +76,7 @@ width: 90%;
 }
 .content-main-right-money{
 width: 100%;
-height: 280px;
+
 
 
 }
@@ -85,7 +87,7 @@ height: 80px;
 }
 .content-main-right-organization{
 width: 100%;
-height: 300px;
+height: 250px;
 
 }
 .content-main-right-require{
@@ -143,7 +145,7 @@ line-height: 70px;
 }
 .content-main-right-donation-button{
 	width: 99%;
-	height: 100%;
+	height: 70px;
 	background-color: #0fbcff;
 	font-size: 25px;
 	font-weight: bold;
@@ -184,7 +186,8 @@ font-size: 23px;
 	margin: 10px;
 }
 .money-div{
-line-height:35px;
+
+height : 210px;
 width: 90%;
 margin: 0 auto;
 text-align:center;
@@ -192,7 +195,8 @@ text-align:center;
 </style>
 </head>
 <body>
-
+<link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Open+Sans&family=Raleway&family=Source+Sans+Pro&family=Staatliches&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<div class="content">
 		<div class="content-main">
@@ -209,10 +213,10 @@ text-align:center;
 				<div class="content-main-left-file">
 					<a class="content-main-left-file-a">첨부 파일 : ${company.chartFilepath }</a>
 				</div><hr>
-				<div class="content-main-left-comment">
+				<!-- <div class="content-main-left-comment">
 					<a class="content-main-left-comment-a">댓글</a><br>
 					<button>더보기</button>
-				</div>
+				</div> -->
 				
 			</div>
 			<div class="content-main-right">
@@ -220,26 +224,31 @@ text-align:center;
 				
 				
 				<div class="money-div">
-				<a class="content-main-right-money-a5"><b><br>총 모금액 </b><br>${detail.regularNowMoney}원</a><br><br>
-				<a class="content-main-right-money-a5"><b>이번 달 모금액</b><br>0원</a><br><hr>
-				<a class="content-main-right-money-a5">인원수 : 0명</a><br>						
+				<a class="content-main-right-money-a5"><b><br>총 모금액 </b><br> <a style="color: #0fbcff; font-size: 25px;">${detail.regularNowMoney}</a>원</a><br><br>
+			
+				<a class="content-main-right-money-a5">구독 참여자 수 :<br><a style="color: #0fbcff; font-size: 25px;">${size }</a>명</a><br>			
 				</div>
 				
 					
 				</div>
 				<div class="content-main-right-donation">
-				<form class="regularMoney">
+				<form class="regularMoney" method="post">
 				<input type="hidden" name="regularNo" value="${detail.regularNo }">
-				<input type="hidden" name="regularId" value="${company.memberId}">
+				<input type="hidden" name="regularId" value="${detail.regularId}">
 				<input type="hidden" name="companyName" value="${company.companyName}">
+				<input type="hidden" name="memberId" value="${sessionScope.member.memberId }">
+				<c:if test="${not empty sessionScope.member }">
 				<button class="content-main-right-donation-button" onclick="regularMoney('${detail.regularNo}')" type="button">단체 구독하기</button>	
+				</c:if>
+				<c:if test="${empty sessionScope.member }">
+				<button class="content-main-right-donation-button" onclick="" type="button">단체 구독하기</button>	
+				</c:if>
 				</form>
 				</div>
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체 안내</a></div><br>
 				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="${company.companyFilepath }"></a><br>
 				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3">${company.companyName }</a></div><br>
-				<div class="content-main-right-organization-d3"><a class="content-main-right-organization-a4" href="#">기부 단체 리뷰</a>	</div>
 				</div>
 				<div class="content-main-right-require">
 				<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">주의 사항</a></div><br>
@@ -258,7 +267,7 @@ text-align:center;
 		</a></div>
 				</div>
 				<div class="content-main-right-relation">
-					<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 단체 글</a></div>
+					<!-- <div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 단체 글</a></div> -->
 				</div>
 			</div>
 		</div>
@@ -272,7 +281,7 @@ text-align:center;
 		var companyName ="${company.companyName}";
 		var url = "/regularMoney.don";
 		var title = "regularMoney";
-		var status = "left=500px, top=100px, width=550px, height=500px, menubar=no, status=no, scrollbars=yes";
+		var status = "left=500px, top=100px, width=600px, height=650px, menubar=no, status=no, scrollbars=yes";
 		var popup = window.open("", title, status);
 		$("input[name=regularNo]").val(regularNo);
 		$("input[name=regularId]").val(memberId);

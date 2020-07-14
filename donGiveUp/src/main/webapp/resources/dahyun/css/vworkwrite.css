@@ -112,11 +112,7 @@ select {
 }
 
 
-.ipImg > input {
-    width: 90%;
-    height: 100%;
-    box-sizing: border-box;
-}
+
 
 .ipButton {
     

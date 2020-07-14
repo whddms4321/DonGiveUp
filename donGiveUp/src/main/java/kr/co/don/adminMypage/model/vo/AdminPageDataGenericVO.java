@@ -8,7 +8,10 @@ import lombok.Data;
 public class AdminPageDataGenericVO<T> {
 	private ArrayList<T> list;
 	private String pageNavi;
+
 	
+	
+
 	public AdminPageDataGenericVO() {};
 	
 	public AdminPageDataGenericVO(ArrayList<T> list, String pageNavi) {

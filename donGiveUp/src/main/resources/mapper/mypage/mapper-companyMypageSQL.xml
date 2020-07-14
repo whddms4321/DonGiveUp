@@ -114,24 +114,25 @@
 		<if test='type.equals("donation")'>
 			select * from
 				(select ROWNUM as rnum, r.* from
-					(select donation_in_memberid as attendId, donation_in_date as attendDate, donation_in_money as attendMoney
-					from donation_in where donation_no=#{boardNo} order by donation_in_date desc)
+					(select member_phone as memberPhone, member_name as memberName, donation_in_memberid as attendId, donation_in_date as attendDate, donation_in_money as attendMoney
+					from donation_in left join member on(donation_in_memberid=member_id) where donation_no=#{boardNo} order by donation_in_date desc)
 				r)
 			where rnum between #{start} and #{end}
 		</if>
 		<if test='type.equals("funding")'>
 			select * from
 				(select ROWNUM as rnum, r.* from
-					(select F.funding_in_memberid as attendId,  R.reward_name as rewardName, F.funding_in_date as attendDate, F.funding_in_price as fundingInPrice,
-					F.funding_in_count as rewardCount, F.funding_in_money as attendMoney, R.reward_price as rewardOnePrice
-					from funding_in F, rewardlist R  where F.rewardlist_no=R.rewardlist_no and F.funding_no=#{boardNo} order by funding_in_date desc)
+					(select member_phone as memberPhone, member_name as memberName, F.funding_in_memberid as attendId,  R.reward_name as rewardName, F.funding_in_date as attendDate, F.funding_in_price as fundingInPrice,
+					F.funding_in_count as rewardCount, R.reward_price as rewardOnePrice
+					from funding_in F left join member on(funding_in_memberid=member_id), rewardlist R  where F.rewardlist_no=R.rewardlist_no and F.funding_no=#{boardNo} order by funding_in_date desc)
 				r)
 			where rnum between #{start} and #{end}
 		</if>
 		<if test='type.equals("vwork")'>
 			select * from
 				(select ROWNUM as rnum, r.* from
-					(select vserver_writer as attendId, vserver_day as attendDate, vserver_per as attendUserCount from vserver
+					(select member_phone as memberPhone, member_name as memberName, vserver_writer as attendId, vserver_day as attendDate, vserver_per as attendUserCount from vserver
+					left join member on(vserver_writer=member_id)
 					where vserver_ref=#{boardNo} order by vserver_day desc)
 				r) 
 			where rnum between #{start} and #{end}
@@ -139,7 +140,7 @@
 	</select>
 	
 	<select id="selectNowMoney" parameterType="string" resultType="_int">
-		select regular_now_money from regular where regular_id=#{_parameter}
+		select sum(regular_in_money) from regular_in where regular_id=#{_parameter}
 	</select>
 	<select id="selectMonthMoney" parameterType="string" resultType="_int">
 		select sum(regular_in_money) from regular_in where regular_id=#{_parameter}

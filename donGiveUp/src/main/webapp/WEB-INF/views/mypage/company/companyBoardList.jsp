@@ -119,7 +119,7 @@ tr{
 	width:100%;
 }
 .subTrRew{
-	width:25%;
+	width:15%;
 }
 .subTrNo{
 	width:10%;
@@ -134,7 +134,7 @@ tr{
 	width:20%;
 }
 .subTrMoney{
-	width:20%;
+	width:10%;
 }
 .modify>a{
 	background-color : #0fbcff;
@@ -265,10 +265,7 @@ tr{
 					
 		//각 게시글에 대한 참여자
 		function boardAttendUserList(type, boardNo, reqPage , obj, kind){
-			console.log(type);
-			console.log(boardNo);
-			console.log(reqPage);
-			console.log(obj);
+			
 			$.ajax({
 				url : "/boardAttendUserList.don",
 				data : {type : type, boardNo : boardNo, reqPage : reqPage},
@@ -302,49 +299,41 @@ tr{
 							html += "<table class='table subTable'>";
 							
 							html += "<tr>";
-							html += "<th class='subTrNo'>번호</th><th class='subTrId'>아이디</th><th class='subTrDate'>기부일자</th><th class='subTrMoney'>금액(원)</th>";
+							html += "<th class='subTrNo'>번호</th><th class='subTrId'>이름</th><th class='subTrDate'>기부일자</th><th class='subTrMoney'>금액(원)</th>";
 							html += "</tr>";							
 						}else if(type == 'funding'){
 							html += "<td colspan='4' class='newTd' style='text-align:center;'>";
 							html += "<table class='table subTable'>";
 							
 							html += "<tr>";
-							html += "<th class='subTrNo'>번호</th><th class='subTrId'>아이디</th><th class='subTrRew'>리워드명</th><th class='subTrMoney'>참여금액(원)</th><th class='subTrDate'>참여일자</th>";
+							html += "<th class='subTrNo'>번호</th><th class='subTrId'>이름</th><th class='subTrDate'>연락처</th><th class='subTrRew'>리워드명</th><th class='subTrMoney'>수량</th><th>금액(원)</th><th class='subTrDate'>참여일자</th>";
 							html += "</tr>";
 						}else if(type == 'vwork'){
 							html += "<td colspan='4' class='newTd' style='text-align:center;'>";
 							html += "<table class='table subTable'>";
 							
 							html += "<tr>";
-							html += "<th class='subTrNo'>번호</th><th class='subTrId'>아이디</th><th class='subTrPer'>참여인원</th><th class='subTrDate'>참여희망날짜</th>";
+							html += "<th class='subTrNo'>번호</th><th class='subTrId'>이름</th><th>연락처</th><th class='subTrPer'>참여인원</th><th class='subTrDate'>참여희망날짜</th>";
 							html += "</tr>";
 						}
 						
 						for(var i=0; i<list.length; i++){
 							if(type == 'donation'){
 								html += "<tr>";
-								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].attendId + "</td>";
-								html += "<td>" + list[i].attendDate + "</td><td>" + (list[i].attendMoney * 100) + "</td>";
+								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].memberName + "</td>";
+								html += "<td>" + list[i].attendDate + "</td><td>" + (list[i].attendMoney * 100).toLocaleString() + "</td>";
 								html += "</tr>";							
 							}else if(type == 'funding'){
 								html += "<tr>";
-								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].attendId + "</td>";
-								if(list[i].rewardCount>0){ //리워드 수량 - 리워드로 펀딩
-									html += "<td>" + list[i].rewardName + "</td>";
-									html += "<td>" + String(list[i].rewardCount * list[i].rewardOnePrice) + "</td>";
-								}else{ //리워드가 없는 경우 즉, 일반금액 또는 돈토리로 펀딩
-									html += "<td>X</td>";
-									if(list[i].attendMoney > 0){ //돈토리 갯수가 0보다 큰 경우 (돈토리수 * 개당 100원 )
-										html += "<td>" + String((list[i].attendMoney) * 100) + "</td>";	
-									}else{ //일반 금액(funding_in_price)
-										html += "<td>" + String(list[i].fundingInPrice) + "</td>";
-									}
-								}
+								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].memberName + "</td><td>" + list[i].memberPhone + "</td>";
+								html += "<td>" + list[i].rewardName + "</td>";
+								html += "<td>" + list[i].rewardCount + "</td>";
+								html += "<td>" + (list[i].rewardCount * list[i].rewardOnePrice).toLocaleString() + "</td>";
 								html += "<td>" + list[i].attendDate + "</td>";
 								html += "</tr>";
 							}else if(type == 'vwork'){
 								html += "<tr>";
-								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].attendId + "</td>";
+								html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].memberName + "</td><td>" + list[i].memberPhone + "</td>";
 								html += "<td>" + list[i].attendUserCount + "</td><td>" + list[i].attendDate + "</td>";
 								html += "</tr>";	
 							}
@@ -353,7 +342,6 @@ tr{
 						html += "</table>";
 						html += "<div class='subPageNavi'></div>";
 						html += "</td>";
-						console.log(html);
 						if(kind == "a"){
 							$(obj).parent().parent().next().append(html);
 							$(obj).parent().parent().next().find(".subPageNavi").append(pageNavi);

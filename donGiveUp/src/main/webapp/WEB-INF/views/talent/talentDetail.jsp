@@ -62,7 +62,7 @@
 
 .talentContentArea>img {
 	width: 800px !important;
-	height: 400px !important;
+	
 }
 
 .noticeBtn {
@@ -97,7 +97,7 @@ $(function () {
 function talentJoin(talentNo) {
 	var bool = confirm("신청하시겠습니까?");
 	if(bool){
-		location.href="/talent/insertTalentList.don?talentNo="+talentNo+"&memberId=${sessionScope.member.memberId}";	
+		location.href="/talent/insertTalentList.don?talentNo="+talentNo+"&memberId=${sessionScope.member.memberId}&talentCount=${talent.talentCount }";	
 	}else{
 		return false;
 	}
@@ -143,28 +143,28 @@ function deleteTalent(talentNo) {
 				<div
 					style="text-align: center; width: 100%; height: 100px; line-height: 100px; border-bottom: 1px solid #ededed;">
 					<span
-						style="float: left; font-weight: bold; font-size: 20px; color: black; margin-left: 80px;">제목</span><span
-						style="float: right; margin-right: 100px; font-size: 20px; text-decoration: underline; color: #353866;">${talent.talentTitle }</span>
+						style="float: left; font-weight: bold; font-size: 20px; color: black; margin-left: 50px;">제목</span><span
+						style=" font-size: 20px; text-decoration: underline; color: #353866; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;display:inline-block;width:80%;">${talent.talentTitle }</span>
 				</div>
 				<div
 					style="text-align: center; width: 100%; height: 100px; line-height: 100px; border-bottom: 1px solid #ededed;">
 					<span
-						style="float: left; font-weight: bold; font-size: 20px; color: black; margin-left: 80px;">작성자</span><span
+						style="float: left; font-weight: bold; font-size: 20px; color: black; margin-left: 50px;">작성자</span><span
 						style="float: right; margin-right: 100px; font-size: 20px; text-decoration: underline; color: #353866;">${talent.talentWriter }</span>
 				</div>
 				<div
 					style="text-align: center; width: 100%; height: 100px; line-height: 100px; border-bottom: 1px solid #ededed;">
 					<span
-						style="float: left; font-weight: bold; font-size: 20px; color: black; margin-left: 80px;">개설일</span><span
+						style="float: left; font-weight: bold; font-size: 20px; color: black; margin-left: 50px;">개설일</span><span
 						style="float: right; margin-right: 100px; font-size: 20px; text-decoration: underline; color: #353866;">${talent.talentEnrollDate }</span>
 				</div>
 				<div
 					style="text-align: center; width: 100%; height: 100px; line-height: 100px; border-bottom: 1px solid #ededed;">
 					<span
-						style="float: left; font-weight: bold; font-size: 20px; color: black; margin-left: 80px;">제한
-						인원</span><span
-						style="float: right; margin-right: 100px; font-size: 20px; text-decoration: underline; color: #353866;">${talent.talentCount }
-						명</span>
+						style="float: left; font-weight: bold; font-size: 20px; color: black; margin-left: 50px;">제한
+						인원 / ${talent.talentCount } 명</span>
+					<span
+						style="float: right; margin-right: 100px; font-size: 20px; color: #353866; font-weight: bold;">현재인원 / ${count } 명</span>
 				</div>
 				<div
 					style="text-align: center; width: 100%; height: 100px; line-height: 100px;">

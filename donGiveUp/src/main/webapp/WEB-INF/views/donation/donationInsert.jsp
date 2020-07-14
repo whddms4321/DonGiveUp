@@ -162,7 +162,7 @@ select {
 	font-size: 20px;
 }
 .buttonCss:hover{
-color:black;
+color: gray;
 }
 
 </style>
@@ -182,7 +182,29 @@ color:black;
 <!-- Include English language -->
 <script src="/resources/css/donation/dist/js/i18n/datepicker.en.js"></script>
 </head>
-
+<script>
+function check_onclick(){
+	theForm = document.frm1;
+	if(theForm.donationTitle.value==""){
+		alert("필수 입력란이 비어있습니다. 제목 확인해주세요.")
+		return theForm.donationTitle.focus();
+	}
+	if(theForm.donationEndDate.value==""){
+		alert("필수 입력란이 비어있습니다. 달력 확인해주세요.")
+		return theForm.donationEndDate.focus();
+	}
+	if(theForm.donationGoalMoney.value==""){
+		alert("필수 입력란이 비어있습니다. 목표 금액 확인해주세요.")
+		return theForm.donationGoalMoney.focus();
+	}
+	if(theForm.file.value==""){
+		alert("필수 입력란이 비어있습니다. 메인 이미지 확인해주세요.")
+		return theForm.file.focus();
+	}
+	$(".donationDetail2").attr("action", "/donationInsert.don");
+	theForm.submit();
+}
+</script>
 <body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
@@ -190,13 +212,14 @@ color:black;
 		<div class="vworkwTitle">기부 글 등록신청</div>
 		<div class="vworkwpage">
 			<div class="inputTable">
-				<form class="donationDetail2" method="post" enctype="multipart/form-data">
+				<form action="/donationInsert.don" class="donationDetail2" name="frm1" method="post" enctype="multipart/form-data">
+				
 					<table class="vwwTable">
 						<tr>
-							<td class="ipName">제목</td>
+							<td class="ipName">제목*</td>
 							<td class="ipFrame"><input id="vwork_title"
 								name="donationTitle" type="text"></td>
-							<td class="ipName">마감 날짜</td>
+							<td class="ipName">마감 날짜*</td>
 						</tr>
 						<tr>
 							<td class="ipName">작성자</td>
@@ -213,7 +236,7 @@ color:black;
 							<td class="ipFrame"><input id="vwork_fee" type="text" value="${sessionScope.member.companyName }" readonly></td>
 						</tr>
 						<tr>
-							<td class="ipName">봉사타입</td>
+							<td class="ipName">봉사타입*</td>
 							<td class="ipFrame"><select class="vworkSelect"
 								name="donationType">
 									<option value="null">선택안함</option>
@@ -228,12 +251,12 @@ color:black;
 							</select></td>
 						</tr>
 						 <tr>
-							<td class="ipName">목표 금액</td>
+							<td class="ipName">목표 금액*</td>
 							<td class="ipFrame"><input id="vwork_fee" type="text"
 								name="donationGoalMoney"></td>				
 						</tr>
 						 <tr>
-							<td class="ipName">대표이미지</td>
+							<td class="ipName">대표이미지*</td>
 							<td colspan="2" class="ipImg">
 								<input type="file" name="file">
 							</td>
@@ -246,12 +269,19 @@ color:black;
 							<td colspan="3" class="ipButton">
 							
 								<button class ="buttonCss" onclick="reviewInsert()" type="button">미리보기</button>
-    							<input class ="buttonCss" type="submit" value="신청하기" onclick="javascript: form.action='/donationInsert.don';"/>
-
+    							<input class ="buttonCss" type="button" value="신청하기" onclick="check_onclick()"/>
 							</td>
 						</tr>
 					</table>
 				</form>
+				<%-- <form action="/donationInsert.don" class="donationDetail3" name="frm1" method="post" enctype="multipart/form-data">
+				<input id="vwork_title" name="donationTitle" type="hidden">
+				<input id="vwork_fee" type="text" value="${sessionScope.member.companyName }" readonly>
+				<select class="vworkSelect" name="donationType"></select>
+				<input id="vwork_fee" type="text" value="${sessionScope.member.companyName }" readonly>
+				<input id="vwork_fee" type="text" name="donationGoalMoney">
+				<textarea class="form-control" id="p_content" name="donationContent"></textarea>
+				</form> --%>
 			</div>
 		</div>
 	</div>
@@ -271,7 +301,7 @@ color:black;
 			console.log("시작");
 			var url = "/donationDetail2.don";
 			var title = "donationDetail2";
-			var status = "left=500px, top=100px, width=1200px, height=500px, menubar=no, status=no, scrollbars=yes";
+			var status = "left=500px, top=100px, width=1200px, height=800px, menubar=no, status=no, scrollbars=yes";
 			var popup = window.open("", title, status);
 			$(".donationDetail2").attr("action", url);
 			$(".donationDetail2").attr("method", "post");

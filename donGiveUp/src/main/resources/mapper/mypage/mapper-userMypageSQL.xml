@@ -79,12 +79,12 @@
 		<if test='type.equals("vwork")'>
 			<if test='radio.equals("0")'>
 				<![CDATA[
-				select count(*) from vserver where vserver_writer=#{memberId} and vserver_day<sysdate
+				select count(*) from vserver where vserver_writer=#{memberId} and vserver_day>=sysdate
 				]]>
 			</if>
 			<if test='radio.equals("1")'>
 				<![CDATA[
-				select count(*) from vserver where vserver_writer=#{memberId} and vserver_day>=sysdate
+				select count(*) from vserver where vserver_writer=#{memberId} and vserver_day<sysdate
 				]]>
 			</if>
 		</if>
@@ -129,7 +129,7 @@
 			select * from
 				(select ROWNUM as rnum, r.* from
 					(select funding_in_no as boardNo, funding_in_memberId as boardWriter, funding_title as boardTitle, funding_in_price as fundingCashMoney, funding_in_date as boardDate,
-					funding_in_count as boardCount, funding_in_money as boardMoney, reward_price as rewardOnePrice, reward_name as boardRewardName
+					funding_in_count as boardCount, reward_price as rewardOnePrice, reward_name as boardRewardName
 					from funding_in left join funding using(funding_no) left join rewardlist using(rewardlist_no) where funding_in_memberId=#{memberId}
 					<if test='radio.equals("0")'>
 					<![CDATA[
@@ -165,12 +165,12 @@
 					vserver_day as boardDate from vserver left join vwork on(vserver_ref=vwork_no) where vserver_writer=#{memberId}
 					<if test='radio.equals("0")'>
 					<![CDATA[
-					and vserver_day<=sysdate)
+					and vserver_day>=sysdate)
 					]]>
 					</if>
 					<if test='radio.equals("1")'>
 					<![CDATA[
-					and vserver_day>sysdate)
+					and vserver_day<sysdate)
 					]]>
 					</if>
 				r)
@@ -180,7 +180,7 @@
 			select * from
 				(select ROWNUM as rnum, r.* from
 					(select support_no as boardNo, support_name as boardTitle, support_id as boardWriter, support_amount as boardCount, support_category as supportKind, enroll_end_date as boardDate,
-					support_state as boardState from support where support_id=#{memberId}
+					enroll_start_date as boardInDate, support_state as boardState from support where support_id=#{memberId}
 					<if test='radio.equals("0")'>
 					and support_state=0)
 					</if>
