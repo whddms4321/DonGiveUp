@@ -79,6 +79,21 @@ public class RegularDao {
 		// TODO Auto-generated method stub
 		return sqlSession.update("regular.bankMemInUpdate",to);
 	}
+
+	public Member MemberMoney(String memberId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("regular.memberMoney",memberId);
+	}
+
+	public Member MemberIdSearch(String companyName) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("regular.memberIdSearch",companyName);
+	}
+
+	public List<RegularInVo> RegularInCount(String regularWriter) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("regular.regularInCount",regularWriter);
+	}
 	
 	
 	

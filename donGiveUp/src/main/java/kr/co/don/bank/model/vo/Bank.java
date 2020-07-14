@@ -15,4 +15,5 @@ public class Bank {
 	private String bankDate;
 	private String  bankOrganization;
 	private int bankType;
+	private int dnrPercent;
 }

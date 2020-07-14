@@ -73,7 +73,7 @@ width: 90%;
 }
 .content-main-right-money{
 width: 100%;
-height: 240px;
+
 
 
 }
@@ -211,8 +211,7 @@ font-size: 23px;
 				<div class="content-main-right-money">
 				
 				<a class="content-main-right-money-a5">총 모금액 : ${r.regularNowMoney}원</a><br>
-				<a class="content-main-right-money-a5">이번 달 모금액 : 원</a><br>
-				<a class="content-main-right-money-a6">인원수 : 명</a><br>			
+				<a class="content-main-right-money-a6">구독 참여자 수 : 0명</a><br>			
 				
 								
 				

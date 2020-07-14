@@ -10,13 +10,17 @@
 </head>
 <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
 <!-- <link rel="stylesheet" href="/resources/css/donation/donation.css"> -->
+<link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Open+Sans&family=Raleway&family=Source+Sans+Pro&family=Staatliches&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <style>
 
 .content {
 	width: 100%;
+	
 }
 
 .content-header {
+font-family: 'Noto Sans KR', sans-serif;
 	width: 1200px;
 	margin: 0 auto;
 	height: 130px;
@@ -25,6 +29,7 @@
 }
 
 .content-header2 {
+font-family: 'Noto Sans KR', sans-serif;
 	width: 1200px;
 	margin: 0 auto;
 	height: 50px;
@@ -81,6 +86,7 @@
 }
 
 .content-main-top {
+
 	width: 87%;
 	height:70px;
 	margin: 0 auto;
@@ -168,6 +174,7 @@
 .content-main-list1-text{
 	width: 100%;
 	height: 30%;
+	font-family: 'Noto Sans KR', sans-serif;
 	
 }
 .content-main-list1-img1{
@@ -204,8 +211,8 @@ margin-left: 2%;
 		
 		font-size: 48px;
 		color: white;
-	}		 		
-			 	
+	}		 	
+	 	
 </style>
 
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
@@ -254,10 +261,10 @@ margin-left: 2%;
 			<a href="/donation.don?reqPage=1&type=전체"
 				class="content-header2-tap content-header2-tap1">일반기부</a> <a
 				href="/regular.don?reqPage=1&type=전체" class="content-header2-tap">단체기부</a> 
-				<c:if test="${not empty sessionScope.member }">
+				<c:if test="${not empty sessionScope.member.companyName }">
 				<a href="/donationInsertFrm.don"
 				class="content-header2-tap">기부 신청</a></c:if>
-				<c:if test="${empty sessionScope.member }">
+				<c:if test="${empty sessionScope.member.companyName }">
 				<a href="#"
 				class="content-header2-tap">기부 신청</a></c:if>
 		</div>
@@ -288,7 +295,7 @@ margin-left: 2%;
 				<div class="content-main-list1">
 			 		<div class="content-main-list1-img" >
 			 		<a href="/donationDetail.don?donationNo=${n.donationNo }&donationWriter=${n.donationWriter }">
-			 			<img class="content-main-list1-img1" src="${n.donationFilepath}"></a>
+			 			<img class="content-main-list1-img1" src="/resources/upload/images/${n.donationFilepath}"></a>
 			 		</div>
 			 		<div class="content-main-list1-text">
 			 			<a class="content-main-list1-text-a"><b>${n.donationTitle }</b></a><br>

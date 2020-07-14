@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,20 +96,21 @@ public class RegularController {
 	public String regularDetail(String regularWriter,Model model) {
 		
 		Regular detail = service.RegularDetail(regularWriter);
-		
-		 System.out.println(regularWriter);
+		List<RegularInVo> count  = service.RegularInCount(regularWriter);
 		Member m = service.MemberDetail(regularWriter);
-		 System.out.println(m);
+		int size = count.size();
 		model.addAttribute("company", m);
+		model.addAttribute("size",size);
 		model.addAttribute("detail", detail);
 	
 		return "regular/regularDetail";	
 	}
 	
 	@RequestMapping(value = "/regularMoney.don")
-	public String regularMoney(Regular regular,String companyName, Model model) {
-
+	public String regularMoney(Regular regular,String companyName,String memberId ,Model model) {
 		
+		Member m = service.MemberMoney(memberId);
+		model.addAttribute("m",m);
 		model.addAttribute("r", regular);
 		model.addAttribute("companyName", companyName);
 	
@@ -116,22 +118,26 @@ public class RegularController {
 	}
 	
 	@RequestMapping(value = "/regularInInsert.don")
-	public String regularInInsert(Member m, RegularInVo r) {
+	public String regularInInsert(Member m,String companyName, RegularInVo r, Model model) {
+		
+		Member mem = service.MemberIdSearch(companyName);
+		r.setRegularId(mem.getMemberId());
+		System.out.println("r : "+r.getRegularId());
+	      SimpleDateFormat format2 = new SimpleDateFormat ( "yy/MM/");
+	      SimpleDateFormat format1 = new SimpleDateFormat ( "yy년 MM월 dd일");
+			
 
 		
-	      SimpleDateFormat format2 = new SimpleDateFormat ( "yy/MM/");
-	            
+			
 	      Date time = new Date();
 	            
-	     
+	      String time1 = format1.format(time);
 	      String time2 = format2.format(time);
 	            
 	      
-	      System.out.println(time2);
+
 	      r.setRegularInPayNum(time2+r.getRegularInPayNum());
-	      System.out.println(r.getRegularInPayNum());
-	      System.out.println("RegularId : "+r.getRegularId());
-	      System.out.println("RegularId : "+r.getRegularInId());
+
 		int result = service.RegularInInsert(r);
 		
 		
@@ -142,17 +148,18 @@ public class RegularController {
 		
 		m.setMemberId(r.getRegularInId());
 		m.setMemberMoney(resultMon);
-		
-		
+		model.addAttribute("m",m);
+		model.addAttribute("r",r);
+		model.addAttribute("time",time1);
 		if (result > 0) {
-			int result2 = service.MemberMoneyUpdate(m);
-			if(result2>0) {
+//			int result2 = service.MemberMoneyUpdate(m);
+//			if(result2>0) {
+//			return "regular/regularInSuccess";
+//		} else {
+//			return "regular/regularInFail";
+//			
+//		}
 			return "regular/regularInSuccess";
-		} else {
-			return "regular/regularInFail";
-			
-		}
-		
 	}else {
 		return "regular/regularInFail";
 	}

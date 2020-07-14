@@ -33,6 +33,17 @@
 		where regular_id = #{_parameter}
 	</select>
 	
+	<select id="regularInCount" parameterType="String" resultType="regularIn">
+		SELECT 
+			REGULAR_IN_NO AS regularInNo,
+			REGULAR_IN_ID AS regularInId,
+			REGULAR_IN_CANCEL AS regularInCancel,
+    		REGULAR_ID AS regularId		
+		        FROM REGULAR_IN
+		where regular_id = #{_parameter} and REGULAR_IN_CANCEL = 0
+	</select>
+	
+	
 	<select id="regularMember" parameterType="string" resultType="member">
 		SELECT 
 			MEMBER_ID AS memberId,
@@ -87,28 +98,21 @@ where bank_no in
 	</update>
 	
 	
+
 	
-	<!-- 
-	<select id="regularInPay" resultType="regularIn">
-		SELECT 
-	REGULAR_IN_NO AS regularInNo,
-    REGULAR_IN_ID AS regularInId,
-    REGULAR_IN_MONEY AS regularInMoney,
-    REGULAR_IN_DATE AS regularInDate,
-    REGULAR_IN_END_DATE AS regularInEndDate,
-    REGULAR_IN_PAY_NUM AS regularInPayNum,
-    REGULAR_IN_CANCEL AS regularInCancel,     
-    REGULAR_ID AS regularId            
-		   FROM regular_in
-		where regular_in_pay_num = sysdate and regular_in_cancel = 0
-	</select>
-	
-	<select id="memberPaySearch" parameterType="string" resultType="member">
+	<select id="memberMoney" parameterType="string" resultType="member">
 		SELECT 
 			MEMBER_ID AS memberId,
 			MEMBER_MONEY AS memberMoney
 		        FROM MEMBER
 		where member_id = #{_parameter}
-	</select> -->
-	
+	</select> 
+	<select id="memberIdSearch" parameterType="string" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			MEMBER_MONEY AS memberMoney,
+			COMPANY_NAME AS companyName
+		        FROM MEMBER
+		where company_name= #{_parameter}
+	</select> 
 </mapper>

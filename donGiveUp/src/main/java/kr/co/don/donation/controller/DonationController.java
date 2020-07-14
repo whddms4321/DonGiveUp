@@ -208,7 +208,7 @@ public class DonationController {
 
 			try {  
 				donation.setDonationFilename(originalFilename);
-				donation.setDonationFilepath(fullpath);
+				donation.setDonationFilepath(filepath);
 				byte[] bytes = file.getBytes();
 				
 				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));

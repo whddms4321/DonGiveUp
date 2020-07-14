@@ -82,7 +82,7 @@ height: 80px;
 }
 .content-main-right-organization{
 width: 100%;
-height: 250px;
+
 
 }
 .content-main-right-require{
@@ -226,15 +226,15 @@ font-size: 23px;
 				<a class="content-main-right-money-a6">목표 : ${d.donationGoalMoney}원</a><br>						
 				
 					
-				</div>
+				</div><hr>
 				<div class="content-main-right-donation">
 					<button class="content-main-right-donation-button">모금함 기부 하기</button>	
-				</div>
+				</div><hr>
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체 안내</a></div><br>
 				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src=""></a><br>
 				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3"></a></div><br>
-				</div>
+				</div><hr>
 				<div class="content-main-right-require">
 				<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">주의 사항</a></div><br>
 				<div class="content-main-right-require-d2"><a class="content-main-right-require-a2">
@@ -250,7 +250,7 @@ font-size: 23px;
 
 		해당 오류가 나타날 수 있습니다.
 		</a></div>
-				</div>
+				</div><hr>
 				<div class="content-main-right-relation">
 					<!-- <div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 기부 글</a></div> -->
 				</div>

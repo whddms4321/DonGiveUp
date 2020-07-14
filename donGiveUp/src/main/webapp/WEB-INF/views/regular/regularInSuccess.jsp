@@ -27,73 +27,57 @@
       #reviewContent_textarea{
        resize: none;
       }
+      body{
+      width: 90%;
+      margin: 0 auto;
+      }
    </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script>
-function check_onclick(){
-	theForm = document.frm1;
-	
-	if(theForm.memberMoney.value < theForm.donationInMoney.value){
-		alert("보유 콩보다 많습니다. 확인해주세요.")
-		return theForm.donationInMoney.focus();
-	}
-	
-	theForm.submit();
-}
-</script>
+
 </head>
 <body>
 <br>
-<h1 class="review_h1">콩 기부하기</h1><br>
-	<form action="/donationInInsert.don" name="frm1" method="post" id="insertFrm">
+<h1 class="review_h1">기부 완료</h1><br>
+	
          <table class="table table-bordered">
-          <input type="hidden" name="donationNo" value="${d.donationNo }">
-         <input type="hidden" name="donationInType" value="${d.donationType }">
-         <input type="hidden" name="donationNowMoney" value="${donationNowMoney }">
+        
             <tr>
                <th>아이디</th>
                <td><input type="text" class="form-control" name="donationInMemberid" value="${sessionScope.member.memberId }" readonly></td>
             </tr>
             <tr>
                <th>단체</th>
-               <td><input type="text" class="form-control" name="companyName" value="${companyName }"  readonly></td>
+               <td><input type="text" class="form-control" name="companyName" value="${m.companyName }"  readonly></td>
             </tr>
             <tr>
-               <th>보유 콩</th>
-               <td><input type="text" class="form-control" name="memberMoney" value="${m.memberMoney }" readonly></td>
-            </tr>
-          </table>
-          <hr>
-          <table class="table table-bordered">
-            <tr>
-               <th>콩 개수 입력</th>
-               <td><input type="text" id="inputArea" class="form-control" name="donationInMoney"></td>
+               <th>결제 콩</th>
+               <td><input type="text"  id="inputArea" class="form-control" name="memberMoney" value="${r.regularInMoney }" readonly></td>
             </tr>
             <tr>
-               <th>환산 금액</th>
-               <td><a id="textResult" class="form-control" value=""></a></td>
+               <th>결제 날짜</th>
+               <td><input type="text"  class="form-control" name="memberMoney" value="${time }" readonly></td>
             </tr>
-            
-				<tr style="text-align:center;">
+             <tr>
+               <th>출금 날짜</th>
+               <td><input type="text"  class="form-control" name="regularInPayNum" value="${r.regularInPayNum }" readonly></td>
+            </tr>
+            <tr style="text-align:center;">
 					<th colspan="2">
-						<button type="button" OnClick="check_onclick()" class="btn btn-outline-primary">결제하기</button>	 
+						<button OnClick="FnClose()" class="btn btn-outline-primary">닫기</button>	 
 										
 					</th>
 				</tr>
-			</table>
-		</form>
+          </table>
+          
 
 
 </body>
 <script>
-$(function(){
-	  $("#inputArea").keyup(function() {
-          var inputLength = $(this).val();
-          var remain = inputLength*100;
-          $("#textResult").html(remain+"원");
-      });
-})
+function FnClose(){
+    self.close();   //자기자신창을 닫습니다.
+}
+
 </script>
 
 </html>

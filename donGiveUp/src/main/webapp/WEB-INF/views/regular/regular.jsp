@@ -31,6 +31,7 @@
 	crossorigin="anonymous">
 <!--    폰트어썸 종료-->
 <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <style>
 
 .content {
@@ -54,7 +55,7 @@
 }
 
 .content-header-tap {
-	
+	font-family: 'Noto Sans KR', sans-serif;
 	width: 60px;
 	height: 80px;
 	
@@ -88,6 +89,7 @@
 
 .content-header2-tap {
 	color: white;
+	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: bold;
 	text-decoration: none;
 	line-height: 50px;
@@ -97,7 +99,7 @@
 .content-main {
 	border: 1px solid gray;
 	width: 1200px;
-	height:1150px;
+	height:1350px;
 	margin: 0 auto;
 }
 
@@ -239,7 +241,7 @@ margin-left: 2%;
 	width: 100%;
 	height: 400px;
 }
-div>img {
+.carousel-item>img {
 	width: 100%;
 	height: 400px;
 }	
@@ -299,10 +301,10 @@ div>img {
 			<a href="/donation.don?reqPage=1&type=전체"
 				class="content-header2-tap content-header2-tap1">일반기부</a> <a
 				href="/regular.don?reqPage=1&type=전체" class="content-header2-tap">단체기부</a> 
-				<c:if test="${not empty sessionScope.member }">
+				<c:if test="${not empty sessionScope.member.companyName }">
 				<a href="/regularInsertFrm.don"
 				class="content-header2-tap">단체 신청</a></c:if>
-					<c:if test="${empty sessionScope.member }">
+					<c:if test="${empty sessionScope.member.companyName }">
 				<a href=""
 				class="content-header2-tap">단체 신청</a></c:if>
 		</div>

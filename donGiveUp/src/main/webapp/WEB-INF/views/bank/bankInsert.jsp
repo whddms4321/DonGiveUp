@@ -194,7 +194,7 @@ function check_onclick(){
 		alert("필수 입력란이 비어있습니다. 목표 금액 확인해주세요.")
 		return theForm.bankGoalMoney.focus();
 	}
-
+	$(".bankDetail2").attr("action", "/bankInsert.don");
 	theForm.submit();
 }
 </script>

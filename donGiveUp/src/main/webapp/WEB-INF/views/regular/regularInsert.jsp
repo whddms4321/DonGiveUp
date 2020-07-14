@@ -157,7 +157,7 @@ select {
 	font-size: 20px;
 }
 .buttonCss:hover{
-color:black;
+color:gray;
 }
 
 .but1 {
@@ -174,13 +174,13 @@ function check_onclick(){
 		alert("필수 입력란이 비어있습니다. 제목 확인해주세요.")
 		return theForm.regularTitle.focus();
 	}
-	
+	$(".regularDetail2").attr("action", "/regularInsert.don");
 	theForm.submit();
 }
 </script>
 <meta charset="UTF-8">
 
-<title>기부 글 등록신청</title>
+<title>단체 등록신청</title>
 
 <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
@@ -199,13 +199,13 @@ function check_onclick(){
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<div class="content">
-		<div class="vworkwTitle">기부 글 등록신청</div>
+		<div class="vworkwTitle">단체 등록신청</div>
 		<div class="vworkwpage">
 			<div class="inputTable">
 				<form action="/regularInsert.don" name="frm1" class="regularDetail2" method="post" enctype="multipart/form-data">
 					<table class="vwwTable">
 						<tr>
-							<td class="ipName">제목</td>
+							<td class="ipName">제목*</td>
 							<td class="ipFrame"><input id="vwork_title"
 								name="regularTitle" type="text">
 						</tr>
@@ -220,7 +220,7 @@ function check_onclick(){
 							<td class="ipFrame"><input id="vwork_fee" type="text" value="${sessionScope.member.companyName }" readonly></td>
 						</tr>
 						<tr>
-							<td class="ipName">봉사타입</td>
+							<td class="ipName">봉사타입*</td>
 							<td class="ipFrame"><select class="vworkSelect"
 								name="donationType">
 									<option value="아동">아동</option>

@@ -145,7 +145,7 @@
 	</select>
 	
 	<insert id="moneyUseList" parameterType="donationIn">
-		insert into money_use_list values(money_use_list_seq.nextval, #{donationInMoney}, '출금',sysdate ,#{donationInid})
+		insert into money_use_list values(money_use_list_seq.nextval, #{donationInMoney}, '출금',sysdate ,#{donationInMemberid})
 	</insert>
 	
 </mapper>

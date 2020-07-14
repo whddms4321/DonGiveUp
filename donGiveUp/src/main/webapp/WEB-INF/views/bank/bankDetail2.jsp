@@ -24,8 +24,8 @@ border: 1px solid #e0e0e0;
 margin-top:20px;
 height: 330px;
 width:1200px;
-
 background-color : rgba(0,0,0,.4);
+
 position: absolute;
 }
 .main-img-div{
@@ -84,6 +84,18 @@ border-top: 1px solid #e0e0e0;
 	color: white;
 	border: none;
 }
+.buttonCss{
+	width: 150px;
+	height: 50px;
+	border: 1px solid rgba(0, 0, 0, .2);
+	color:white;
+	background-color: rgba(0, 0, 0, .2);
+	margin-left: 40%;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+
 .main-img{
 z-index: 100;
 }
@@ -106,7 +118,6 @@ margin-left: 45%;
 
 }
 
-
 </style>
 </head>
 <body>
@@ -115,7 +126,7 @@ margin-left: 45%;
 	<div class="content">
 		<div class="content-main">
 			<div class="main-img">
-			<img class="opac" src="/resources/upload/images/${detail.bankFilepath }">
+			<img style="width: 100%; height: 100%; "src="/resources/upload/images/${detail.bankFilepath }">
 			<div class="main-img-div">
 				<a class="main-img-div-a1">${detail.bankTitle }</a><br>
 				<a class="main-img-div-a2">시작일 ${detail.bankDate }</a><br>
@@ -153,25 +164,13 @@ margin-left: 45%;
 			<a>${detail.bankContent }</a>
 		
 		</div>
+		<input class="buttonCss" type="button" value="종료" onclick="FnClose()"/>
 	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 	<script>
-	function bankMoney(bankNo,bankOrganization,bankNowMoney) {
-		console.log("시작");
-		var memberId = "${sessionScope.member.memberId}";
-		var url = "/bankMoney.don";
-		var title = "bankMoney";
-		var status = "left=500px, top=100px, width=500px, height=550px, menubar=no, status=no, scrollbars=yes";
-		var popup = window.open("", title, status);
-		$("input[name=memberId]").val(memberId);
-		$("input[name=bankNo]").val(bankNo);
-		$("input[name=bankNowMoney]").val(bankNowMoney);
-		$("input[name=bankOrganization]").val(bankOrganization);
-		$(".bankMoney").attr("action", url);
-		$(".bankMoney").attr("method", "post");
-		$(".bankMoney").attr("target", title);//새로 열린 popup창과 form태그를 연결
-		$(".bankMoney").submit();
-	}
-	</script>
+function FnClose(){
+    self.close();   //자기자신창을 닫습니다.
+}
+</script>
 </body>
 </html>

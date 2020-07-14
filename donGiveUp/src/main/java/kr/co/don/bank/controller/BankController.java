@@ -88,7 +88,7 @@ public class BankController {
 
 			try {  
 				bank.setBankFilename(originalFilename);
-				bank.setBankFilepath(fullpath);
+				bank.setBankFilepath(filepath);
 				byte[] bytes = file.getBytes();
 				
 				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
@@ -129,6 +129,17 @@ public class BankController {
 		
 		Bank detail = service.BankDetail(bankNo);
 		int money = detail.getBankGoalMoney() - detail.getBankNowMoney();
+		
+		  int nowMoney = detail.getBankNowMoney();
+          System.out.println(nowMoney);
+          int goalMoney = detail.getBankGoalMoney();
+          System.out.println(goalMoney);
+          double result = (double)nowMoney/goalMoney*100;
+          System.out.println(result);
+          detail.setDnrPercent((int)result);
+		
+		
+		
 		model.addAttribute("detail", detail);
 		model.addAttribute("money", money);
 		return "bank/bankDetail";	
@@ -145,7 +156,15 @@ public class BankController {
 
 		return "bank/bankMoney";	
 	}
+	@RequestMapping(value = "/bankDetail2.don")
+	public String bankDetailFrm(Bank b, Model model) {
+
+		
+		model.addAttribute("b", b);
 	
+	
+		return "bank/bankDetail2";	
+	}
 	@RequestMapping(value = "/bankInInsert.don")
 	public String bankInInsert(String bankInId, BankInVo b, int bankNowMoney , Bank b1, Model model) {
 		
@@ -179,14 +198,14 @@ public class BankController {
 				model.addAttribute("time",time2);
 			return "bank/bankInSuccess";
 			}else {
-				model.addAttribute("m",m);
-				model.addAttribute("b",b);
-				model.addAttribute("time",time2);	
-				return "bank/bankInSuccess";
+				
+				return "bank/bankInFail";
 			}
 		} else {
-			return "bank/bankInFail";
-			
+			model.addAttribute("m",m);
+			model.addAttribute("b",b);
+			model.addAttribute("time",time2);	
+			return "bank/bankInSuccess2";
 		}
 		
 	}else {

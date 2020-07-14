@@ -87,6 +87,23 @@ public class RegularService {
 		return regularDao.BankMemInUpdate(to);
 	}
 
+	public Member MemberMoney(String memberId) {
+		// TODO Auto-generated method stub
+		return regularDao.MemberMoney(memberId);
+	}
+
+	public Member MemberIdSearch(String companyName) {
+		// TODO Auto-generated method stub
+		return regularDao.MemberIdSearch(companyName);
+	}
+
+	public List<RegularInVo> RegularInCount(String regularWriter) {
+		// TODO Auto-generated method stub
+		return regularDao.RegularInCount(regularWriter);
+	}
+
+	
+
 
 
 

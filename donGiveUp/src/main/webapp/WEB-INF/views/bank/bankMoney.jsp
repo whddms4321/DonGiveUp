@@ -40,19 +40,47 @@
 .table2 {
 	display: none;
 }
-</style>
+.ddd1{
+	text-align: center;
+	font-size: 15px;
+}
 
+</style>
+<script>
+function check_onclick(){
+	theForm = document.frm1;
+	
+	if(theForm.memberMoney.value < theForm.bankInMoney.value){
+		alert("보유 콩보다 많습니다. 확인해주세요.")
+		return theForm.bankInMoney.focus();
+	}
+	
+	theForm.submit();
+}
+function check_onclick2(){
+	theForm = document.frm2;
+	
+	if(theForm.memberMoney.value < theForm.bankInMoney.value){
+		alert("보유 콩보다 많습니다. 확인해주세요.")
+		return theForm.bankInMoney.focus();
+	}
+	
+	theForm.submit();
+}
+</script>
 
 </head>
 <body>
 	<br>
 	<h1 class="review_h1">콩 저금하기</h1>
 	<br>
-		<input type="radio" value="1회 저금" id="table11"
-			onclick="test(this);">1회 저금 <input
-			type="radio" name="bankInType" value="1" id="table22"
-			onclick="test(this);">정기 저금
-	<form action="/bankInInsert.don" method="post" id="insertFrm">
+	<div class="ddd1">
+		<input type="radio" name="bankInType2" value="1회 저금" id="table11"
+			onclick="test(this);" checked="checked"><b>1회 저금       </b> <input
+			type="radio" name="bankInType2" value="1" id="table22"
+			onclick="test(this);"><b>정기 저금</b>
+			</div><br>
+	<form action="/bankInInsert.don" name="frm1" method="post" id="insertFrm">
 		<table class="table table-bordered table1">
 			
 			<input type="hidden" name="bankInType" value="0">
@@ -89,14 +117,13 @@
 
 			<tr style="text-align: center;">
 				<th colspan="2">
-					<button type="submit" OnClick="FnClose()"
-						class="btn btn-outline-primary">결제하기</button>
+					<button type="button" OnClick="check_onclick()" class="btn btn-outline-primary">결제하기</button>
 
 				</th>
 			</tr>
 		</table>
 	</form>
-	<form action="/bankInInsert.don" method="post" id="insertFrm">
+	<form action="/bankInInsert.don" name="frm2" method="post" id="insertFrm">
 	
 		<table class="table table-bordered table2">
 			<input type="hidden" name="bankInType" value="1">
@@ -167,8 +194,7 @@
 
 			<tr style="text-align: center;">
 				<th colspan="2">
-					<button type="submit" OnClick="FnClose()"
-						class="btn btn-outline-primary">구독하기</button>
+					<button type="button" OnClick="check_onclick2()" class="btn btn-outline-primary">정기 결제</button>
 				</th>
 			</tr>
 		</table>
