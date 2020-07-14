@@ -698,7 +698,7 @@ function noBack(){window.history.forward();}
             			</tr>
             			<tr>
             				<td>*이름</td>
-            				<td><input type="text" placeholder="한글만 입력해주세요.(2~6 글자)" name="memberName" id="memberName" required></td>
+            				<td><input type="text" placeholder="한글만 입력해주세요.(2~4 글자)" name="memberName" id="memberName" required></td>
             				<td style="width: 100px;"></td>
             				<td><span id="errorName">잘못된 입력입니다.</span></td>
             			</tr>

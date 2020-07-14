@@ -18,7 +18,7 @@
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
 
-	<baseDir>C:\final-workspace\DonGiveUp\donGiveUp\src\main\webapp\resources\upload</baseDir>
+	<baseDir>C:\Users\user1\spring-workspace\DonGiveUp\donGiveUp\src\main\webapp\resources\upload</baseDir>
 
 	<baseURL>/resources/upload/</baseURL>
 	<licenseKey></licenseKey>

@@ -274,14 +274,7 @@ function check_onclick(){
 						</tr>
 					</table>
 				</form>
-				<%-- <form action="/donationInsert.don" class="donationDetail3" name="frm1" method="post" enctype="multipart/form-data">
-				<input id="vwork_title" name="donationTitle" type="hidden">
-				<input id="vwork_fee" type="text" value="${sessionScope.member.companyName }" readonly>
-				<select class="vworkSelect" name="donationType"></select>
-				<input id="vwork_fee" type="text" value="${sessionScope.member.companyName }" readonly>
-				<input id="vwork_fee" type="text" name="donationGoalMoney">
-				<textarea class="form-control" id="p_content" name="donationContent"></textarea>
-				</form> --%>
+				
 			</div>
 		</div>
 	</div>
