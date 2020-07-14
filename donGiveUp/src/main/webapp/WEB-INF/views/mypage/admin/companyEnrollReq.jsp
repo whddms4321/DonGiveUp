@@ -37,7 +37,7 @@
 					<div style="margin-top:100px;">
 						<table class="table table-striped">
 							<tr>
-								<th>번호</th><th>기관등록번호</th><th>담당자</th><th>연락처</th><th>이메일</th><th>재무제표</th><th>가입일자</th>
+								<th>번호</th><th>기관등록번호</th><th>담당자</th><th>연락처</th><th>재무제표</th><th>가입일자</th>
 							</tr>
 							<c:forEach items="${list}" var="c" varStatus="l">
 								<tr>
@@ -45,13 +45,11 @@
 									<td><a style="cursor:pointer;" data-toggle="modal" data-target="#dataModal" data-companynumber="${c.companyNumber}" data-memberid="${c.memberId}"> ${c.companyNumber }</a></td>
 									<td>${c.memberId }</td>
 									<td>${c.memberPhone }</td>
-									<td>${c.memberEmail }</td>
-
 									<td>
-										<c:if test="${not empty c.companyFilename }">
-											<a href="javascript:fileDownload('${c.companyFilename }','${c.companyFilepath }')">${c.companyFilename }</a>
+										<c:if test="${not empty c.chartFilename }">
+											<a href="javascript:fileDownload('${c.chartFilename }','${c.chartFilepath }')">${c.chartFilename }</a>
 										</c:if>
-										<c:if test="${empty c.companyFilename }">
+										<c:if test="${empty c.chartFilename }">
 											<span>X</span>
 										</c:if>
 									</td>

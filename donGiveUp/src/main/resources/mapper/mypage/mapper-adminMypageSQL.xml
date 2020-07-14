@@ -593,7 +593,7 @@
 	</select>
 	
 	<select id="dashboardAllMemberCount" resultType="_int">
-		select count(*) from member where member_type=1 or member_type=4
+		select count(*) from member where (member_id!='admin') and (member_type=1 or member_type=4)
 	</select>
 	
 	<select id="allDonationCount" resultType="_int">
