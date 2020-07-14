@@ -120,7 +120,7 @@
             <c:if test="${not empty sessionScope.member }">
                 <div class="cwriteBox">
                     <div class="cmtWrap">
-                        <textarea id="dnCmt" placeholder="따듯한 마음을 표현하세요." name="dncommentContent">이거이거</textarea>
+                        <textarea id="dnCmt" placeholder="따듯한 마음을 표현하세요." name="dncommentContent"></textarea>
                     </div>
                     <span class="textLimit">
                         <span id="nowTxt">0</span>

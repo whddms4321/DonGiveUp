@@ -107,13 +107,13 @@ div>img {
 			<!-- The slideshow -->
 			<div class="carousel-inner complict">
 				<div class="carousel-item active">
-					<img src="/resources/upload/ckImg.png" alt="Los Angeles">
+					<img src="/resources/upload/mainImg1.jpg" alt="Los Angeles">
 				</div>
 				<div class="carousel-item">
-					<img src="/resources/upload/test1.png" alt="Chicago">
+					<img src="/resources/upload/mainImg2.jpg" alt="Chicago">
 				</div>
 				<div class="carousel-item">
-					<img src="/resources/upload/test2.png" alt="New York">
+					<img src="/resources/upload/mainImg3.jpg" alt="New York">
 				</div>
 			</div>
 
