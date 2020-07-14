@@ -68,7 +68,7 @@
 	float:left;
 	height : 230px;
 	width:45%;
-	border:5px solid #EFEFEF;
+	border:5px solid #87E3FF;
 }
 .now-money{
 	margin-left:45px;
@@ -246,13 +246,11 @@
 			</div>
 		</div>
 	<script>
-		var memberId = "${sessionScope.member.memberId}";
-		
+		var memberId = "${sessionScope.member.memberId}";		
 		
 		$("#cashPay").click(function(){
 			
 			var amount = $("input[name=price]:checked").val();
-			console.log(amount);
 			if(amount != undefined || amount != 0 || amount != "" || amount != null){
 				IMP.init('imp87933196');
 				IMP.request_pay({
@@ -313,7 +311,6 @@
 		function pageMove(reqPage, memberId){
 			$(".newTr").remove();
 			$("#pageNavi").children().remove();
-			console.log("reqPage : " + reqPage);
 			$.ajax({
 				url : "/pageMove.don",
 				data : {reqPage : reqPage, memberId : memberId},
@@ -321,15 +318,14 @@
 					var list = data.list;
 					var pageNavi = data.pageNavi;
 					var html = "";
-					console.log("페이지내비 : " + pageNavi);
 					for(var i=0; i<list.length; i++){
 						html += "<tr class='newTr'><td>" + ((reqPage-1)*5+1+i) + "</td>";
 						if(list[i].moneyStock == "입금"){
 							html += "<td>입금</td>";
-							html += "<td><span class='plus'>(+)</span> " + list[i].moneyHistory.toLocaleString(); + "</td>";							
+							html += "<td><span class='plus'>(+)</span> " + list[i].moneyHistory.toLocaleString() + "</td>";							
 						}else if(list[i].moneyStock == "출금"){
 							html += "<td>출금</td>";
-							html += "<td><span class='minus'>(-)</span> " + list[i].moneyHistory.toLocaleString(); + "</td>";
+							html += "<td><span class='minus'>(-)</span> " + list[i].moneyHistory.toLocaleString() + "</td>";
 						}
 						html += "<td>" + list[i].moneyUseDate + "</td></tr>";
 					}

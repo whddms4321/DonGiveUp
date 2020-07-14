@@ -9,6 +9,8 @@
 	}
 	
 	.header{
+	
+		font-family: 'Noto Sans KR', sans-serif;
 		width: 100%;
 		height: 100px;
 		border-bottom: 2px solid #0fbcff;
@@ -77,7 +79,7 @@
 					<a href="/supportFrm.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">물품후원</a>
 					<a href="/talent/talentFrm.don?reqPage=1&type=전체" class="header_navi_a" style="font-size: 18px; font-weight: bold;">재능기부</a> 
 					<a href="/vworklist.don?count=1" class="header_navi_a" style="font-size: 18px; font-weight: bold;">함께해요</a> 
-					<a href="#" class="header_navi_a" style="font-size: 18px; font-weight: bold;">저금통</a>
+					<a href="/bank.don?reqPage=1&type=0" class="header_navi_a" style="font-size: 18px; font-weight: bold;">저금통</a>
 					<a href="/reviewmain.don" class="header_navi_a" style="font-size: 18px; font-weight: bold;">후기</a>
 				</div>
 				<div class="header_log_section">

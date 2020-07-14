@@ -12,7 +12,7 @@
 		}
 		table th{
 			font-size:20px;
-			background-color : #F1F1F1;
+			background-color : #CBD3D7;
 		}
 		#pageNavi a, span{
 			padding:13px;
@@ -40,7 +40,7 @@
 							<label><input type="radio" name="regular"  id="complete" value="complete">&nbsp; 해지완료</label>
 						</div>
 						<div style="margin-top:20px;">
-							<table class="table">
+							<table class="table table-striped">
 								<tr>
 									<th>번호</th><th>구분</th><th>자동결제일</th><th>아이디</th><th>금액</th><th>연락처</th><th>이메일</th><th>비고</th>
 								</tr>
@@ -127,8 +127,7 @@
 						html += "<tr class='newTr'><td>" + (i+1) + "</td><td>" + list[i].groupName + "</td><td>" + list[i].regularInPayNum + "</td><td>" + list[i].regularId;
 						html += "</td><td>" + list[i].regularInMoney + "</td><td>" + list[i].memberPhone + "</td><td>" + list[i].memberEmail + "</td>";
 						if(list[i].regularInCancel == 1){
-
-							html += "<td><a href='javascript:void(0);' onclick='updateRegular(" + list[i].regularInNo + "," + list[i].groupName +");'>해지요청</a></td></tr>";
+							html += "<td><a href='javascript:void(0);' onclick='updateRegular(" + list[i].regularInNo + ",`" + list[i].groupName +"`);'>해지요청</a></td></tr>";
 						}else{
 							html += "<td>해지완료</td></tr>";
 

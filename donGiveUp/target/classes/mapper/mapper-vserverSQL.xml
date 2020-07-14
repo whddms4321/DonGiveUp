@@ -5,7 +5,7 @@
  		select 
  			vserver_per as vserverPer 
  		from vserver 
- 		where vserver_date = #{vserdate} and vserver_ref = #{vworkNo}
+ 		where vserver_day = #{vserdate} and vserver_ref = #{vworkNo}
  	</select>
  	<select id="selectvserperCnt" parameterType="_int" resultType="vserver">
  		select 
@@ -13,4 +13,16 @@
  		from vserver 
  		where vserver_ref = #{vworkNo}
  	</select>
+ 	<insert id="insertvserver" parameterType="vserver">
+ 		insert into vserver values(
+ 			vserver_seq.nextval,
+ 			#{vserverDay},
+ 			#{vserverPer},
+ 			sysdate,
+ 			#{vserverVms},
+ 			#{vserverWriter},
+ 			#{vserverRef},
+ 			#{vserverPrice}
+ 		)
+ 	</insert>
 </mapper>

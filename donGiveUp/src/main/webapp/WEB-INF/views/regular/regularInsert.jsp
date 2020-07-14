@@ -157,7 +157,7 @@ select {
 	font-size: 20px;
 }
 .buttonCss:hover{
-color:black;
+color:gray;
 }
 
 .but1 {
@@ -167,9 +167,20 @@ color:black;
 
 
 </style>
+<script>
+function check_onclick(){
+	theForm = document.frm1;
+	if(theForm.regularTitle.value==""){
+		alert("필수 입력란이 비어있습니다. 제목 확인해주세요.")
+		return theForm.regularTitle.focus();
+	}
+	$(".regularDetail2").attr("action", "/regularInsert.don");
+	theForm.submit();
+}
+</script>
 <meta charset="UTF-8">
 
-<title>기부 글 등록신청</title>
+<title>단체 등록신청</title>
 
 <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
@@ -188,13 +199,13 @@ color:black;
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
 	<div class="content">
-		<div class="vworkwTitle">기부 글 등록신청</div>
+		<div class="vworkwTitle">단체 등록신청</div>
 		<div class="vworkwpage">
 			<div class="inputTable">
-				<form class="regularDetail2" method="post" enctype="multipart/form-data">
+				<form action="/regularInsert.don" name="frm1" class="regularDetail2" method="post" enctype="multipart/form-data">
 					<table class="vwwTable">
 						<tr>
-							<td class="ipName">제목</td>
+							<td class="ipName">제목*</td>
 							<td class="ipFrame"><input id="vwork_title"
 								name="regularTitle" type="text">
 						</tr>
@@ -209,10 +220,9 @@ color:black;
 							<td class="ipFrame"><input id="vwork_fee" type="text" value="${sessionScope.member.companyName }" readonly></td>
 						</tr>
 						<tr>
-							<td class="ipName">봉사타입</td>
+							<td class="ipName">봉사타입*</td>
 							<td class="ipFrame"><select class="vworkSelect"
 								name="donationType">
-									<option value="null">선택안함</option>
 									<option value="아동">아동</option>
 									<option value="어르신">어르신</option>
 									<option value="장애인">장애인</option>
@@ -232,7 +242,7 @@ color:black;
 							<td colspan="3" class="ipButton">
 							
 								<button class ="buttonCss" onclick="reviewInsert()" type="button">미리보기</button>
-    							<input class ="buttonCss" type="submit" value="신청하기" onclick="javascript: form.action='/regularInsert.don';"/>
+    							<input class ="buttonCss" type="button" value="신청하기" onclick="check_onclick()"/>
 
 							</td>
 						</tr>
@@ -257,7 +267,7 @@ color:black;
 			console.log("시작");
 			var url = "/regularDetail2.don";
 			var title = "regularDetail2";
-			var status = "left=500px, top=100px, width=1200px, height=500px, menubar=no, status=no, scrollbars=yes";
+			var status = "left=500px, top=100px, width=1200px, height=550px, menubar=no, status=no, scrollbars=yes";
 			var popup = window.open("", title, status);
 			$(".regularDetail2").attr("action", url);
 			$(".regularDetail2").attr("method", "post");

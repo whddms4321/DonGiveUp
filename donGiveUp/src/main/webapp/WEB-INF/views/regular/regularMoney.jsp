@@ -30,12 +30,23 @@
    </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
+<script>
+function check_onclick(){
+	theForm = document.frm1;
+	
+	if(theForm.memberMoney.value < theForm.regularInMoney.value){
+		alert("보유 콩보다 많습니다. 확인해주세요.")
+		return theForm.regularInMoney.focus();
+	}
+	
+	theForm.submit();
+}
+</script>
 </head>
 <body>
 <br>
 <h1 class="review_h1">콩 구독하기</h1><br>
-	<form action="/regularInInsert.don" method="post" id="insertFrm">
+	<form action="/regularInInsert.don" name="frm1" method="post" id="insertFrm">
          <table class="table table-bordered">
           <input type="hidden" name="regularId" value="${r.regularId }">
             <tr>
@@ -48,7 +59,7 @@
             </tr>
             <tr>
                <th>보유 콩</th>
-               <td><input type="text" class="form-control" name="memberMoney" value="${sessionScope.member.memberMoney }" readonly></td>
+               <td><input type="text" class="form-control" name="memberMoney" value="${m.memberMoney }" readonly></td>
             </tr>
           </table>
           <hr>
@@ -97,7 +108,7 @@
             
 				<tr style="text-align:center;">
 					<th colspan="2">
-						<button type="submit" OnClick="FnClose()" class="btn btn-outline-primary">구독하기</button>	 								
+						<button type="button" OnClick="check_onclick()" class="btn btn-outline-primary">구독하기</button>	 								
 					</th>
 				</tr>
 			</table>
