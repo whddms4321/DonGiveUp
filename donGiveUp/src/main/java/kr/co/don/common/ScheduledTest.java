@@ -1,54 +1,36 @@
 package kr.co.don.common;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-
-
-
->>>>>>> master
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import kr.co.don.member.model.vo.Member;
-import kr.co.don.regular.model.service.RegularService;
-import kr.co.don.regularIn.model.vo.RegularInVo;
 import kr.co.don.funding.model.service.FundingService;
-import kr.co.don.funding.model.vo.Funding;
-
-
-
-import kr.co.don.funding.model.service.FundingService;
-
-import kr.co.don.member.model.vo.Member;
 import kr.co.don.regular.model.service.RegularService;
-import kr.co.don.regularIn.model.vo.RegularInVo;
 
 
 
 
 @Component
 public class ScheduledTest {
+	
 	@Autowired
 	@Qualifier("regularService")
 	private RegularService service;
 
-	@Autowired
-	@Qualifier("FundingService")
-	private FundingService fundingService;
-	
-	@Scheduled(cron = "0 0 0 * * *")
-	public void scheduleEndFunding() {
-	//자정이 될시 funding 기간이 지난 목록들은 자동으로 조건문 탐 
-		fundingService.scheduledList();
-	}
+	/*
+	 * @Autowired
+	 * 
+	 * @Qualifier("FundingService") private FundingService fundingService;
+	 */
+	/*
+	 * @Scheduled(cron = "0 0 0 * * *") public void scheduleEndFunding() { //자정이 될시
+	 * funding 기간이 지난 목록들은 자동으로 조건문 탐 fundingService.scheduledList(); }
+	 */
 	//매일 새벽 2시마다 : 정기기부 결제, 결제 테이블 추가
 	@Scheduled(cron = "0 0 02 * * ?")
 	public void scheduleTest2() {
