@@ -210,13 +210,12 @@ text-align:center;
 				<div class="content-main-left-content">
 					<a class="content-main-left-content-a">${detail.regularContent}</a>
 				</div><hr>
-				<div class="content-main-left-file">
-					<a class="content-main-left-file-a">첨부 파일 : ${company.chartFilepath }</a>
+				 <div class="content-main-left-file">
+					<c:if test="${not empty company.chartFilename }">
+                      	<a href="javascript:fileDownload('${company.chartFilename }','${company.chartFilepath }')">첨부파일 : ${company.chartFilename }</a>
+                	</c:if>
 				</div><hr>
-				<!-- <div class="content-main-left-comment">
-					<a class="content-main-left-comment-a">댓글</a><br>
-					<button>더보기</button>
-				</div> -->
+				
 				
 			</div>
 			<div class="content-main-right">
@@ -247,7 +246,7 @@ text-align:center;
 				</div>
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체 안내</a></div><br>
-				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="${company.companyFilepath }"></a><br>
+				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="/resources/song/company/${company.companyFilepath }"></a><br>
 				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3">${company.companyName }</a></div><br>
 				</div>
 				<div class="content-main-right-require">
@@ -274,6 +273,15 @@ text-align:center;
 	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
 	<script>
+	
+	function fileDownload(filename, filepath){
+        //인코딩 작업
+        var newFilename = encodeURIComponent(filename);
+        var newFilepath = encodeURIComponent(filepath);
+        location.href="/companyFileDownload.don?filename="+newFilename+"&filepath="+newFilepath;
+     }
+	
+	
 	function regularMoney(regularNo) {
 		console.log("시작");
 		var memberId = "${sessionScope.member.memberId}";

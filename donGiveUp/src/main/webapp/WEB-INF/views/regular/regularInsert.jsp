@@ -222,7 +222,7 @@ function check_onclick(){
 						<tr>
 							<td class="ipName">봉사타입*</td>
 							<td class="ipFrame"><select class="vworkSelect"
-								name="donationType">
+								name="regularType">
 									<option value="아동">아동</option>
 									<option value="어르신">어르신</option>
 									<option value="장애인">장애인</option>
@@ -236,7 +236,7 @@ function check_onclick(){
 						
 						<tr>
 							<td colspan="3"><textarea class="form-control"
-									id="p_content" name="donationContent"></textarea></td>
+									id="p_content" name="regularContent"></textarea></td>
 						</tr> 
 						<tr> 
 							<td colspan="3" class="ipButton">

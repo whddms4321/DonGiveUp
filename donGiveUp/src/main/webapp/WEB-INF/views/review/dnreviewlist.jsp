@@ -93,9 +93,9 @@
         </div>
         <div class="dnrNavi">
             <ul>
-                <li><a href="/dnreviewlist.don?count=1">기부후기</a></li>
-                <li><a href="/fdreviewlist.don?count=1">펀딩후기</a></li>
-                <li><a href="/sprevewlist.don?count=1">물품후원후기</a></li>
+                <li><a href="/dnreviewlist.don?count=1">기부 후기</a></li>
+                <li><a href="/fdreviewlist.don?count=1">펀딩 후기</a></li>
+                <li><a href="/sprevewlist.don?count=1">물품후원 후기</a></li>
             </ul>
         </div>
         <div class="dnrlistWrap">

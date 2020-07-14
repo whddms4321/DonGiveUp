@@ -50,7 +50,7 @@
 			COMPANY_FILENAME AS companyFilename,
 			COMPANY_FILEPATH AS companyFilepath,
 			CHART_FILENAME AS chartFilename,
-			CHART_FILENAME AS chartFilepath,
+			CHART_FILEPATH AS chartFilepath,
 			COMPANY_NAME AS companyName
 		        FROM MEMBER
 		where member_id = #{_parameter}

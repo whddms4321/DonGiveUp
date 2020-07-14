@@ -78,9 +78,12 @@ public class RegularController {
 		
 		int result = service.regularInsert(regular);
 		
+		
+		
 		int reqPage =1;
 		String type="전체";
 		ArrayList<Member> list = service.RegularList(reqPage, type);
+	
 		int count = list.size();
 		model.addAttribute("count", count);
 		model.addAttribute("regular", list);
@@ -99,6 +102,8 @@ public class RegularController {
 		List<RegularInVo> count  = service.RegularInCount(regularWriter);
 		Member m = service.MemberDetail(regularWriter);
 		int size = count.size();
+		System.out.println("재무제표 : " + m.getChartFilename());
+		System.out.println("재무제표 경로: " + m.getChartFilepath());
 		model.addAttribute("company", m);
 		model.addAttribute("size",size);
 		model.addAttribute("detail", detail);

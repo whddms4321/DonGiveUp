@@ -203,9 +203,9 @@ opacity: 0;
 top:50%;
 left:50%;
 transform:translate(-50%, -50%);
-color: white;
+color: black;
 font-size: 1.5rem;
-
+font-weight: bold; 
 	
 	
 }
@@ -350,7 +350,7 @@ margin-left: 2%;
 				<div class="content-main-list1">
 			 		<div class="content-main-list1-img" >
 			 		<a href="/regularDetail.don?regularWriter=${r.memberId}">
-			 			<img class="content-main-list1-img1 trans1" src="${r.companyFilepath}"></a>
+			 			<img class="content-main-list1-img1 trans1" src="/resources/song/company/${r.companyFilepath}"></a>
 			 			
 			 		<div class="content-main-list1-text text">${r.companyName }<br>
 			 		</div>

@@ -6,7 +6,7 @@
   		donation_no as donationNo, donation_title as donationTitle, donation_goal_money as donationGoalMoney,
   		donation_now_money as donationNowMoney, donation_type as donationType,
   		donation_start_date as donationStartDate, donation_end_date as donationEndDate
-  	from donation where donation_writer = #{_parameter} and (sysdate-to_date(donation_end_date))&gt;0 and donation_state = 1
+  	from donation where donation_writer = #{_parameter} and (sysdate-to_date(donation_end_date))&gt;0 and donation_state = 2
   	order by donation_no desc
   </select>
   <select id="dnreviewSList" parameterType="string" resultType="dnreview">

@@ -29,9 +29,9 @@
         </div>
         <div class="sprNavi">
             <ul>
-                <li><a href="/dnreviewlist.don?count=1">기부후기</a></li>
-                <li><a href="/fdreviewlist.don?count=1">펀딩후기</a></li>
-                <li><a href="/spreviewlist.don?count=1">후기메인페이지</a></li>
+                <li><a href="/dnreviewlist.don?count=1">기부 후기</a></li>
+                <li><a href="/fdreview.don">펀딩 후기</a></li>
+                <li><a href="/spreview.don">물품후원 후기</a></li>
             </ul>
         </div>
         <div class="sprlistWrap">

@@ -43,6 +43,9 @@
 	font-size: 20px;
 	text-align: center;
 	margin-bottom: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .talentWriter {

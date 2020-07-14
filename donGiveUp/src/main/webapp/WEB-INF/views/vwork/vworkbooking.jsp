@@ -241,10 +241,10 @@
             //console.log(i);
         }
         //봉사신청클릭시 남은 티켓수
-        var ticket;
+          var ticket;
         var index;
         var count;
-        var cnt;
+        var cnt ;
         var fee = Number($("#fee").html());
         $(function() {
             $(".jdBtn").click(function() {
@@ -279,65 +279,15 @@
                         $(".ticket").eq(index).siblings().html("");
                         $("#applyDate").val("");
                         $("#applyDate").val(vserdate);
-                            $("#countPer").html(1);
-                            $("#totalFee").html("");
-                             
-                        if(ticket==0){
-                           $("#plusBtn").click(function(){
-                               event.preventDefault();
-                           })
-                           $("#minusBtn").click(function(){
-                               event.preventDefault();
-                           })
-                        }
-                           
-                            cnt = Number($("#countPer").html());
+                            cnt = 0;
+                            $("#countPer").html(0);
+                            $("#totalFee").html(0);
                             $("#vserverPer").val(cnt);
                         
-                        $("#plusBtn").click(function() {
-                            if (cnt <= ticket) {
-                                $(".iconminus").css("background-color", "#0fbcff");
-                                if (cnt < ticket) {
-                                    cnt = Number($("#countPer").html());
-                                    $("#countPer").html(cnt + 1);
-                                    cnt = Number($("#countPer").html());
-                                    $("#totalFee").html(cnt * fee);
-                                    $("#vserverPrice").val(cnt*fee);
-                                    $("#vserverPer").val(cnt);
-                                    console.log("cnt:" + cnt);
-
-                                }
-                                cnt = Number($("#countPer").html());
-                                if (cnt == ticket) {
-                                    $("#vserverPer").val(cnt);
-                                    $("#vserverPrice").val(cnt*fee);
-                                    $(".iconplus").css("background-color", "darkgray");
-                                }
-                            }
-                        });
+                        
 
                         cnt = Number($("#countPer").html());
-                        $("#minusBtn").click(function() {
-                            $(".iconplus").css("background-color", "#0fbcff");
-                            if (1 < cnt) {
-                                $("#countPer").html(cnt - 1);
-                                cnt = Number($("#countPer").html())
-                                $("#vserverPer").val(cnt);
-                                cnt = Number($("#countPer").html())
-                                $("#vserverPrice").val(cnt*fee);
-                                cnt = Number($("#countPer").html());
-                                $("#totalFee").html(cnt * fee);
-                                console.log("cnt : " + cnt);
-                                $("#vserverPer").val(cnt);
-                                $("#vserverPrice").val(cnt*fee);
-                            }
-                            cnt = Number($("#countPer").html());
-                            if (cnt == 1) {
-                                $(".iconminus").css("background-color", "darkgray");
-                                $("#vserverPer").val(cnt);
-                                $("#vserverPrice").val(cnt*fee);
-                            }
-                        });
+                        
 
 
                     },
@@ -348,6 +298,41 @@
                 });
 
             });
+            $("#plusBtn").click(function() {
+                            if (cnt <= ticket) {
+                                if ( cnt< ticket) {
+                                    $(".iconplus").css("background-color","#0fbcff");
+                                    $("#countPer").html(cnt+ 1);
+                                    cnt = Number($("#countPer").html());
+                                    $("#totalFee").html(cnt*fee);
+                                    $("#vserverPrice").val(cnt*fee);
+                                    $("#vserverPer").val(cnt);
+                                    console.log("cnt:"+cnt);
+
+                                }
+                            }
+                        });
+            $("#minusBtn").click(function() {
+                            $(".iconplus").css("background-color", "#0fbcff");
+                            if (1 < cnt) {
+                                $("#countPer").html(cnt - 1);
+                                 cnt = Number($("#countPer").html());
+                                $("#vserverPer").val(cnt);
+                               
+                                $("#vserverPrice").val(cnt*fee);
+                                
+                                $("#totalFee").html(cnt * fee);
+                                console.log("cnt : " + cnt);
+                                $("#vserverPer").val(cnt);
+                                $("#vserverPrice").val(cnt*fee);
+                            }
+                           
+                            if (cnt == 1) {
+                                $(".iconminus").css("background-color", "darkgray");
+                                $("#vserverPer").val(cnt);
+                                $("#vserverPrice").val(cnt*fee);
+                            }
+                        });
             $(".addressContent").hide();
 
         });

@@ -11,7 +11,7 @@
 .content-main{
 margin:0 auto;
 width: 1200px;
-height : 1700px;
+height : 1930px;
 
 }
 .content-main-left{
@@ -206,7 +206,9 @@ font-size: 23px;
 					<a class="content-main-left-content-a">${detail.donationContent}</a>
 				</div><hr>
 				<div class="content-main-left-file">
-					<a class="content-main-left-file-a">첨부 파일 : ${company.chartFilepath }</a>
+					<c:if test="${not empty company.chartFilename }">
+                                 <a href="javascript:fileDownload('${company.chartFilename }','${company.chartFilepath }')">${company.chartFilename }</a>
+                    </c:if>
 				</div><hr>
 				<!-- <div class="content-main-left-comment">
 					<a class="content-main-left-comment-a">댓글</a><br>
@@ -241,7 +243,7 @@ font-size: 23px;
 				</div></form></div><hr>
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체</a></div><br>
-				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="${company.companyFilepath }"></a><br>
+				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="/resources/song/company/${company.companyFilepath }"></a><br>
 				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3">${company.companyName }</a></div><br>
 				
 				</div><hr>
@@ -288,6 +290,13 @@ font-size: 23px;
 		$(".donationMoney").attr("target", title);//새로 열린 popup창과 form태그를 연결
 		$(".donationMoney").submit();
 	}
+	
+	function fileDownload(filename, filepath){
+        //인코딩 작업
+        var newFilename = encodeURIComponent(filename);
+        var newFilepath = encodeURIComponent(filepath);
+        location.href="/companyFileDownload.don?filename="+newFilename+"&filepath="+newFilepath;
+     }
 	</script>
 </body>
 </html>
