@@ -30,9 +30,9 @@
 		<typeAlias type="kr.co.don.member.model.vo.Member" alias="member"/>
 
 		<typeAlias type="kr.co.don.funding.model.vo.Funding" alias="funding"/>
-		<typeAlias type="kr.co.don.funding.model.vo.Funding" alias="fundingImg"/>
-		<typeAlias type="kr.co.don.funding.model.vo.Funding" alias="fundingIn"/>
-		<typeAlias type="kr.co.don.funding.model.vo.Funding" alias="RewardList"/>
+		<typeAlias type="kr.co.don.funding.model.vo.FundingImg" alias="fundingImg"/>
+		<typeAlias type="kr.co.don.funding.model.vo.FundingIn" alias="fundingIn"/>
+		<typeAlias type="kr.co.don.funding.model.vo.RewardList" alias="RewardList"/>
 	
 		<typeAlias type="kr.co.don.vwork.model.vo.VworkVo" alias="vwork"/>
 		<typeAlias type="kr.co.don.vserver.model.vo.VserverVo" alias="vserver"/>

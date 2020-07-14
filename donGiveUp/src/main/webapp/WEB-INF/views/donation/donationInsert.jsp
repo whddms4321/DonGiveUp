@@ -306,7 +306,7 @@ function check_onclick(){
 			$(".donationDetail2").attr("action", url);
 			$(".donationDetail2").attr("method", "post");
 			$(".donationDetail2").attr("target", title);//새로 열린 popup창과 form태그를 연결
-			$(".donationDetail2").submit();
+			$(".donionatDetail2").submit();
 		}
 		
 	</script>

@@ -28,7 +28,9 @@ public class SupportDao {
 	}
 	
 	public int applyInsert(SupportApply supportApply) {
-		return sqlSession.insert("supportApply.insertApply", supportApply);
+		
+		return sqlSession.insert("support.insertApply", supportApply);
+		
 	}
 
 	public int supportInsert(Support support) {

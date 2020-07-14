@@ -9,9 +9,8 @@ public class FundingIn {
 	private String fundingInMemberId;
 	private int fundingInCount;
 	private int rewardListNo;
-	private int fundingInMoney;
 	private int fundingInPrice;
 	private int fundingNo;
-	private int fundingPayNo;
+	private String fundingInDate;
 	
 }

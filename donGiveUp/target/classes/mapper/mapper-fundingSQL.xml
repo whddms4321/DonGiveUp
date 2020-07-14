@@ -50,7 +50,7 @@
 				funding_class = #{type }
 		</if>
 	</select>
-	<select id="fundingView" parameterType="_int" resultType="Funding">
+	<select id="fundingView" parameterType="_int" resultType="funding">
 		select
 			
 			funding_no as fundingNo,funding_title as fundingTitle,
@@ -65,5 +65,61 @@
 			where funding_no = #{fundingNo}
 			
 	</select>
+	<select id="fundingInList" parameterType="_int" resultType="fundingIn">
+		select 
+			funding_in_no as fundingInNo,funding_in_memberid as fundingInMemberId,
+			funding_in_count as fundingInCount,rewardlist_no as rewardListNo,
+			funding_in_price as fundingInPrice,  funding_no as fundingNo,
+			funding_in_date as fundingPayNo
+			
+			from fundingIn 
+			where funding_no = #{fundingNo}
+	
+	</select>	
+	<select id="scheduledList" resultType="funding">
+		select 
+			funding_no as fundingNo,funding_title as fundingTitle,
+			funding_content as fundingContent, funding_group as fundingGroup,
+			funding_group_introduce as fundingGroupIntroduce,
+			funding_class as fundingClass, funding_type as fundingType,
+			funding_start_date as fundingStartDate, funding_end_date as fundingEndDate,
+			funding_manager as fundingManager, funding_goal_price as fundingGoalPRice,
+			funding_now_price as fundingNowPrice, funding_negative as fundingNegative,
+			
+			from funding where funding_End_Date > sysdate and funding_Type = 1
+	</select>	
+	<select id="updateType" parameterType="_int">
+		update funding set funding_type=4 where funding_no = #{fundingNo}
+	</select>
+	
+	<select id="refundList" parameterType="_int" resultType="fundingIn">
+		select 
+			funding_in_no as fundingInNo, funding_in_memberid as fundingInMemberId,
+			funding_in_count as fundingInCount, rewardlist_no as rewardListNo,
+			funding_in_price as fundingInPrice, funding_no as fundingNo,
+			funding_in_date as fundingInDate
+			
+			from funding_in where funding_no = #{fundingNo}
+			
+	</select>
+	<select id="refund" parameterType="FundingIn">
+		update member set member_money = member_money+#{fundingInCount} where member_id = #{fundingInMemberId}
 		
+	</select>
+	<insert id="insert" parameterType="funding">
+		insert into funding values(
+		1,#{fundingTitle},#{fundingContent},#{fundingGroup},#{fundingGroupIntroduce},#{fundingClass},0,sysdate,sysdate,#{fundingManager},#{fundingGoalPrice},0,null
+		)
+	</insert>
+	<insert id="insertRd" parameterType="rewardList">
+		insert into rewardList values(
+		#{fundingNo},rewardlist_seq.nextval,#{rewardName},#{rewardContent},#{rewardPrice},#{rewardAmount},null,null,null
+		)
+	</insert>
+	<select id="research" resultType="_int">
+		select funding_no 
+		from (select rownum, n.* from (select * from funding order by funding_no desc)n)
+        where rownum = 1
+        
+	</select>
 </mapper>

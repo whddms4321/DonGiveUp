@@ -39,6 +39,12 @@
  		)
  		  
  	</insert>
+ 	<insert id="insertApply" parameterType="supportApply">
+ 		insert into supportApply values(
+ 		1,#{supportApplyReason},0,#{supportNo},#{supportApplyId}
+ 		)
+ 	</insert>
+ 	
 </mapper>
 
 

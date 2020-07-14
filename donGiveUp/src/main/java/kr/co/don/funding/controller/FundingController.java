@@ -1,5 +1,6 @@
 package kr.co.don.funding.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,9 @@ import com.google.gson.Gson;
 import kr.co.don.funding.model.service.FundingService;
 import kr.co.don.funding.model.vo.Funding;
 import kr.co.don.funding.model.vo.FundingData;
+import kr.co.don.funding.model.vo.FundingView;
+import kr.co.don.funding.model.vo.RewardList;
+import kr.co.don.member.model.vo.Member;
 
 @Controller
 public class FundingController {
@@ -118,13 +122,44 @@ public class FundingController {
 	@RequestMapping(value="/fundingView.don")
 	public String fundingView(Model model, int fundingNo) {
 		
-		Funding funding = new Funding();
-		funding = fundingService.fundingView(fundingNo);
+		FundingView fv = new FundingView();
 		
-		model.addAttribute("funding", funding);
+		fv = fundingService.fundingView(fundingNo);
 		
+		model.addAttribute("funding", fv.getFunding());
+		model.addAttribute("list",fv.getList());
 		
 		return "funding/fundingView";
+		
+	}
+	
+	//펀딩글 적기
+	@RequestMapping(value="fundingInsertFrm.don")
+	public String fundingInsertFrm(HttpSession session,Model model) {
+		
+		Member member = (Member) session.getAttribute("member");
+		System.out.println(member);
+		model.addAttribute("member",member);
+		
+		return "funding/fundingInsert";
+		
+	}
+	
+	
+	
+	@RequestMapping(value="fundingInsert.don")
+	public String fundingInsert(HttpSession session,Funding funding,String[] rewardName,String[] rewardContent,String[] rewardPrice,
+			String[] rewardAmount) {
+		
+		//System.out.println(funding);
+		//System.out.println(rewardName);
+		
+		
+		String result = fundingService.insertFunding(funding,session,rewardName,rewardContent,rewardPrice,rewardAmount);
+		
+		
+		
+		return "redirect:/";
 	}
 	
 }

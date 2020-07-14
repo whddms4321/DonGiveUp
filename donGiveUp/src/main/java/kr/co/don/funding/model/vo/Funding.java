@@ -18,6 +18,7 @@ public class Funding {
 	private int fundingGoalPrice;
 	private int fundingNowPrice;
 	private int fundingNegative;
+	//추가적인 가상객체
 	private String fundingFilepath;
 	private int fundingPercent;
 	private int dateLeft;

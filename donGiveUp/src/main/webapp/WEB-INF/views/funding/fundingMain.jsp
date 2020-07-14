@@ -32,7 +32,7 @@
 <!-- ck에디터 링크 -->
 <script type="text/javascript" src="/resources/ckeditor4/ckeditor.js"></script>
 <!--링크 종료  -->
-<title>Insert title here</title>
+<title>펀딩 메인</title>
 <style>
 body {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -53,6 +53,7 @@ a{
 	margin: 0 auto;
 }
 .content_wrap>h2{
+	font-size: 35px;
 	text-align: center;
 	margin-top:10px;
 }
@@ -153,6 +154,9 @@ a{
 	width:100%;
 	height:100%;
 }
+.funding_write{
+color:white;
+}
 </style>
 <script>
 	
@@ -162,7 +166,8 @@ a{
 	<jsp:include page="/WEB-INF/views/main/header.jsp" />
 	<div class="content">
 		<div class="content_wrap">
-			<h2>펀딩목록</h2>
+		<br><br>
+			<h2>펀딩 &nbsp;목록</h2>
 				<div class="funding_tap">
 					<a href="/" class="first_menu"><img src="/resources/upload/images/펀딩아이콘_2번.png"></a>
 					  &nbsp; &nbsp;<i class='fa fa-angle-right'></i> &nbsp;<span>${type }</span> 
@@ -181,13 +186,17 @@ a{
 				<div class="col-lg-6"></div>
 				<div class="container col-lg-4">
 						<div class="custom-control custom-switch">
-							<input type="checkbox" class="custom-control-input" id="switch1"
+						<c:if test="${sessionScope.member.memberType eq 2 }">
+							<button class="btn btn-primary"><a href="/fundingInsertFrm.don" class="funding_write">펀딩 작성</a></button>
+						</c:if>
+							<!-- <input type="checkbox" class="custom-control-input" id="switch1"
 								name="example"> <label class="custom-control-label"
-								for="switch1">마감된 펀딩만 보기</label>
+								for="switch1">마감된 펀딩만 보기</label> -->
 						</div>			
 						<br>		
 				</div>
 			</div>
+			
 			<br>
 			<div class="row">
 				<c:forEach var="n" items="${list }">
@@ -224,5 +233,6 @@ a{
 		</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/main/footer.jsp" />
+	
 </body>
 </html>
