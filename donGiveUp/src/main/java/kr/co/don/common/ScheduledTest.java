@@ -4,14 +4,29 @@ package kr.co.don.common;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
 import kr.co.don.member.model.vo.Member;
 import kr.co.don.regular.model.service.RegularService;
 import kr.co.don.regularIn.model.vo.RegularInVo;
 import kr.co.don.funding.model.service.FundingService;
+
+
+
+import kr.co.don.funding.model.service.FundingService;
+
+import kr.co.don.member.model.vo.Member;
+import kr.co.don.regular.model.service.RegularService;
+import kr.co.don.regularIn.model.vo.RegularInVo;
+
+
 
 
 @Component
@@ -36,7 +51,8 @@ public class ScheduledTest {
 		int result4 = service.BankMemInUpdate(to);
 		
 	}
-		
+
 }	
 		
+
 

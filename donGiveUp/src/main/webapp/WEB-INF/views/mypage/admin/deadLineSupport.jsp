@@ -11,7 +11,7 @@
 		text-align:center;
 	}
 	table th{
-		background-color : #F1F1F1;
+		background-color : #CBD3D7;
 		font-size:20px;
 	}
 	#pageNavi a{
@@ -25,7 +25,7 @@
 		text-align:center;
 	}
 	.modalTable th{
-		background-color : #F1F1F1;
+		background-color : #CBD3D7;
 	}
 </style>
 </head>
@@ -39,7 +39,7 @@
 						<h1 style=" font-weight:bold;">마감 후원물품</h1>
 					</div>
 					<div style="margin-top:100px;">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th>번호</th><th>글제목</th><th>담당자</th><th>연락처</th><th>이메일</th><th>마감일자</th><th>비고</th>
 							</tr>
@@ -123,7 +123,7 @@
 	        		  var html = "";
 	        		  
 	        		  if(list.length > 0){
-/*
+
 	        			  html += "<table class='table modalTable'>";
 	        			  	html += "<tr><th>번호</th><th>신청자</th><th>선택</th></tr>";
 		        		  //html += "<div style='padding-top:10px; padding-bottom:10px;'><span style='font-weight:bold; font-size:20px; margin-left:20px;'>선택</span><span style='font-weight:bold; font-size:20px; margin-left:90px;'>신청자</span></div>";  
@@ -139,8 +139,8 @@
 		        			  		html += "<div  style='text-align:center; margin-bottom:15px;'>";
 		        			  			html += "<button class='btn-sm btn-primary' onclick='assignCompany("+ supportNo + ",`" + list[i].supportApplyId +"`);'>선정</button>";
 		        			  		html += "</div></td></tr>";
-		        			  		
-		        			  
+		        		  }	
+		        			  /*
 		        			  html += "<div style='width:400px; margin-left:15px; padding-left:20px; border-bottom:1px dotted gray;'>";
 		        			  	html += "<label onclick='requestContentShow(this);'>";
 		        			  		html += "<input type='radio' name='company' style=' margin-right:100px;'> &nbsp;&nbsp;&nbsp;";
@@ -151,9 +151,8 @@
 		        			  		html += "<button class='btn-sm btn-primary' onclick='assignCompany("+ supportNo + ",`" + list[i].supportApplyId +"`);'>선정</button>";
 		        			  	html += "</div>";
 		        			  html += "</div>";
-		        			  */
 
-
+		        		    
 		        		  html += "<div><span style='font-weight:bold; font-size:20px; margin-left:20px;'>선택</span><span style='font-weight:bold; font-size:20px; margin-left:90px;'>신청자</span></div>";  
 		        		  for(var i=0; i<list.length; i++){
 		        			  html += "<div style='width:400px; margin-left:15px; padding-left:20px; border-bottom:1px dotted gray;'><label onclick='requestContentShow(this);'><input type='radio' name='company' style=' margin-right:100px;'> &nbsp;&nbsp;&nbsp;<span>" + list[i].supportApplyId + "</span>&nbsp;&nbsp;&nbsp;</label>";
@@ -163,8 +162,10 @@
 
 		        			  
 		        		  }
+		        			  */
+		        			  
+		        			  
 		        		  html += "</table>";
-		        		  console.log(html);
 		        		  $("#content").css("overflow", "auto");
 		        		  $("#content").append(html);
 		        		  $("#pageNaviModal").append(pageNavi);        			  
@@ -214,7 +215,6 @@
 		
 		//------------------------------마감 후원물품에 신청한 기관이 없을 경우 -> 재등록 버튼을 눌렀을 경우---------------------
 		function reUpload(supportNo){
-			console.log("supportNo : " + supportNo);
 			
 			if(confirm("해당 물품을 재등록 하시겠습니까?")){
 				$.ajax({

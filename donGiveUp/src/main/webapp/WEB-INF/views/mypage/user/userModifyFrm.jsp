@@ -137,7 +137,7 @@
 			<form action="/userInfoModify.don" method="post">
 			<div class="content-main-right">
 				<div class="title">
-					<h2>회원정보 수정</h2>
+					<h2 style="font-weight:bold;">회원정보 수정</h2>
 				</div>
 				<div class="userInfoWrap">
 					<div class="form-inline"><div class="textDiv">아이디 : </div><input type="text" class="form-control" name="memberId" value="${sessionScope.member.memberId}" readonly></div>
@@ -236,42 +236,49 @@
 		});
 		
 		$("form").submit(function(){
-			$("input[name=memberEmail]").val($("#email1").val() + "@" +$("#email2").val());
-			
-			var val1 = $("input[name=memberName]").val(); 
-			if(nameExp.test(val1)){
-				$("#nameChk").html("");
-				$("#nameChk").css("color", "black");
-				submitChk[0] = true;
-			}else{
-				$("#nameChk").html("잘못된입력");
-				$("#nameChk").css("color", "red");
-				submitChk[0] = false;
-			}
-			
-			var val2 = $("input[name=memberPhone]").val(); 
-			if(phoneExp.test(val2)){
-				$("#phoneChk").html("");
-				$("#phoneChk").css("color", "black");
-				submitChk[1] = true;
-			}else{
-				$("#phoneChk").html("잘못된입력");
-				$("#phoneChk").css("color", "red");
-				submitChk[1] = false;
-			}
-			
-			
-			for(var i=0; i<submitChk.length; i++){
-				if(submitChk[0] == false){
-					alert("이름은 한글 2~6글자 입력 가능합니다.");
-					$("input[name=memberName]").focus();
+			if(confirm("수정하시겠습니까?")){
+				if($("#email2").val() == ""){
+					alert("이메일을 정확히 입력하세요.");
 					return false;
 				}
-				if(submitChk[1] == false){
-					alert("전화번호는 -를 제외한 숫자 10~11자리를 입력해주세요.");
-					$("input[name=memberPhone]").focus();
-					return false;
+				$("input[name=memberEmail]").val($("#email1").val() + "@" +$("#email2").val());
+				
+				var val1 = $("input[name=memberName]").val(); 
+				if(nameExp.test(val1)){
+					$("#nameChk").html("");
+					$("#nameChk").css("color", "black");
+					submitChk[0] = true;
+				}else{
+					$("#nameChk").html("잘못된입력");
+					$("#nameChk").css("color", "red");
+					submitChk[0] = false;
 				}
+				
+				var val2 = $("input[name=memberPhone]").val(); 
+				if(phoneExp.test(val2)){
+					$("#phoneChk").html("");
+					$("#phoneChk").css("color", "black");
+					submitChk[1] = true;
+				}else{
+					$("#phoneChk").html("잘못된입력");
+					$("#phoneChk").css("color", "red");
+					submitChk[1] = false;
+				}
+				
+				
+				for(var i=0; i<submitChk.length; i++){
+					if(submitChk[0] == false){
+						alert("이름은 한글 2~6글자 입력 가능합니다.");
+						$("input[name=memberName]").focus();
+						return false;
+					}
+					if(submitChk[1] == false){
+						alert("전화번호는 -를 제외한 숫자 10~11자리를 입력해주세요.");
+						$("input[name=memberPhone]").focus();
+						return false;
+					}
+				}
+				
 			}
 		});
 	</script>

@@ -36,6 +36,7 @@
 
 <context:component-scan base-package="kr.co.don.adminMypage"/>
 
+
 <aop:aspectj-autoproxy/>
 <!-- 트랜잭션 설정 -->
 <tx:annotation-driven/>

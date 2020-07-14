@@ -19,7 +19,7 @@
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 	<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
-	<property name="username" value="donation4"/>
+	<property name="username" value="donation"/>
 	<property name="password" value="1234"/>
 </bean>
 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -35,6 +35,7 @@
 </bean>
 
 <context:component-scan base-package="kr.co.don.adminMypage"/>
+
 
 <aop:aspectj-autoproxy/>
 <!-- 트랜잭션 설정 -->

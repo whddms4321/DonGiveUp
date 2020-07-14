@@ -100,11 +100,6 @@ public class AdminMypageController {
 	@ResponseBody
 	@RequestMapping(value="/boardRequestListEtc.don", method = RequestMethod.POST, produces = "application/json; charset=utf-8;")
 	public String boardRequestListEtc(@RequestBody HashMap<String,Object> obj) {
-		System.out.println("java con 요청 페이지 : " + obj.get("etcReqPage"));
-		System.out.println("java con 요청 타입 : " + obj.get("etcType"));
-		System.out.println("java con 요청 제목 : " + obj.get("etcTitle"));
-		System.out.println("java con 요청 구분 : " + obj.get("etcRequestList"));
-		System.out.println("java con 요청 정렬 : " + obj.get("etcSorting"));
 		
 		int etcReqPage = (int) Math.floor((double) obj.get("etcReqPage"));
 		String etcType = (String) obj.get("etcType");
@@ -121,8 +116,6 @@ public class AdminMypageController {
 	@ResponseBody
 	@RequestMapping(value="/agreeRequestBoard.don")
 	public int agreeRequestBoard(String key, String type) {
-		System.out.println("state 업데이트 할  key : " + key);
-		System.out.println("state 업데이트 할  type : " + type);
 		int result = service.agreeRequestBoard(key, type);
 		return result;
 	}
@@ -131,8 +124,6 @@ public class AdminMypageController {
 	@ResponseBody
 	@RequestMapping(value="/negativeRequestBoard.don")
 	public int negativeRequestBoard(String boardKey, String type, String content) {
-		System.out.println("거부할 키 : " + boardKey);
-		System.out.println("거부할 타입~ : " + type);
 		int result = service.negativeRequestBoard(boardKey, type, content);
 		return result;
 	}
@@ -141,8 +132,6 @@ public class AdminMypageController {
 	@ResponseBody
 	@RequestMapping(value="/selectNegativeContent.don", produces="text/html; charset=utf-8;")
 	public String selectNegativeContent(String boardKey, String type) {
-		System.out.println("작성했던 거부 사유 키 : " + boardKey);
-		System.out.println("작성했던 거부 사유 타입 : " + type);
 		String result = service.selectNegativeContent(boardKey, type);
 		return result;
 	}
@@ -225,7 +214,6 @@ public class AdminMypageController {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-type", "application/json");
-			System.out.println("Response code: " + conn.getResponseCode());
 			BufferedReader rd;
 			if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) { //정상처리가 되었을 때
 				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -247,99 +235,39 @@ public class AdminMypageController {
 			e.printStackTrace();
 		}
         
-        HashMap<String, String> map = new HashMap<String, String>();
+        //return할 Map 생성
+		HashMap<String, String> map = new HashMap<String, String>();
         
-        //xml 문자열 파싱하기!
+        	//xml 문자열 파싱하기
         	try {
         		if(xml != null) {
-        			//xml을 파싱? 해주는 객체임
+        			//xml을 파싱할 때 사용하는 객체
         			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         			DocumentBuilder documentBuilder = factory.newDocumentBuilder();
         			
-        			//xml의 내용을 바이트 단위로 읽어와서 배열을 만들고 InputStream에 넣는다..?
+        			//String 변수에 담겨있는 xml 정보를 바이트 배열로 생성
         			InputStream is = new ByteArrayInputStream(xml.getBytes());
-        			//파싱 시작!!
+        			//파싱 DocumentBuilder 인스턴스로 파싱
         			Document doc = documentBuilder.parse(is);
-        			//최상위 엘리먼트를 가져온당
+        			//파싱 후 하위 노드에 접근을 위한 루트 Element를 얻는다.
         			Element rootElement = doc.getDocumentElement();
+        			//원하는 정보(태그)들의 상위 엘리먼트를 선택
+        			NodeList test = rootElement.getElementsByTagName("item");
+        			//실제 정보들을 list로 생성
+        			NodeList list = test.item(0).getChildNodes();
         			
-        			//사업장 주소 가져오기!
-        			NodeList items1 =  rootElement.getElementsByTagName("adres"); //루트엘리먼트 밑에 있는 태그들 중 태그이름으로 가져옴!! -TagName은 다수일경우가 있어서 List로 받는다
-        			Node item1 = items1.item(0); //태그들 중 첫번째 - 하나밖에 없으니까
-        			if(item1 != null) {
-        				Node text1 = item1.getFirstChild(); //첫번째 자식?
-        				if(text1 != null) {
-        					map.put("addr", text1.getNodeValue()); //태그 사이에 있는 값 map에 저장하기        					
+        			for(int i=0; i<list.getLength(); i++) {
+        				if(list.item(i).getFirstChild() != null) { //값이 있을 시에만
+        					String nodeName = list.item(i).getNodeName(); //태그명
+        					String nodeValue = list.item(i).getFirstChild().getNodeValue(); //태그의 value
+        					map.put(nodeName, nodeValue); //맵에 키-값 저장					
         				}
-        			}else {
-        				System.out.println("null - 주소");
-        			}
-        			
-        			//대표자명 가져오기!
-        			NodeList items2 =  rootElement.getElementsByTagName("rprsntvNm");
-        			Node item2 = items2.item(0); 
-        			if(item2 != null) {
-        				Node text2 = item2.getFirstChild();
-        				if(text2 != null) {
-        					map.put("name", text2.getNodeValue());        					
-        				}
-        			}else {
-        				System.out.println("null - 대표자명");
-        			}
-        			
-        			//후원단체 설립일 가져오기!
-        			NodeList items3 =  rootElement.getElementsByTagName("fondDe");
-        			Node item3 = items3.item(0); 
-        			if(item3 != null) {
-        				Node text3 = item3.getFirstChild();
-        				if(text3 != null) {
-        					map.put("date", text3.getNodeValue());        					
-        				}
-        			}else {
-        				System.out.println("null - 설립일");
-        			}
-        			
-        			//단체 전화번호 가져오기!
-        			NodeList items4 =  rootElement.getElementsByTagName("dmstcTelno");
-        			Node item4 = items4.item(0); 
-        			if(item4 != null) {
-        				Node text4 = item4.getFirstChild();
-        				if(text4 != null) {
-        					map.put("phone", text4.getNodeValue());        					
-        				}
-        			}else {
-        				System.out.println("null - 저나번호");
-        			}
-        			
-        			//후원단체명 가져오기!
-        			NodeList items6 =  rootElement.getElementsByTagName("nanmmbyNm");
-        			Node item6 = items6.item(0); 
-        			if(item6 != null) {
-        				Node text6 = item6.getFirstChild();
-        				if(text6 != null) {
-        					map.put("companyName", text6.getNodeValue());        					
-        				}
-        			}else {
-        				System.out.println("null - 후원단체명");
-        			}
-        			
-        			//후원단체 홈페이지 주소 가져오기!
-        			NodeList items7 =  rootElement.getElementsByTagName("hmpgAdres");
-        			Node item7 = items7.item(0); 
-        			if(item7 != null) {
-        				Node text7 = item7.getFirstChild();
-        				if(text7 != null) {
-        					map.put("companyHomePage", text7.getNodeValue());        					
-        				}
-        			}else {
-        				System.out.println("null - 홈페이지주소");
         			}
         		}
 			} catch (Exception e) { //모든 예외처리 가능하도록 처리
 				e.printStackTrace();
 			}
         
-       
 		return map;
 	}
 	

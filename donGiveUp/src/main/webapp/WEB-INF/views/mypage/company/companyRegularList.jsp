@@ -221,7 +221,7 @@ td{
 						html += "<tr>";
 						html += "<td>" + ((reqPage-1)*5+1+i) + "</td>";
 						html += "<td>" + list[i].regularId + "</td>";
-						html += "<td>" + list[i].regularMoney.toLocaleString(); + "</td>";
+						html += "<td>" + list[i].regularMoney.toLocaleString() + "</td>";
 						if(type == 0){
 							html += "<td>" + list[i].regularAutoDate + "</td>";							
 						}else{
