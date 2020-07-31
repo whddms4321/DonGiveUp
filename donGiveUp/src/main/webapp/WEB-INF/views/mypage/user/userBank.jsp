@@ -142,6 +142,9 @@ font-size : 18px;
 	background-color : #0fbcff;
 	color : white;
 }
+.pageNavi{
+	padding:10px;
+}
 </style>
 </head>
 <body>
@@ -301,11 +304,11 @@ font-size : 18px;
 						html += "<td>" + ((reqPage-1)*5+1+i) + "</td><td>" + list[i].bankTitle + "</td>";
 						
 						if(type == 0){ // 1회성 기부
-							html += "<td>" + list[i].bankInMoney.toLocaleString(); + "</td>";
+							html += "<td>" + list[i].bankInMoney.toLocaleString() + "</td>";
 							html += "<td>" + list[i].bankInDate + "</td>";
 							html += "<td>-</td>";
 						}else{ //정기기부인 경우 해지요청 버튼 생성
-							html += "<td>" + list[i].bankInMoney.toLocaleString(); + "</td>";
+							html += "<td>" + list[i].bankInMoney.toLocaleString() + "</td>";
 							html += "<td>" + list[i].bankInDate + "</td>";
 							
 							if(list[i].bankType == 0){ //해당 저금통이 진행중인 경우
@@ -372,13 +375,13 @@ font-size : 18px;
 					data : {bankNo : bankNo},
 					success : function(result){
 						if(result>0){
-							console.log("나이스으~!");
 						}
 					}
 				});	
 			}
 		}
 		
+			
 		$('#dataModal').on('show.bs.modal', function(event) {
 			var companyName = $("#boardCompany").html();
 			var bankMoney = $(".bankMoney").html();
@@ -409,6 +412,7 @@ font-size : 18px;
 					data : {memberId:memberId, price:price, companyName:companyName, bankNo : bankNo},
 					success : function(){
 						alert("저금액을 후원하셨습니다.");
+						location.reload();
 					},
 					error : function(){}
 				});				

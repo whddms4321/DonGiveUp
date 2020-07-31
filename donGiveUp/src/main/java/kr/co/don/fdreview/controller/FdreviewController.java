@@ -13,8 +13,8 @@ public class FdreviewController {
 	@Qualifier("fdreviewService")
 	private FdreviewServiceImpl service;
 	
-	@RequestMapping(value="/fdreview.don")
-	public String fdreview() {
+	@RequestMapping(value="/fdreviewlist.don")
+	public String fdreview(int count) {
 		return "review/fdreviewlist";
 	}
 	

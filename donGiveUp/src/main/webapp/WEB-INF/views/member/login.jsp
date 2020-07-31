@@ -87,7 +87,7 @@
 				</tr>
 				<tr>
 					<td style="width: 300px;">후원자가 되어주세요.</td>
-					<td><a href="#" style="color: black;">회원가입</a></td>
+					<td><a href="/member/joinFrm.don" style="color: black;">회원가입</a></td>
 				</tr>
 			</table>
 		</div>

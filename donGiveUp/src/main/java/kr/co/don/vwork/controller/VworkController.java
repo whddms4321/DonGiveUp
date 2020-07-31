@@ -51,7 +51,7 @@ public class VworkController {
 			while(st.hasMoreElements()) {
 				arr[i++] = st.nextToken();
 			}
-			j.setJoindCnt(arr.length-1);
+			j.setJoindCnt(arr.length);
 		}
 		
 		//String button ="<button id=\"moreList\" value="+(count+1)+">더 보기</button>";
@@ -71,7 +71,7 @@ public class VworkController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/morevwList.don",produces = "application/json; charset=utf-8")
+	@RequestMapping(value="/morevwList.don",produces = "application/json; charset=utf-8;")
 	public String morevwList(int count, VworkVo vw) {
 		ArrayList<VworkVo> list = service.vworkList(count);
 		for( VworkVo j : list) {
@@ -79,8 +79,6 @@ public class VworkController {
 			
 			int result = service.vserperCnt(vworkNo);
 			j.setVserperCnt(result);
-			System.out.println("총 정원:"+j.getVworkPer());
-			System.out.println("현재 신청된 ticket:"+result);
 			String str = j.getVworkJoinDate();
 			
 			StringTokenizer st = new StringTokenizer(str,",");
@@ -89,8 +87,8 @@ public class VworkController {
 			while(st.hasMoreElements()) {
 				arr[i++] = st.nextToken();
 			}
-			j.setJoindCnt(arr.length-1);
-			System.out.println("봉사날짜 :"+(arr.length-1));
+			j.setJoindCnt(arr.length);
+			//System.out.println("봉사날짜 :"+(arr.length-1));
 		}
 		
 		String button;
@@ -125,7 +123,7 @@ public class VworkController {
 			while(st.hasMoreElements()) {
 				arr[i++] = st.nextToken();
 			}
-			j.setJoindCnt(arr.length-1);
+			j.setJoindCnt(arr.length);
 		}
 		String button;
 		 
@@ -141,7 +139,7 @@ public class VworkController {
 		return "vwork/vwListSR";
 	}
 	@ResponseBody
-	@RequestMapping(value="/morevwListsearch.don",produces = "application/json; charset=utf-8")
+	@RequestMapping(value="/morevwListsearch.don",produces = "application/json; charset=utf-8;")
 	public String morevwListsearch(int count, String keyword, VworkVo vw) {
 		ArrayList<VworkVo> list = service.vwListsearch(keyword,count);
 		for( VworkVo j : list) {
@@ -159,7 +157,7 @@ public class VworkController {
 			while(st.hasMoreElements()) {
 				arr[i++] = st.nextToken();
 			}
-			j.setJoindCnt(arr.length-1);
+			j.setJoindCnt(arr.length);
 		}
 		
 		String button;
@@ -177,19 +175,58 @@ public class VworkController {
 		return new Gson().toJson(data);
 	}
 	@ResponseBody
-	@RequestMapping(value="/vwticketCnt.don",produces = "text/html; charset=utf-8")
+	@RequestMapping(value="/vwticketCnt.don",produces = "application/json; charset=utf-8;")
 	public String vwticketCnt(String vserdate,int vworkNo) {
+		System.out.println(vserdate);
 		ArrayList<VserverVo> list = service.selectvwticketCnt(vserdate,vworkNo);
-		int count = 0; 
+		System.out.println("구매매수~~~~");
+		
+		VserverVo vs = new VserverVo();
 		if(! list.isEmpty()) {
-			for(VserverVo j :list) {
-			 count += j.getVserverPer();
+			int count = 0;
+			int i = 0;
+			for(VserverVo j : list) {
+			System.out.println(j.getVserverPer());
+			count += j.getVserverPer();
+			System.out.println((i++) +"번째:"+count);
 			}
-			return "count";
+			vs.setTicketcount(count);
+		}else {
+			vs.setTicketcount(0);
+		}
+		return new Gson().toJson(vs);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/vserverinsert.don",produces = "text/html; charset=utf-8;")
+	public String vserverinsert(String vserverDay, int vserverPer, String vserverVms, String vserverWriter,
+								int vserverRef, int amount) {
+		
+		VserverVo vs = new VserverVo();
+		
+		vs.setVserverDay(vserverDay);
+		//System.out.println(vserverPer);
+		vs.setVserverPer(vserverPer);
+		//System.out.println(vserverVms);
+		if(vserverVms=="") {
+			vs.setVserverVms("null");
+		}else {
+			vs.setVserverVms(vserverVms);
+		}
+		//System.out.println(vserverWriter);
+		vs.setVserverWriter(vserverWriter);
+		//System.out.println(vserverRef);
+		vs.setVserverRef(vserverRef);
+		//System.out.println(amount);
+		vs.setVserverPrice(amount);
+		
+		int result = service.insertvserver(vs);
+		if(result>0) {
+			return "1";
 		}else {
 			return "0";
 		}
-			
+		
 	}
 	
 	@RequestMapping(value="/vworkeditFrm.don")
@@ -214,7 +251,11 @@ public class VworkController {
 		return "vwork/vworkbooking";
 	}
 	@RequestMapping(value="/vworkpayment.don")
-	public String vworkpayment() {
+	public String vworkpayment(VserverVo vs, Model model) {
+		int vworkNo = vs.getVserverRef();
+		VworkVo vw = service.selectOneVwork(vworkNo);
+		model.addAttribute("vw",vw);
+		model.addAttribute("vs",vs);
 		return "vwork/vworkpayment";
 	}
 	
@@ -247,7 +288,7 @@ public class VworkController {
 		}
 	}
 	@RequestMapping(value="/vworkinsert.don")
-	public String vworkinsert(HttpServletRequest request,MultipartFile file, VworkVo vw) {
+	public String vworkinsert(HttpServletRequest request,MultipartFile file, VworkVo vw,Model model) {
 		
 		//System.out.println(vw.getVworkJoinDate());
 		
@@ -289,9 +330,13 @@ public class VworkController {
 		}
 		int result = service.insertvwork(vw);
 		if(result>0) {
-			return "vwork/vwUploadSuccess";
+			model.addAttribute("msg", "등록완료");
+			model.addAttribute("loc","/vworklist.don?count=1");
+			return "vwork/msg";
 		}else {
-			return "vwork/vwUploadFail" ;
+			model.addAttribute("msg", "등록실패");
+			model.addAttribute("loc","/vworklist.don?count=1");
+			return "vwork/msg";
 		}
 	}
 		

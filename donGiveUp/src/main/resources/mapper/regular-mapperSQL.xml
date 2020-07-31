@@ -33,13 +33,24 @@
 		where regular_id = #{_parameter}
 	</select>
 	
+	<select id="regularInCount" parameterType="String" resultType="regularIn">
+		SELECT 
+			REGULAR_IN_NO AS regularInNo,
+			REGULAR_IN_ID AS regularInId,
+			REGULAR_IN_CANCEL AS regularInCancel,
+    		REGULAR_ID AS regularId		
+		        FROM REGULAR_IN
+		where regular_id = #{_parameter} and REGULAR_IN_CANCEL = 0
+	</select>
+	
+	
 	<select id="regularMember" parameterType="string" resultType="member">
 		SELECT 
 			MEMBER_ID AS memberId,
 			COMPANY_FILENAME AS companyFilename,
 			COMPANY_FILEPATH AS companyFilepath,
 			CHART_FILENAME AS chartFilename,
-			CHART_FILENAME AS chartFilepath,
+			CHART_FILEPATH AS chartFilepath,
 			COMPANY_NAME AS companyName
 		        FROM MEMBER
 		where member_id = #{_parameter}
@@ -56,4 +67,52 @@
 		where member_id = #{memberId}
 	</update>
 	
+	
+	<update id="memberInUpdate" parameterType="String">
+	update member m set 
+	member_money = member_money-(select regular_in_money from regular_in r where m.member_id=r.regular_in_id) 
+	where member_id in 
+	(select regular_in_id from regular_in join member on(regular_in_id = member_id) where regular_in_pay_num=#{_parameter} and regular_in_cancel = 0)
+	</update>
+	
+	
+	<update id="regularInUpdate" parameterType="String">
+	update member m set 
+	member_money = member_money-(select regular_in_money from regular_in r where m.member_id=r.regular_in_id) 
+	where member_id in 
+	(select regular_in_id from regular_in join member on(regular_in_id = member_id) where regular_in_pay_num=#{_parameter} and regular_in_cancel = 0)
+	</update>
+	
+	<update id="bankInUpdate" parameterType="String">
+	update bank m set 
+bank_now_money = bank_now_money+(select bank_in_money from bank_in r where m.bank_no=r.bank_no and bank_in_type= 1)
+where bank_no in 
+(select bank_no from bank_in join bank using(bank_no) where bank_in_pay_num=#{_parameter} and bank_in_type= 1);
+	</update>
+	
+	<update id="bankMemInUpdate" parameterType="String">
+	update member m set 
+	member_money = member_money-(select bank_in_money from bank_in r where m.member_id=r.bank_in_id and bank_in_type= 1) 
+	where member_id in
+	(select bank_in_id from bank_in join member on(bank_in_id = member_id) where bank_in_pay_num = #{_parameter} and bank_in_type= 1);
+	</update>
+	
+	
+
+	
+	<select id="memberMoney" parameterType="string" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			MEMBER_MONEY AS memberMoney
+		        FROM MEMBER
+		where member_id = #{_parameter}
+	</select> 
+	<select id="memberIdSearch" parameterType="string" resultType="member">
+		SELECT 
+			MEMBER_ID AS memberId,
+			MEMBER_MONEY AS memberMoney,
+			COMPANY_NAME AS companyName
+		        FROM MEMBER
+		where company_name= #{_parameter}
+	</select> 
 </mapper>

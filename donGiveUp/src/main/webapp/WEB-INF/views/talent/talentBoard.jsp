@@ -127,6 +127,22 @@
 	color: ghostwhite;
 	font-weight: bold;
 }
+.adminNoticeBtn {
+	display: inline-block;
+	width: 90px;
+	height: 28px;
+	background-color: #ffffff;
+	text-align: center;
+	line-height: 30px;
+	color: #666666;
+	border: 1px solid #D4D4Cd;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+	text-decoration: none;
+	float: right;
+}
 </style>
 <script>
 	
@@ -154,6 +170,10 @@
 		</div>
 		<div class="boardWrap">
 			<h2 style="margin-left: 20px;">게시판</h2>
+			<c:if test="${sessionScope.member.memberId eq talentWriter }">
+				<a href="/talent/insertTalentBoardFrm.don?talentNo=${talentNo }" class="adminNoticeBtn">글 등록</a>
+			</c:if>
+			<c:if test="${not empty list }">
 			<table class="noticeTable">
 				<tr>
 					<th>글번호</th>
@@ -170,10 +190,16 @@
 						<td style="border-bottom: 0.1px solid #DDE3E9;">
 							${talentBoard.talentBoardWriter }</td>
 					</tr>
-
 				</c:forEach>
 			</table>
 			<div class="noticePageNavi">${pageNavi }</div>
+			</c:if>
+			<c:if test="${empty list }">
+				<div style="text-align: center; margin-top: 100px;">
+				<img src="/resources/song/image/경고.png">
+					<h1>해당 게시판에 등록된 글이 없습니다.</h1>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<c:if test="${not empty sessionScope.member }">

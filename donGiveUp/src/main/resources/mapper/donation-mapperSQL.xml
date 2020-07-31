@@ -3,7 +3,7 @@
 <mapper namespace="donation">
 	
 	<select id="totalCount" parameterType="map" resultType="_int">
-		select count(*) from donation where donation_type like '%'||#{type}||'%' 
+		select count(*) from donation where donation_type like '%'||#{type}||'%' and donation_state = 1
 	</select>
 	
 	<select id="donationList" parameterType="map" resultType="donation">
@@ -28,7 +28,7 @@
   					DONATION_NEGATIVE AS donationNegative    
 		        FROM DONATION
 		        
-				where donation_type like '%'||#{type}||'%' 
+				where donation_type like '%'||#{type}||'%' and donation_state = 1
 			
 		        ORDER BY DONATION_NO DESC) 
 		    N
@@ -99,7 +99,7 @@
 			COMPANY_FILENAME AS companyFilename,
 			COMPANY_FILEPATH AS companyFilepath,
 			CHART_FILENAME AS chartFilename,
-			CHART_FILENAME AS chartFilepath,
+			CHART_FILEPATH AS chartFilepath,
 			COMPANY_NAME AS companyName
 		        FROM MEMBER
 		where member_id = #{_parameter}
@@ -143,5 +143,9 @@
 		        FROM DONATION
 		where donation_no = #{donationNo}
 	</select>
+	
+	<insert id="moneyUseList" parameterType="donationIn">
+		insert into money_use_list values(money_use_list_seq.nextval, #{donationInMoney}, '출금',sysdate ,#{donationInMemberid})
+	</insert>
 	
 </mapper>

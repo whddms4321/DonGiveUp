@@ -64,8 +64,13 @@
            }); 
            
             
+            
         });
-      
+          function submitEnd(){
+                    opener.location.reload();
+
+                    /* self.close(); */
+                }
     </script>
 <body>
     <div class="main">
@@ -103,7 +108,7 @@
             이미지 : <input type="file" name="file" > <br>
             <p>안내사항</p>
             <pre>물품 후원이 승인이 된 후, 최대 2주안까지 후원자의 이메일로 기부증 영수증을 발급할 예정입니다.</pre>
-            <input type="submit" value="물품 후원 신청하기" class="btn btn-dark">
+            <input type="submit" value="물품 후원 신청하기" class="btn btn-dark" onclick="submitEnd();">
             
             <br><br><br><br><br><br>
             

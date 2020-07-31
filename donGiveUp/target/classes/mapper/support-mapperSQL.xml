@@ -35,10 +35,16 @@
  			1,#{supportId},#{supportName},#{supportCategory},
  			#{supportAmount},#{supportAmount},#{supportFilename},
  			#{supportFilepath},sysdate,null,
- 			#{supportPrice},1,null
+ 			#{supportPrice},0,null
  		)
  		  
  	</insert>
+ 	<insert id="insertApply" parameterType="supportApply">
+ 		insert into supportApply values(
+ 		1,#{supportApplyReason},0,#{supportNo},#{supportApplyId}
+ 		)
+ 	</insert>
+ 	
 </mapper>
 
 

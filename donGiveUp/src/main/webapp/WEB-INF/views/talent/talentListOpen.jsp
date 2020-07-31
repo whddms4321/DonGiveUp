@@ -43,6 +43,9 @@
 	font-size: 20px;
 	text-align: center;
 	margin-bottom: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .talentWriter {
@@ -76,8 +79,9 @@
 </style>
 <script>
 	function talentBoard(talentNo) {
+		console.log(talentNo);
 		location.href = "/talent/talentBoard.don?reqPage=1&talentNo="
-				+ talentNo;
+				+ talentNo+"&talentWriter=${sessionScope.member.memberId }";
 	}
 </script>
 </head>

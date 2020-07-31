@@ -62,7 +62,6 @@ public class UserMypageController {
 	@ResponseBody
 	@RequestMapping(value="/dontoriPay.don", produces="application/json; charset=utf-8;")
 	public String dontoriPay(String memberId, int amount) {
-		System.out.println("결제~!~!~!~!");
 		HashMap<String, String> map = service.dontoriPay(memberId, amount);
 		return new Gson().toJson(map);
 	}
@@ -89,7 +88,6 @@ public class UserMypageController {
 	@ResponseBody
 	@RequestMapping(value="/attenListCount.don", produces="application/json;")
 	public String attenListCount(String memberId) {
-		System.out.println(memberId);
 		HashMap<String, Integer> map = service.attenListCount(memberId);
 		return new Gson().toJson(map);
 	}

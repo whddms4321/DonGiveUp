@@ -12,7 +12,7 @@ public class RewardList {
 	private int rewardPrice;
 	private int rewardAmount;
 	private String rewardSendDate;
-	private String rewardImgFilename;
+	private String rewardImgFilename;	
 	private String rewardImgFilepath;
 	
 }

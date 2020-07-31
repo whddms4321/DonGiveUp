@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -12,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
     <script src="/resources/dahyun/js/8bd2671777.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <!--캐러셀-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -24,56 +23,58 @@
     <div class="content">
         <div class="headarea">
             <div class="frontimg">
-                <img src="/resources/dahyun/imgs/콩삼이.jpg">
+                <img src="/resources/upload/images/${dn.dnreviewFilepath}">
             </div>
             <div class="bgfilter"></div>
             <div class="textwrap">
-                <span id="dnrTitle">귀여운 콩삼이가 고구마간식을 기부받았어요.</span>
-                <span id="dnrFoundation">댕댕이행복재단</span>
+                <span id="dnrTitle">${dn.dnreviewTitle}</span>
+                <span id="dnrFoundation">${dn.companyName}</span>
             </div>
         </div>
         <div class="dnrviewWrap">
             <div class="dnrContent">
-                글내용가져오기
+                ${dn.dnreviewContent}
             </div>
             <div class="imgwrap">
-                <div id="demo" class="carousel slide" data-ride="carousel">
+                <!--여기-->
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <!-- 슬라이드 쇼 -->
-                        <div class="carousel-item active">
-                            <!--가로-->
-                            <img class="d-block w-100" src="/resources/dahyun/imgs/부티냠냠1.jpg" alt="First slide">
-                            <!--<div class="carousel-caption d-none d-md-block">
-                                <h5>ㄷ</h5>
-                                <p>testtesttest</p>
-                                </div>-->
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="/resources/dahyun/imgs/부티냠냠2.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="/resources/dahyun/imgs/부티냠냠3.jpg" alt="Third slide">
-                        </div> <!-- / 슬라이드 쇼 끝 -->
-                        <!-- 왼쪽 오른쪽 화살표 버튼 -->
-                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span> <!-- <span>Previous</span> -->
-                        </a>
-                        <a class="carousel-control-next" href="#demo" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span> <!-- <span>Next</span> -->
-                        </a> <!-- / 화살표 버튼 끝 -->
-                        <!-- 인디케이터 -->
-                        <ul class="carousel-indicators">
-                            <li data-target="#demo" data-slide-to="0" class="active"></li>
-                            <!--0번부터시작-->
-                            <li data-target="#demo" data-slide-to="1"></li>
-                            <li data-target="#demo" data-slide-to="2"></li>
-                        </ul> <!-- 인디케이터 끝 -->
+                        <c:forEach items="${dri}" var="g" varStatus="i">
+                            <c:if test="${i.count == 1}">
+                                <div class="item active">
+                                    <img class="imggg" src="/resources/upload/images/${g.dnreviewimgFilename}" style="height:450px;">
+                                </div>
+                            </c:if>
+                            <c:if test="${i.count != 1}">
+                                <div class="item">
+                                    <img class="imggg" src="/resources/upload/images/${g.dnreviewimgFilename}" style="height:450px;">
+                                </div>
+                            </c:if>
+                        </c:forEach>
                     </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
             <br>
             <div class="tableWrap1">
-                <div class="Fmoney"><span>70,000</span>&nbsp;원</div>
+                <div class="Fmoney"><span>${dn.donationNowMoney}</span>&nbsp;원</div>
                 <span>기부금 집행 내역</span>
                 <table>
                     <tr>
@@ -81,19 +82,19 @@
                     </tr>
                     <tr>
                         <th class="t1Name">모금기간</th>
-                        <td class="t1Content">2020.06.10-2020.06.30</td>
+                        <td class="t1Content">${dn.donationStartDate} - ${dn.donationEndDate}</td>
                     </tr>
                     <tr>
                         <th class="t1Name">모금금액</th>
-                        <td class="t1Content"><span id="fmoney">70,000</span><span>목표금액(70,000)</span></td>
+                        <td class="t1Content"><span id="fmoney">${dn.donationNowMoney}</span><span>목표금액(${dn.donationGoalMoney})</span></td>
                     </tr>
                     <tr>
                         <th class="t1Name">사업대상</th>
-                        <td class="t1Content">귀염둥이 부티</td>
+                        <td class="t1Content">${dn.donationType}</td>
                     </tr>
                     <tr>
                         <th class="t1Name">대상수</th>
-                        <td class="t1Content">1마리</td>
+                        <td class="t1Content">${dn.dnreviewTargetper}</td>
                     </tr>
                 </table>
             </div>
@@ -102,59 +103,101 @@
                     <tr>
                         <td colspan="3" class="trHead"></td>
                     </tr>
-                    <tr>
-                        <th class="billName">사업비</th>
-                        <td class="bDetail">고구마 간식 * 5</td>
-                        <td class="bmoney"><span>50,000</span></td>
-                    </tr>
-                    <tr>
-                        <th class="billName">사업비</th>
-                        <td class="bDetail">껌 * 2</td>
-                        <td class="bmoney"><span>10,000</span></td>
-                    </tr>
-                    <tr>
-                        <th class="billName">사업비</th>
-                        <td class="bDetail">까까</td>
-                        <td class="bmoney"><span>10,000</span></td>
-                    </tr>
+                    <c:forEach items="${drb}" var="db">
+                        <tr>
+                            <th class="billName">${db.dnbillName}</th>
+                            <td class="bDetail">${db.dnbillDetail}</td>
+                            <td class="bmoney"><span>${db.dnbillMoney}</span></td>
+                        </tr>
+                    </c:forEach>
                 </table>
             </div>
             <div class="foundationBox">
-                <span id="foundationName">댕댕이행복재단</span>
-                <span id="foundationH"><a href="#"><i class="iconFoundation fas fa-home"></i>&nbsp;후원하러가기</a></span>
-                <span id="writeDate">2020.07.05</span>
+                <span id="foundationName">${dn.companyName}</span>
+                <span id="foundationH"><a href="/donationDetail.don?donationNo=${dn.dnreviewRef}&donationWriter=${dn.dnreviewWriter}"><i class="iconFoundation fas fa-home"></i>&nbsp;후원하러가기</a></span>
+                <span id="writeDate">${dn.dnreviewDate}</span>
             </div>
-            <div class="cwriteBox">
-                <form id="cmtFrm" method="post">
+            <c:if test="${not empty sessionScope.member }">
+                <div class="cwriteBox">
                     <div class="cmtWrap">
-                        <textarea id="dnCmt" placeholder="따듯한 마음을 표현하세요."></textarea>
+                        <textarea id="dnCmt" placeholder="따듯한 마음을 표현하세요." name="dncommentContent"></textarea>
                     </div>
                     <span class="textLimit">
                         <span id="nowTxt">0</span>
                         /
                         <span id="limitTxt">500</span>
                     </span>
-                    <button class="cmtBtn">등록</button>
-                </form>
-            </div>
+                    <button class="cmtBtn" type="button">등록</button>
+
+                </div>
+            </c:if>
             <div class="cmtsWrap">
-                <div class="cmtsHead">
+                <div class="cmtsHead" id="cmtsHead">
                     <span>댓글</span>
-                    <span id="cmtCnt">1</span>
+                    <span id="cmtCnt">${count}</span>
                 </div>
                 <!--여기c:foreach-->
-                <div class="cmtsBox">
-                    <span id="cmtwriter">이토토</span>님 작성
-                    <div id="cmtsdetail"><input type="text" value="댓글내용"></div>
-                    <span id="cmtswDate">2020.07.05</span>
-                    <a href="javascript:void(0)" id="cmtsLike"><i class="iconheart far fa-heart"></i><span id="likecnt">0</span></a>
-                </div>
+                <c:forEach items="${drc}" var="c">
+                    <div class="cmtsBox">
+                        <span id="cmtwriter">${c.dncommentWriter}</span>님 작성
+                        <div id="cmtsdetail"><input type="text" value="${c.dncommentContent}"></div>
+                        <span id="cmtswDate">${c.dncommentDate}</span>
+                        <a href="javascript:void(0)" id="cmtsLike"><i class="iconheart far fa-heart"></i><span id="likecnt">${c.dncommentLike}</span></a>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>
 
     <jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+    <script>
+        $(function() {
+            $("#dnCmt").keyup(function() {
+                var inputLength = $(this).val().length;
+                var remain = 500 - inputLength;
+                $("#nowTxt").html(remain);
+            });
 
+            $(".cmtBtn").click(function() {
+                var dncommentRef = "${dn.dnreviewNo}";
+
+                var memberId = "${sessionScope.member.memberId}";
+
+                var dncommentContent = $("#dnCmt").val();
+                $.ajax({
+                    url: "/insertDnCmt.don",
+                    type: "POST",
+                    data: {
+                        dncommentRef: dncommentRef,
+                        memberId: memberId,
+                        dncommentContent: dncommentContent
+                    },
+                    success: function(result) {
+                        var result = Number(result);
+
+                        if (result > 0) {
+                          
+                            alert("댓글등록성공");
+                            location.reload();
+
+                        }
+
+
+
+
+
+                    },
+                    error: function() {
+                        alrert("댓글등록실패");
+                    }
+                });
+            });
+        });
+
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 
 

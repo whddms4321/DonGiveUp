@@ -12,7 +12,7 @@
 		}
 		table th{
 			font-size:20px;
-			background-color : #F1F1F1;
+			background-color : #CBD3D7;
 		}
 		#pageNavi a, span{
 			padding:13px;
@@ -36,9 +36,9 @@
 							<h1 style="font-weight:bold;">후원단체 관리</h1>
 						</div>
 						<div style="margin-top:100px;">
-							<table class="table">
+							<table class="table table-striped">
 								<tr>
-									<th>번호</th><th>기관명</th><th>담당자</th><th>연락처</th><th>이메일</th><th>승인일</th><th>상태</th>
+									<th>번호</th><th>기관명</th><th>담당자</th><th>연락처</th><th>승인일</th><th>상태</th>
 								</tr>
 								<c:forEach items="${list}" var="c" varStatus="l">
 									<tr class='newTr'>
@@ -46,7 +46,6 @@
 										<td>${c.companyName }</td>
 										<td>${c.memberId }</td>
 										<td>${c.memberPhone }</td>
-										<td>${c.memberEmail }</td>
 										<td>${c.memberEnrollDate }</td>
 										<c:if test="${c.memberType == 2 }">
 											<td><a href="javascript:void(0);" onclick="memberStopAndRestore('stop','${c.memberId}');">일반</a></td>

@@ -118,7 +118,7 @@
 		<br><br>
 			<h1>회사소개</h1>
 			<hr>
-			<span style="font-size: 60px; font-weight: bold; color: #0fbcff; ">Don Give Up</span><span style="font-size: 40px; font-weight: bold;">은<br>Donation(기부)을 Don't Give Up(포기하지 말라)는 <br>뜻에서 탄생한 새로운 회사의 이름입니다.</span>
+			<span style="font-size: 60px; font-weight: bold; color: #0fbcff; ">Don Give Up</span><span style="font-size: 40px; font-weight: bold;">은<br>Donation(기부)을 Don't Give Up(포기하지 말라)는 <br>뜻에서 탄생한 새로운 단체의 이름입니다.</span>
 		</div>
 	</div>
 	<div class="imgGround">
@@ -128,7 +128,7 @@
 				<span style="font-size: 75px; font-weight: bold; color: #0fbcff;">Funation</span><br><hr><br>
 				<span style="font-size: 50px; font-weight: bold;">1. Fun(재미)</span><br>
 				<span style="font-size: 50px; font-weight: bold;">2. Donation(기부)</span><br><br><br>
-				<span style="font-size: 25px; font-weight: bold; color: black;">Don Give Up은 재미와 기부가 합쳐진 기부방식을<br> 추구하는 사회 공헌 기업입니다.</span>
+				<span style="font-size: 25px; font-weight: bold; color: black;">Don Give Up은 재미와 기부가 합쳐진 기부방식을<br> 추구하는 사회 공헌 단체입니다.</span>
 			</div>
 			<div class="sec2">
 			<br><br>

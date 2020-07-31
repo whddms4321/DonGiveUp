@@ -83,6 +83,7 @@
                 </div>
             </div>
             <form id="vserForm" method="post">
+                <input type="hidden" name="vserverRef" value="${v.vworkNo}">
                 <div class="bookingInfo">
                     <div class="BIWrap">
                         <div id="ticket">
@@ -93,13 +94,15 @@
                             <span id="fee">${v.vworkFee }</span>
                             <div class="countControl">
                                 <a href="javascript:void(0)" id="minusBtn" title="빼기"><i class="iconminus fas fa-minus"></i></a>
-                                <div id="countPer">1</div>
+                                <div id="countPer" name="vserverPer">1</div>
+                                <input type="hidden" id="vserverPer" name="vserverPer" value="">
                                 <!--신청가능한카운트까지만 더하기 가능(선택한 날짜의 남은 매수까지)-->
                                 <a href="javascript:void(0)" id="plusBtn" title="더하기"><i class="iconplus fas fa-plus"></i></a>
                             </div>
                             <div class="total">
                                 <span id="totalText">Total</span>
-                                <span id="totalFee">${v.vworkFee }</span>
+                                <span id="totalFee">0</span>
+                                <input type="hidden" name="vserverPrice" id="vserverPrice" value="">
                             </div>
                         </div>
 
@@ -111,19 +114,19 @@
                             <table>
                                 <tr>
                                     <td>이름</td>
-                                    <td><input type="text" placeholder="${sessionScope.member.memberName}"></td>
+                                    <td><input type="text" value="${sessionScope.member.memberName}" readonly></td>
                                 </tr>
                                 <tr>
                                     <td>참여일</td>
-                                    <td><input id="applyDate" name="vserverDate" type="text" readonly></td>
+                                    <td><input id="applyDate" name="vserverDay" type="text" readonly></td>
                                 </tr>
                                 <tr>
                                     <td>아이디</td>
-                                    <td><input type="text" value="${sessionScope.member.memberId }" readonly></td>
+                                    <td><input name="vserverWriter" type="text" value="${sessionScope.member.memberId }" readonly></td>
                                 </tr>
                                 <tr>
                                     <td>vms아이디</td>
-                                    <td><input type="text" placeholder="vms아이디 입력"></td>
+                                    <td><input name="vserverVms" type="text" placeholder="vms아이디 입력"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><button id="vwbookingBtn">예약하기</button></td>
@@ -217,8 +220,13 @@
             $("#addressBtn").css("background-color", "#e3f0f6");
             $("#addressBtn").css("color", "#fff");
         });
-
+        //폼제출
         $("#vwbookingBtn").css("cursor", "pointer").click(function() {
+            if ($("#applyDate").val() == "") {
+                alert("참여일을 선택해주세요.")
+                return false;
+            }
+            
             $("#vserForm").attr("action", "/vworkpayment.don");
             $("#vserForm").submit();
         });
@@ -233,22 +241,22 @@
             //console.log(i);
         }
         //봉사신청클릭시 남은 티켓수
-        var ticket;
+          var ticket;
         var index;
         var count;
-        var cnt; 
+        var cnt ;
         var fee = Number($("#fee").html());
         $(function() {
             $(".jdBtn").click(function() {
-                $(this).css("background-color", "#e3f0f6");
-                $(this).parent().siblings().children().css("background-color", "#80d4f6");
-                $(this).css("color", "#3D3B3A");
-                $(this).parent().siblings().children().css("color", "#fff");
+                $(this).css("background-color", "#80d4f6");
+                $(this).parent().siblings().children().css("background-color", "#e3f0f6");
+                $(this).css("color", "#fff");
+                $(this).parent().siblings().children().css("color", "darkgray");
                 var vserdate = $(this).html();
                 index = $(".jdBtn").parent().index($(this).parent());
                 //console.log(index);
                 var vworkNo = $(this).parent().val();
-                console.log("신청일:"+vserdate);
+                console.log("신청일:" + vserdate);
                 $.ajax({
                     url: "/vwticketCnt.don",
                     type: "POST",
@@ -256,64 +264,30 @@
                         vserdate: vserdate,
                         vworkNo: vworkNo
                     },
-                    success: function(data) {
-                        var result = Number(data);
-
-                        var count = "${v.vworkPer}";
-
+                    success: function(vs) {
+                        var result = vs.ticketcount; 
+                        console.log("받아온값: "+result);
+                    
+                        var count = ${v.vworkPer};
+                        
+                        console.log("count: "+count);
+                       
                         ticket = count - result;
-
-
+                        console.log("ticket: "+ticket);
+ 
                         $(".ticket").eq(index).html(ticket + "매남음");
                         $(".ticket").eq(index).siblings().html("");
                         $("#applyDate").val("");
                         $("#applyDate").val(vserdate);
-
-                        if (ticket != 0) {
-                            $(".iconplus").css("background-color", "#0fbcff");
-                        } else if (ticket == 0) {
-                            $("#plusBtn").click(function() {
-                                return false;
-                            });
-                            $("#minusBtn").click(function() {
-                                return false;
-                            });
-                        }
-
+                            cnt = 0;
+                            $("#countPer").html(0);
+                            $("#totalFee").html(0);
+                            $("#vserverPer").val(cnt);
+                        
+                        
 
                         cnt = Number($("#countPer").html());
-                        $("#plusBtn").click(function() {
-                            $("#totalFee").html(cnt * fee);
-                            if (0 < cnt <= ticket) {
-                                $(".iconminus").css("background-color", "#0fbcff");
-                                if (cnt < ticket) {
-                                    $("#countPer").html(cnt + 1);
-                                    cnt = Number($("#countPer").html());
-                                    $("#totalFee").html(cnt * fee);
-                                    console.log("cnt:" + cnt);
-
-                                }
-                                cnt = Number($("#countPer").html());
-                                if (cnt == ticket) {
-                                    $(".iconplus").css("background-color", "darkgray");
-                                }
-                            }
-                        });
-
-                        cnt = Number($("#countPer").html());
-                        $("#minusBtn").click(function() {
-                            $(".iconplus").css("background-color", "#0fbcff");
-                            if (1 < cnt) {
-                                $("#countPer").html(cnt - 1);
-                                cnt = Number($("#countPer").html());
-                                $("#totalFee").html(cnt * fee);
-                                console.log("cnt : " + cnt);
-                            }
-                            cnt = Number($("#countPer").html());
-                            if (cnt == 1) {
-                                $(".iconminus").css("background-color", "darkgray");
-                            }
-                        });
+                        
 
 
                     },
@@ -324,6 +298,41 @@
                 });
 
             });
+            $("#plusBtn").click(function() {
+                            if (cnt <= ticket) {
+                                if ( cnt< ticket) {
+                                    $(".iconplus").css("background-color","#0fbcff");
+                                    $("#countPer").html(cnt+ 1);
+                                    cnt = Number($("#countPer").html());
+                                    $("#totalFee").html(cnt*fee);
+                                    $("#vserverPrice").val(cnt*fee);
+                                    $("#vserverPer").val(cnt);
+                                    console.log("cnt:"+cnt);
+
+                                }
+                            }
+                        });
+            $("#minusBtn").click(function() {
+                            $(".iconplus").css("background-color", "#0fbcff");
+                            if (1 < cnt) {
+                                $("#countPer").html(cnt - 1);
+                                 cnt = Number($("#countPer").html());
+                                $("#vserverPer").val(cnt);
+                               
+                                $("#vserverPrice").val(cnt*fee);
+                                
+                                $("#totalFee").html(cnt * fee);
+                                console.log("cnt : " + cnt);
+                                $("#vserverPer").val(cnt);
+                                $("#vserverPrice").val(cnt*fee);
+                            }
+                           
+                            if (cnt == 1) {
+                                $(".iconminus").css("background-color", "darkgray");
+                                $("#vserverPer").val(cnt);
+                                $("#vserverPrice").val(cnt*fee);
+                            }
+                        });
             $(".addressContent").hide();
 
         });
@@ -373,10 +382,12 @@
         var xx;
         var yy;
         var addr = "${v.vworkAddress }";
-        //console.log(addr);
         var geocoder = new kakao.maps.services.Geocoder();
+        //console.log(addr);
+        
 
         var callback = function(result, status) {
+            
             if (status === kakao.maps.services.Status.OK) {
                 //console.log(result);
                 xx = result[0].x;
@@ -385,7 +396,7 @@
                 var container = document.getElementById('map'); //지도를 담을 영역
                 var options = {
                     center: new kakao.maps.LatLng(yy, xx), //지도의 중심좌표.
-                    level: 6
+                    level: 3
                 };
                 map = new kakao.maps.Map(container, options);
                 var markerPosition = new kakao.maps.LatLng(yy, xx);
@@ -394,14 +405,14 @@
                 var marker = new kakao.maps.Marker({
                     position: markerPosition
                 });
-
+                
                 // 마커가 지도 위에 표시되도록 설정합니다
                 marker.setMap(map);
-
-
             }
-        };
 
+        };
+        
+        
         geocoder.addressSearch(addr, callback);
         kakao.maps.event.addListener(map, 'center_changed', function() {
 

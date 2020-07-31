@@ -13,4 +13,5 @@ public class Regular {
 	private String regularStartDate;
 	private int regularState;
 	private String regularNegative;
+	private String regularWriter;
 }

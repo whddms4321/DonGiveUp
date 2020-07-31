@@ -50,8 +50,6 @@ public class VworkServiceImpl implements VworkService {
 	}
 	public ArrayList<VserverVo> selectvwticketCnt(String vserdate, int vworkNo) {
 		HashMap<String, String> map = new HashMap<String, String>();
-		System.out.println(vserdate);
-		System.out.println(vworkNo);
 		map.put("vserdate", vserdate);
 		map.put("vworkNo", String.valueOf(vworkNo));
 		
@@ -83,6 +81,13 @@ public class VworkServiceImpl implements VworkService {
 	public int vworkupdate(VworkVo v) {
 		
 		return dao.vworkupdate(v);
+	}
+
+
+
+	public int insertvserver(VserverVo vs) {
+		
+		return dao.insertvserver(vs);
 	}
 
 

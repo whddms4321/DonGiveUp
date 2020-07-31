@@ -142,9 +142,9 @@ input::placeholder {
 }
 
 .spreviewList {
-    width: 100%;
+   border-collapse: separate;
+    border-spacing: 12px;
     height: 350px;
-
 }
 .spreviewList a {
     text-decoration: none;
@@ -155,8 +155,12 @@ input::placeholder {
 .spreviewBox {
     margin: 0 auto;
     width: 230px;
-    height: 340px;
+    height: 320px;
     box-sizing: border-box;
+}
+td{
+    width: 234px;
+    height: 322px;
 }
 
 .sprimg {

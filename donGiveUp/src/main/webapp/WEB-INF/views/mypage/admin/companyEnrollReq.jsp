@@ -12,7 +12,7 @@
 		}
 		table th{
 			font-size:20px;
-			background-color : #F1F1F1;
+			background-color : #CBD3D7;
 		}
 		#pageNavi a, span{
 			padding:13px;
@@ -20,7 +20,7 @@
 		.title{
 			font-weight:bold;
 			font-size : 15px;
-			background-color : gray;
+			background-color : #CBD3D7;
 			width : 130px;
 		}
 	</style>
@@ -35,9 +35,9 @@
 						<h1 style="font-weight:bold;">후원단체 등록 신청</h1>
 					</div>
 					<div style="margin-top:100px;">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
-								<th>번호</th><th>기관등록번호</th><th>담당자</th><th>연락처</th><th>이메일</th><th>재무제표</th><th>가입일자</th>
+								<th>번호</th><th>기관등록번호</th><th>담당자</th><th>연락처</th><th>재무제표</th><th>가입일자</th>
 							</tr>
 							<c:forEach items="${list}" var="c" varStatus="l">
 								<tr>
@@ -45,13 +45,11 @@
 									<td><a style="cursor:pointer;" data-toggle="modal" data-target="#dataModal" data-companynumber="${c.companyNumber}" data-memberid="${c.memberId}"> ${c.companyNumber }</a></td>
 									<td>${c.memberId }</td>
 									<td>${c.memberPhone }</td>
-									<td>${c.memberEmail }</td>
-
 									<td>
-										<c:if test="${not empty c.companyFilename }">
-											<a href="javascript:fileDownload('${c.companyFilename }','${c.companyFilepath }')">${c.companyFilename }</a>
+										<c:if test="${not empty c.chartFilename }">
+											<a href="javascript:fileDownload('${c.chartFilename }','${c.chartFilepath }')">${c.chartFilename }</a>
 										</c:if>
-										<c:if test="${empty c.companyFilename }">
+										<c:if test="${empty c.chartFilename }">
 											<span>X</span>
 										</c:if>
 									</td>
@@ -190,45 +188,45 @@
 					$("#content").css("display", "block");
 					$("#btnDiv").css("display", "block");
 					
-					if(map.companyName != undefined){
-						$("#companyName").html(map.companyName);
+					if(map.nanmmbyNm != undefined){
+						$("#companyName").html(map.nanmmbyNm);
 						$("#companyName").css("color", "#444444");
 					}else{
 						$("#companyName").css("color", "red");
 						$("#companyName").html("일치하는 정보가 없습니다.");
 					}
-					if(map.name != undefined){
+					if(map.rprsntvNm != undefined){
 						$("#name").css("color", "#444444");
-						$("#name").html(map.name);
+						$("#name").html(map.rprsntvNm);
 					}else{
 						$("#name").css("color", "red");
 						$("#name").html("일치하는 정보가 없습니다.");
 					}
-					if(map.phone != undefined){
+					if(map.fxnum != undefined){
 						$("#phone").css("color", "#444444");
-						$("#phone").html(map.phone);
+						$("#phone").html(map.fxnum);
 					}else{
 						$("#phone").css("color", "red");
 						$("#phone").html("일치하는 정보가 없습니다.");
 					}
-					if(map.addr != undefined){
+					if(map.adres != undefined){
 						$("#addr").css("color", "#444444");
-						$("#addr").html(map.addr);
+						$("#addr").html(map.adres);
 					}else{
 						$("#addr").css("color", "red");
 						$("#addr").html("일치하는 정보가 없습니다.");
 					}
-					if(map.date != undefined){
+					if(map.fondDe != undefined){
 						$("#date").css("color", "#444444");
-						$("#date").html(map.date);
+						$("#date").html(map.fondDe);
 					}else{
 						$("#date").css("color", "red");
 						$("#date").html("일치하는 정보가 없습니다.");
 					}
-					if(map.companyHomePage != undefined){
+					if(map.hmpgAdres != undefined){
 						$("#companyHomePage").css("color", "#444444");
 						var html ="";
-						html += "<a href='" + map.companyHomePage + "' target='_blank'>" + map.companyHomePage + "</a>";
+						html += "<a href='" + map.hmpgAdres + "' target='_blank'>" + map.hmpgAdres + "</a>";
 						$("#companyHomePage").html(html);
 					}else{
 						$("#companyHomePage").css("color", "red");

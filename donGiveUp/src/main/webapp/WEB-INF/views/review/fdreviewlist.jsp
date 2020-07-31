@@ -29,9 +29,9 @@
         </div>
         <div class="fdrNavi">
             <ul>
-                <li><a href="/reviewmain.don">후기메인페이지</a></li>
-                <li><a href="/dnreview.don">기부후기</a></li>
-                <li><a href="/spreview.don">물품후원후기</a></li>
+                <li><a href="/dnreviewlist.don?count=1">기부후기</a></li>
+                <li><a href="/fdreviewlist.don?count=1">펀딩 후기</a></li>
+                <li><a href="/spreview.don">물품후원 후기</a></li>
             </ul>
         </div>
         <div class="fdrlistWrap">

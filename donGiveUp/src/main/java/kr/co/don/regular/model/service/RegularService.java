@@ -54,6 +54,59 @@ public class RegularService {
 		// TODO Auto-generated method stub
 		return regularDao.MemberMoneyUpdate(m);
 	}
+
+	public ArrayList<RegularInVo> RegularInPay() {
+		List<RegularInVo> list = regularDao.RegularInPay();
+		 
+		 return (ArrayList<RegularInVo>)list; 
+	}
+
+	public ArrayList<Member> MemberPaySearch(String regularInId) {
+		List<Member> list2 = regularDao.MemberPaySearch(regularInId);
+		 
+		 return (ArrayList<Member>)list2; 
+	}
+
+	public int MemberInUpdate(String to) {
+		// TODO Auto-generated method stub
+		return regularDao.MemberInUpdate(to);
+	}
+
+	public int RegularInUpdate(String to) {
+		// TODO Auto-generated method stub
+		return regularDao.RegularInUpdate(to);
+	}
+
+	public int BankInUpdate(String to) {
+		// TODO Auto-generated method stub
+		return regularDao.BankInUpdate(to);
+	}
+
+	public int BankMemInUpdate(String to) {
+		// TODO Auto-generated method stub
+		return regularDao.BankMemInUpdate(to);
+	}
+
+	public Member MemberMoney(String memberId) {
+		// TODO Auto-generated method stub
+		return regularDao.MemberMoney(memberId);
+	}
+
+	public Member MemberIdSearch(String companyName) {
+		// TODO Auto-generated method stub
+		return regularDao.MemberIdSearch(companyName);
+	}
+
+	public List<RegularInVo> RegularInCount(String regularWriter) {
+		// TODO Auto-generated method stub
+		return regularDao.RegularInCount(regularWriter);
+	}
+
+	
+
+
+
+
 }
 	
 	

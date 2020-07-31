@@ -30,7 +30,7 @@
 		font-size : 20px;
 		text-align:center;
 		height :  50px;
-		background-color : #F1F1F1;
+		background-color : #CBD3D7;
 	}
 	.th1{
 		width : 100px;
@@ -64,6 +64,9 @@
 	#pageNavi a, span{
 		padding : 13px;
 	}
+	.pageNavi{
+		padding : 13px;
+	}
 	
 </style>
 </head>
@@ -80,7 +83,7 @@
 						<li><a href="#tab2" onclick="saveValue('donation', 1);" data-toggle="tab">기부</a></li>
 						<li><a href="#tab3" onclick="saveValue('funding', 1);" data-toggle="tab">펀딩</a></li>
 						<li><a href="#tab4" onclick="saveValue('vwork', 1);" data-toggle="tab">함께해요</a></li>
-
+						<li><a href="#tab5" onclick="saveValue('support', 1);" data-toggle="tab">물품후원</a></li>
 						<li><a href="#tab6" onclick="saveValue('regular', 1);" data-toggle="tab">정기후원</a></li>
 
 					</ul>
@@ -111,7 +114,7 @@
 								</div>
 							</form>
 							<div id="table" style="margin-top:50px;">
-								<table class="table">
+								<table class="table table-striped">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th2">타입</th>
@@ -126,7 +129,21 @@
 										<tr>
 											<td>${s.count}</td>
 											<td>${b.groupName}</td>
-											<td><a href="#">${b.boardTitle}</a></td>
+											<c:if test="${b.groupName == '기부'}">
+												<td><a href="/donationDetail.don?donationNo=${b.boardKey}&donationWriter=${b.boardWriter}" target="_blank">${b.boardTitle}</a></td>
+											</c:if>
+											<c:if test="${b.groupName == '펀딩'}">
+												<td><a href="/fundingView.don?fundingNo=${b.boardKey}" target="_blank">${b.boardTitle}</a></td>
+											</c:if>
+											<c:if test="${b.groupName == '함께해요'}">
+												<td><a href="/vworkbooking.don?vworkNo=${b.boardKey}" target="_blank">${b.boardTitle}</a></td>
+											</c:if>
+											<c:if test="${b.groupName == '물품후원'}">
+												<td><a href="#">${b.boardTitle}</a></td>
+											</c:if>
+											<c:if test="${b.groupName == '정기후원'}">
+												<td><a href="/regularDetail.don?regularWriter=${b.boardWriter}" target="_blank">${b.boardTitle}</a></td>
+											</c:if>
 											<td>${b.boardWriter}</td>
 											<td>${b.memberPhone}</td>
 											<td>${b.memberEmail}</td>
@@ -136,24 +153,24 @@
 													<!-- 거부 버튼 클릭 시 Modal! data-변수명  에서 변수명에 대문자 들어가면 안됨 -->
 													<c:if test="${b.groupName == '기부'}">
 														<button type="button" class="btn btn-sm btn-primary" name="yes" onclick="boardConfirm(${b.boardKey}, 'donation', 'all');">승인</button>
-														<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="donation" data-state="all" type="button">거부</button>
+														<button class="btn btn-sm " data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="donation" data-state="all" type="button">거부</button>
 													</c:if>
 													<c:if test="${b.groupName == '펀딩'}">
 														<button type="button" class="btn btn-sm btn-primary" name="yes" onclick="boardConfirm(${b.boardKey}, 'funding', 'all');">승인</button>
-														<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="funding" data-state="all" type="button">거부</button>
+														<button class="btn btn-sm " data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="funding" data-state="all" type="button">거부</button>
 													</c:if>
 													<c:if test="${b.groupName == '함께해요'}">
 														<button type="button" class="btn btn-sm btn-primary" name="yes" onclick="boardConfirm(${b.boardKey}, 'vwork', 'all');">승인</button>
-														<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="vwork" data-state="all" type="button">거부</button>
+														<button class="btn btn-sm " data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="vwork" data-state="all" type="button">거부</button>
 													</c:if>
 													<c:if test="${b.groupName == '물품후원'}">
 														<button type="button" class="btn btn-sm btn-primary" name="yes" onclick="boardConfirm(${b.boardKey}, 'support', 'all');">승인</button>
-														<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="support" data-state="all" type="button">거부</button>
+														<button class="btn btn-sm " data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="support" data-state="all" type="button">거부</button>
 													</c:if>
 
 													<c:if test="${b.groupName == '정기후원'}">
 														<button type="button" class="btn btn-sm btn-primary" name="yes" onclick="boardConfirm(${b.boardKey}, 'regular', 'all');">승인</button>
-														<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="regular" data-state="all" type="button">거부</button>
+														<button class="btn btn-sm " data-toggle="modal" data-target="#dataModal" data-key="${b.boardKey}" data-type="regular" data-state="all" type="button">거부</button>
 													</c:if>
 
 												</td>
@@ -220,7 +237,7 @@
 								</div>
 							</div>
 							<div id="donationTable" style="margin-top : 50px;">
-								<table class="table">
+								<table class="table table-striped">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th3">글제목</th>
@@ -264,7 +281,7 @@
 								</div>
 							</div>
 							<div id="fundingTable" style="margin-top : 50px;">
-								<table class="table">
+								<table class="table table-striped">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th3">글제목</th>
@@ -308,7 +325,7 @@
 								</div>
 							</div>
 							<div id="vworkTable" style="margin-top : 50px;">
-								<table class="table">
+								<table class="table table-striped">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th3">글제목</th>
@@ -351,7 +368,7 @@
 								</div>
 							</div>
 							<div id="supportTable" style="margin-top : 50px;">
-								<table class="table">
+								<table class="table table-striped">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th3">글제목</th>
@@ -394,7 +411,7 @@
 								</div>
 							</div>
 							<div id="regularTable" style="margin-top : 50px;">
-								<table class="table">
+								<table class="table table-striped">
 									<tr>
 										<th class="th1">번호</th>
 										<th class="th3">글제목</th>
@@ -454,8 +471,10 @@
             state = $(event.relatedTarget).data('state');
             
             if(state == "show"){
+            	$("#dataModalLabel").html("[거부 사유 확인]");
             	negativeShow(boardKey, type);	
             }else if(state == undefined){
+            	$("#dataModalLabel").html("[거부 사유를 작성하세요]");
             	$("#negativeContent").prop("readonly",false);
             }
             console.log(boardKey);
@@ -553,7 +572,18 @@
 						html += "<tr><th class='th1'>번호</th><th class='th2'>타입</th><th class='th3'>글제목</th><th class='th4'>담당자</th><th class='th5'>연락처</th><th class='th6'>이메일</th><th class='th7'>신청/승인일</th><th class='th8'>상태</th></tr>"
 						for(var i=0; i<boardList.length; i++){
 							html += "<tr><td>"+((reqPage-1)*10+1+i)+"</td><td>"+boardList[i].groupName+"</td>";
-							html += "<td><a href='#'>"+boardList[i].boardTitle+"</a></td><td>"+boardList[i].boardWriter+"</td>";
+							if(boardList[i].groupName == "기부"){
+								html += "<td><a href='/donationDetail.don?donationNo=" + boardList[i].boardKey + "&donationWriter=" + boardList[i].boardWriter +"' target='_blank'>"+boardList[i].boardTitle+"</a></td>";								
+							}else if(boardList[i].groupName == "펀딩"){
+								html += "<td><a href='/fundingView.don?fundingNo="+boardList[i].boardKey+"' target='_blank'>"+boardList[i].boardTitle+"</a></td>";
+							}else if(boardList[i].groupName == "정기후원"){
+								html += "<td><a href='/regularDetail.don?regularWriter="+ boardList[i].boardWriter +"' target='_blank'>"+boardList[i].boardTitle+"</a></td>";
+							}else if(boardList[i].groupName == "함께해요"){
+								html += "<td><a href='/vworkbooking.don?vworkNo="+ boardList[i].boardKey +"'>"+boardList[i].boardTitle+"</a></td>";
+							}else if(boardList[i].groupName == "물품후원"){
+								html += "<td><a href='#'>"+boardList[i].boardTitle+"</a></td>";
+							}
+							html += "<td>"+boardList[i].boardWriter+"</td>";
 							html += "<td>"+boardList[i].memberPhone+"</td><td>"+boardList[i].memberEmail+"</td>";
 							html += "<td>"+boardList[i].startDate+"</td>";
 							if(boardList[i].boardState == 0){
@@ -561,20 +591,20 @@
 								html += boardList[i].boardKey;
 								if(boardList[i].groupName == "기부"){
 									html += ", `donation`, `all`);'>승인</button>";
-									html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='donation'>거부</button></td></tr>";
+									html += "<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='donation'>거부</button></td></tr>";
 								}else if(boardList[i].groupName == "펀딩"){
 									html += ", `funding`, `all`);'>승인</button>";
-									html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='funding'>거부</button></td></tr>";
+									html += "<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='funding'>거부</button></td></tr>";
 								}else if(boardList[i].groupName == "함께해요"){
 									html += ", `vwork`, `all`);'>승인</button>";
-									html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='vwork'>거부</button></td></tr>";
+									html += "<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='vwork'>거부</button></td></tr>";
 								}else if(boardList[i].groupName == "물품후원"){
 									html += ", `support`, `all`);'>승인</button>";
-									html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='support'>거부</button></td></tr>";
+									html += "<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='support'>거부</button></td></tr>";
 
 								}else if(boardList[i].groupName == "정기후원"){
 									html += ", `regular`, `all`);'>승인</button>";
-									html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='regular'>거부</button></td></tr>";
+									html += "<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#dataModal' data-key='" + boardList[i].boardKey + "' data-state='all' data-type='regular'>거부</button></td></tr>";
 
 								}
 							}else if(boardList[i].boardState == 1){
@@ -665,7 +695,19 @@
 						//구해온 행(tr)을 페이지 변경 시 삭제해주기 위해 newTr이란 클래스명을 할당
 						//각 행의 번호를 요청 reqPage와 i값을 이용해서 넘버링 했음
 						html += "<tr class='newTr'><td>"+((obj.etcReqPage-1)*10+1+i)+"</td>";
-						html += "<td><a href='#'>"+list[i].boardTitle+"</a></td><td>"+list[i].boardWriter+"</td>";
+						//html += "<td><a href='#'>"+list[i].boardTitle+"</a></td>";
+						if(list[i].groupName == "기부"){
+							html += "<td><a href='/donationDetail.don?donationNo=" + list[i].boardKey + "&donationWriter=" + list[i].boardWriter +"' target='_blank'>"+list[i].boardTitle+"</a></td>";								
+						}else if(list[i].groupName == "펀딩"){
+							html += "<td><a href='/fundingView.don?fundingNo="+list[i].boardKey+"' target='_blank'>"+list[i].boardTitle+"</a></td>";
+						}else if(list[i].groupName == "정기후원"){
+							html += "<td><a href='/regularDetail.don?regularWriter="+ list[i].boardWriter +"' target='_blank'>"+list[i].boardTitle+"</a></td>";
+						}else if(list[i].groupName == "함께해요"){
+							html += "<td><a href='/vworkbooking.don?vworkNo="+ list[i].boardKey +"'>"+list[i].boardTitle+"</a></td>";
+						}else if(list[i].groupName == "물품후원"){
+							html += "<td><a href='#'>"+list[i].boardTitle+"</a></td>";
+						}
+						html += "<td>"+list[i].boardWriter+"</td>";
 						html += "<td>"+list[i].memberPhone+"</td><td>"+list[i].memberEmail+"</td>";
 						html += "<td>"+list[i].startDate+"</td>";
 						
@@ -674,20 +716,20 @@
 							html += list[i].boardKey;
 							if(list[i].groupName == "기부"){
 								html += ", `donation`);'>승인</button>";
-								html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='donation'>거부</button></td></tr>";
+								html += "<button type='button' class='btn btn-sm ' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='donation'>거부</button></td></tr>";
 							}else if(list[i].groupName == "펀딩"){
 								html += ", `funding`);'>승인</button>";
-								html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='funding'>거부</button></td></tr>";
+								html += "<button type='button' class='btn btn-sm ' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='funding'>거부</button></td></tr>";
 							}else if(list[i].groupName == "함께해요"){
 								html += ", `vwork`);'>승인</button>";
-								html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='vwork'>거부</button></td></tr>";
+								html += "<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='vwork'>거부</button></td></tr>";
 							}else if(list[i].groupName == "물품후원"){
 								html += ", `support`);'>승인</button>";
-								html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='support'>거부</button></td></tr>";
+								html += "<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='support'>거부</button></td></tr>";
 
 							}else if(list[i].groupName == "정기후원"){
 								html += ", `regular`);'>승인</button>";
-								html += "<button type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='regular'>거부</button></td></tr>";
+								html += "<button type='button' class='btn btn-sm' data-toggle='modal' data-target='#dataModal' data-key='" + list[i].boardKey + "' data-type='regular'>거부</button></td></tr>";
 
 							}
 						}else if(list[i].boardState == 1){

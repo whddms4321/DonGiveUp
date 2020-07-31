@@ -264,12 +264,11 @@ tr{
 								}
 								
 							}else if(list[i].boardState == 1){ // 내가 배정됨
-								html += "<td><a</td>";
+								html += "<td>배정완료</td>";
 							}else if(list[i].boardState == 2){ // 다른 기관이 배정됨
 								html += "<td>배정실패</td>";
 							}
 						}else{
-							console.log(typeof(list[i].boardState));
 							if(list[i].boardState == 0){
 								html += "<td>승인대기</td>";
 							}else if(list[i].boardState == 1){

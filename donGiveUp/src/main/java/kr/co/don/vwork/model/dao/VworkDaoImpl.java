@@ -44,6 +44,10 @@ public class VworkDaoImpl implements VworkDao{
 	
 		return sqlsession.update("vwork.vworkupdate",v);
 	}
+	public int insertvserver(VserverVo vs) {
+		// TODO Auto-generated method stub
+		return sqlsession.insert("vserver.insertvserver",vs);
+	}
 	
 
 }

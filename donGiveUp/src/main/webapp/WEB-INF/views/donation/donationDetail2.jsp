@@ -16,8 +16,6 @@ height : 1700px;
 width: 80%;
 height : 100%;
 border: 0.1px solid gray;
-border-bottom:none;
-border-top:none;
 float: left;
 }
 .content-main-right{
@@ -73,7 +71,7 @@ width: 90%;
 }
 .content-main-right-money{
 width: 100%;
-height: 280px;
+height: 240px;
 
 
 }
@@ -84,7 +82,7 @@ height: 80px;
 }
 .content-main-right-organization{
 width: 100%;
-height: 300px;
+
 
 }
 .content-main-right-require{
@@ -141,8 +139,8 @@ line-height: 70px;
 
 }
 .content-main-right-donation-button{
-	width: 99%;
-	height: 100%;
+	width: 99.3%;
+	height: 70px;
 	background-color: #0fbcff;
 	font-size: 25px;
 	font-weight: bold;
@@ -182,10 +180,20 @@ font-size: 23px;
 	font-size: 13px;
 	margin: 10px;
 }
+.buttonCss{
+	width: 150px;
+	height: 50px;
+	border: 1px solid rgba(0, 0, 0, .2);
+	color:white;
+	background-color: rgba(0, 0, 0, .2);
+	margin-left: 40%;
+	font-weight: bold;
+	font-size: 20px;
+}
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/main/header.jsp"></jsp:include>
+
 
 	<div class="content">
 		<div class="content-main">
@@ -202,37 +210,31 @@ font-size: 23px;
 				<div class="content-main-left-file">
 					<a class="content-main-left-file-a">첨부 파일 : </a>
 				</div><hr>
-				<div class="content-main-left-comment">
+				<!-- <div class="content-main-left-comment">
 					<a class="content-main-left-comment-a"></a><br>
 					<button>더보기</button>
-				</div>
+				</div> -->
 				
-				<form>
-				
-				<input type="submit" value="돌아가기" onclick="javascript: form.action='/donationInsertFrm.don';"/>
-				</form>
 				
 			</div>
 			<div class="content-main-right">
 				<div class="content-main-right-money">
-				<div class="content-main-right-money-d1"><a class="content-main-right-money-a1">80%</a></div>
-				<a class="content-main-right-money-a2"><progress value="80" max="100"></progress></a><br>
-				<a class="content-main-right-money-a3">${d.donationStartDate} ~ ${d.donationEndDate}까지</a><br>
-				<div class="content-main-right-money-d2"><a class="content-main-right-money-a4">D-59</a></div><br>	
+				<div class="content-main-right-money-d1"><a class="content-main-right-money-a1">0%</a></div>
+				<a class="content-main-right-money-a2"><progress value="0" max="100"></progress></a><br>
+				<a class="content-main-right-money-a3">${d.donationStartDate} ~ ${d.donationEndDate}까지</a><br>			
 				<a class="content-main-right-money-a5">${d.donationNowMoney}원</a><br><br>
 				<a class="content-main-right-money-a6">목표 : ${d.donationGoalMoney}원</a><br>						
 				
 					
-				</div>
+				</div><hr>
 				<div class="content-main-right-donation">
 					<button class="content-main-right-donation-button">모금함 기부 하기</button>	
-				</div>
+				</div><hr>
 				<div class="content-main-right-organization">
 				<div class="content-main-right-organization-d1"><a class="content-main-right-organization-a1">모금 단체 안내</a></div><br>
-				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src="/resources/upload/images/1.JPG"></a><br>
+				<a class="content-main-right-organization-a2"><img class="content-main-right-organization-img" src=""></a><br>
 				<div class="content-main-right-organization-d2"><a class="content-main-right-organization-a3"></a></div><br>
-				<div class="content-main-right-organization-d3"><a class="content-main-right-organization-a4" href="#">기부 단체 리뷰</a>	</div>
-				</div>
+				</div><hr>
 				<div class="content-main-right-require">
 				<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">주의 사항</a></div><br>
 				<div class="content-main-right-require-d2"><a class="content-main-right-require-a2">
@@ -248,13 +250,20 @@ font-size: 23px;
 
 		해당 오류가 나타날 수 있습니다.
 		</a></div>
-				</div>
+				</div><hr>
 				<div class="content-main-right-relation">
-					<div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 기부 글</a></div>
+					<!-- <div class="content-main-right-require-d1"><a class="content-main-right-require-a1">연관 기부 글</a></div> -->
 				</div>
-			</div>
+			</div><br>
+		<input class="buttonCss" type="button" value="종료" onclick="FnClose()"/>
+		<br>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/views/main/footer.jsp"></jsp:include>
+	
 </body>
+<script>
+function FnClose(){
+    self.close();   //자기자신창을 닫습니다.
+}
+</script>
 </html>

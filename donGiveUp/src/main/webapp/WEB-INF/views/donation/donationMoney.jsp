@@ -30,12 +30,23 @@
    </style>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
+<script>
+function check_onclick(){
+	theForm = document.frm1;
+	
+	if(theForm.memberMoney.value < theForm.donationInMoney.value){
+		alert("보유 콩보다 많습니다. 확인해주세요.")
+		return theForm.donationInMoney.focus();
+	}
+	
+	theForm.submit();
+}
+</script>
 </head>
 <body>
 <br>
 <h1 class="review_h1">콩 기부하기</h1><br>
-	<form action="/donationInInsert.don" method="post" id="insertFrm">
+	<form action="/donationInInsert.don" name="frm1" method="post" id="insertFrm">
          <table class="table table-bordered">
           <input type="hidden" name="donationNo" value="${d.donationNo }">
          <input type="hidden" name="donationInType" value="${d.donationType }">
@@ -66,7 +77,7 @@
             
 				<tr style="text-align:center;">
 					<th colspan="2">
-						<button type="submit" OnClick="FnClose()" class="btn btn-outline-primary">결제하기</button>	 
+						<button type="button" OnClick="check_onclick()" class="btn btn-outline-primary">결제하기</button>	 
 										
 					</th>
 				</tr>

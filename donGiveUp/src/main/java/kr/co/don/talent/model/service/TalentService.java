@@ -113,7 +113,9 @@ public class TalentService {
 		return dao.talentListMyList(memberId);
 	}
 
-	public TalentBoardData selectTalentBoard(int talentNo, int reqPage) {
+	public TalentBoardData selectTalentBoard(int talentNo, int reqPage,String talentWriter) {
+		System.out.println("talentNo : " + talentNo);
+		System.out.println("req :"  + reqPage);
 		// 페이지 당 출력 수
 		int numPerPage = 3;
 		// 총 게시물 수
@@ -129,8 +131,18 @@ public class TalentService {
 		int start = (reqPage - 1) * numPerPage + 1;
 		int end = reqPage * numPerPage;
 		// 해당 페이지의 게시물들 조회
-		ArrayList<TalentBoard> list = dao.selectTalentBoard(start, end,talentNo);
-
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("talentNo",String.valueOf(talentNo));
+		
+		ArrayList<TalentBoard> list = (ArrayList<TalentBoard>)dao.selectTalentBoard(map);
+		
+		System.out.println("리스트 사이즈 : " + list.size());
+		for(int i=0; i<list.size(); i++) {
+			System.out.println("제목 :ㅣ " +  list.get(i).getTalentBoardTitle());
+		}
 		// 페이지 내비게이션 작성 시작
 		String pageNavi = "";
 		// 페이지 내비게이션 길이
@@ -144,7 +156,7 @@ public class TalentService {
 			if (reqPage == pageNo) {
 				pageNavi += "<span class='selectNoticePage'>" + pageNo + "</span>";
 			} else {
-				pageNavi += "<a class='noticeBtn' href='/talentBoard.don?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+				pageNavi += "<a class='noticeBtn' href='/talent/talentBoard.don?reqPage=" + pageNo + "&talentNo="+talentNo+"&talentWriter="+talentWriter+"'>" + pageNo + "</a>";
 			}
 			pageNo++;
 			if (pageNo > totalPage) {
@@ -165,5 +177,30 @@ public class TalentService {
 	
 	public ArrayList<Talent> selectTalentList(String memberId) {
 		return dao.selectTalentList(memberId);
+	}
+
+	public TalentBoard talentBoardDetail(int talentBoardNo) {
+		return dao.talentBoardDetail(talentBoardNo);
+	}
+
+
+	public int insertTalentBoard(TalentBoard board) {
+		return dao.insertTalentBoard(board);
+	}
+
+	public TalentBoard selectTalentBoard(int talentBoardNo) {
+		return dao.selectTalentBoard(talentBoardNo);
+	}
+
+	public int modifyTalentBoard(TalentBoard board) {
+		return dao.modifyTalentBoard(board);
+	}
+
+	public int deleteTalentBoard(int talentBoardNo) {
+		return dao.deleteTalentBoard(talentBoardNo);
+	}
+
+	public int countTalentList(int talentNo) {
+		return dao.countTalentList(talentNo);
 	}
 }
